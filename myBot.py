@@ -1,4 +1,5 @@
 import discord, time, random
+import os
 client = discord.Client()
 @client.event
 async def on_ready():
@@ -48,25 +49,13 @@ async def on_message(message):
 		if m.startswith(","):
 			m = m[1:]
 			if m.startswith("도움") or m.startswith("ehdna"):
-				if m.startswith("도움 1") or m.startswith("ehdna 1"):
-					embed = discord.Embed(title="<:gniknoht:733977049743753247>기타 도움말<:thonking:732864307196592199>", color=0x62c1cc)
-					embed.add_field(name=",핑", value="으악 핑", inline=True)
-					embed.add_field(name=",에블핑", value="으악 핑", inline=True)
-					embed.add_field(name=",히어핑", value="으악 핑", inline=True)
-					embed.add_field(name=",폭8", value="폭☆8", inline=True)
-					embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
-					embed.add_field(name=",가위바위보 <가위|바위|보>", value="가위바위보를 합니다", inline=False)
-				elif m.startswith("도움 2") or m.startswith("ehdna 2"):
-					embed = discord.Embed(title="<:gniknoht:733977049743753247>도박 도움말<:thonking:732864307196592199>", color=0x62c1cc)
-					embed.add_field(name=",가입", value="도박을 할 수 있습니다", inline=False)
-					embed.add_field(name=",도박 <걸 돈>", value="도박을 합니다", inline=False)
-					embed.add_field(name=",일", value="돈을 법니다", inline=False)
-					embed.add_field(name=",프로필", value="현재 있는 돈을 확인합니다", inline=False)
-					embed.set_footer(text=str(message.author)[:-5])
-				else:
-					embed = discord.Embed(title="<:gniknoht:733977049743753247>도움말<:thonking:732864307196592199>", color=0x62c1cc)
-					embed.add_field(name=",도움 1", value="기타 도움말을 볼수 있습니다", inline=True)
-					embed.add_field(name=",도움 2", value="도박 도움말을 볼수 있습니다", inline=True)
+				embed = discord.Embed(title="<:gniknoht:733977049743753247>기타 도움말<:thonking:732864307196592199>", color=0x62c1cc)
+				embed.add_field(name=",핑", value="으악 핑", inline=True)
+				embed.add_field(name=",에블핑", value="으악 핑", inline=True)
+				embed.add_field(name=",히어핑", value="으악 핑", inline=True)
+				embed.add_field(name=",폭8", value="폭☆8", inline=True)
+				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
+				embed.add_field(name=",가위바위보 <가위|바위|보>", value="가위바위보를 합니다", inline=False)
 				await message.channel.send(embed=embed)
 			
 			elif m.startswith("핑") or m.startswith("vld"):
@@ -182,79 +171,6 @@ async def on_message(message):
 						await message.channel.send("진!")
 					if ee == 2:
 						await message.channel.send("비긴!")
-			elif m.startswith("도박") or m.startswith("ehqkr"):
-				with open("C:\\대단한폴더\\나의 폴더\\프로그램들\\코딩\\file\\도박.txt", "r") as f:
-					lines = f.readlines()
-					for i in lines:
-						j = i[:-1]
-						lines[lines.index(i)] = j
-					if str(message.author) in lines:
-						if m.startswith("도박"):
-							q = m[3:]
-						else:
-							q = m[6:]
-						try:
-							if "." in q:
-								print(1/0)
-							q = int(q)
-						except:
-							await message.channel.send("걸 돈을 정수로 입력해주세요.")
-							return
-						if int(lines[lines.index(str(message.author))+1]) < q:
-							await message.channel.send("돈이 부족합니다.({}원) `,일` 명령어로 돈을 벌어주세요.".format(lines[lines.index(str(message.author))+1]))
-						else:
-							r = random.choice([False, True, True, True, True, True, True, True, True, True])
-							if r:
-								lines[lines.index(str(message.author))+1] = int(lines[lines.index(str(message.author))+1])+q
-								await message.channel.send("도박에 성공해서 돈이 2배가 되었습니다. 남은 돈은 {} 입니다.".format(lines[lines.index(str(message.author))+1]))
-							else:
-								lines[lines.index(str(message.author))+1] = int(lines[lines.index(str(message.author))+1])-q
-								await message.channel.send("도박에 실패했습니다. 남은 돈은 {} 입니다.".format(lines[lines.index(str(message.author))+1]))
-					else:
-						await message.channel.send("가입되지 않은 사용자입니다. `,가입` 명령어로 가입해주세요.")
-				with open("C:\\대단한폴더\\나의 폴더\\프로그램들\\코딩\\file\\도박.txt", "w") as f:
-					for i in lines:
-						f.write(str(i) + "\n")
-			elif m.startswith("가입") or m.startswith("rkdlq"):
-				with open("C:\\대단한폴더\\나의 폴더\\프로그램들\\코딩\\file\\도박.txt", "r") as f:
-					lines = f.readlines()
-					for i in lines:
-						j = i[:-1]
-						lines[lines.index(i)] = j
-					if str(message.author) in lines:
-						await message.channel.send("이미 가입된 사용자입니다.")
-					else:
-						with open("C:\\대단한폴더\\나의 폴더\\프로그램들\\코딩\\file\\도박.txt", "w") as f:
-							for i in lines:
-								f.write(str(i) + "\n")
-							f.write(str(message.author)+"\n")
-							f.write("100\n")
-						await message.channel.send("가입되었습니다.")
-			elif m.startswith("일") or m.startswith("dlf"):
-				with open("C:\\대단한폴더\\나의 폴더\\프로그램들\\코딩\\file\\도박.txt", "r") as f:
-					lines = f.readlines()
-					for i in lines:
-						j = i[:-1]
-						lines[lines.index(i)] = j
-					lines[lines.index(str(message.author))+1] = int(lines[lines.index(str(message.author))+1])+100
-					await message.channel.send("일을 해서 100원을 벌었습니다. 남은 돈은 {} 입니다.".format(lines[lines.index(str(message.author))+1]))
-				with open("C:\\대단한폴더\\나의 폴더\\프로그램들\\코딩\\file\\도박.txt", "w") as f:
-					for i in lines:
-						f.write(str(i) + "\n")
-			elif m.startswith("프로필") or m.startswith("vmfhvlf"):
-				with open("C:\\대단한폴더\\나의 폴더\\프로그램들\\코딩\\file\\도박.txt", "r") as f:
-					lines = f.readlines()
-					for i in lines:
-						j = i[:-1]
-						lines[lines.index(i)] = j
-					if str(message.author) in lines:
-						await message.channel.send("{}님은 현재 {} 원이 있습니다.".format(str(message.author), lines[lines.index(str(message.author))+1]))
-					else:
-						await message.channel.send("가입되지 않은 사용자입니다. `,가입` 명령어로 가입해주세요.")
-			elif m.startswith("정보") or m.startswith("wjdqh"):
-				with open("C:\\대단한폴더\\나의 폴더\\프로그램들\\코딩\\file\\도박.txt", "r") as f:
-					data = f.read()
-					await message.channel.send("```" + data + "```")
 			elif m.startswith("폭8") or m.startswith("vhf8"):
 				await message.channel.send("https://cdn.discordapp.com/attachments/732870251351376033/737457954189738014/100.gif")
 	except Exception as e:
@@ -264,5 +180,5 @@ async def on_message(message):
 
 
 
-
-client.run("Njg4OTc4MTU2NTM1MDIxNTk5.Xm8K6Q.GWvX0LbfMhc3sCxHXYTfjRL3dy" + "U")
+access_token = os.environ["BOR_TOKEN"]
+client.run(access_token)
