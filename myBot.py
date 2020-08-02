@@ -14,168 +14,55 @@ async def on_message(message):
 		zldEhd = "<:gniknoht:733977049743753247>"
 		m = message.content
 		# print(m)
-		def 포함(s):
+		def vhgka(s):
 			return s in m
-		def 같다(s):
+		def rkxek(s):
 			return s == m
+		def tlwkr(s):
+			return m.startswith(s)
+		def tlfgod(n):
+			with open("명령어", "r") as f:
+				lines = f.read()
+				start = lines.find("#" + str(n))
+				end = lines.find("#" + str(n + 1))
+				last = lines[start:end]
+				exec(last)
 		if message.embeds:
-			await message.add_reaction("<:thonking:732864307196592199>")
-			time.sleep(0.5)
-			await message.clear_reaction("<:thonking:732864307196592199>")
-		elif 포함("띵킹") or 포함("Eldzld") or\
-		포함("띤킹") or 포함("Elszld") or\
-		포함("흠터") or 포함("gmaxj") or\
-		포함(":소ㅑㅜㅏㅑㅜㅎ:"):
-			await message.channel.send("🤔")
-			await message.add_reaction("🤔")
-		elif 포함("🤔") and not 같다("🤔"):
-			await message.channel.send("🤔")
-			await message.add_reaction("🤔")
-		elif 같다("🤔"):
-			await message.add_reaction("🤔")
-
-		if 포함("똥킹") or 포함("Ehdzld") or\
-		포함("똔킹") or 포함("Ehszld") or\
-		포함("ㅁㄴㅇㄹ") or 포함("asdf") or\
-		포함("??") or 포함(":쇄ㅜㅏㅑㅜㅎ:"):
-			await message.channel.send("<:thonking:732864307196592199>")
-			await message.add_reaction("<:thonking:732864307196592199>")
-		elif 포함("<:thonking:732864307196592199>") and not 같다("<:thonking:732864307196592199>"):
-			await message.channel.send("<:thonking:732864307196592199>")
-			await message.add_reaction("<:thonking:732864307196592199>")
-		elif 같다("<:thonking:732864307196592199>"):
-			await message.add_reaction("<:thonking:732864307196592199>")
-			
-		if 포함("ㅘ!") or 포함("와!"):
-			await message.channel.send("샌즈!")
-
-		if m.startswith(","):
+			tlfgod(1)
+		elif vhgka("띵킹") or vhgka("Eldzld") or vhgka("띤킹") or vhgka("Elszld") or vhgka("흠터") or vhgka("gmaxj") or vhgka(":소ㅑㅜㅏㅑㅜㅎ:"):
+			tlfgod(2)
+			tlfgod(3)
+		elif vhgka(Eldzld) and not rkxek(Eldzld):
+			tlfgod(2)
+			tlfgod(3)
+		elif rkxek(Eldzld):
+			tlfgod(3)
+		if vhgka("똥킹") or vhgka("Ehdzld") or vhgka("똔킹") or vhgka("Ehszld") or vhgka("ㅁㄴㅇㄹ") or vhgka("asdf") or vhgka("??") or vhgka(":쇄ㅜㅏㅑㅜㅎ:"):
+			tlfgod(4)
+			tlfgod(5)
+		elif vhgka(Ehdzld) and not rkxek(Ehdzld):
+			tlfgod(4)
+			tlfgod(5)
+		elif rkxek(Ehdzld):
+			tlfgod(5)
+		if vhgka("ㅘ!") or vhgka("와!"):
+			tlfgod(6)
+		if tlwkr(","):
 			m = m[1:]
-			if m.startswith("도움") or m.startswith("ehdna"):
-				embed = discord.Embed(title="<:gniknoht:733977049743753247>기타 도움말<:thonking:732864307196592199>", color=0x62c1cc)
-				embed.add_field(name=",핑", value="으악 핑", inline=True)
-				embed.add_field(name=",에블핑", value="으악 핑", inline=True)
-				embed.add_field(name=",히어핑", value="으악 핑", inline=True)
-				embed.add_field(name=",폭8", value="폭☆8", inline=True)
-				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
-				embed.add_field(name=",가위바위보 <가위|바위|보>", value="가위바위보를 합니다", inline=False)
-				await message.channel.send(embed=embed)
-			
-			elif m.startswith("핑") or m.startswith("vld"):
-				firstTime = time.time()
-				msg = await message.channel.send("으악 핑")
-				lastTime = time.time()
-				subTime = lastTime - firstTime
-				await msg.delete()
-				await message.channel.send(subTime)
-			elif m.startswith("계산"):
-				try:
-					q = m[3:]
-					w = str(eval(q))
-					await message.channel.send(w)
-				except Exception as e:
-					await message.channel.send("오류: " + str(e))
-			elif m.startswith("rPtks"):
-				try:
-					q = m[6:]
-					w = str(eval(q))
-					await message.channel.send(w)
-				except Exception as e:
-					await message.channel.send("오류: " + str(e))
-			elif m.startswith("에블핑") or m.startswith("dpqmfvld"):
-				await message.channel.send("@everyone")
-			elif m.startswith("히어핑") or m.startswith("gldjvld"):
-				await message.channel.send("@here")
-			elif m.startswith("가위바위보"):
-				w = m[6:]
-				
-				if w == "가위":
-					e = 0
-				elif w == "바위":
-					e = 1
-				elif w == "보":
-					e = 2
-				else:
-					await message.channel.send("알수 없는!")
-					return
-				r = random.choice(["가위", "바위", "보"])
-				await message.channel.send(r)
-				if r == "가위":
-					ee = 0
-				elif r == "바위":
-					ee = 1
-				elif r == "보":
-					ee = 2
-
-				if e == 0:
-					if ee == 0:
-						await message.channel.send("비긴!")
-					if ee == 1:
-						await message.channel.send("이긴!")
-					if ee == 2:
-						await message.channel.send("진!")
-
-				if e == 1:
-					if ee == 0:
-						await message.channel.send("진!")
-					if ee == 1:
-						await message.channel.send("비긴!")
-					if ee == 2:
-						await message.channel.send("이긴!")
-
-				if e == 2:
-					if ee == 0:
-						await message.channel.send("이긴!")
-					if ee == 1:
-						await message.channel.send("진!")
-					if ee == 2:
-						await message.channel.send("비긴!")
-			elif m.startswith("rkdnlqkdnlqh"):
-				w = m[13:]
-				
-				if w == "rkdnl":
-					e = 0
-				elif w == "qkdnl":
-					e = 1
-				elif w == "qh":
-					e = 2
-				else:
-					await message.channel.send("알수 없는!")
-					return
-				r = random.choice(["가위", "바위", "보"])
-				await message.channel.send(r)
-				if r == "가위":
-					ee = 0
-				elif r == "바위":
-					ee = 1
-				elif r == "보":
-					ee = 2
-
-				if e == 0:
-					if ee == 0:
-						await message.channel.send("비긴!")
-					if ee == 1:
-						await message.channel.send("이긴!")
-					if ee == 2:
-						await message.channel.send("진!")
-
-				if e == 1:
-					if ee == 0:
-						await message.channel.send("진!")
-					if ee == 1:
-						await message.channel.send("비긴!")
-					if ee == 2:
-						await message.channel.send("이긴!")
-
-				if e == 2:
-					if ee == 0:
-						await message.channel.send("이긴!")
-					if ee == 1:
-						await message.channel.send("진!")
-					if ee == 2:
-						await message.channel.send("비긴!")
-			elif m.startswith("폭8") or m.startswith("vhf8"):
-				await message.channel.send("https://cdn.discordapp.com/attachments/732870251351376033/737457954189738014/100.gif")
+			if tlwkr("도움") or tlwkr("ehdna"):
+				tlfgod(7)
+			elif tlwkr("핑") or tlwkr("vld"):
+				tlfgod(8)
+			elif tlwkr("계산") or tlwkr("rPtks"):
+				tlfgod(9)
+			elif tlwkr("에블핑") or tlwkr("dpqmfvld"):
+				tlfgod(10)
+			elif tlwkr("히어핑") or tlwkr("gldjvld"):
+				tlfgod(11)
+			elif tlwkr("가위바위보") or tlwkr("rkdnlqkdnlqh"):
+				tlfgod(12)
+			elif tlwkr("폭8") or tlwkr("vhf8"):
+				tlfgod(13)
 	except Exception as e:
 		if str(e) != "404 Not Found (error code: 10008): Unknown Message":
 			print("오류:", e)
