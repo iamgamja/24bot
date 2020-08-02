@@ -63,6 +63,8 @@ async def on_message(message):
 				tlfgod(12)
 			elif tlwkr("폭8") or tlwkr("vhf8"):
 				tlfgod(13)
+			elif tlwkr("테스트"):
+				await message.channel.send("테스트성공!")
 	except Exception as e:
 		if str(e) != "404 Not Found (error code: 10008): Unknown Message":
 			print("오류:", e)
