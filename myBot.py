@@ -1,11 +1,9 @@
-import discord, time, random
-import os
+import discord, time, random, os
 client = discord.Client()
 @client.event
 async def on_ready():
 	print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
-
 @client.event
 async def on_message(message):
 	try:
@@ -126,7 +124,7 @@ async def on_message(message):
 	except Exception as e:
 		if str(e) != "404 Not Found (error code: 10008): Unknown message":
 			print("오류:", e)
-
-
-
-client.run("Njg4OTc4MTU2NTM1MDIxNTk5.Xm8K6Q.GWvX0LbfMhc3sCxHXYTfjRL3dyU")
+			
+			
+access_token = os.environ["BOR_TOKEN"]
+client.run(access_token)
