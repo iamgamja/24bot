@@ -56,8 +56,7 @@ async def on_message(message):
 				msg = await message.channel.send("으악 핑")
 				lastTime = time.time()
 				subTime = lastTime - firstTime
-				await msg.edit()
-				await message.channel.send(subTime)
+				await msg.edit(subTime)
 			elif 시작("계산") or 시작("rPtks"):
 				if 시작("계산"):
 					i = 3
@@ -71,9 +70,11 @@ async def on_message(message):
 					await message.channel.send("오류: " + str(e))
 			elif 시작("에블핑") or 시작("dpqmfvld"):
 				await message.channel.send("@everyone")
+				time.sleep(0.5)
 				await message.channel.send("으악 핑")
 			elif 시작("히어핑") or 시작("gldjvld"):
 				await message.channel.send("@here")
+				time.sleep(0.5)
 				await message.channel.send("으악 핑")
 			elif 시작("폭8") or 시작("vhr8"):
 				await message.channel.send("https://cdn.discordapp.com/attachments/732870251351376033/737457954189738014/100.gif")
