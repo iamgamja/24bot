@@ -68,6 +68,7 @@ async def on_message(message):
 	except Exception as e:
 		if str(e) != "404 Not Found (error code: 10008): Unknown Message":
 			print("오류:", e)
+			await message.channel.send("오류:", e)
 
 
 
