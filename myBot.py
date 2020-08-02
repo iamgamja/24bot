@@ -8,7 +8,6 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-	await message.channel.send("ㅇㅇ")
 	try:
 		audfuddj = '''#1
 		await message.add_reaction(Ehdzld)
