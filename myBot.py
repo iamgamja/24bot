@@ -9,6 +9,8 @@ async def on_ready():
 @client.event
 async def on_message(message):
 	try:
+		Eldzld = "🤔"
+		Ehdzld = "<:thonking:732864307196592199>"
 		m = message.content
 		# print(m)
 		def 포함(s):
