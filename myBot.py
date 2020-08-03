@@ -73,7 +73,7 @@ async def on_message(message):
 				time.sleep(0.5)
 				await message.channel.send("으악 핑")
 			elif 시작("폭8") or 시작("vhr8"):
-				await message.channel.send("https://cdn.discordapp.com/attachments/732870251351376033/737457954189738014/100.gif")
+				await message.channel.send("https://cdn.discordapp.com/attachments/693705236220739594/739662058618093608/100.gif")
 			elif 시작("가위바위보") or 시작("rkdnlqkdnlqh"):
 				if 시작("가위바위보"):
 					i = 6
