@@ -44,9 +44,7 @@ async def on_message(message):
 			m = m[1:]
 			if 시작("도움") or 시작("ehdna"):
 				embed = discord.Embed(title=zldEhd + "도움말" + Ehdzld, color=0x62c1cc)
-				embed.add_field(name=",핑", value="으악 핑", inline=True)
-				embed.add_field(name=",에블핑", value="으악 핑", inline=True)
-				embed.add_field(name=",히어핑", value="으악 핑", inline=False)
+				embed.add_field(name=",핑\t,에블핑\t,히어핑", value="으악 핑!", inline=False)
 				embed.add_field(name=",폭8", value="폭☆8", inline=False)
 				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
 				embed.add_field(name=",가위바위보 <가위|바위|보>", value="가위바위보를 합니다", inline=False)
