@@ -43,6 +43,14 @@ async def on_message(message):
 			await message.add_reaction(Ehdzld)
 		elif 같다(Ehdzld):
 			await message.add_reaction(Ehdzld)
+		if 포함("킹똥") or 포함("zldEhd") or 포함("킹똔") or 포함("zldEhs") or:
+			await message.channel.send(zldEhd)
+			await message.add_reaction(zldEhd)
+		elif 포함(zldEhd) and not 같다(zldEhd):
+			await message.channel.send(zldEhd)
+			await message.add_reaction(zldEhd)
+		elif 같다(zldEhd):
+			await message.add_reaction(zldEhd)
 		if 포함("ㅘ!") or 포함("와!"):
 			await message.channel.send("샌즈!")
 		if 시작(","):
