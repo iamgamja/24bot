@@ -23,7 +23,7 @@ async def on_message(message):
 			time.sleep(0.5)
 			await message.clear_reaction(Ehdzld)
 			return
-		if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다."):
+		if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다.") or 포함("응답 대기 중입니다."):
 			await message.delete()
 			# await
 			return
