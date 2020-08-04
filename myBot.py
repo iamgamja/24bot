@@ -65,7 +65,7 @@ async def on_message(message):
 				embed.add_field(name=",가위바위보 <가위|바위|보>", value="가위바위보를 합니다", inline=False)
 				await message.channel.send(embed=embed)
 			elif 시작("핑") or 시작("vld"):
-				await message.channel.send("으1악 핑")
+				await message.channel.send("으2악 핑")
 			elif 시작("계산") or 시작("rPtks"):
 				if 시작("계산"):
 					i = 3
@@ -86,7 +86,7 @@ async def on_message(message):
 				time.sleep(0.5)
 				await message.channel.send("으악 핑")
 			elif 시작("폭8") or 시작("vhr8"):
-				await message.channel.send("https://cdn.discordapp.com/attachments/693705236220739594/739662058618093608/100.gif")
+				await message.channel.send("https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
 			elif 시작("가위바위보") or 시작("rkdnlqkdnlqh"):
 				if 시작("가위바위보"):
 					i = 6
