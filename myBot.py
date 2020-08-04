@@ -7,6 +7,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
 	try:
+		버전 = "1.1.2"
 		Eldzld = "🤔"
 		Ehdzld = "<:thonking:732864307196592199>"
 		zldEhd = "<:gniknoht:733977049743753247>"
@@ -133,7 +134,7 @@ async def on_message(message):
 					if ee == 2:
 						await message.channel.send("비긴!")
 			elif 시작("버전") or 시작("qjwjs"):
-				await massage.channel.send("1.1.1")
+				await message.channel.send(버전)
 	except Exception as e:
 		await message.channel.send("<@526889025894875158>\n오0류: " + str(e))
 		# print("오류:", e)
