@@ -132,9 +132,9 @@ async def on_message(message):
 					if ee == 2:
 						await message.channel.send("비긴!")
 	except Exception as e:
-		if str(e) != "404 Not Found (error code: 10008): Unknown message":
-			await message.channel.send("오류: " + str(e))
-			print("오류:", e)
+		cn = discord.Object(id='732896130127626261')
+		await ch.send("<@526889025894875158>\n오류: " + str(e))
+		# print("오류:", e)
 			
 			
 access_token = os.environ["BOR_TOKEN"]
