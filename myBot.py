@@ -141,14 +141,14 @@ async def on_message(message):
 				await message.channel.send("https://cdn.discordapp.com/attachments/693705236220739594/739662058618093608/100.gif")
 			elif 시작("번역") or 시작("qjsdur"):
 				if 시작("번역"):
-					i = 4
+					i = 3
 				else:
-					i = 6
+					i = 7
 				q = m[i:]
 				w = q.split()
 				e = ''
-				for i in w:
-					e += qjsdur[i]
+				for r in w:
+					e += qjsdur[r]
 				await message.channel.send(e)
 			elif 시작("가위바위보") or 시작("rkdnlqkdnlqh"):
 				if 시작("가위바위보"):
@@ -196,6 +196,7 @@ async def on_message(message):
 						await message.channel.send("비긴!")
 	except Exception as e:
 		if str(e) != "404 Not Found (error code: 10008): Unknown message":
+			await message.channel.send("오류: " + str(e))
 			print("오류:", e)
 			
 			
