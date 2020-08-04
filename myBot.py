@@ -117,7 +117,7 @@ async def on_message(message):
 				embed.add_field(name=",가위바위보 <가위|바위|보>", value="가위바위보를 합니다", inline=False)
 				await message.channel.send(embed=embed)
 			elif 시작("핑") or 시작("vld"):
-				await message.channel.send("으악 핑")
+				await message.channel.send("으1악 핑")
 			elif 시작("계산") or 시작("rPtks"):
 				if 시작("계산"):
 					i = 3
