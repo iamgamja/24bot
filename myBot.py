@@ -22,7 +22,11 @@ async def on_message(message):
 			await message.add_reaction(Ehdzld)
 			time.sleep(0.5)
 			await message.clear_reaction(Ehdzld)
-		elif 포함("띵킹") or 포함("Eldzld") or 포함("띤킹") or 포함("Elszld") or 포함("흠터") or 포함("gmaxj") or 포함(":소ㅑㅜㅏㅑㅜㅎ:"):
+			return
+		if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다."):
+			awiat message.delete()
+			return
+		if 포함("띵킹") or 포함("Eldzld") or 포함("띤킹") or 포함("Elszld") or 포함("흠터") or 포함("gmaxj") or 포함(":소ㅑㅜㅏㅑㅜㅎ:"):
 			await message.channel.send(Eldzld)
 			await message.add_reaction(Eldzld)
 		elif 포함(Eldzld) and not 같다(Eldzld):
