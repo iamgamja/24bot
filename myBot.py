@@ -65,7 +65,7 @@ async def on_message(message):
 				embed.add_field(name=",가위바위보 <가위|바위|보>", value="가위바위보를 합니다", inline=False)
 				await message.channel.send(embed=embed)
 			elif 시작("핑") or 시작("vld"):
-				await message.channel.send("으3악 핑")
+				await message.channel.send("으아아아악 핑")
 			elif 시작("계산") or 시작("rPtks"):
 				if 시작("계산"):
 					i = 3
@@ -88,6 +88,7 @@ async def on_message(message):
 			elif 시작("폭8") or 시작("vhr8"):
 				await message.channel.send("https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
 			elif 시작("가위바위보") or 시작("rkdnlqkdnlqh"):
+				raise RuntimeError("테스트")
 				if 시작("가위바위보"):
 					i = 6
 				else:
@@ -132,8 +133,9 @@ async def on_message(message):
 					if ee == 2:
 						await message.channel.send("비긴!")
 	except Exception as e:
-		cn = discord.Object(id='732896130127626261')
-		await ch.send("<@526889025894875158>\n오1류: " + str(e))
+		await message.channel.send("<@526889025894875158>\n오0류: " + str(e))
+		#cn = discord.Object(id='732896130127626261')
+		#await ch.send("<@526889025894875158>\n오1류: " + str(e))
 		channel = member.server.get_channel("732896130127626261")
 		await channel.send("<@526889025894875158>\n오2류: " + str(e))
 		await message.channel.send("<@526889025894875158>\n오3류: " + str(e))
