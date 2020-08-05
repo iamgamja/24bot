@@ -7,7 +7,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
 	try:
-		버전 = "1.1.2"
+		버전 = "1.1.3"
 		Eldzld = "🤔"
 		Ehdzld = "<:thonking:732864307196592199>"
 		zldEhd = "<:gniknoht:733977049743753247>"
@@ -24,9 +24,9 @@ async def on_message(message):
 			time.sleep(0.5)
 			await message.clear_reaction(Ehdzld)
 			return
-		if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다.") or 포함("응답 대기 중입니다."):
+		if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다.") or 포함("응답 대기 중입니다.") or 포함(", 메시지 개수는 `2 ~ 99`로 입력하세요."):
+			time.sleep(0.5)
 			await message.delete()
-			# await
 			return
 		if 포함("띵킹") or 포함("Eldzld") or 포함("띤킹") or 포함("Elszld") or 포함("흠터") or 포함("gmaxj") or 포함(":소ㅑㅜㅏㅑㅜㅎ:"):
 			await message.channel.send(Eldzld)
