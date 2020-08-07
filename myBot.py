@@ -7,18 +7,27 @@ async def on_ready():
 @client.event
 async def on_message(message):
 	try:
-		버전 = 4
+		버전 = 5
 		Eldzld = "🤔"
 		Ehdzld = "<:thonking:732864307196592199>"
 		zldEhd = "<:gniknoht:733977049743753247>"
 		m = message.content
 		# print(m)
-		def 포함(s):
-			return s in m
-		def 같다(s):
-			return s == m
-		def 시작(s):
-			return m.startswith(s)
+		def 포함(s, b=None):
+			if b == None:
+				return s in m
+			else:
+				return s in b
+		def 같다(s, b=None):
+			if b == None:
+				return s == m
+			else:
+				return s == b
+		def 시작(s, b=None):
+			if b == None:
+				return m.startswith(s)
+			else:
+				return b.startswith(s)
 		if message.embeds:
 			await message.add_reaction(Ehdzld)
 			time.sleep(0.5)
@@ -75,6 +84,14 @@ async def on_message(message):
 					i = 6
 				try:
 					q = m[i:]
+					while True:
+						if 포함('^', q):
+							q = q.replace('^', "**")
+						elif 포함('√(', q):
+							inde = q.find('√(')
+							q = q.replace(q[q.find(')',inde)],")**0.5")
+						else:
+							break
 					w = str(eval(q))
 					await message.channel.send(w)
 				except Exception as e:
