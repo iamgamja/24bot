@@ -7,7 +7,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
 	try:
-		버전 = "1.1.3"
+		버전 = 4
 		Eldzld = "🤔"
 		Ehdzld = "<:thonking:732864307196592199>"
 		zldEhd = "<:gniknoht:733977049743753247>"
@@ -136,9 +136,7 @@ async def on_message(message):
 			elif 시작("버전") or 시작("qjwjs"):
 				await message.channel.send(버전)
 	except Exception as e:
-		await message.channel.send("<@526889025894875158>\n오0류: " + str(e))
-		# print("오류:", e)
-			
-			
+		await client.get_channel(732896130127626261).send("오류: " + str(e))
+	
 access_token = os.environ["BOR_TOKEN"]
 client.run(access_token)
