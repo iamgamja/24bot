@@ -5,9 +5,15 @@ async def on_ready():
 	print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
 @client.event
+async def on_typing(channel, user, when):
+	await client.get_channel(732896130127626261).send("작성중:")
+	await client.get_channel(732896130127626261).send(str(channel))
+	await client.get_channel(732896130127626261).send(str(user))
+	await client.get_channel(732896130127626261).send(str(when))
+@client.event
 async def on_message(message):
 	try:
-		버전 = 6
+		버전 = 7
 		Eldzld = "🤔"
 		Ehdzld = "<:thonking:732864307196592199>"
 		zldEhd = "<:gniknoht:733977049743753247>"
