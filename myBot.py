@@ -7,7 +7,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
 	try:
-		버전 = 5
+		버전 = 6
 		Eldzld = "🤔"
 		Ehdzld = "<:thonking:732864307196592199>"
 		zldEhd = "<:gniknoht:733977049743753247>"
@@ -34,6 +34,7 @@ async def on_message(message):
 			await message.clear_reaction(Ehdzld)
 			return
 		if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다.") or 포함("응답 대기 중입니다.") or 포함(", 메시지 개수는 `2 ~ 99`로 입력하세요."):
+			await message.add_reaction("❌")
 			time.sleep(0.5)
 			await message.delete()
 			return
@@ -153,6 +154,7 @@ async def on_message(message):
 			elif 시작("버전") or 시작("qjwjs"):
 				await message.channel.send(버전)
 	except Exception as e:
+		await message.add_reaction("❌")
 		await client.get_channel(732896130127626261).send("오류: " + str(e))
 	
 access_token = os.environ["BOR_TOKEN"]
