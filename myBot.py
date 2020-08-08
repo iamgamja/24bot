@@ -1,7 +1,7 @@
 import discord, time, random, os
 client = discord.Client()
 
-버전 = 14
+버전 = 15
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -93,9 +93,9 @@ async def on_message(message):
 				try:
 					q = m[i:]
 					while True:
-						if 포함('^', q):
+						if '^' in q:
 							q = q.replace('^', "**")
-						elif 포함('√(', q):
+						elif '√('in q:
 							inde = q.find('√(')
 							q = q.replace(q[q.find(')',inde)],")**0.5")
 						else:
