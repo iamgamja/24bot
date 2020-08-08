@@ -1,12 +1,12 @@
 import discord, time, random, os
 client = discord.Client()
 
-버전 = 10
+버전 = 11
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
 엑스 = "❌"
-		
+
 @client.event
 async def on_ready():
 	print('시작')
@@ -22,21 +22,12 @@ async def on_message(message):
 		global 엑스
 		m = message.content
 		# print(m)
-		def 포함(s, b=None):
-			if b == None:
-				return s in m
-			else:
-				return s in b
-		def 같다(s, b=None):
-			if b == None:
-				return s == m
-			else:
-				return s == b
-		def 시작(s, b=None):
-			if b == None:
-				return m.startswith(s)
-			else:
-				return b.startswith(s)
+		def 포함(s):
+			return s in m
+		def 같다(s):
+			return s == m
+		def 시작(s):
+			m.startswith(s)
 		if message.embeds:
 			await message.add_reaction(똥킹)
 			time.sleep(0.5)
@@ -76,7 +67,7 @@ async def on_message(message):
 		if 시작(","):
 			m = m[1:]
 			if 시작("도움") or 시작("ehdna"):
-				embed = discord.Embed(title=킹똥 + "도움말" + 똥킹, color=0x62c1cc)
+				embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0x62c1cc)
 				embed.add_field(name=",핑", value="으악 핑", inline=True)
 				embed.add_field(name=",에블핑", value="으악 핑", inline=True)
 				embed.add_field(name=",히어핑", value="으악 핑", inline=True)
@@ -111,55 +102,39 @@ async def on_message(message):
 						else:
 							break
 					w = str(eval(q))
-					await message.channel.send(w)
+					await message.channel.send('`'+q+'`\n' + w)
 				except Exception as e:
 					await message.channel.send("오류: " + str(e))
 			elif 시작("폭8") or 시작("vhr8"):
 				await message.channel.send("https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
 			elif 시작("가위바위보") or 시작("rkdnlqkdnlqh"):
+				rsp1 = ["가위", "바위", "보"]
+				rsp2 = {"가위":0, "바위":1, "보":2}
+				rsp3 = {"00":}
 				if 시작("가위바위보"):
 					i = 6
 				else:
 					i = 13
 				w = m[i:]
-				if w == "가위":
-					e = 0
-				elif w == "바위":
-					e = 1
-				elif w == "보":
-					e = 2
-				else:
-					await message.channel.send(똥킹)
-					return
-				r = random.choice(["가위", "바위", "보"])
+				e = rsp2[w]
+				r = random.choice(rsp1)
+				ee = rsp2[r]
 				await message.channel.send(r)
-				if r == "가위":
-					ee = 0
-				elif r == "바위":
-					ee = 1
-				elif r == "보":
-					ee = 2
-				if e == 0:
-					if ee == 0:
+				if e == ee:
 						await message.channel.send("비긴!")
-					if ee == 1:
-						await message.channel.send("이긴!")
-					if ee == 2:
+						return
+				eee = str(e) + str(ee)
+				if e>ee:
+					if e == 2 and ee == 0:
 						await message.channel.send("진!")
-				if e == 1:
-					if ee == 0:
-						await message.channel.send("진!")
-					if ee == 1:
-						await message.channel.send("비긴!")
-					if ee == 2:
+					else:
 						await message.channel.send("이긴!")
-				if e == 2:
-					if ee == 0:
+				else:
+					if ee == 2 and e == 0:
 						await message.channel.send("이긴!")
-					if ee == 1:
+					else:
 						await message.channel.send("진!")
-					if ee == 2:
-						await message.channel.send("비긴!")
+
 			elif 시작("버전") or 시작("qjwjs"):
 				await message.channel.send(버전)
 	except Exception as e:
