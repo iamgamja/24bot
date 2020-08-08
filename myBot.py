@@ -1,7 +1,7 @@
 import discord, time, random, os
 client = discord.Client()
 
-버전 = 18
+버전 = 19
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -67,7 +67,7 @@ async def on_message(message):
 		if 시작(","):
 			m = m[1:]
 			if 시작("도움") or 시작("ehdna"):
-				embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0x62c1cc)
+				embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0xffccff)
 				embed.add_field(name=",핑", value="으악 핑", inline=True)
 				embed.add_field(name=",에블핑", value="으악 핑", inline=True)
 				embed.add_field(name=",히어핑", value="으악 핑", inline=True)
@@ -90,20 +90,19 @@ async def on_message(message):
 					i = 3
 				else:
 					i = 6
-				try:
-					q = m[i:]
-					while True:
-						if '^' in q:
-							q = q.replace('^', "**")
-						elif '√(' in q:
-							inde = q.find('√(')
-							q = q.replace(q[q.find(')',inde)],")**0.5")
-						else:
-							break
-					w = str(eval(q))
-					await message.channel.send('`'+q+'`\n' + w)
-				except Exception as e:
-					await message.channel.send("오류: " + str(e))
+				q = m[i:]
+				while True:
+					if '^' in q:
+						q = q.replace('^', "**")
+					elif '√(' in q:
+						inde = q.find('√(')
+						q = q.replace(q[q.find(')',inde)],")**0.5")
+					else:
+						break
+				w = str(eval(q))
+				embed = discord.Embed(title=킹똥+"계산 결과"+똥킹, color=0xffccff)
+				embed.add_field(name=q, value=w)
+				await message.channel.send(embed=embed)
 			elif 시작("폭8") or 시작("vhr8"):
 				await message.channel.send("https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
 			elif 시작("버전") or 시작("qjwjs"):
