@@ -1,7 +1,7 @@
 import discord, time, random, os
 client = discord.Client()
 
-버전 = 17
+버전 = 18
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -110,7 +110,7 @@ async def on_message(message):
 				await message.channel.send(버전)
 	except Exception as e:
 		await message.add_reaction(엑스)
-		await client.get_channel(732896130127626261).send("오류: " + str(e))
+		await client.get_channel(693705236220739594).send("오류: " + str(e))
 	
 access_token = os.environ["BOR_TOKEN"]
 client.run(access_token)
