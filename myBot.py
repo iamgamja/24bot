@@ -1,7 +1,7 @@
 import discord, time, random, os
 client = discord.Client()
 
-버전 = 12
+버전 = 14
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -73,7 +73,6 @@ async def on_message(message):
 				embed.add_field(name=",히어핑", value="으악 핑", inline=True)
 				embed.add_field(name=",폭8", value="폭☆8", inline=False)
 				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
-				embed.add_field(name=",가위바위보 <가위|바위|보>", value="가위바위보를 합니다.", inline=False)
 				embed.add_field(name=",버전", value="버전을 확인합니다.", inline=False)
 				await message.channel.send(embed=embed)
 			elif 시작("핑") or 시작("vld"):
@@ -107,34 +106,6 @@ async def on_message(message):
 					await message.channel.send("오류: " + str(e))
 			elif 시작("폭8") or 시작("vhr8"):
 				await message.channel.send("https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
-			elif 시작("가위바위보") or 시작("rkdnlqkdnlqh"):
-				rsp1 = ["가위", "바위", "보"]
-				rsp2 = {"가위":0, "바위":1, "보":2}
-				rsp3 = {"00":}
-				if 시작("가위바위보"):
-					i = 6
-				else:
-					i = 13
-				w = m[i:]
-				e = rsp2[w]
-				r = random.choice(rsp1)
-				ee = rsp2[r]
-				await message.channel.send(r)
-				if e == ee:
-						await message.channel.send("비긴!")
-						return
-				eee = str(e) + str(ee)
-				if e>ee:
-					if e == 2 and ee == 0:
-						await message.channel.send("진!")
-					else:
-						await message.channel.send("이긴!")
-				else:
-					if ee == 2 and e == 0:
-						await message.channel.send("이긴!")
-					else:
-						await message.channel.send("진!")
-
 			elif 시작("버전") or 시작("qjwjs"):
 				await message.channel.send(버전)
 	except Exception as e:
