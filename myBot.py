@@ -1,11 +1,12 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 25
+버전 = 26
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
 엑스 = "❌"
+청소 = "🗑️"
 
 @client.event
 async def on_ready():
@@ -29,7 +30,7 @@ async def on_message(message):
 			await message.clear_reaction(똥킹)
 			return
 		if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다.") or 포함("응답 대기 중입니다.") or 포함(", 메시지 개수는 `2 ~ 99`로 입력하세요."):
-			await message.add_reaction(엑스)
+			await message.add_reaction(청소)
 			time.sleep(0.5)
 			await message.delete()
 			return
