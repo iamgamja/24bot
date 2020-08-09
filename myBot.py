@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 39
+버전 = 40
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -86,7 +86,7 @@ async def on_message(message):
 					elif '×' in w:
 						w = w.replace('×', '*')
 					elif '÷' in w:
-						w = w.replace('÷', '/)
+						w = w.replace('÷', '/')
 					else:
 						break
 				e = str(eval(w))
