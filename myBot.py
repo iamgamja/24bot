@@ -1,7 +1,7 @@
 import discord, time, random, os
 client = discord.Client()
 
-버전 = -21
+버전 = 23
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -15,11 +15,6 @@ async def on_ready():
 @client.event
 async def on_message(message):
 	try:
-		#global 버전
-		#global 띵킹
-		#global 똥킹
-		#global 킹똥
-		#global 엑스
 		m = message.content
 		# print(m)
 		def 포함(s):
@@ -75,17 +70,21 @@ async def on_message(message):
 				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
 				embed.add_field(name=",버전", value="버전을 확인합니다.", inline=False)
 				await message.channel.send(embed=embed)
-			elif 시작("핑") or 시작("vld"):
+			if 시작("핑") or 시작("vld"):
 				await message.channel.send("으악 핑")
-			elif 시작("에블핑") or 시작("dpqmfvld"):
-				await message.channel.send("@everyone")
+			if 시작("에블핑") or 시작("dpqmfvld"):
+				await message.channel.send("||@everyone||")
 				time.sleep(0.5)
 				await message.channel.send("으악 핑")
-			elif 시작("히어핑") or 시작("gldjvld"):
-				await message.channel.send("@here")
+			if 시작("히어핑") or 시작("gldjvld"):
+				await message.channel.send("||@here||")
 				time.sleep(0.5)
 				await message.channel.send("으악 핑")
-			elif 시작("계산") or 시작("rPtks"):
+			if 시작("폭8") or 시작("vhr8"):
+				await message.channel.send("https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
+			if 시작("버전") or 시작("qjwjs"):
+				await message.channel.send(버전)
+			if 시작("계산") or 시작("rPtks"):
 				if 시작("계산"):
 					i = 3
 				else:
@@ -97,16 +96,14 @@ async def on_message(message):
 					elif '√(' in q:
 						inde = q.find('√(')
 						q = q.replace(q[q.find(')',inde)],")**0.5")
+						q = q.replace('√', '')
 					else:
 						break
 				w = str(eval(q))
 				embed = discord.Embed(title=킹똥+"계산 결과"+똥킹, color=0xffccff)
 				embed.add_field(name=q, value=w)
 				await message.channel.send(embed=embed)
-			elif 시작("폭8") or 시작("vhr8"):
-				await message.channel.send("https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
-			elif 시작("버전") or 시작("qjwjs"):
-				await message.channel.send(버전)
+			
 	except Exception as e:
 		await message.add_reaction(엑스)
 		await message.channel.send("오류: " + str(e))
