@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 28
+버전 = 29
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -100,8 +100,8 @@ async def on_message(message):
 					else:
 						break
 				e = str(eval(w))
-				embed = discord.Embed(title=킹똥+"계산 결과"+똥킹, color=0xffccff)
-				embed.set_author(name=q, url="https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
+				embed = discord.Embed(title=q, color=0xffccff)
+				embed.set_author(name=킹똥+"계산 결과"+똥킹, url="https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
 				embed.add_field(name=w, value=e)
 				await message.channel.send(embed=embed)
 			
