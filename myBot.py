@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 34
+버전 = 36
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -62,7 +62,7 @@ async def on_message(message):
                                 if q[2] in JONG_LIST:
                                     if len(q) > 3:
                                         if q[2] in CHO_LIST and q[3] in JUNG_LIST:
-                                            w += 조합(q[0], q[1], '')
+                                            w += 조합(q[0], q[1])
                                             q = q[2:]
                                         else:
                                             w += 조합(q[0], q[1], q[2])
@@ -71,10 +71,10 @@ async def on_message(message):
                                         w += 조합(q[0], q[1], q[2])
                                         q = q[3:]
                                 else:
-                                    w += 조합(q[0], q[1], '')
+                                    w += 조합(q[0], q[1])
                                     q = q[2:]
                             else:
-                                w += 조합(q[0], q[1], '')
+                                w += 조합(q[0], q[1])
                                 q = q[2:]
                         else:
                             w += q[0]
@@ -96,7 +96,7 @@ async def on_message(message):
                     else:
                         res += i
             return res
-        def 조합(cho, jung, jong):
+        def 조합(cho, jung, jong=''):
             res = BASE_CODE
             res += 0 if cho == '' else CHO_LIST.index(cho)  * CHO_CODE
             res += 0 if jung == '' else JUNG_LIST.index(jung) * JUNG_CODE
