@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 26
+버전 = 27
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -64,6 +64,7 @@ async def on_message(message):
 			m = m[1:]
 			if 시작("도움") or 시작("ehdna"):
 				embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0xffccff)
+				embed.set_author(name="저자의 이름", url="저자의 URL")
 				embed.add_field(name=",핑", value="으악 핑", inline=True)
 				embed.add_field(name=",에블핑", value="으악 핑", inline=True)
 				embed.add_field(name=",히어핑", value="으악 핑", inline=True)
