@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 31
+버전 = 32
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -70,7 +70,7 @@ async def on_message(message):
 				embed.add_field(name=",폭8", value="폭☆8", inline=False)
 				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
 				embed.add_field(name=",버전", value="버전을 확인합니다.", inline=False)
-				embed.set_footer(text=str(message.author)[:-4])
+				embed.set_footer(text=str(message.author)[:-5])
 				await message.channel.send(embed=embed)
 			if 시작("핑") or 시작("vld"):
 				await message.channel.send("으악 핑")
@@ -103,7 +103,7 @@ async def on_message(message):
 				e = str(eval(w))
 				embed = discord.Embed(title=킹똥+"계산 결과"+똥킹, color=0xffccff)
 				embed.add_field(name=q + "\n" + w, value=e)
-				embed.set_footer(text=str(message.author)[:-4])
+				embed.set_footer(text=str(message.author)[:-5])
 				await message.channel.send(embed=embed)
 			
 	except Exception as e:
