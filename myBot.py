@@ -1,7 +1,7 @@
 import discord, time, random, os
 client = discord.Client()
 
-버전 = 20
+버전 = -21
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -15,11 +15,11 @@ async def on_ready():
 @client.event
 async def on_message(message):
 	try:
-		global 버전
-		global 띵킹
-		global 똥킹
-		global 킹똥
-		global 엑스
+		#global 버전
+		#global 띵킹
+		#global 똥킹
+		#global 킹똥
+		#global 엑스
 		m = message.content
 		# print(m)
 		def 포함(s):
