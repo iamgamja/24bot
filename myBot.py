@@ -1,4 +1,4 @@
-import discord, time, random, os
+import discord, time, random, os, math
 client = discord.Client()
 
 버전 = 23
@@ -92,11 +92,9 @@ async def on_message(message):
 				q = m[i:]
 				while True:
 					if '^' in q:
-						q = q.replace('^', "**")
+						q = q.replace('^', '**')
 					elif '√(' in q:
-						inde = q.find('√(')
-						q = q.replace(q[q.find(')',inde)],")**0.5")
-						q = q.replace('√', '')
+						q = q.replace('√(', 'math.sqrt(')
 					else:
 						break
 				w = str(eval(q))
