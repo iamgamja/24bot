@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 27
+버전 = 28
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -64,7 +64,6 @@ async def on_message(message):
 			m = m[1:]
 			if 시작("도움") or 시작("ehdna"):
 				embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0xffccff)
-				embed.set_author(name="저자의 이름", url="저자의 URL")
 				embed.add_field(name=",핑", value="으악 핑", inline=True)
 				embed.add_field(name=",에블핑", value="으악 핑", inline=True)
 				embed.add_field(name=",히어핑", value="으악 핑", inline=True)
@@ -92,16 +91,18 @@ async def on_message(message):
 				else:
 					i = 6
 				q = m[i:]
+				w = q[:]
 				while True:
-					if '^' in q:
-						q = q.replace('^', '**')
-					elif '√(' in q:
-						q = q.replace('√(', 'math.sqrt(')
+					if '^' in w:
+						w = w.replace('^', '**')
+					elif '√(' in w:
+						w = w.replace('√(', 'math.sqrt(')
 					else:
 						break
-				w = str(eval(q))
+				e = str(eval(w))
 				embed = discord.Embed(title=킹똥+"계산 결과"+똥킹, color=0xffccff)
-				embed.add_field(name=q, value=w)
+				embed.set_author(name=q, url="https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
+				embed.add_field(name=w, value=e)
 				await message.channel.send(embed=embed)
 			
 	except Exception as e:
