@@ -1,14 +1,17 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 44
+버전 = 45
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
 이몾 = [띵킹, 똥킹, 킹똥]
 엑스 = "❌"
 청소 = "🗑️"
-BASE_CODE, CHO_CODE, JUNG_CODE, MAX_CODE = 44032, 588, 28, 55203
+배코 = 44032
+초코 = 588
+중코 = 28
+맥코 = 55203
 초성 = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
 중성 = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ']
 종성 = [' ', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
@@ -77,21 +80,21 @@ async def on_message(message):
 				embed.add_field(name=",버전", value="버전을 확인합니다.", inline=False)
 				embed.set_footer(text=str(message.author)[:-5])
 				await message.channel.send(embed=embed)
-			if 시작("핑"):
+			elif 시작("핑"):
 				await message.channel.send("으악 핑")
-			if 시작("에블핑"):
+			elif 시작("에블핑"):
 				await message.channel.send("||@everyone||")
 				time.sleep(0.5)
 				await message.channel.send("으악 핑")
-			if 시작("히어핑"):
+			elif 시작("히어핑"):
 				await message.channel.send("||@here||")
 				time.sleep(0.5)
 				await message.channel.send("으악 핑")
-			if 시작("폭8"):
+			elif 시작("폭8"):
 				await message.channel.send("https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
-			if 시작("버전"):
+			elif 시작("버전"):
 				await message.channel.send(버전)
-			if 시작("계산"):
+			else:
 				q = m[3:] # 원래 식
 				w = q[:] # 바뀔 식
 				while True:
