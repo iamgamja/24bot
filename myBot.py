@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 51
+버전 = 52
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -109,12 +109,12 @@ async def on_message(message):
 					else:
 						break
 				e = str(eval(w))
-				if len(q) > 50:
-					q = q[:50]
-				if len(w) > 50:
-					w = w[:50]
-				if len(e) > 50:
-					e = e[:50]
+				if len(q) > 100:
+					q = q[:100] + '...'
+				if len(w) > 100:
+					w = w[:100] + '...'
+				if len(e) > 100:
+					e = e[:100] + '...'
 				embed = discord.Embed(title=킹똥+"계산 결과"+똥킹, color=0xffccff)
 				embed.add_field(name=q + "\n" + w, value=e)
 				embed.set_footer(text=str(message.author)[:-5])
