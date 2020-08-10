@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 42
+버전 = 43
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -54,13 +54,14 @@ async def on_message(message):
 				if q[i]:
 					w[i] = min(q[i])
 			e = sorted(w)
-			await message.add_reaction(이몾[w.find(e[0])])
+			await message.add_reaction(이몾[w.index(e[0])])
 			del e[0]
 			if e != [3000, 3000]:
-				await message.add_reaction(이몾[w.find(e[0])])
+				await message.add_reaction(이몾[w.index(e[0])])
 				del e[0]
 				if e != [3000]:
-					await message.add_reaction(이몾[w.find(e[0])])
+					await message.add_reaction(이몾[w.index(e[0])])
+					del e[0]
 		if 포함("ㅘ") or 포함("와"):
 			await message.channel.send("샌즈!")
 		if 시작(","):
