@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 53
+버전 = 54
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -76,6 +76,7 @@ async def on_message(message):
 				embed.add_field(name=",에블핑", value="으악 핑", inline=True)
 				embed.add_field(name=",히어핑", value="으악 핑", inline=True)
 				embed.add_field(name=",폭8", value="폭☆8", inline=False)
+				embed.add_field(name=",말", value="따라말합니다.", inline=False)
 				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
 				embed.add_field(name=",버전", value="버전을 확인합니다.", inline=False)
 				embed.set_footer(text=str(message.author)[:-5])
@@ -92,8 +93,8 @@ async def on_message(message):
 				await message.channel.send("으악 핑")
 			elif 시작("폭8"):
 				await message.channel.send("https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
-			elif 시작("버전"):
-				await message.channel.send(버전)
+			elif 시작("말"):
+				message.channel.send(m[2:])
 			elif 시작("계산"):
 				q = m[3:] # 원래 식
 				w = q[:] # 바뀔 식
@@ -119,6 +120,8 @@ async def on_message(message):
 				embed.add_field(name=q + "\n" + w, value=e)
 				embed.set_footer(text=str(message.author)[:-5])
 				await message.channel.send(embed=embed)
+			elif 시작("버전"):
+				await message.channel.send(버전)
 
 	except Exception as e:
 		await message.add_reaction(엑스)
