@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 60
+버전 = 61
 버전 = str(버전)
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
@@ -109,8 +109,9 @@ async def on_message(message):
 				w = q[:] # 바뀔 식
 				w = 몯밖(w, '^', '**', '√(', 'math.sqrt(', '×', '*', '÷', '/')
 				e = str(eval(w))
-				s = '```yaml\n' + q + '``````yaml\n' + w + '``````yaml\n' + e + '```'
-				await message.channel.send(s)
+				await message.channel.send('```yaml\n' + q + '```')
+				await message.channel.send('```yaml\n' + w + '```')
+				await message.channel.send('```yaml\n' + e + '```')
 			elif 시작("버전"):
 				await message.channel.send(버전)
 
