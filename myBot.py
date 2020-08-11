@@ -1,7 +1,8 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 59
+버전 = 60
+버전 = str(버전)
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -23,7 +24,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
 	# print('시작')
-	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움 // " + 버전, type=discord.ActivityType.listening))
+	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움 / " + 버전, type=discord.ActivityType.listening))
 
 @client.event
 async def on_message(message):
