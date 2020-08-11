@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 57
+버전 = 58
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -34,7 +34,15 @@ async def on_message(message):
 			return m.find(s)+1
 		def 시작(s):
 			return m.startswith(s)
-
+		def 몯밖(s, *dd):
+			l = []
+			for i in range(len(dd)//2):
+				l.append((dd[i*2],dd[i*2+1]))
+			d = dict(l)
+			for i in d:
+				while i in s:
+					s = s.replace(i, d[i])
+			return s
 		if message.embeds:
 			await message.add_reaction(똥킹)
 			time.sleep(0.5)
@@ -98,17 +106,7 @@ async def on_message(message):
 			elif 시작("계산"):
 				q = m[3:] # 원래 식
 				w = q[:] # 바뀔 식
-				while True:
-					if '^' in w:
-						w = w.replace('^', '**')
-					elif '√(' in w:
-						w = w.replace('√(', 'math.sqrt(')
-					elif '×' in w:
-						w = w.replace('×', '*')
-					elif '÷' in w:
-						w = w.replace('÷', '/')
-					else:
-						break
+				w = 몯밖(w, '^', '**', '√(', 'math.sqrt(', '×', '*', '÷', '/')
 				e = str(eval(w))
 				s = '```yaml' + '\n' + q + '\n' + w + '\n' + e + '```'
 				await message.channel.send(s)
