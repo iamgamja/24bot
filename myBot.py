@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 54
+버전 = 55
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -94,7 +94,7 @@ async def on_message(message):
 			elif 시작("폭8"):
 				await message.channel.send("https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
 			elif 시작("말"):
-				message.channel.send(m[2:])
+				await message.channel.send(m[2:])
 			elif 시작("계산"):
 				q = m[3:] # 원래 식
 				w = q[:] # 바뀔 식
