@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 58
+버전 = 59
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -22,8 +22,8 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-	print('시작')
-	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
+	# print('시작')
+	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움 // " + 버전, type=discord.ActivityType.listening))
 
 @client.event
 async def on_message(message):
@@ -108,7 +108,7 @@ async def on_message(message):
 				w = q[:] # 바뀔 식
 				w = 몯밖(w, '^', '**', '√(', 'math.sqrt(', '×', '*', '÷', '/')
 				e = str(eval(w))
-				s = '```yaml' + '\n' + q + '\n' + w + '\n' + e + '```'
+				s = '```yaml\n' + q + '``````yaml\n' + w + '``````yaml\n' + e + '```'
 				await message.channel.send(s)
 			elif 시작("버전"):
 				await message.channel.send(버전)
