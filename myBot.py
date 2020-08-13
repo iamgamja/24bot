@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 69
+버전 = 74
 버전 = str(버전)
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
@@ -20,6 +20,7 @@ client = discord.Client()
 영어 = ['r', 'R', 'rt', 's', 'sw', 'sg', 'e', 'f', 'fr', 'fa', 'fq', 'ft', 'fx', 'fv', 'fg', 'a', 'q', 'qt', 't', 'T', 'd', 'w', 'c', 'z', 'x', 'v', 'g', 'k', 'o', 'i', 'O', 'j', 'p', 'u', 'P', 'h', 'hk', 'ho', 'hl', 'y', 'n', 'nj', 'np', 'nl', 'b', 'm', 'ml', 'l', '', ' ']
 한영 = dict(zip(한글, 영어))
 영한 = dict(zip(영어, 한글))
+땀표 = "'`'*3"
 
 @client.event
 async def on_ready():
@@ -85,6 +86,7 @@ async def on_message(message):
 				embed.add_field(name=",에블핑", value="으악 핑", inline=True)
 				embed.add_field(name=",히어핑", value="으악 핑", inline=True)
 				embed.add_field(name=",폭8", value="폭☆8", inline=False)
+				embed.add_field(name=",프사", value="프사", inline=False)
 				embed.add_field(name=",말", value="따라말합니다.", inline=False)
 				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
 				embed.add_field(name=",버전", value="버전을 확인합니다.", inline=False)
