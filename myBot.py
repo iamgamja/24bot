@@ -1,13 +1,28 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 85
+버전 = 87
 버전 = str(버전)
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
 와샍 = "<:aemoji_29:736146757716803605>"
-이몾 = [띵킹, 똥킹, 킹똥, 와샍]
+이몾 = { "띵킹":띵킹,
+	"띤킹":띵킹,
+	"흠터":띵킹,
+	":소ㅑㅜㅏㅑㅜㅎ:":띵킹,
+	띵킹:띵킹,
+	"똥킹":똥킹,
+	"똔킹":똥킹,
+	"ㅁㄴㅇㄹ":똥킹,
+	"??":똥킹,
+	":쇄ㅜㅏㅑㅜㅎ:":똥킹,
+	똥킹:똥킹,
+	"킹똥":킹똥,
+	"킹똔":킹똥,
+	킹똥:킹똥,
+	"ㅘ":와샍,
+	"와":와샍}
 엑스 = "❌"
 청소 = "🗑️"
 배코 = 44032
@@ -62,29 +77,18 @@ async def on_message(message):
 			await message.delete()
 			return
 		if True: # 들여쓰기를 위한 쓸모없는 코드
-			q = [[포함("띵킹"), 포함("띤킹"), 포함("흠터"), 포함(":소ㅑㅜㅏㅑㅜㅎ:"), 포함(띵킹)],
-			[포함("똥킹"), 포함("똔킹"), 포함("ㅁㄴㅇㄹ"), 포함("??"), 포함(":쇄ㅜㅏㅑㅜㅎ:"), 포함(똥킹)],
-			[포함("킹똥"), 포함("킹똔"), 포함(킹똥)],
-			[포함("ㅘ"), 포함("와")]]
-			for i in range(len(q)):
-				while 0 in q[i]:
-					q[i].remove(0)
-			msg.append(q)
-			w = [3000 for i in range(len(q))]
-			for i in range(len(q)):
-				if q[i]:
-					w[i] = min(q[i])
-			msg.append(w)
-			e = sorted(w)
-			msg.append(e)
-			for j in range(len(q)):
-				gume = [3000 for i in range(len(q)-j)]
-				msg.append([e,gume])
-				if e != gume:
-					time.sleep(0.3)
-					await message.add_reaction(이몾[w.index(e[0])])
-					del e[0]
-			await message.channel.send(msg)
+			q = m[:]
+			isend = True
+			while q:
+				isend = True
+				for i in 이몾.keys():
+					if q.startswith(i):
+						isend = False
+						await message.add_reaction(이몾[i])
+						q.replace(i,"")
+						break
+				if isend:
+					q = q[1:]
 		if 시작(","):
 			m = m[1:]
 			if 시작("도움"):
