@@ -1,8 +1,6 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 87
-버전 = str(버전)
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
@@ -45,7 +43,7 @@ client = discord.Client()
 async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움 / " + 버전, type=discord.ActivityType.listening))
-	await client.get_channel(686743756166135862).send("시작: " + 버전)
+	await client.get_channel(686743756166135862).send("<@526889025894875158>, 시작")
 
 @client.event
 async def on_message(message):
@@ -66,6 +64,8 @@ async def on_message(message):
 				while i in s:
 					s = s.replace(i, d[i])
 			return s
+		if message.author.bot:
+			return
 		if message.embeds:
 			await message.add_reaction(똥킹)
 			time.sleep(0.5)
@@ -78,15 +78,13 @@ async def on_message(message):
 			return
 		if True: # 들여쓰기를 위한 쓸모없는 코드
 			q = m[:]
-			isend = True
 			while q:
 				isend = True
 				for i in 이몾.keys():
 					if q.startswith(i):
 						isend = False
 						await message.add_reaction(이몾[i])
-						q.replace(i,"")
-						break
+						q = q[len(i):]
 				if isend:
 					q = q[1:]
 		if 시작(","):
@@ -101,7 +99,6 @@ async def on_message(message):
 				embed.add_field(name=",프사", value="프사", inline=False)
 				embed.add_field(name=",말", value="따라말합니다.", inline=False)
 				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
-				embed.add_field(name=",버전", value="버전을 확인합니다.", inline=False)
 				embed.set_footer(text=str(message.author)[:-5])
 				await message.channel.send(embed=embed)
 			elif 시작("핑"):
@@ -131,8 +128,6 @@ async def on_message(message):
 						qwe[i] = qwe[i][:1900]+'...'
 					await message.channel.send('```yaml\n' + 몯밖(qwe[i], 땀표[0], 땀표[1]) + '```')
 					time.sleep(0.3)
-			elif 시작("버전"):
-				await message.channel.send(버전)
 
 	except Exception as e:
 		await message.add_reaction(엑스)
