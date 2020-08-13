@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 75
+버전 = 77
 버전 = str(버전)
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
@@ -108,7 +108,7 @@ async def on_message(message):
 			elif 시작("폭8"):
 				await message.channel.send(폭팔)
 			elif 시작("프사"):
-				await message.channel.send(discord.Embed(title=킹똥+"프사"+똥킹, color= 0xffccff).set_image(url=message.author.avatar_url))
+				await message.channel.send(embed=discord.Embed(title=킹똥+"프사"+똥킹, color= 0xffccff).set_image(url=message.author.avatar_url))
 			elif 시작("말"):
 				await message.channel.send(m[2:])
 			elif 시작("계산"):
