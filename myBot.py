@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 84
+버전 = 85
 버전 = str(버전)
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
@@ -74,16 +74,17 @@ async def on_message(message):
 			for i in range(len(q)):
 				if q[i]:
 					w[i] = min(q[i])
-			msg.append(e)
+			msg.append(w)
 			e = sorted(w)
 			msg.append(e)
 			for j in range(len(q)):
-				time.sleep(0.3)
 				gume = [3000 for i in range(len(q)-j)]
 				msg.append([e,gume])
 				if e != gume:
+					time.sleep(0.3)
 					await message.add_reaction(이몾[w.index(e[0])])
 					del e[0]
+			await message.channel.send(msg)
 		if 시작(","):
 			m = m[1:]
 			if 시작("도움"):
