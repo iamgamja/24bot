@@ -1,7 +1,7 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 74
+버전 = 75
 버전 = str(버전)
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
@@ -20,7 +20,10 @@ client = discord.Client()
 영어 = ['r', 'R', 'rt', 's', 'sw', 'sg', 'e', 'f', 'fr', 'fa', 'fq', 'ft', 'fx', 'fv', 'fg', 'a', 'q', 'qt', 't', 'T', 'd', 'w', 'c', 'z', 'x', 'v', 'g', 'k', 'o', 'i', 'O', 'j', 'p', 'u', 'P', 'h', 'hk', 'ho', 'hl', 'y', 'n', 'nj', 'np', 'nl', 'b', 'm', 'ml', 'l', '', ' ']
 한영 = dict(zip(한글, 영어))
 영한 = dict(zip(영어, 한글))
-땀표 = "'`'*3"
+땀표 = ['```', '​`​`​`​']
+폭팔 = "https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif"
+구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
+똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
 
 @client.event
 async def on_ready():
@@ -103,22 +106,22 @@ async def on_message(message):
 				time.sleep(0.5)
 				await message.channel.send("으악 핑")
 			elif 시작("폭8"):
-				await message.channel.send("https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif")
+				await message.channel.send(폭팔)
 			elif 시작("프사"):
-				await message.channel.send(message.author.avatar_url)
+				await message.channel.send(discord.Embed(title=킹똥+"프사"+똥킹, color= 0xffccff).set_image(url=message.author.avatar_url))
 			elif 시작("말"):
 				await message.channel.send(m[2:])
 			elif 시작("계산"):
 				q = m[3:] # 원래 식
 				w = q[:] # 바뀔 식
-				q = 몯밖(q, '```', '​`​`​`​')
-				w = 몯밖(w, '(빈공백)', '​', '(공백)', ' ', '(큰공백)', '　', '(탭)', '\t', '^', '**', '√(', 'math.sqrt(', '×', '*', '÷', '/', '```', '​`​`​`​')
+				w = 몯밖(w, '(빈공백)', '​', '(공백)', ' ', '(큰공백)', '　', '(탭)', '\t', '^', '**', '√(', 'math.sqrt(', '×', '*', '÷', '/')
 				e = str(eval(w))
 				qwe = [q,w,e]
 				for i in range(3):
 					if len(qwe[i]) > 1900:
 						qwe[i] = qwe[i][:1900]+'...'
-					await message.channel.send('```yaml\n' + qwe[i] + '```')
+					await message.channel.send('```yaml\n' + 몯밖(qwe[i], 땀표[0], 땀표[1]) + '```')
+					time.sleep(0.3)
 			elif 시작("버전"):
 				await message.channel.send(버전)
 
