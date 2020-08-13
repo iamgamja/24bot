@@ -42,7 +42,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
 	# print('시작')
-	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움 / " + 버전, type=discord.ActivityType.listening))
+	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	await client.get_channel(686743756166135862).send("<@526889025894875158>, 시작")
 
 @client.event
