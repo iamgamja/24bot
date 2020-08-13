@@ -1,12 +1,13 @@
 import discord, time, random, os, math
 client = discord.Client()
 
-버전 = 77
+버전 = 79
 버전 = str(버전)
 띵킹 = "🤔"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
-이몾 = [띵킹, 똥킹, 킹똥]
+와샍 = "<:aemoji_29:736146757716803605>"
+이몾 = [띵킹, 똥킹, 킹똥, 와샍]
 엑스 = "❌"
 청소 = "🗑️"
 배코 = 44032
@@ -29,6 +30,7 @@ client = discord.Client()
 async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움 / " + 버전, type=discord.ActivityType.listening))
+	await client.get_channel(686743756166135862).send("시작: " + 버전)
 
 @client.event
 async def on_message(message):
@@ -58,28 +60,25 @@ async def on_message(message):
 			time.sleep(0.5)
 			await message.delete()
 			return
-		if (포함("띵킹") or 포함("띤킹") or 포함("흠터") or 포함(":소ㅑㅜㅏㅑㅜㅎ:") or 포함(띵킹)) or(포함("똥킹") or 포함("똔킹") or 포함("ㅁㄴㅇㄹ") or 포함("??") or 포함(":쇄ㅜㅏㅑㅜㅎ:") or 포함(똥킹)) or (포함("킹똥") or 포함("킹똔") or 포함(킹똥)):
+		if True: # 들여쓰기를 위한 쓸모없는 코드
 			q = [[포함("띵킹"), 포함("띤킹"), 포함("흠터"), 포함(":소ㅑㅜㅏㅑㅜㅎ:"), 포함(띵킹)],
 			[포함("똥킹"), 포함("똔킹"), 포함("ㅁㄴㅇㄹ"), 포함("??"), 포함(":쇄ㅜㅏㅑㅜㅎ:"), 포함(똥킹)],
-			[포함("킹똥"), 포함("킹똔"), 포함(킹똥)]]
-			for i in range(3):
+			[포함("킹똥"), 포함("킹똔"), 포함(킹똥)],
+			[포함("ㅘ"), 포함("와")]]
+			for i in range(len(q)):
 				while 0 in q[i]:
 					q[i].remove(0)
-			w = [3000,3000,3000]
-			for i in range(3):
+			w = [3000 for i in range(len(q))]
+			for i in range(len(q)):
 				if q[i]:
 					w[i] = min(q[i])
 			e = sorted(w)
-			await message.add_reaction(이몾[w.index(e[0])])
-			del e[0]
-			if e != [3000, 3000]:
-				await message.add_reaction(이몾[w.index(e[0])])
-				del e[0]
-				if e != [3000]:
+			for j in range(len(q)):
+				gume = [3000 for i in len(q)-j]
+				if e != gume:
 					await message.add_reaction(이몾[w.index(e[0])])
 					del e[0]
-		if 포함("ㅘ") or 포함("와"):
-			await message.channel.send("샌즈!")
+					break
 		if 시작(","):
 			m = m[1:]
 			if 시작("도움"):
