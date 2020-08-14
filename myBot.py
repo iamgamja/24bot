@@ -66,7 +66,7 @@ async def on_message(message):
 				while i in s:
 					s = s.replace(i, d[i])
 			return s
-		if message.author.bot:
+		if str(message.author) == "thonking#9834":
 			return
 		if 반복[0]:
 			반복[0] -= 1
