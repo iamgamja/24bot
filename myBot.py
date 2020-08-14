@@ -38,6 +38,7 @@ client = discord.Client()
 폭팔 = "https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif"
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
+반복 = [0, ""]
 
 @client.event
 async def on_ready():
@@ -47,6 +48,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+	global 반복
 	try:
 		msg=[]
 		m = message.content
@@ -66,6 +68,9 @@ async def on_message(message):
 			return s
 		if message.author.bot:
 			return
+		if 반복[0]:
+			await message.channel.send(exec(반복[1])+'\n(앞으로 {반복[0]}번 반복)')
+			반복[0] -= 1
 		if message.embeds:
 			await message.add_reaction(똥킹)
 			time.sleep(0.5)
@@ -117,6 +122,11 @@ async def on_message(message):
 				await message.channel.send(embed=discord.Embed(title=킹똥+"프사"+똥킹, color= 0xffccff).set_image(url=message.author.avatar_url))
 			elif 시작("말"):
 				await message.channel.send(m[2:])
+			elif 시작("반복"):
+				if 반복[0]:
+					await message.channel.send(f"아직 {반복[0]}번 남음")
+				반복[0], 반복[1] = int(m[3:].split()[0]), m[3:].split()[1]
+				await message.channel.send(f"앞으로 {반복[0]}번 반복")
 			elif 시작("계산"):
 				q = m[3:] # 원래 식
 				w = q[:] # 바뀔 식
