@@ -69,8 +69,8 @@ async def on_message(message):
 		if message.author.bot:
 			return
 		if 반복[0]:
-			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
 			반복[0] -= 1
+			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
 		if message.embeds:
 			await message.add_reaction(똥킹)
 			time.sleep(0.5)
