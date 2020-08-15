@@ -82,17 +82,6 @@ async def on_message(message):
 			time.sleep(0.5)
 			await message.delete()
 			return
-		if True: # 들여쓰기를 위한 쓸모없는 코드
-			q = m[:]
-			while q:
-				isend = True
-				for i in 이몾.keys():
-					if q.startswith(i):
-						isend = False
-						await message.add_reaction(이몾[i])
-						q = q[len(i):]
-				if isend:
-					q = q[1:]
 		if 시작(","):
 			m = m[1:]
 			if 시작("도움"):
@@ -105,6 +94,7 @@ async def on_message(message):
 				embed.add_field(name=",프사", value="프사", inline=False)
 				embed.add_field(name=",말", value="따라말합니다.", inline=False)
 				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
+				embed.add_field(name=",def <식>", value="함수를 만듭니다.", inline=False)
 				embed.set_footer(text=str(message.author)[:-5])
 				await message.channel.send(embed=embed)
 			elif 시작("핑"):
@@ -131,7 +121,7 @@ async def on_message(message):
 			elif 시작("계산"):
 				q = m[3:] # 원래 식
 				w = q[:] # 바뀔 식
-				w = 몯밖(w, '(빈공백)', '​', '(공백)', ' ', '(큰공백)', '　', '(탭)', '\t', '^', '**', '√(', 'math.sqrt(', '×', '*', '÷', '/')
+				w = 몯밖(w, '(빈공백)', '​', '(공백)', ' ', '(큰공백)', '　', '(탭)', '\t', '^', '**', '×', '*', '÷', '/', '√(', 'math.sqrt(')
 				e = str(eval(w))
 				qwe = [q,w,e]
 				for i in range(3):
@@ -140,10 +130,20 @@ async def on_message(message):
 					await message.channel.send('```yaml\n' + 몯밖(qwe[i], 땀표[0], 땀표[1]) + '```')
 					time.sleep(0.3)
 			elif 시작("def"):
-				q = "testttt"
-				m = "global 함수\n" + m + "\n함수=" + m.split()[1][:-1]
-				exec(m)
+				q = "global 함수\n" + m + "\n함수=" + m.split()[1][:-1]
+				exec(q)
 				await message.channel.send(함수)
+		# 반응달기
+		gumsajung = m[:]
+		while gumsajung:
+			isend = True
+			for i in 이몾.keys():
+				if gumsajung.startswith(i):
+					isend = False
+					await message.add_reaction(이몾[i])
+					gumsajung = gumsajung[len(i):]
+			if isend:
+				gumsajung = gumsajung[1:]
 
 	except Exception as e:
 		await message.add_reaction(엑스)
