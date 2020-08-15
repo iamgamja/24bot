@@ -39,6 +39,7 @@ client = discord.Client()
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
 반복 = [0, ""]
+함수 = ""
 
 @client.event
 async def on_ready():
@@ -140,9 +141,9 @@ async def on_message(message):
 					time.sleep(0.3)
 			elif 시작("def"):
 				q = "testttt"
-				m += "\nq=" + m.split()[1][:-1]
+				m = "global 함수\n" + m + "\n함수=" + m.split()[1][:-1]
 				exec(m)
-				await message.channel.send(q)
+				await message.channel.send(함수)
 
 	except Exception as e:
 		await message.add_reaction(엑스)
