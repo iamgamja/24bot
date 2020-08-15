@@ -138,6 +138,11 @@ async def on_message(message):
 						qwe[i] = qwe[i][:1900]+'...'
 					await message.channel.send('```yaml\n' + 몯밖(qwe[i], 땀표[0], 땀표[1]) + '```')
 					time.sleep(0.3)
+			elif 시작("def"):
+				q = "testttt"
+				m += "\nq=" + m.split()[1][:-1]
+				exec(m)
+				await message.channel.send(q)
 
 	except Exception as e:
 		await message.add_reaction(엑스)
