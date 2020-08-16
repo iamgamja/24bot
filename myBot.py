@@ -39,7 +39,7 @@ client = discord.Client()
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
 반복 = [0, ""]
-함수 = ""
+출력 = ""
 
 @client.event
 async def on_ready():
@@ -94,7 +94,6 @@ async def on_message(message):
 				embed.add_field(name=",프사", value="프사", inline=False)
 				embed.add_field(name=",말", value="따라말합니다.", inline=False)
 				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
-				embed.add_field(name=",def <식>", value="함수를 만듭니다.", inline=False)
 				embed.set_footer(text=str(message.author)[:-5])
 				await message.channel.send(embed=embed)
 			elif 시작("핑"):
@@ -119,20 +118,19 @@ async def on_message(message):
 				반복[0], 반복[1] = int(m[3:].split()[0]), m[3:].split()[1]
 				await message.channel.send(f"앞으로 {반복[0]}번 반복")
 			elif 시작("계산"):
-				q = m[3:] # 원래 식
-				w = q[:] # 바뀔 식
-				w = 몯밖(w, '(빈공백)', '​', '(공백)', ' ', '(큰공백)', '　', '(탭)', '\t', '^', '**', '×', '*', '÷', '/', '√(', 'math.sqrt(')
-				e = str(eval(w))
-				qwe = [q,w,e]
-				for i in range(3):
-					if len(qwe[i]) > 1900:
-						qwe[i] = qwe[i][:1900]+'...'
-					await message.channel.send('```yaml\n' + 몯밖(qwe[i], 땀표[0], 땀표[1]) + '```')
-					time.sleep(0.3)
-			elif 시작("def"):
-				q = "global 함수\n" + m + "\n함수=" + m.split()[1][:-1]
-				exec(q)
-				await message.channel.send(함수)
+				if '\n' in m:
+					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1]) ; await message.channel.send(출력)
+				else:
+					q = m[3:] # 원래 식
+					w = q[:] # 바뀔 식
+					w = 몯밖(w, '(빈공백)', '​', '(공백)', ' ', '(큰공백)', '　', '(탭)', '\t', '^', '**', '×', '*', '÷', '/', '√(', 'math.sqrt(')
+					e = str(eval(w))
+					qwe = [q,w,e]
+					for i in range(3):
+						if len(qwe[i]) > 1900:
+							qwe[i] = qwe[i][:1900]+'...'
+						await message.channel.send('```yaml\n' + 몯밖(qwe[i], 땀표[0], 땀표[1]) + '```')
+						time.sleep(0.3)
 		# 반응달기
 		gumsajung = m[:]
 		while gumsajung:
