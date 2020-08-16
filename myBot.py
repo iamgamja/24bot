@@ -119,7 +119,7 @@ async def on_message(message):
 				await message.channel.send(f"앞으로 {반복[0]}번 반복")
 			elif 시작("계산"):
 				if '\n' in m:
-					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1]) ; await message.channel.send(출력)
+					exec('global 출력\n' + '\n'.join(m[3:].split('\n')[:-1]) + '\n출력=' + m[3:].split('\n')[-1]) ; await message.channel.send(출력)
 				else:
 					q = m[3:] # 원래 식
 					w = q[:] # 바뀔 식
