@@ -41,7 +41,6 @@ client = discord.Client()
 	"ㅘ":와샍,
 	"와":와샍
 	}
-임벧 = ["제목", "색", "소제목", "내용", "푸터"]
 @client.event
 async def on_ready():
 	# print('시작')
@@ -67,7 +66,7 @@ async def on_message(message):
 				while i in s:
 					s = s.replace(i, d[i])
 			return s
-		def 체크(m):
+		def check(m):
 			return m.channel.id == message.channel.id and m.author == message.author
 		if message.author.id == 688978156535021599:
 			return
@@ -135,14 +134,12 @@ async def on_message(message):
 						await message.channel.send('```yaml\n' + 몯밖(qwe[i], 땀표[0], 땀표[1]) + '```')
 						time.sleep(0.3)
 			elif 시작("임베드"):
-				inputdict = {}
-				for i in 임벧:
-					inputdict[i] = ""
+				inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
 				mymsg = await mesaage.channel.send("준비중...")
-				for i in range(len(임벧)):
-					await mymsg.edit(f"{str(i)}. {임벧[i]}를 입력해주세요.\n```yaml\n{몯밖(str(inputdict), ":", " :", ",", ",\n", 땀표[0], 땀표[1])}```")
-					inputmsg = await client.wait_for('message', timeout=10.0, check=체크)
-					inputdict[임벧[i]] = inputmsg
+				for i in range(len(inputdict.keys())):
+					await mymsg.edit(f"{str(i)}. {inputdict.keys()[i]}를 입력해주세요.\n```yaml\n{몯밖(str(inputdict), "{", "", "}", "", ":", " :", ",", ",\n", 땀표[0], 땀표[1])}```")
+					inputmsg = await client.wait_for('message', timeout=10.0, check=check)
+					inputdict[inputdict.keys()[i]] = inputmsg
 				await mymsg.delete()
 
 				embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=int("0x"+inputdict["색"]))
