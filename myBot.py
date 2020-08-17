@@ -145,8 +145,10 @@ async def on_message(message):
 					inputdict[list(inputdict.keys())[i]] = inputmsg
 					look_dict[list(inputdict.keys())[i]] = str(inputmsg)[:7]+'...' if len(str(inputmsg)) > 10 else str(inputmsg)
 				await mymsg.delete()
-
-				embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=int("0x"+inputdict["색"], 16))
+				try:
+					embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=int("0x"+inputdict["색"]))
+				except:
+					embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=0x000000)
 				embed.add_field(name=inputdict["소제목"], value=inputdict["내용"], inline=False)
 				embed.set_footer(text=inputdict["푸터"])
 				await message.channel.send(embed=embed)
