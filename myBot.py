@@ -96,7 +96,7 @@ async def on_message(message):
 				embed.add_field(name=",말", value="말", inline=False)
 				embed.add_field(name=",계산 <식>", value="계산", inline=False)
 				embed.add_field(name=",임베드", value="임베드", inline=False)
-				embed.set_footer(text=str(message.author)[:-5])
+				embed.set_footer(text=message.author.name)
 				await message.channel.send(embed=embed)
 			elif 시작("핑"):
 				await message.channel.send("으악 핑")
@@ -135,14 +135,18 @@ async def on_message(message):
 						time.sleep(0.3)
 			elif 시작("임베드"):
 				inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
-				mymsg = await mesaage.channel.send("준비중...")
-				for i in range(len(inputdict.keys())):
-					await mymsg.edit(f"{str(i)}. {inputdict.keys()[i]}를 입력해주세요.\n```yaml\n{몯밖(str(inputdict), "{", "", "}", "", ":", " :", ",", ",\n", 땀표[0], 땀표[1])}```")
-					inputmsg = await client.wait_for('message', check=check)
-					inputdict[inputdict.keys()[i]] = inputmsg
+				look_dict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
+				mymsg = await message.channel.send("준비중...")
+				for i in range(len(list(inputdict.keys()))):
+					await mymsg.delete()
+					mymsg = await message.channel.send(str(i) + ". " + str(list(inputdict.keys())[i]) + "을(를) 입력해주세요.\n```yaml\n" + str(몯밖(str(look_dict)[1:-1], ', ', ',\n', 땀표[0], 땀표[1])) + "```")
+					inputmsg = await client.wait_for('message', timeout=30.0, check=check)
+					inputmsg = inputmsg.content
+					inputdict[list(inputdict.keys())[i]] = inputmsg
+					look_dict[list(inputdict.keys())[i]] = str(inputmsg)[:7]+'...' if len(str(inputmsg)) > 10 else str(inputmsg)
 				await mymsg.delete()
 
-				embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=int("0x"+inputdict["색"]))
+				embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=int("0x"+inputdict["색"], 16))
 				embed.add_field(name=inputdict["소제목"], value=inputdict["내용"], inline=False)
 				embed.set_footer(text=inputdict["푸터"])
 				await message.channel.send(embed=embed)
