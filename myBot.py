@@ -41,7 +41,7 @@ client = discord.Client()
 	"ㅘ":와샍,
 	"와":와샍
 	}
-
+임벧 = ["제목", "색", "소제목", "내용", "푸터"]
 @client.event
 async def on_ready():
 	# print('시작')
@@ -52,7 +52,6 @@ async def on_ready():
 async def on_message(message):
 	global 반복
 	try:
-		msg=[]
 		m = message.content
 		# print(m)
 		def 포함(s):
@@ -68,6 +67,8 @@ async def on_message(message):
 				while i in s:
 					s = s.replace(i, d[i])
 			return s
+		def 체크(m):
+			return m.channel.id == message.channel.id and m.author == message.author
 		if message.author.id == 688978156535021599:
 			return
 		if 반복[0]:
@@ -87,14 +88,15 @@ async def on_message(message):
 			m = m[1:]
 			if 시작("도움"):
 				embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0xffccff)
-				embed.add_field(name=",도움", value="이 메시지를 볼수 있습니다", inline=False)
+				embed.add_field(name=",도움", value="도움", inline=False)
 				embed.add_field(name=",핑", value="으악 핑", inline=True)
 				embed.add_field(name=",에블핑", value="으악 핑", inline=True)
 				embed.add_field(name=",히어핑", value="으악 핑", inline=True)
 				embed.add_field(name=",폭8", value="폭☆8", inline=False)
 				embed.add_field(name=",프사", value="프사", inline=False)
-				embed.add_field(name=",말", value="따라말합니다.", inline=False)
-				embed.add_field(name=",계산 <식>", value="식을 계산합니다.", inline=False)
+				embed.add_field(name=",말", value="말", inline=False)
+				embed.add_field(name=",계산 <식>", value="계산", inline=False)
+				embed.add_field(name=",임베드", value="임베드", inline=False)
 				embed.set_footer(text=str(message.author)[:-5])
 				await message.channel.send(embed=embed)
 			elif 시작("핑"):
@@ -132,6 +134,22 @@ async def on_message(message):
 							qwe[i] = qwe[i][:1900]+'...'
 						await message.channel.send('```yaml\n' + 몯밖(qwe[i], 땀표[0], 땀표[1]) + '```')
 						time.sleep(0.3)
+			elif 시작("임베드"):
+				inputdict = {}
+				for i in 임벧:
+					inputdict[i] = ""
+				mymsg = await mesaage.channel.send("준비중...")
+				for i in range(len(임벧)):
+					await mymsg.edit(f"{str(i)}. {임벧[i]}를 입력해주세요.\n```yaml\n{몯밖(str(inputdict), ":", " :", ",", ",\n", 땀표[0], 땀표[1])}```")
+					inputmsg = await client.wait_for('message', timeout=10.0, check=체크)
+					inputdict[임벧[i]] = inputmsg
+				await mymsg.delete()
+
+				embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=int("0x"+inputdict["색"]))
+				embed.add_field(name=inputdict["소제목"], value=inputdict["내용"], inline=False)
+				embed.set_footer(text=inputdict["푸터"])
+				await message.channel.send(embed=embed)
+				
 		# 반응달기
 		gumsajung = m[:]
 		while gumsajung:
