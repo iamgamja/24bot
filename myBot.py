@@ -138,7 +138,7 @@ async def on_message(message):
 				mymsg = await mesaage.channel.send("준비중...")
 				for i in range(len(inputdict.keys())):
 					await mymsg.edit(f"{str(i)}. {inputdict.keys()[i]}를 입력해주세요.\n```yaml\n{몯밖(str(inputdict), "{", "", "}", "", ":", " :", ",", ",\n", 땀표[0], 땀표[1])}```")
-					inputmsg = await client.wait_for('message', timeout=10.0, check=check)
+					inputmsg = await client.wait_for('message', check=check)
 					inputdict[inputdict.keys()[i]] = inputmsg
 				await mymsg.delete()
 
