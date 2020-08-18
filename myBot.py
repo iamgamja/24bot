@@ -157,7 +157,7 @@ async def on_message(message):
 			elif 시작("기억"):
 				q = m[3:].split()
 				if len(q) == 0: # 목록
-					await message.channel.send(몯밖(str(기억.keys())[11:-2], ", ", ",\n"))
+					await message.channel.send(몯밖(str(기억.keys())[10:-1], ", ", ",\n"))
 				elif len(q) == 1: # 찾기
 					await message.channel.send(기억[q[0]])
 				elif len(q) == 2: # 등록
