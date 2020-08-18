@@ -98,6 +98,9 @@ async def on_message(message):
 				embed.add_field(name=",말", value="말", inline=False)
 				embed.add_field(name=",계산 <식>", value="계산", inline=False)
 				embed.add_field(name=",임베드", value="임베드", inline=False)
+				embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
+				embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
+				embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
 				embed.set_footer(text=message.author.name)
 				await message.channel.send(embed=embed)
 			elif 시작("핑"):
@@ -161,8 +164,12 @@ async def on_message(message):
 				elif len(q) == 1: # 찾기
 					await message.channel.send(기억[q[0]])
 				elif len(q) == 2: # 등록
-					기억[q[0]] = q[1]
-					await message.channel.send(q[0] + " 을(를) 기억")
+					if q[0] in list(기억.keys()):
+						기억[q[0]] = q[1]
+						await message.channel.send(q[0] + " 을(를) 덮어씀")
+					else:
+						기억[q[0]] = q[1]
+						await message.channel.send(q[0] + " 을(를) 기억")
 		# 반응달기
 		gumsajung = m[:]
 		while gumsajung:
