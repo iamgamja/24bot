@@ -157,12 +157,12 @@ async def on_message(message):
 			elif 시작("기억"):
 				q = m[3:].split()
 				if len(q) == 0: # 목록
-					await message.channel.send(몯밖(str(기억.keys())[1:-1], ", ", ",\n"))
+					await message.channel.send(몯밖(str(기억.keys())[11:-2], ", ", ",\n"))
 				elif len(q) == 1: # 찾기
 					await message.channel.send(기억[q[0]])
 				elif len(q) == 2: # 등록
 					기억[q[0]] = q[1]
-					await message.channel.send(기억[q[0]])
+					await message.channel.send(q[0] + " 을(를) 기억")
 		# 반응달기
 		gumsajung = m[:]
 		while gumsajung:
