@@ -24,6 +24,7 @@ client = discord.Client()
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
 반복 = [0, ""]
 출력 = ""
+기억 = {}
 이몾 = { "띵킹":띵킹,
 	"띤킹":띵킹,
 	"흠터":띵킹,
@@ -41,6 +42,7 @@ client = discord.Client()
 	"ㅘ":와샍,
 	"와":와샍
 	}
+
 @client.event
 async def on_ready():
 	# print('시작')
@@ -152,7 +154,15 @@ async def on_message(message):
 				embed.add_field(name=inputdict["소제목"], value=inputdict["내용"], inline=False)
 				embed.set_footer(text=inputdict["푸터"])
 				await message.channel.send(embed=embed)
-				
+			elif 시작("기억"):
+				q = m[3:].split()
+				if len(q) == 0: # 목록
+					await message.channel.send(몯밖(str(기억.keys())[1:-1], ", ", ",\n"))
+				elif len(q) == 1: # 찾기
+					await message.channel.send(기억[q[0]])
+				elif len(q) == 2: # 등록
+					기억[q[0]] = q[1]
+					await message.channel.send(기억[q[0]])
 		# 반응달기
 		gumsajung = m[:]
 		while gumsajung:
