@@ -22,7 +22,7 @@ client = discord.Client()
 폭팔 = "https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif"
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
-반복 = [0, ""]
+반복 = [0, "", None]
 출력 = ""
 기억 = {}
 이몾 = { "띵킹":띵킹,
@@ -74,7 +74,10 @@ async def on_message(message):
 			return
 		if 반복[0]:
 			반복[0] -= 1
-			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
+			if 반복[2]:
+				exec('global 출력\n' + list(반복[1].split('\n'))[:-1] + '\n출력=' + list(반복[1].split('\n'))[-1] ; await message.channel.send(출력)
+			else:
+				await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
 		if message.embeds:
 			await message.add_reaction(똥킹)
 			time.sleep(0.5)
@@ -122,8 +125,8 @@ async def on_message(message):
 			elif 시작("반복"):
 				if 반복[0]:
 					await message.channel.send(f"아직 {반복[0]}번 남음")
-				반복[0], 반복[1] = int(m[3:].split()[0]), m[3:].split()[1]
-				await message.channel.send(f"앞으로 {반복[0]}번 반복")
+					return
+				반복[0], 반복[1], 반복[2] = int(m[3:].split()[0]), " ".join(list(m[3:].split(" "))[1:]), 포함("\n")
 			elif 시작("계산"):
 				if '\n' in m:
 					exec('global 출력\n' + '\n'.join(m[3:].split('\n')[:-1]) + '\n출력=' + m[3:].split('\n')[-1]) ; await message.channel.send(출력)
