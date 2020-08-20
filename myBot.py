@@ -25,6 +25,7 @@ client = discord.Client()
 반복 = [0, ""]
 출력 = ""
 기억 = {}
+시간 = None
 이몾 = { "띵킹":띵킹,
 	"띤킹":띵킹,
 	"흠터":띵킹,
@@ -48,7 +49,12 @@ async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	await client.get_channel(686743756166135862).send("<@526889025894875158>, 시작")
-
+	while True:
+		time.sleep(1)
+		if 시간 == None:
+			시간 = await client.get_channel(732896130127626261).send("현재시간:" + str(time.strftime('%y %m %d %p %I %M %S', time.localtime(time.time()))))
+		else:
+			await 시간.edit("현재시간:" + str(time.strftime('%y %m %d %p %I %M %S', time.localtime(time.time()))))
 @client.event
 async def on_message(message):
 	global 반복
