@@ -48,13 +48,7 @@ async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	await client.get_channel(686743756166135862).send("<@526889025894875158>, 시작")
-	ti = False
-	while True:
-		time.sleep(1)
-		if ti == False:
-			ti = await client.get_channel(732896130127626261).send("현재시간:" + str(time.strftime('%y %m %d %p %I %M %S', time.localtime(time.time()))))
-		else:
-			await ti.edit("현재시간:" + str(time.strftime('%y %m %d %p %I %M %S', time.localtime(time.time()))))
+
 @client.event
 async def on_message(message):
 	global 반복
