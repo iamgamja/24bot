@@ -130,7 +130,6 @@ async def on_message(message):
 				else:
 					q = m[3:] # 원래 식
 					w = q[:] # 바뀔 식
-					w = 몯밖(w, '(빈공백)', '​', '(공백)', ' ', '(큰공백)', '　', '(탭)', '\t', '^', '**', '×', '*', '÷', '/', '√(', 'math.sqrt(')
 					e = str(eval(w))
 					qwe = [q,w,e]
 					for i in range(3):
