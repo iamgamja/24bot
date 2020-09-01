@@ -126,13 +126,14 @@ async def on_message(message):
 				await message.channel.send(f"앞으로 {반복[0]}번 반복")
 			elif 시작("계산"):
 				if '\n' in m:
-					qwer = []
-					qwer.append('global 출력\n' + '\n'.join(m[3:].split('\n')[:-1]) + '\n출력=' + m[3:].split('\n')[-1])
-					exec(qwer[0]) ; qwer.append(출력)
+					qwer = [None, None, None]
+					qwer[2] = 'global 출력\n' + '\n'.join(m[3:].split('\n')[:-1]) + '\n출력=' + m[3:].split('\n')[-1]
+					exec(qwer[2]) ; qwer[1] = str(출력)
+					qwer[0] = qwer[2][10:].split('\n')[:-1] + qwer[2][10:].split('\n')[-1][4:]
 				else:
-					qwer = []
-					qwer.append(m[3:])
-					qwer.append(str(eval(qwer[0])))
+					qwer = [None, None, None]
+					qwer[0] = m[3:]
+					qwer[1] = str(eval(qwer[0]))
 				for i in range(2):
 						if len(qwer[i]) > 1900:
 							qwer[i] = qwer[i][:1900]+'...'
