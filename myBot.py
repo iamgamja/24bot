@@ -129,7 +129,7 @@ async def on_message(message):
 					qwer = [None, None, None]
 					qwer[2] = 'global 출력\n' + '\n'.join(m[3:].split('\n')[:-1]) + '\n출력=' + m[3:].split('\n')[-1]
 					exec(qwer[2]) ; qwer[1] = str(출력)
-					qwer[0] = qwer[2][10:].split('\n')[:-1] + qwer[2][10:].split('\n')[-1][4:]
+					qwer[0] = m[3:]
 				else:
 					qwer = [None, None, None]
 					qwer[0] = m[3:]
