@@ -126,16 +126,17 @@ async def on_message(message):
 				await message.channel.send(f"앞으로 {반복[0]}번 반복")
 			elif 시작("계산"):
 				if '\n' in m:
-					exec('global 출력\n' + '\n'.join(m[3:].split('\n')[:-1]) + '\n출력=' + m[3:].split('\n')[-1]) ; await message.channel.send(출력)
+					qwer = []
+					qwer.append('global 출력\n' + '\n'.join(m[3:].split('\n')[:-1]) + '\n출력=' + m[3:].split('\n')[-1])
+					exec(qwer[0]) ; qwer.append(출력)
 				else:
-					q = m[3:] # 원래 식
-					w = q[:] # 바뀔 식
-					e = str(eval(w))
-					qwe = [q,w,e]
-					for i in range(3):
-						if len(qwe[i]) > 1900:
-							qwe[i] = qwe[i][:1900]+'...'
-						await message.channel.send('```yaml\n' + 몯밖(qwe[i], 땀표[0], 땀표[1]) + '```')
+					qwer = []
+					qwer.append(m[3:])
+					qwer.append(str(eval(qwer[0])))
+				for i in range(2):
+						if len(qwer[i]) > 1900:
+							qwer[i] = qwer[i][:1900]+'...'
+						await message.channel.send('```yaml\n' + 몯밖(qwer[i], 땀표[0], 땀표[1]) + '```')
 						time.sleep(0.3)
 			elif 시작("임베드"):
 				inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
