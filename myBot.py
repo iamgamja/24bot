@@ -60,7 +60,7 @@ async def on_message(message):
 		def 시작(s):
 			return m.startswith(s)
 		def 관맂():
-			return m.author.id == 526889025894875158
+			return message.author.id == 526889025894875158
 		def 몯밖(s, *dd):
 			l = []
 			for i in range(len(dd)//2):
