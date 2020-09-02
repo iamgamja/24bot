@@ -190,21 +190,22 @@ async def on_message(message):
 				mine_x = int(m.split()[1])
 				mine_y = int(m.split()[2])
 				mine_z = int(m.split()[3])
-					
-				mine_map = []
-				for i in range(mine_y):
-					mine_map.append([])
-					for j in range(mine_x):
-						mine_map[i].append(random.choice(지뢰))
-				### ###
-				mine_map_lookver = ''
-				for i in mine_map:
-					for j in i:
-						mine_map_lookver += j
-					mine_map_lookver += '\n'
-				await message.channel.send(mine_map_lookver)
-				### ###
-				await message.channel.send(mine_map)
+				
+				while True:
+					mine_map = []
+					for i in range(mine_y):
+						mine_map.append([])
+						for j in range(mine_x):
+							mine_map[i].append(random.choice(지뢰))
+					mine_map_lookver = ''
+					for i in mine_map:
+						for j in i:
+							mine_map_lookver += j
+						mine_map_lookver += '\n'
+					if mine_map_lookver.count(지뢰[10]) != mine_z:
+						continue
+					await message.channel.send(mine_map_lookver)
+# 	 				await message.channel.send(mine_map)
 
 		# 반응달기
 		gumsajung = m[:]
