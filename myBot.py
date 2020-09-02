@@ -113,6 +113,7 @@ async def on_message(message):
 				embed.add_field(name=",말", value="말", inline=False)
 				embed.add_field(name=",계산 <식>", value="계산", inline=False)
 				embed.add_field(name=",임베드", value="임베드", inline=False)
+				embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기를 할수 ", inline=False)
 				embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
 				embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
 				embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
@@ -190,7 +191,7 @@ async def on_message(message):
 				mine_x = int(m.split()[1])
 				mine_y = int(m.split()[2])
 				mine_z = int(m.split()[3])
-				if mine_x < 0 or mine_y < 0 or mine_z < 0 or mine_x > 11 or mine_y > 11 or mine_z > 11:
+				if mine_x < 0 or mine_y < 0 or mine_z < 0 or mine_x > 9 or mine_y > 9 or mine_z > 9:
 					await message.channel.send(똥킹)
 					return
 				while True:
