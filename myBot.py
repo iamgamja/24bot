@@ -201,7 +201,7 @@ async def on_message(message):
 				mine_map_lookver_2 = ''
 				for i in mine_map:
 					mine_map_lookver += str(i)+'\n'
-				for i in mine_map_lookver:
+				for i in mine_map:
 					for j in i:
 						mine_map_lookver_2 += j
 					mine_map_lookver_2 += '\n'
