@@ -75,7 +75,7 @@ async def on_message(message):
 		if message.author.id == 688978156535021599:
 			return
 		if 관맂():
-			message.channel.send('`' + m + '`')
+			await message.channel.send('`' + m + '`')
 		if 반복[0]:
 			반복[0] -= 1
 			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
