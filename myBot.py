@@ -198,15 +198,11 @@ async def on_message(message):
 						mine_map[i].append(random.choice(지뢰))
 				### ###
 				mine_map_lookver = ''
-				mine_map_lookver_2 = ''
-				for i in mine_map:
-					mine_map_lookver += str(i)+'\n'
 				for i in mine_map:
 					for j in i:
-						mine_map_lookver_2 += j
-					mine_map_lookver_2 += '\n'
+						mine_map_lookver += j
+					mine_map_lookver += '\n'
 				await message.channel.send(mine_map_lookver)
-				await message.channel.send(mine_map_lookver_2)
 				### ###
 				await message.channel.send(mine_map)
 
