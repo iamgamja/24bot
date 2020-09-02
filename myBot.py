@@ -191,15 +191,24 @@ async def on_message(message):
 				mine_x = int(m.split()[1])
 				mine_y = int(m.split()[2])
 				mine_z = int(m.split()[3])
-				if mine_x < 0 or mine_y < 0 or mine_z < 0 or mine_x > 9 or mine_y > 9 or mine_z > 9:
-					await message.channel.send(똥킹)
+				if mine_x < 1 or mine_y < 1 or mine_z < 1 or mine_x > 9 or mine_y > 9 or mine_z > mine_x * mine_y:
+					await message.channel.send("```yamlx : 1~9\ny : 1~9\n지뢰 수 : 1~x*y```")
 					return
 				while True:
 					mine_map = []
 					for i in range(mine_y):
 						mine_map.append([])
 						for j in range(mine_x):
-							mine_map[i].append(random.choice(지뢰))
+							mine_map[i].append("")
+					i=0
+					while i <= mine_z:
+						i1 = random.randrange(mine_y)
+						i2 = random.randrange(mine_x)
+						if mine_map[i1][i2] == 지뢰[10]:
+							continue
+						else:
+							mine_map[i1][i2] = 지뢰[10]
+							i+=1
 					mine_map_lookver = ''
 					for i in mine_map:
 						for j in i:
