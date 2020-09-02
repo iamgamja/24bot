@@ -190,7 +190,7 @@ async def on_message(message):
 				mine_x = int(m.split()[1])
 				mine_y = int(m.split()[2])
 				mine_z = int(m.split()[3])
-				if mine_x < 0 or mine_y < 0 or mine_z < 0 or mine_x > 100 or mine_y > 100 or mine_z > 100:
+				if mine_x < 0 or mine_y < 0 or mine_z < 0 or mine_x > 50 or mine_y > 50 or mine_z > 50:
 					await message.channel.send(똥킹)
 					return
 				while True:
