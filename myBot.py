@@ -192,9 +192,9 @@ async def on_message(message):
 				mine_z = int(m.split()[3])
 					
 				mine_map = []
-				for i in mine_y:
+				for i in range(mine_y):
 					mine_map.append([])
-					for j in mine_x:
+					for j in range(mine_x):
 						mine_map[i].append(random.choice(지뢰))
 				
 				await message.channel.send(mine_map)
