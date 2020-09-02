@@ -204,8 +204,10 @@ async def on_message(message):
 						mine_map_lookver += '\n'
 					if mine_map_lookver.count(지뢰[10]) != mine_z:
 						continue
-					await message.channel.send(mine_map_lookver)
-# 	 				await message.channel.send(mine_map)
+					else:
+						await message.channel.send(mine_map_lookver)
+# 	 	 				await message.channel.send(mine_map)
+						break
 
 		# 반응달기
 		gumsajung = m[:]
