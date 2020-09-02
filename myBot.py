@@ -42,7 +42,18 @@ client = discord.Client()
 	킹똥:킹똥,
 	"ㅘ":와샍,
 	"와":와샍}
-
+지뢰 = [
+	"<:z0:750200417664893020>",
+	"<:z1:750200417836859472>",
+	"<:z2:750200417564229673>",
+	"<:z3:750200417304051795>",
+	"<:z4:750200417782202429>",
+	"<:z5:750200417421623448>",
+	"<:z6:750200417740390442>",
+	"<:z7:750200417748516965>",
+	"<:z8:750200417748779059>",
+	"<:z9:750200417417166879>",
+	"<:z_:750200417287274529>"]
 @client.event
 async def on_ready():
 	# print('시작')
@@ -175,8 +186,19 @@ async def on_message(message):
 					else:
 						기억[q[0]] = q[1]
 						await message.channel.send(q[0] + " 을(를) 기억")
-# 			elif 시작("지뢰찾기"):
-# 				 mine = []
+			elif 시작("지뢰찾기"):
+				mine_x = int(m.split()[1])
+				mine_y = int(m.split()[2])
+				mine_z = int(m.split()[3])
+					
+				mine_map = []
+				for i in mine_y:
+					mine_map.append([])
+					for j in mine_x:
+						mine_map[i].append(random.choice(지뢰))
+				
+				await message.channel.send(mine_map)
+
 		# 반응달기
 		gumsajung = m[:]
 		while gumsajung:
