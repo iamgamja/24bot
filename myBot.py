@@ -188,9 +188,9 @@ async def on_message(message):
 						기억[q[0]] = q[1]
 						await message.channel.send(q[0] + " 을(를) 기억")
 			elif 시작("지뢰찾기") and 관맂():
-				mine_x = int(m.split()[1])
-				mine_y = int(m.split()[2])
-				mine_z = int(m.split()[3])
+				mine_x = int(m.split()[1]) ; await message.channel.send(mine_x)
+				mine_y = int(m.split()[2]) ; await message.channel.send(mine_y)
+				mine_z = int(m.split()[3]) ; await message.channel.send(mine_z)
 				if mine_x < 1 or mine_y < 1 or mine_z < 1 or mine_x > 9 or mine_y > 9 or mine_z > mine_x * mine_y:
 					await message.channel.send("```yamlx : 1~9\ny : 1~9\n지뢰 수 : 1~x*y```")
 					return
@@ -200,10 +200,10 @@ async def on_message(message):
 						mine_map.append([])
 						for j in range(mine_x):
 							mine_map[i].append("")
-					i=0
+					i=0 ; await message.channel.send(mine_map)
 					while i <= mine_z:
-						i1 = random.randrange(mine_y)
-						i2 = random.randrange(mine_x)
+						i1 = random.randrange(mine_y) ; await message.channel.send(i1)
+						i2 = random.randrange(mine_x) ; await message.channel.send(i2)
 						if mine_map[i1][i2] == 지뢰[10]:
 							continue
 						else:
@@ -214,8 +214,8 @@ async def on_message(message):
 						for j in i:
 							mine_map_lookver += j
 						mine_map_lookver += '\n'
-					if mine_map_lookver.count(지뢰[10]) != mine_z:
-						continue
+					#if mine_map_lookver.count(지뢰[10]) != mine_z:
+					#	continue
 					else:
 						await message.channel.send(mine_map_lookver)
 # 	 	 				await message.channel.send(mine_map)
