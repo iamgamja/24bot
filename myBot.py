@@ -186,7 +186,7 @@ async def on_message(message):
 					else:
 						기억[q[0]] = q[1]
 						await message.channel.send(q[0] + " 을(를) 기억")
-			elif 시작("지뢰찾기"):
+			elif 시작("지뢰찾기") and 관맂():
 				mine_x = int(m.split()[1])
 				mine_y = int(m.split()[2])
 				mine_z = int(m.split()[3])
@@ -196,7 +196,12 @@ async def on_message(message):
 					mine_map.append([])
 					for j in range(mine_x):
 						mine_map[i].append(random.choice(지뢰))
-				
+				### ###
+				mine_map_lookver = ''
+				for i in mine_map:
+					mine_map_lookver += str(i)+'\n'
+				await message.channel.send(mine_map_lookver)
+				### ###
 				await message.channel.send(mine_map)
 
 		# 반응달기
