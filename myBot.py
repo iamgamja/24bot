@@ -85,8 +85,8 @@ async def on_message(message):
 			return m.channel.id == message.channel.id and m.author == message.author
 		if message.author.id == 688978156535021599:
 			return
-		if 관맂():
-			await message.channel.send('`' + m + '`')
+# 		if 관맂():
+# 			await message.channel.send('`' + m + '`')
 		if 반복[0]:
 			반복[0] -= 1
 			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
@@ -198,9 +198,15 @@ async def on_message(message):
 						mine_map[i].append(random.choice(지뢰))
 				### ###
 				mine_map_lookver = ''
+				mine_map_lookver_2 = ''
 				for i in mine_map:
 					mine_map_lookver += str(i)+'\n'
+				for i in mine_map_lookver:
+					for j in i:
+						mine_map_lookver_2 += j
+					mine_map_lookver_2 += '\n'
 				await message.channel.send(mine_map_lookver)
+				await message.channel.send(mine_map_lookver_2)
 				### ###
 				await message.channel.send(mine_map)
 
