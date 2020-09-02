@@ -59,6 +59,8 @@ async def on_message(message):
 			return m.find(s)+1
 		def 시작(s):
 			return m.startswith(s)
+		def 관릦():
+			return m.author.id == 526889025894875158
 		def 몯밖(s, *dd):
 			l = []
 			for i in range(len(dd)//2):
@@ -72,6 +74,8 @@ async def on_message(message):
 			return m.channel.id == message.channel.id and m.author == message.author
 		if message.author.id == 688978156535021599:
 			return
+		if 관맂():
+			message.channel.send('`' + m + '`')
 		if 반복[0]:
 			반복[0] -= 1
 			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
@@ -171,6 +175,8 @@ async def on_message(message):
 					else:
 						기억[q[0]] = q[1]
 						await message.channel.send(q[0] + " 을(를) 기억")
+# 			elif 시작("지뢰찾기"):
+# 				 mine = []
 		# 반응달기
 		gumsajung = m[:]
 		while gumsajung:
