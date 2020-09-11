@@ -72,15 +72,6 @@ async def on_message(message):
 			return m.startswith(s)
 		def 관맂():
 			return message.author.id == 526889025894875158
-		def 몯밖(s, *dd):
-			l = []
-			for i in range(len(dd)//2):
-				l.append((dd[i*2],dd[i*2+1]))
-			d = dict(l)
-			for i in d:
-				while i in s:
-					s = s.replace(i, d[i])
-			return s
 		def check(m):
 			return m.channel.id == message.channel.id and m.author == message.author
 		if message.author.id == 688978156535021599:
@@ -153,7 +144,7 @@ async def on_message(message):
 				for i in range(2):
 						if len(qwer[i]) > 1900:
 							qwer[i] = qwer[i][:1900]+'...'
-						await message.channel.send('```yaml\n' + 몯밖(qwer[i], 땀표[0], 땀표[1]) + '```')
+						await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
 						time.sleep(0.3)
 			elif 시작("임베드"):
 				inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
@@ -161,7 +152,7 @@ async def on_message(message):
 				mymsg = await message.channel.send("준비중...")
 				for i in range(len(list(inputdict.keys()))):
 					await mymsg.delete()
-					mymsg = await message.channel.send(str(i) + ". " + str(list(inputdict.keys())[i]) + "을(를) 입력해주세요.\n```yaml\n" + str(몯밖(str(look_dict)[1:-1], ', ', ',\n', 땀표[0], 땀표[1])) + "```")
+					mymsg = await message.channel.send(str(i) + ". " + str(list(inputdict.keys())[i]) + "을(를) 입력해주세요.\n```yaml\n" + str(str(look_dict)[1:-1].replace(', ', ',\n').replace(땀표[0], 땀표[1])) + 땀표[0])
 					inputmsg = await client.wait_for('message', timeout=30.0, check=check)
 					inputmsg = inputmsg.content
 					inputdict[list(inputdict.keys())[i]] = inputmsg
@@ -177,7 +168,7 @@ async def on_message(message):
 			elif 시작("기억"):
 				q = m[3:].split()
 				if len(q) == 0: # 목록
-					await message.channel.send(몯밖(str(기억.keys())[10:-1], ", ", ",\n"))
+					await message.channel.send(str(기억.keys())[10:-1].replace(', ', ',\n'))
 				elif len(q) == 1: # 찾기
 					await message.channel.send(기억[q[0]])
 				elif len(q) == 2: # 등록
