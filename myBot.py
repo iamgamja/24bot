@@ -18,13 +18,13 @@ client = discord.Client()
 영어 = ['r', 'R', 'rt', 's', 'sw', 'sg', 'e', 'f', 'fr', 'fa', 'fq', 'ft', 'fx', 'fv', 'fg', 'a', 'q', 'qt', 't', 'T', 'd', 'w', 'c', 'z', 'x', 'v', 'g', 'k', 'o', 'i', 'O', 'j', 'p', 'u', 'P', 'h', 'hk', 'ho', 'hl', 'y', 'n', 'nj', 'np', 'nl', 'b', 'm', 'ml', 'l', '', ' ']
 한영 = dict(zip(한글, 영어))
 영한 = dict(zip(영어, 한글))
-땀표 = ['```', '​`​`​`​']
+땀표 = ('```', '​`​`​`​')
 폭팔 = "https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif"
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
-반복 = [0, ""]
-출력 = ""
-기억 = {}
+반복 = [0, ""] # ,반복 명령어에 사용
+출력 = ""      # ,계산 명령어에 사용
+기억 = {}      # ,기억 명령어에 사용
 이몾 = {
 	"띵킹":띵킹,
 	"띤킹":띵킹,
@@ -74,7 +74,7 @@ async def on_message(message):
 			return message.author.id == 526889025894875158
 		def check(m):
 			return m.channel.id == message.channel.id and m.author == message.author
-		if message.author.id == 688978156535021599:
+		if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
 			return
 # 		if 관맂():
 # 			await message.channel.send('`' + m + '`')
@@ -132,16 +132,15 @@ async def on_message(message):
 				반복[0], 반복[1] = int(m[3:].split()[0]), m[3:].split()[1]
 				await message.channel.send(f"앞으로 {반복[0]}번 반복")
 			elif 시작("계산"):
+				qwer = ["인풋", "아웃풋"]
 				if '\n' in m:
-					qwer = [None, None, None]
-					qwer[2] = 'global 출력\n' + '\n'.join(m[3:].split('\n')[:-1]) + '\n출력=' + m[3:].split('\n')[-1]
-					exec(qwer[2]) ; qwer[1] = str(출력)
+					exec('global 출력\n' + '\n'.join(m[3:].split('\n')[:-1]) + '\n출력=' + m[3:].split('\n')[-1])
+					qwer[1] = str(출력)
 					qwer[0] = m[3:]
 				else:
-					qwer = [None, None, None]
 					qwer[0] = m[3:]
 					qwer[1] = str(eval(qwer[0]))
-				for i in range(2):
+				for i in range(1):
 						if len(qwer[i]) > 1900:
 							qwer[i] = qwer[i][:1900]+'...'
 						await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
