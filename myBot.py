@@ -140,11 +140,11 @@ async def on_message(message):
 				else:
 					qwer[0] = m[3:]
 					qwer[1] = str(eval(qwer[0]))
-				for i in range(1):
-						if len(qwer[i]) > 1900:
-							qwer[i] = qwer[i][:1900]+'...'
-						await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
-						time.sleep(0.3)
+				for i in range(2):
+					if len(qwer[i]) > 1900:
+						qwer[i] = qwer[i][:1900]+'...'
+					await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
+					time.sleep(0.3)
 			elif 시작("임베드"):
 				inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
 				look_dict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
