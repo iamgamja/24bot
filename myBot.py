@@ -207,29 +207,29 @@ async def on_message(message):
 								i=0
 								
 								try:
-									i += 1 if mine_map[i1-1][i2-1] == 지뢰[10] else 0
+									i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
 								except:
 									pass
 								
 								try:
-									i += 1 if mine_map[i1-1][i2] == 지뢰[10] else 0
+									i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2] == 지뢰[10] else 0
 								except:
 									pass
 								
 								try:
-									i += 1 if mine_map[i1-1][i2+1] == 지뢰[10] else 0
+									i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2+1] == 지뢰[10] else 0
 								except:
 									pass
 								
 								try:
-									i += 1 if mine_map[i1][i2-1] == 지뢰[10] else 0
+									i += 1 if mine_map[i1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
 								except:
 									pass
 								
-								try:
-									i += 1 if mine_map[i1][i2] == 지뢰[10] else 0
-								except:
-									pass
+# 								try:
+# 									i += 1 if mine_map[i1][i2] == 지뢰[10] else 0
+# 								except:
+# 									pass
 								
 								try:
 									i += 1 if mine_map[i1][i2+1] == 지뢰[10] else 0
@@ -237,7 +237,7 @@ async def on_message(message):
 									pass
 								
 								try:
-									i += 1 if mine_map[i1+1][i2-1] == 지뢰[10] else 0
+									i += 1 if mine_map[i1+1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
 								except:
 									pass
 								
