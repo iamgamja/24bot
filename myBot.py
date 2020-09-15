@@ -70,8 +70,8 @@ async def on_message(message):
 			return m.find(s)+1
 		def 시작(s):
 			return m.startswith(s)
-		def 관맂():
-			return message.author.id == 526889025894875158
+# 		def 관맂():
+# 			return message.author.id == 526889025894875158
 		def check(m):
 			return m.channel.id == message.channel.id and m.author == message.author
 		if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
@@ -177,7 +177,7 @@ async def on_message(message):
 					else:
 						기억[q[0]] = q[1]
 						await message.channel.send(q[0] + " 을(를) 기억")
-			elif 시작("지뢰찾기") and 관맂():
+			elif 시작("지뢰찾기"):
 				mine_x = int(m.split()[1])
 				mine_y = int(m.split()[2])
 				mine_z = int(m.split()[3])
