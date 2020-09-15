@@ -199,6 +199,59 @@ async def on_message(message):
 						else:
 							mine_map[i1][i2] = 지뢰[10]
 							i+=1
+					for i1 in range(mine_y):
+						for i2 in range(mine_x):
+							if mine_map[i1][i2] == 지뢰[10]:
+								continue
+							else:
+								i=0
+								
+								try:
+									i += 1 if mine_map[i1-1][i2-1] == 지뢰[10] else 0
+								except:
+									pass
+								
+								try:
+									i += 1 if mine_map[i1-1][i2] == 지뢰[10] else 0
+								except:
+									pass
+								
+								try:
+									i += 1 if mine_map[i1-1][i2+1] == 지뢰[10] else 0
+								except:
+									pass
+								
+								try:
+									i += 1 if mine_map[i1][i2-1] == 지뢰[10] else 0
+								except:
+									pass
+								
+								try:
+									i += 1 if mine_map[i1][i2] == 지뢰[10] else 0
+								except:
+									pass
+								
+								try:
+									i += 1 if mine_map[i1][i2+1] == 지뢰[10] else 0
+								except:
+									pass
+								
+								try:
+									i += 1 if mine_map[i1+1][i2-1] == 지뢰[10] else 0
+								except:
+									pass
+								
+								try:
+									i += 1 if mine_map[i1+1][i2] == 지뢰[10] else 0
+								except:
+									pass
+								
+								try:
+									i += 1 if mine_map[i1+1][i2+1] == 지뢰[10] else 0
+								except:
+									pass
+								
+								mine_map[i1][i2] = 지뢰[i]
 					mine_map_lookver = ''
 					for i in mine_map:
 						for j in i:
