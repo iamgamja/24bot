@@ -169,14 +169,16 @@ async def on_message(message):
 				if len(q) == 0: # 목록
 					await message.channel.send(str(기억.keys())[10:-1].replace(', ', ',\n'))
 				elif len(q) == 1: # 찾기
-					await message.channel.send(기억[q[0]])
+					await message.channel.send(f"{기억[q[0]][0]} - `{기억[q[0]][1]}`" if q[0] in 기억 else "없음")
 				elif len(q) == 2: # 등록
 					if q[0] in list(기억.keys()):
-						기억[q[0]] = q[1]
-						await message.channel.send(q[0] + " 을(를) 덮어씀")
+						기억[q[0]] = [q[1], str(message.author)]
+						await message.channel.send(q[0] + " 을(를) 덮음")
 					else:
-						기억[q[0]] = q[1]
+						기억[q[0]] = [q[1], str(message.author)]
 						await message.channel.send(q[0] + " 을(를) 기억")
+				else:
+					await message.channel.send("ㅏ 띄어쓰기 안됨")
 			elif 시작("지뢰찾기"):
 				mine_x = int(m.split()[1])
 				mine_y = int(m.split()[2])
