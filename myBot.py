@@ -61,7 +61,8 @@ client = discord.Client()
 async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
-	await client.get_channel(762916201654386701).send(f"시작\n{폭팔}")
+	await client.get_channel(762916201654386701).send("시작")
+	await client.get_channel(762916201654386701).send( 폭팔 )
 
 @client.event
 async def on_message(message):
@@ -80,8 +81,8 @@ async def on_message(message):
 		if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
 			return
 		
-# 		if 관맂():
-# 			await message.channel.send('`' + m + '`')
+		if message.channel.id == 762916201654386701:
+			await message.channel.send(f"m`{m}`")
 		if 반복[0]:
 			반복[0] -= 1
 			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
