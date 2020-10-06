@@ -61,7 +61,7 @@ client = discord.Client()
 async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
-	await client.get_channel(686743756166135862).send("<@526889025894875158>, 시작")
+	await client.get_channel(762916201654386701).send("<@526889025894875158>, 시작")
 
 @client.event
 async def on_message(message):
@@ -117,7 +117,7 @@ async def on_message(message):
 				embed.add_field(name=",말", value="말", inline=False)
 				embed.add_field(name=",계산 <식>", value="계산", inline=False)
 				embed.add_field(name=",임베드", value="임베드", inline=False)
-				embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기를 할수 ", inline=False)
+				embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기를 할수 ~~있을까~~", inline=False)
 				embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
 				embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
 				embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
@@ -280,7 +280,8 @@ async def on_message(message):
 
 	except Exception as e:
 		await message.add_reaction(엑스)
-		await message.channel.send("오류: " + str(e) + '\n' + "위치: " + str(message.jump_url))
+		await message.channel.send(f"오류: {str(e)}\n위치: {str(message.jump_url)}")
+		await client.get_channel(762916201654386701).send(f"<@526889025894875158>\n오류: {str(e)}\n위치: {str(message.jump_url)}")
 
 access_token = os.environ["BOR_TOKEN"]
 client.run(access_token)
