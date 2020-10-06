@@ -31,15 +31,18 @@ client = discord.Client()
 	"흠터":띵킹,
 	":소ㅑㅜㅏㅑㅜㅎ:":띵킹,
 	띵킹:띵킹,
+	
 	"똥킹":똥킹,
 	"똔킹":똥킹,
 	"ㅁㄴㅇㄹ":똥킹,
 	"??":똥킹,
 	":쇄ㅜㅏㅑㅜㅎ:":똥킹,
 	똥킹:똥킹,
+	
 	"킹똥":킹똥,
 	"킹똔":킹똥,
 	킹똥:킹똥,
+	
 	"ㅘ":와샍,
 	"와":와샍}
 지뢰 = [
@@ -76,21 +79,31 @@ async def on_message(message):
 			return m.channel.id == message.channel.id and m.author == message.author
 		if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
 			return
+		
 # 		if 관맂():
 # 			await message.channel.send('`' + m + '`')
 		if 반복[0]:
 			반복[0] -= 1
 			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
-		if message.embeds:
-			await message.add_reaction(똥킹)
-			time.sleep(0.5)
-			await message.clear_reaction(똥킹)
 			return
 		if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다.") or 포함("응답 대기 중입니다.") or 포함(", 메시지 개수는 `2 ~ 99`로 입력하세요."):
 			await message.add_reaction(청소)
 			time.sleep(0.5)
 			await message.delete()
 			return
+		
+		# 반응달기
+		gumsajung = m[:]
+		while gumsajung:
+			isend = True
+			for i in 이몾.keys():
+				if gumsajung.startswith(i):
+					isend = False
+					await message.add_reaction(이몾[i])
+					gumsajung = gumsajung[len(i):]
+			if isend:
+				gumsajung = gumsajung[1:]
+		
 		if 시작(","):
 			m = m[1:]
 			if 시작("도움"):
@@ -180,12 +193,13 @@ async def on_message(message):
 				else:
 					await message.channel.send("ㅏ 띄어쓰기 안됨")
 			elif 시작("지뢰찾기"):
+				if len(m.split()) != 3:
+					await message.channel.send("```yaml\nx : 1~9\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
 				mine_x = int(m.split()[1])
 				mine_y = int(m.split()[2])
 				mine_z = int(m.split()[3])
 				if mine_x < 1 or mine_y < 1 or mine_z < 1 or mine_x > 9 or mine_y > 9 or mine_z > mine_x * mine_y:
-					await message.channel.send("```yaml\nx : 1~9\ny : 1~9\n지뢰 수 : 1~x*y```")
-					return
+					await message.channel.send("```yaml\nx : 1~9\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
 				while True:
 					mine_map = []
 					for i in range(mine_y):
@@ -263,18 +277,6 @@ async def on_message(message):
 						await message.channel.send(mine_map_lookver)
 # 	 	 				await message.channel.send(mine_map)
 						break
-
-		# 반응달기
-		gumsajung = m[:]
-		while gumsajung:
-			isend = True
-			for i in 이몾.keys():
-				if gumsajung.startswith(i):
-					isend = False
-					await message.add_reaction(이몾[i])
-					gumsajung = gumsajung[len(i):]
-			if isend:
-				gumsajung = gumsajung[1:]
 
 	except Exception as e:
 		await message.add_reaction(엑스)
