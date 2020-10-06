@@ -61,7 +61,7 @@ client = discord.Client()
 async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
-	await client.get_channel(762916201654386701).send("<@526889025894875158>, 시작")
+	await client.get_channel(762916201654386701).send(f"시작\n{폭팔}")
 
 @client.event
 async def on_message(message):
@@ -281,7 +281,7 @@ async def on_message(message):
 	except Exception as e:
 		await message.add_reaction(엑스)
 		await message.channel.send(f"오류: {str(e)}\n위치: {str(message.jump_url)}")
-		await client.get_channel(762916201654386701).send(f"<@526889025894875158>\n오류: {str(e)}\n위치: {str(message.jump_url)}")
+		await client.get_channel(762916201654386701).send(f"오류: {str(e)}\n위치: {str(message.jump_url)}")
 
 access_token = os.environ["BOR_TOKEN"]
 client.run(access_token)
