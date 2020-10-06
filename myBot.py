@@ -56,7 +56,8 @@ client = discord.Client()
 	"<:z7:750200417748516965>",
 	"<:z8:750200417748779059>",
 	"<:z9:750200417417166879>",
-	"<:z_:750200417287274529>"]
+	"<:z_:750200417287274529>",
+	"<:0z:762919979388502027>"]
 @client.event
 async def on_ready():
 	# print('시작')
@@ -81,9 +82,8 @@ async def on_message(message):
 		if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
 			return
 		
-# 		if message.channel.id == 762916201654386701:
-# 			await message.channel.send(f"m`{m}`")
-		await message.channel.send(f"m`{m}`")
+ 		if message.channel.id == 762916201654386701:
+ 			await message.channel.send(f"m`{m}`")
 	
 	
 		if 반복[0]:
