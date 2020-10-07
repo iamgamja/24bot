@@ -303,8 +303,8 @@ async def on_message(message):
 					time.sleep(1)
 					await message.channel.send(j)
 			elif 시작("청소"):
-				await message.channel.purge(limit=int(m[4:]))
-				await message.channel.send(f"{m[4:]}개의 메시지를 지움")
+				await message.channel.purge(limit=int(m[3:]))
+				await message.channel.send(f"{m[3:]}개의 메시지를 지움")
 				time.sleep(1)
 				await message.channel.purge(limit=1)
 
