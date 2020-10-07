@@ -62,7 +62,7 @@ async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	await client.get_channel(762916201654386701).send("시작")
-	time.sleep(0.5)
+	time.sleep(1)
 	await client.get_channel(762916201654386701).send( 폭팔 )
 
 @client.event
@@ -96,7 +96,7 @@ async def on_message(message):
 
 		if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다.") or 포함("응답 대기 중입니다.") or 포함(", 메시지 개수는 `2 ~ 99`로 입력하세요."):
 			await message.add_reaction(청소)
-			time.sleep(0.5)
+			time.sleep(1)
 			await message.delete()
 			return
 
@@ -137,12 +137,12 @@ async def on_message(message):
 
 			elif 시작("에블핑"):
 				await message.channel.send("||@everyone||")
-				time.sleep(0.5)
+				time.sleep(1)
 				await message.channel.send("으악 핑")
 
 			elif 시작("히어핑"):
 				await message.channel.send("||@here||")
-				time.sleep(0.5)
+				time.sleep(1)
 				await message.channel.send("으악 핑")
 
 			elif 시작("폭8"):
@@ -173,7 +173,7 @@ async def on_message(message):
 					if len(qwer[i]) > 1900:
 						qwer[i] = qwer[i][:1900]+'...'
 					await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
-					time.sleep(0.3)
+					time.sleep(1)
 
 			elif 시작("임베드"):
 				inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
@@ -215,12 +215,12 @@ async def on_message(message):
 				#제대로 input 했는지 확인
 				mine_input = m[5:].split()
 				if len(mine_input) != 3:
-					await message.channel.send("```yaml\nx : 1~17\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
+					await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y```") ; return
 				mine_x = int(mine_input[0])
 				mine_y = int(mine_input[1])
 				mine_z = int(mine_input[2])
-				if (mine_x < 1) or (mine_y < 1) or (mine_z < 1) or (mine_x > 17) or (mine_y > 9) or (mine_z > mine_x * mine_y):
-					await message.channel.send("```yaml\nx : 1~17\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
+				if (mine_x < 1) or (mine_y < 1) or (mine_z < 1) or (mine_x > 17) or (mine_y > 50) or (mine_z > mine_x * mine_y):
+					await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y```") ; return
 				#확인 끝, 틀 만들기
 				mine_map = []
 				for i in range(mine_y):
@@ -299,6 +299,7 @@ async def on_message(message):
 
 
 				for j in mine_map_lookver.split():
+					time.sleep(1)
 					await message.channel.send(j)
 
 	except Exception as e:
