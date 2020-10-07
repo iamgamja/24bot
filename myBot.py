@@ -214,12 +214,12 @@ async def on_message(message):
 				#제대로 input 했는지 확인
 				mine_input = m[5:].split()
 				if len(mine_input) != 3:
-					await message.channel.send("```yaml\nx : 1~9\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
+					await message.channel.send("```yaml\nx : 1~17\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
 				mine_x = int(mine_input[0])
 				mine_y = int(mine_input[1])
 				mine_z = int(mine_input[2])
-				if (mine_x < 1) or (mine_y < 1) or (mine_z < 1) or (mine_x > 9) or (mine_y > 9) or (mine_z > mine_x * mine_y):
-					await message.channel.send("```yaml\nx : 1~9\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
+				if (mine_x < 1) or (mine_y < 1) or (mine_z < 1) or (mine_x > 17) or (mine_y > 9) or (mine_z > mine_x * mine_y):
+					await message.channel.send("```yaml\nx : 1~17\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
 				#확인 끝, 틀 만들기
 				mine_map = []
 				for i in range(mine_y):
