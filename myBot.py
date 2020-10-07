@@ -129,6 +129,7 @@ async def on_message(message):
 				embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
 				embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
 				embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
+				embed.add_field(name=",청소 <수>", value="<수>만큼의 메시지를 지웁니다.", inline=True)
 				embed.set_footer(text=message.author.name)
 				await message.channel.send(embed=embed)
 
@@ -301,6 +302,11 @@ async def on_message(message):
 				for j in mine_map_lookver.split():
 					time.sleep(1)
 					await message.channel.send(j)
+			elif 시작("청소"):
+				await message.channel.purge(limit=int(m[4:]))
+				await message.channel.send(f"{m[4:]}개의 메시지를 지움")
+				time.sleep(1)
+				await message.channel.purge(limit=1)
 
 	except Exception as e:
 		await message.add_reaction(엑스)
