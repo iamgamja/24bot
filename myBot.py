@@ -31,18 +31,18 @@ client = discord.Client()
 	"흠터":띵킹,
 	":소ㅑㅜㅏㅑㅜㅎ:":띵킹,
 	띵킹:띵킹,
-	
+
 	"똥킹":똥킹,
 	"똔킹":똥킹,
 	"ㅁㄴㅇㄹ":똥킹,
 	"??":똥킹,
 	":쇄ㅜㅏㅑㅜㅎ:":똥킹,
 	똥킹:똥킹,
-	
+
 	"킹똥":킹똥,
 	"킹똔":킹똥,
 	킹똥:킹똥,
-	
+
 	"ㅘ":와샍,
 	"와":와샍}
 지뢰 = [
@@ -72,29 +72,33 @@ async def on_message(message):
 		# print(m)
 		def 포함(s):
 			return m.find(s)+1
+
 		def 시작(s):
 			return m.startswith(s)
-# 		def 관맂():
-# 			return message.author.id == 526889025894875158
+
+		#def 관맂():
+			#return message.author.id == 526889025894875158
+
 		def check(m):
 			return m.channel.id == message.channel.id and m.author == message.author
 		if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
 			return
-			
+
 		if message.channel.id == 762916201654386701:
 			await message.channel.send(f"m`{m}`")
 			return
-			
+
 		if 반복[0]:
 			반복[0] -= 1
 			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
 			return
+
 		if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다.") or 포함("응답 대기 중입니다.") or 포함(", 메시지 개수는 `2 ~ 99`로 입력하세요."):
 			await message.add_reaction(청소)
 			time.sleep(0.5)
 			await message.delete()
 			return
-		
+
 		# 반응달기
 		gumsajung = m[:]
 		while gumsajung:
@@ -106,7 +110,7 @@ async def on_message(message):
 					gumsajung = gumsajung[len(i):]
 			if isend:
 				gumsajung = gumsajung[1:]
-		
+
 		if 시작(","):
 			m = m[1:]
 			if 시작("도움"):
@@ -126,27 +130,35 @@ async def on_message(message):
 				embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
 				embed.set_footer(text=message.author.name)
 				await message.channel.send(embed=embed)
+
 			elif 시작("핑"):
 				await message.channel.send("으악 핑")
+
 			elif 시작("에블핑"):
 				await message.channel.send("||@everyone||")
 				time.sleep(0.5)
 				await message.channel.send("으악 핑")
+
 			elif 시작("히어핑"):
 				await message.channel.send("||@here||")
 				time.sleep(0.5)
 				await message.channel.send("으악 핑")
+
 			elif 시작("폭8"):
 				await message.channel.send(폭팔)
+
 			elif 시작("프사"):
 				await message.channel.send(embed=discord.Embed(title=킹똥+"프사"+똥킹, color=0xffccff).set_image(url=message.author.avatar_url))
+
 			elif 시작("말"):
 				await message.channel.send(m[2:])
+
 			elif 시작("반복"):
 				if 반복[0]:
 					await message.channel.send(f"아직 {반복[0]}번 남음")
 				반복[0], 반복[1] = int(m[3:].split()[0]), m[3:].split()[1]
 				await message.channel.send(f"앞으로 {반복[0]}번 반복")
+
 			elif 시작("계산"):
 				qwer = ["인풋", "아웃풋"]
 				if '\n' in m:
@@ -161,6 +173,7 @@ async def on_message(message):
 						qwer[i] = qwer[i][:1900]+'...'
 					await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
 					time.sleep(0.3)
+
 			elif 시작("임베드"):
 				inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
 				look_dict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
@@ -180,6 +193,7 @@ async def on_message(message):
 				embed.add_field(name=inputdict["소제목"], value=inputdict["내용"], inline=False)
 				embed.set_footer(text=inputdict["푸터"])
 				await message.channel.send(embed=embed)
+
 			elif 시작("기억"):
 				q = m[3:].split()
 				if len(q) == 0: # 목록
@@ -195,92 +209,96 @@ async def on_message(message):
 						await message.channel.send(q[0] + " 을(를) 기억")
 				else:
 					await message.channel.send("ㅏ 띄어쓰기 안됨")
+
 			elif 시작("지뢰찾기"):
-				mine_input = m.split()
+				#제대로 input 했는지 확인
+				mine_input = m[5:].split()
 				if len(mine_input) != 3:
 					await message.channel.send("```yaml\nx : 1~9\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
-				mine_x = int(mine_input[1])
-				mine_y = int(mine_input[2])
-				mine_z = int(mine_input[3])
-				if mine_x < 1 or mine_y < 1 or mine_z < 1 or mine_x > 9 or mine_y > 9 or mine_z > mine_x * mine_y:
+				mine_x = int(mine_input[0])
+				mine_y = int(mine_input[1])
+				mine_z = int(mine_input[2])
+				if (mine_x < 1) or (mine_y < 1) or (mine_z < 1) or (mine_x > 9) or (mine_y > 9) or (mine_z > mine_x * mine_y):
 					await message.channel.send("```yaml\nx : 1~9\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
-				while True:
-					mine_map = []
-					for i in range(mine_y):
-						mine_map.append([])
-						for j in range(mine_x):
-							mine_map[i].append(지뢰[0])
-					i=0
-					while i < mine_z:
-						i1 = random.randrange(mine_y)
-						i2 = random.randrange(mine_x)
+				#확인 끝, 틀 만들기
+				mine_map = []
+				for i in range(mine_y):
+					mine_map.append([])
+					for j in range(mine_x):
+						mine_map[i].append(지뢰[0])
+				#틀 만들기 끝, 지뢰 넣기
+				i=0
+				while i < mine_z:
+					i1 = random.randrange(mine_y)
+					i2 = random.randrange(mine_x)
+					if mine_map[i1][i2] == 지뢰[10]:
+						continue
+					else:
+						mine_map[i1][i2] = 지뢰[10]
+						i+=1
+				#지뢰 넣기 끝, 숫자 넣기
+				for i1 in range(mine_y):
+					for i2 in range(mine_x):
 						if mine_map[i1][i2] == 지뢰[10]:
 							continue
 						else:
-							mine_map[i1][i2] = 지뢰[10]
-							i+=1
-					for i1 in range(mine_y):
-						for i2 in range(mine_x):
-							if mine_map[i1][i2] == 지뢰[10]:
-								continue
-							else:
-								i=0
-								
-								try:
-									i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
-								except:
-									pass
-								
-								try:
-									i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2] == 지뢰[10] else 0
-								except:
-									pass
-								
-								try:
-									i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2+1] == 지뢰[10] else 0
-								except:
-									pass
-								
-								try:
-									i += 1 if mine_map[i1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
-								except:
-									pass
-								
-# 								try:
-# 									i += 1 if mine_map[i1][i2] == 지뢰[10] else 0
-# 								except:
-# 									pass
-								
-								try:
-									i += 1 if mine_map[i1][i2+1] == 지뢰[10] else 0
-								except:
-									pass
-								
-								try:
-									i += 1 if mine_map[i1+1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
-								except:
-									pass
-								
-								try:
-									i += 1 if mine_map[i1+1][i2] == 지뢰[10] else 0
-								except:
-									pass
-								
-								try:
-									i += 1 if mine_map[i1+1][i2+1] == 지뢰[10] else 0
-								except:
-									pass
-								
-								mine_map[i1][i2] = 지뢰[i]
-					mine_map_lookver = ''
-					for i in mine_map:
-						for j in i:
-							mine_map_lookver += j
-						mine_map_lookver += '\n'
-					else:
-						await message.channel.send(mine_map_lookver)
-# 	 	 				await message.channel.send(mine_map)
-						break
+							i=0
+
+							try:
+								i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
+							except:
+								pass
+
+							try:
+								i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2] == 지뢰[10] else 0
+							except:
+								pass
+
+							try:
+								i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2+1] == 지뢰[10] else 0
+							except:
+								pass
+
+							try:
+								i += 1 if mine_map[i1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
+							except:
+								pass
+
+							#try:
+								#i += 1 if mine_map[i1][i2] == 지뢰[10] else 0
+							#except:
+								#pass
+
+							try:
+								i += 1 if mine_map[i1][i2+1] == 지뢰[10] else 0
+							except:
+								pass
+
+							try:
+								i += 1 if mine_map[i1+1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
+							except:
+								pass
+
+							try:
+								i += 1 if mine_map[i1+1][i2] == 지뢰[10] else 0
+							except:
+								pass
+
+							try:
+								i += 1 if mine_map[i1+1][i2+1] == 지뢰[10] else 0
+							except:
+								pass
+
+							mine_map[i1][i2] = 지뢰[i]
+				mine_map_lookver = ''
+				for i in mine_map:
+					for j in i:
+						mine_map_lookver += j
+					mine_map_lookver += '\n'
+
+
+				await message.channel.send(mine_map_lookver)
+				#await message.channel.send(mine_map)
 
 	except Exception as e:
 		await message.add_reaction(엑스)
