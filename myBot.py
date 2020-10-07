@@ -196,11 +196,12 @@ async def on_message(message):
 				else:
 					await message.channel.send("ㅏ 띄어쓰기 안됨")
 			elif 시작("지뢰찾기"):
-				if len(m.split()) != 3:
+				mine_input = m[5:].split()
+				if len(mine_input) != 3:
 					await message.channel.send("```yaml\nx : 1~9\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
-				mine_x = int(m.split()[1])
-				mine_y = int(m.split()[2])
-				mine_z = int(m.split()[3])
+				mine_x = int(mine_input[1])
+				mine_y = int(mine_input[2])
+				mine_z = int(mine_input[3])
 				if mine_x < 1 or mine_y < 1 or mine_z < 1 or mine_x > 9 or mine_y > 9 or mine_z > mine_x * mine_y:
 					await message.channel.send("```yaml\nx : 1~9\ny : 1~9\n지뢰 수 : 1~x*y```") ; return
 				while True:
