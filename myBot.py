@@ -298,7 +298,7 @@ async def on_message(message):
 					mine_map_lookver += '\n'
 
 
-				for j in range(mine_map_lookver.split()):
+				for j in mine_map_lookver.split():
 					await message.channel.send(j)
 
 	except Exception as e:
