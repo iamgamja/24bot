@@ -62,6 +62,7 @@ async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	await client.get_channel(762916201654386701).send("시작")
+	time.sleep(0.5)
 	await client.get_channel(762916201654386701).send( 폭팔 )
 
 @client.event
@@ -293,12 +294,12 @@ async def on_message(message):
 				mine_map_lookver = ''
 				for i in mine_map:
 					for j in i:
-						mine_map_lookver += j
+						mine_map_lookver += f"||{j}||"
 					mine_map_lookver += '\n'
 
 
-				await message.channel.send(mine_map_lookver)
-				#await message.channel.send(mine_map)
+				for j in range(mine_map_lookver.split()):
+					await message.channel.send(j)
 
 	except Exception as e:
 		await message.add_reaction(엑스)
