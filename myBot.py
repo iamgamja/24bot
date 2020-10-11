@@ -77,16 +77,17 @@ async def on_message(message):
 		def 시작(s):
 			return m.startswith(s)
 
-		#def 관맂():
-			#return message.author.id == 526889025894875158
+		def 관맂():
+			return message.author.id == 526889025894875158
 
-		def check(m):
+		def 체크(m):
 			return m.channel.id == message.channel.id and m.author == message.author
+		
 		if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
 			return
 
-		if message.channel.id == 762916201654386701:
-			await message.channel.send(f"m`{m}`")
+		if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
+			await message.channel.send(f"m`{m}`") # 메시지 내용 보내기
 			return
 
 		if 반복[0]:
@@ -132,58 +133,51 @@ async def on_message(message):
 				embed.add_field(name=",청소 <수>", value="<수>만큼의 메시지를 지웁니다.", inline=True)
 				embed.set_footer(text=message.author.name)
 				await message.channel.send(embed=embed)
+				return
 
-			elif 시작("핑"):
+			if 시작("핑"):
 				await message.channel.send("으악 핑")
+				return
 
-			elif 시작("에블핑"):
+			if 시작("에블핑"):
 				await message.channel.send("||@everyone||")
 				time.sleep(1)
 				await message.channel.send("으악 핑")
+				return
 
-			elif 시작("히어핑"):
+			if 시작("히어핑"):
 				await message.channel.send("||@here||")
 				time.sleep(1)
 				await message.channel.send("으악 핑")
+				return
 
-			elif 시작("폭8"):
+			if 시작("폭8"):
 				await message.channel.send(폭팔)
+				return
 
-			elif 시작("프사"):
+			if 시작("프사"):
 				await message.channel.send(embed=discord.Embed(title=킹똥+"프사"+똥킹, color=0xffccff).set_image(url=message.author.avatar_url))
+				return
 
-			elif 시작("말"):
+			if 시작("말"):
 				await message.channel.send(m[2:])
+				return
 
-			elif 시작("반복"):
+			if 시작("반복"):
 				if 반복[0]:
 					await message.channel.send(f"아직 {반복[0]}번 남음")
-				반복[0], 반복[1] = int(m[3:].split()[0]), m[3:].split()[1]
+				반복[0], 반복[1] = int(m.split()[1]), m.split()[2]
 				await message.channel.send(f"앞으로 {반복[0]}번 반복")
+				return
 
-			elif 시작("계산"):
-				qwer = ["인풋", "아웃풋"]
-				if '\n' in m:
-					exec('global 출력\n' + '\n'.join(m[3:].split('\n')[:-1]) + '\n출력=' + m[3:].split('\n')[-1])
-					qwer[1] = str(출력)
-					qwer[0] = m[3:]
-				else:
-					qwer[0] = m[3:]
-					qwer[1] = str(eval(qwer[0]))
-				for i in range(2):
-					if len(qwer[i]) > 1900:
-						qwer[i] = qwer[i][:1900]+'...'
-					await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
-					time.sleep(1)
-
-			elif 시작("임베드"):
+			if 시작("임베드"):
 				inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
 				look_dict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
 				mymsg = await message.channel.send("준비중...")
 				for i in range(len(list(inputdict.keys()))):
 					await mymsg.delete()
 					mymsg = await message.channel.send(str(i) + ". " + str(list(inputdict.keys())[i]) + "을(를) 입력해주세요.\n```yaml\n" + str(str(look_dict)[1:-1].replace(', ', ',\n').replace(땀표[0], 땀표[1])) + 땀표[0])
-					inputmsg = await client.wait_for('message', timeout=30.0, check=check)
+					inputmsg = await client.wait_for('message', timeout=30.0, check=체크)
 					inputmsg = inputmsg.content
 					inputdict[list(inputdict.keys())[i]] = inputmsg
 					look_dict[list(inputdict.keys())[i]] = str(inputmsg)[:7]+'...' if len(str(inputmsg)) > 10 else str(inputmsg)
@@ -195,8 +189,9 @@ async def on_message(message):
 				embed.add_field(name=inputdict["소제목"], value=inputdict["내용"], inline=False)
 				embed.set_footer(text=inputdict["푸터"])
 				await message.channel.send(embed=embed)
+				return
 
-			elif 시작("기억"):
+			if 시작("기억"):
 				q = m[3:].split()
 				if len(q) == 0: # 목록
 					await message.channel.send(str(기억.keys())[10:-1].replace(', ', ',\n'))
@@ -211,8 +206,9 @@ async def on_message(message):
 						await message.channel.send(q[0] + " 을(를) 기억")
 				else:
 					await message.channel.send("ㅏ 띄어쓰기 안됨")
+				return
 
-			elif 시작("지뢰찾기"):
+			if 시작("지뢰찾기"):
 				#제대로 input 했는지 확인
 				mine_input = m[5:].split()
 				if len(mine_input) != 3:
@@ -298,15 +294,51 @@ async def on_message(message):
 						mine_map_lookver += f"||{j}||"
 					mine_map_lookver += '\n'
 
-
 				for j in mine_map_lookver.split():
 					time.sleep(1)
 					await message.channel.send(j)
-			elif 시작("청소"):
+				return
+			
+			if 시작("청소"):
 				await message.channel.purge(limit=int(m[3:])+1)
 				await message.channel.send(f"{m[3:]}개의 메시지를 지움")
 				time.sleep(2)
 				await message.channel.purge(limit=1)
+				return
+
+			if 시작("계산"):
+				m = m[3:]
+				qwer = ["인풋", "아웃풋"]
+				if '\n' in m:
+					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
+					qwer[1] = str(출력)
+					qwer[0] = m[:]
+				else:
+					qwer[0] = m[:]
+					qwer[1] = str(eval(qwer[0]))
+				for i in range(2):
+					if len(qwer[i]) > 1900:
+						qwer[i] = qwer[i][:1900]+'...'
+					await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
+					time.sleep(1)
+				return
+			# 나머지
+			if True:
+				m = m[1:]
+				qwer = ["인풋", "아웃풋"]
+				if '\n' in m:
+					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
+					qwer[1] = str(출력)
+					qwer[0] = m[:]
+				else:
+					qwer[0] = m[:]
+					qwer[1] = str(eval(qwer[0]))
+				for i in range(2):
+					if len(qwer[i]) > 1900:
+						qwer[i] = qwer[i][:1900]+'...'
+					await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
+					time.sleep(1)
+				return
 
 	except Exception as e:
 		await message.add_reaction(엑스)
