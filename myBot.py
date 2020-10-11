@@ -324,7 +324,6 @@ async def on_message(message):
 				return
 			# 나머지
 			if True:
-				m = m[1:]
 				qwer = ["인풋", "아웃풋"]
 				if '\n' in m:
 					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
@@ -343,7 +342,6 @@ async def on_message(message):
 	except Exception as e:
 		await message.add_reaction(엑스)
 		await message.channel.send(f"오류: {e}\n위치: {message.jump_url}")
-		await client.get_channel(762916201654386701).send(f"오류: {e}\n위치: {message.jump_url}")
 
 access_token = os.environ["BOR_TOKEN"]
 client.run(access_token)
