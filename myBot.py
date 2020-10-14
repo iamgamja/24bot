@@ -1,4 +1,4 @@
-import discord, time, random, os, math
+import discord, time, datetime, random, os, math
 client = discord.Client()
 
 띵킹 = "🤔"
@@ -57,13 +57,15 @@ client = discord.Client()
 	"<:z8:750200417748779059>", #8
 	"<:z9:750200417417166879>", #9
 	"<:z_:750200417287274529>"] #10
+
+def 시간():
+	return str(datetime.datetime.now()).split('.')[0]
+
 @client.event
 async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
-	await client.get_channel(762916201654386701).send("시작")
-	time.sleep(1)
-	await client.get_channel(762916201654386701).send( 폭팔 )
+	await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
 
 @client.event
 async def on_message(message):
@@ -308,22 +310,6 @@ async def on_message(message):
 
 			if 시작("계산"):
 				m = m[3:]
-				qwer = ["인풋", "아웃풋"]
-				if '\n' in m:
-					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
-					qwer[1] = str(출력)
-					qwer[0] = m[:]
-				else:
-					qwer[0] = m[:]
-					qwer[1] = str(eval(qwer[0]))
-				for i in range(2):
-					if len(qwer[i]) > 1900:
-						qwer[i] = qwer[i][:1900]+'...'
-					await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
-					time.sleep(1)
-				return
-			# 나머지
-			if True:
 				qwer = ["인풋", "아웃풋"]
 				if '\n' in m:
 					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
