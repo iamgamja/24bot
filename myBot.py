@@ -313,7 +313,8 @@ async def on_message(message):
 					time.sleep(1)
 				
 	except Exception as e:
-		await message.add_reaction(엑스)
+		#await message.add_reaction(엑스)
+		await message.channel.send("no")
 		await message.channel.send(f"오류: {e}\n위치: {message.jump_url}")
 
 access_token = os.environ["BOR_TOKEN"]
