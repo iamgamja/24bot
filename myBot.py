@@ -309,7 +309,6 @@ async def on_message(message):
 				return
 			if 시작("오류"):
 				q=0/0
-				return
 
 			if 시작("계산"):
 				m = m[3:]
