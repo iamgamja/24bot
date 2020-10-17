@@ -307,6 +307,8 @@ async def on_message(message):
 				time.sleep(2)
 				await message.channel.purge(limit=1)
 				return
+			if 시작("오류"):
+				return 1/0
 
 			if 시작("계산"):
 				m = m[3:]
