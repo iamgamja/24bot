@@ -10,6 +10,7 @@ client = discord.Client()
 배코 = 44032
 초코 = 588
 중코 = 28
+종코 = 1
 맥코 = 55203
 초성 = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
 중성 = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ']
@@ -89,7 +90,7 @@ async def on_message(message):
 			return
 
 		if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
-			await message.channel.send(f"m`{m}`") # 메시지 내용 보내기
+			await message.channel.send(f"m: `{m}`") # 메시지 내용 보내기
 			return
 
 		if 반복[0]:
@@ -133,6 +134,7 @@ async def on_message(message):
 				embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
 				embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
 				embed.add_field(name=",청소 <수>", value="<수>만큼의 메시지를 지웁니다.", inline=True)
+				embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
 				embed.set_footer(text=message.author.name)
 				await message.channel.send(embed=embed)
 				
@@ -311,7 +313,23 @@ async def on_message(message):
 						qwer[i] = qwer[i][:1900]+'...'
 					await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
 					time.sleep(1)
-				
+			
+			if 시작("한영"):
+				f=''
+				for i in m[3:]:
+					c=ord(i)
+					if 배코<=c<=맥코:
+						c-=배코 ; f+=한영[초성[c//초코]]
+						c%=초코 ; f+=한영[중성[c//중코]]
+						c%=중코 ; f+=한영[종성[c//종코]]
+					else:
+						try:
+							f += 한영[i]
+						except:
+							f += i
+				await message.channel.send(f)
+
+
 	except Exception as e:
 		await message.add_reaction(엑스)
 		await message.channel.send(f"오류: {e}\n위치: {message.jump_url}")
