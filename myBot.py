@@ -62,11 +62,10 @@ client = discord.Client()
 def 시간():
 	n=datetime.datetime.now()
 	if n.hour+9>23:
-		q = str(datetime.datetime(n.year,n.month,n.day+1,n.hour-15,n.minute,n.second))
+		return str(datetime.datetime(n.year,n.month,n.day+1,n.hour-15,n.minute,n.second))
 	else:
-		q = str(datetime.datetime(n.year,n.month,n.day,n.hour+9,n.minute,n.second))
+		return str(datetime.datetime(n.year,n.month,n.day,n.hour+9,n.minute,n.second))
 	
-	return f'{q[:11]}오{'전' if int(q[11:12]) <= 12 else '후'} {q[11:12] if int(q[11:12]) <= 12 else int(q[11:12])-12}{q[13:]}'
 @client.event
 async def on_ready():
 	# print('시작')
