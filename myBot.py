@@ -70,7 +70,9 @@ def 시간():
 async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
-	await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
+	while True:
+		await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
+		time.sleep(1)
 
 @client.event
 async def on_message(message):
@@ -146,14 +148,14 @@ async def on_message(message):
 				await message.channel.send("으악 핑")
 				
 			if 시작("에블핑"):
-				await message.channel.send("||@everyone||")
+				msg = await message.channel.send("||@everyone||")
 				time.sleep(1)
-				await message.channel.send("으악 핑")
+				await msg.edit("으악 핑")
 				
 			if 시작("히어핑"):
-				await message.channel.send("||@here||")
+				msg = await message.channel.send("||@here||")
 				time.sleep(1)
-				await message.channel.send("으악 핑")
+				await msg.edit("으악 핑")
 				
 			if 시작("폭8"):
 				await message.channel.send(폭팔)
@@ -298,25 +300,20 @@ async def on_message(message):
 				
 			if 시작("청소"):
 				await message.channel.purge(limit=int(m[3:])+1)
-				await message.channel.send(f"{m[3:]}개의 메시지를 지움")
+				msg = await message.channel.send(f"{m[3:]}개의 메시지를 지움")
 				time.sleep(2)
-				await message.channel.purge(limit=1)
+				await msg.delete()
 				
 			if 시작("계산"):
 				m = m[3:]
-				qwer = ["인풋", "아웃풋"]
 				if '\n' in m:
 					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
-					qwer[1] = str(출력)
-					qwer[0] = m[:]
+					outputmsg = str(출력)
 				else:
-					qwer[0] = m[:]
-					qwer[1] = str(eval(qwer[0]))
-				for i in range(2):
-					if len(qwer[i]) > 1900:
-						qwer[i] = qwer[i][:1900]+'...'
-					await message.channel.send('```yaml\n' + qwer[i].replace(땀표[0], 땀표[1]) + 땀표[0])
-					time.sleep(1)
+					outputmsg = str(eval(m))
+
+				await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
+				time.sleep(1)
 			
 			if 시작("한영"):
 				f=''
