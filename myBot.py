@@ -72,9 +72,9 @@ async def on_ready():
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	startmsg = await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
 	
-	while True:
-		time.sleep(100)
-		await startmsg.edit(f"{시간()}, 작동중")
+	#while True:
+	#	time.sleep(100)
+	#	await startmsg.edit(f"{시간()}, 작동중")
 
 @client.event
 async def on_message(message):
