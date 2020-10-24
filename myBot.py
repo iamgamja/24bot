@@ -329,64 +329,64 @@ async def on_message(message):
 							f += i
 				await message.channel.send(f)
 
-			elif 시작("영한")
+			elif 시작("영한"):
 				f=''
 				m=m[3:]
 				w=''
 				임시 = "NaN"
 				#한글로 바꾸기
 				for i in range(len(m)):
-				    if m[i] in 겹글 and len(m)>=i+2 and 임시 == "NaN":
-					임시 = m[i]
-				    elif 임시+m[i] in 영한:
-					w+=영한[임시+m[i]] ; 임시 = "NaN"
-				    elif 임시 != "NaN":
-					w+=영한[임시] ; 임시 = "NaN"
 					if m[i] in 겹글 and len(m)>=i+2 and 임시 == "NaN":
-					    임시 = m[i]
+						임시 = m[i]
+					elif 임시+m[i] in 영한:
+						w+=영한[임시+m[i]] ; 임시 = "NaN"
+					elif 임시 != "NaN":
+						w+=영한[임시] ; 임시 = "NaN"
+					if m[i] in 겹글 and len(m)>=i+2 and 임시 == "NaN":
+						임시 = m[i]
 					else:
-					    w+=영한[m[i]] if m[i] in 영한 else m[i]
-				    else:
+						w+=영한[m[i]] if m[i] in 영한 else m[i]
+					else:
 					w+=영한[m[i]] if m[i] in 영한 else m[i]
 				#한글을 합치기
 				w=list(w)
 				임시 = []
 				for i in range(len(w)):
-				    if len(임시) == 0:
-					if w[i] in 초성:
-					    임시.append(w[i])
+					if len(임시) == 0:
+						if w[i] in 초성:
+							임시.append(w[i])
+						else:
+							f+=w[i]
+					elif len(임시) == 1:
+						if w[i] in 중성:
+							임시.append(w[i])
+						else:
+							f+=임시[0] ; del 임시[0]
+							if w[i] in 초성:
+								임시.append(w[i])
+							else:
+								f+=w[i]
 					else:
-					    f+=w[i]
-				    elif len(임시) == 1:
-					if w[i] in 중성:
-					    임시.append(w[i])
-					else:
-					    f+=임시[0] ; del 임시[0]
-					    if w[i] in 초성:
-						임시.append(w[i])
-					    else:
-						f+=w[i]
-				    else:
-					if w[i] in 종성:
-					    if w[i] in 초성 and ((w[i+1] in 중성) if len(w)>=i+2 else False):
-						f+=chr(배코+초성.index(임시[0])*초코+중성.index(임시[1])*중코)
-						del 임시[1]
-						del 임시[0]
-						임시.append(w[i])
-					    else:
-						f += chr(배코 + 초성.index(임시[0])*초코 + 중성.index(임시[1])*중코 + 종성.index(w[i]))
-						del 임시[1]
-						del 임시[0]
-					else:
-					    f+=chr(배코 + 초성.index(임시[0])*초코 + 중성.index(임시[1])*중코)
-					    del 임시[1]
-					    del 임시[0]
-					    if w[i] in 초성:
-						임시.append(w[i])
-					    else:
-						f+=w[i]
+						if w[i] in 종성:
+							if w[i] in 초성 and ((w[i+1] in 중성) if len(w)>=i+2 else False):
+								f+=chr(배코+초성.index(임시[0])*초코+중성.index(임시[1])*중코)
+								del 임시[1]
+								del 임시[0]
+								임시.append(w[i])
+							else:
+								f += chr(배코 + 초성.index(임시[0])*초코 + 중성.index(임시[1])*중코 + 종성.index(w[i]))
+								del 임시[1]
+								del 임시[0]
+						else:
+							f+=chr(배코 + 초성.index(임시[0])*초코 + 중성.index(임시[1])*중코)
+							del 임시[1]
+							del 임시[0]
+							if w[i] in 초성:
+								임시.append(w[i])
+							else:
+								f+=w[i]
 				for i in 임시:
-					 f+=i
+					f+=i
 				await message.channel.send(f)
 
 	except Exception as e:
