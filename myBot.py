@@ -140,6 +140,7 @@ async def on_message(message):
 				embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
 				embed.add_field(name=",청소 <수>", value="<수>만큼의 메시지를 지웁니다.", inline=True)
 				embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
+				embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
 				embed.set_footer(text=message.author.name)
 				await message.channel.send(embed=embed)
 				
