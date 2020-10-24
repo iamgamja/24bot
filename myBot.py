@@ -19,6 +19,7 @@ client = discord.Client()
 영어 = ('r', 'R', 'rt', 's', 'sw', 'sg', 'e', 'E', 'f', 'fr', 'fa', 'fq', 'ft', 'fx', 'fv', 'fg', 'a', 'q', 'Q', 'qt', 't', 'T', 'd', 'w', 'W', 'c', 'z', 'x', 'v', 'g', 'k', 'o', 'i', 'O', 'j', 'p', 'u', 'P', 'h', 'hk', 'ho', 'hl', 'y', 'n', 'nj', 'np', 'nl', 'b', 'm', 'ml', 'l', '')
 한영 = dict(zip(한글, 영어))
 영한 = dict(zip(영어, 한글))
+겹글 = "rsfqhnm"
 땀표 = ('```', '​`​`​`​')
 폭팔 = "https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif"
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
@@ -142,35 +143,35 @@ async def on_message(message):
 				embed.set_footer(text=message.author.name)
 				await message.channel.send(embed=embed)
 				
-			if 시작("핑"):
+			elif 시작("핑"):
 				await message.channel.send("으악 핑")
 				
-			if 시작("에블핑"):
+			elif 시작("에블핑"):
 				msg = await message.channel.send("||@everyone||")
 				time.sleep(1)
 				await msg.edit("으악 핑")
 				
-			if 시작("히어핑"):
+			elif 시작("히어핑"):
 				msg = await message.channel.send("||@here||")
 				time.sleep(1)
 				await msg.edit("으악 핑")
 				
-			if 시작("폭8"):
+			elif 시작("폭8"):
 				await message.channel.send(폭팔)
 				
-			if 시작("프사"):
+			elif 시작("프사"):
 				await message.channel.send(embed=discord.Embed(title=킹똥+"프사"+똥킹, color=0xffccff).set_image(url=message.author.avatar_url))
 				
-			if 시작("말"):
+			elif 시작("말"):
 				await message.channel.send(m[2:])
 				
-			if 시작("반복"):
+			elif 시작("반복"):
 				if 반복[0]:
 					await message.channel.send(f"아직 {반복[0]}번 남음")
 				반복[0], 반복[1] = int(m.split()[1]), m.split()[2]
 				await message.channel.send(f"앞으로 {반복[0]}번 반복")
 				
-			if 시작("임베드"):
+			elif 시작("임베드"):
 				inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
 				look_dict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
 				mymsg = await message.channel.send("준비중...")
@@ -190,7 +191,7 @@ async def on_message(message):
 				embed.set_footer(text=inputdict["푸터"])
 				await message.channel.send(embed=embed)
 				
-			if 시작("기억"):
+			elif 시작("기억"):
 				q = m[3:].split()
 				if len(q) == 0: # 목록
 					await message.channel.send(str(기억.keys())[10:-1].replace(', ', ',\n'))
@@ -206,7 +207,7 @@ async def on_message(message):
 				else:
 					await message.channel.send("ㅏ 띄어쓰기 안됨")
 				
-			if 시작("지뢰찾기"):
+			elif 시작("지뢰찾기"):
 				#제대로 input 했는지 확인
 				mine_input = m[5:].split()
 				if len(mine_input) != 3:
@@ -296,13 +297,13 @@ async def on_message(message):
 					time.sleep(1)
 					await message.channel.send(j)
 				
-			if 시작("청소"):
+			elif 시작("청소"):
 				await message.channel.purge(limit=int(m[3:])+1)
 				msg = await message.channel.send(f"{m[3:]}개의 메시지를 지움")
 				time.sleep(2)
 				await msg.delete()
 				
-			if 시작("계산"):
+			elif 시작("계산"):
 				m = m[3:]
 				if '\n' in m:
 					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
@@ -313,7 +314,7 @@ async def on_message(message):
 				await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
 				time.sleep(1)
 			
-			if 시작("한영"):
+			elif 시작("한영"):
 				f=''
 				for i in m[3:]:
 					c=ord(i)
@@ -328,6 +329,65 @@ async def on_message(message):
 							f += i
 				await message.channel.send(f)
 
+			elif 시작("영한")
+				f=''
+				m=m[3:]
+				w=''
+				임시 = "NaN"
+				#한글로 바꾸기
+				for i in range(len(m)):
+				    if m[i] in 겹글 and len(m)>=i+2 and 임시 == "NaN":
+					임시 = m[i]
+				    elif 임시+m[i] in 영한:
+					w+=영한[임시+m[i]] ; 임시 = "NaN"
+				    elif 임시 != "NaN":
+					w+=영한[임시] ; 임시 = "NaN"
+					if m[i] in 겹글 and len(m)>=i+2 and 임시 == "NaN":
+					    임시 = m[i]
+					else:
+					    w+=영한[m[i]] if m[i] in 영한 else m[i]
+				    else:
+					w+=영한[m[i]] if m[i] in 영한 else m[i]
+				#한글을 합치기
+				w=list(w)
+				임시 = []
+				for i in range(len(w)):
+				    if len(임시) == 0:
+					if w[i] in 초성:
+					    임시.append(w[i])
+					else:
+					    f+=w[i]
+				    elif len(임시) == 1:
+					if w[i] in 중성:
+					    임시.append(w[i])
+					else:
+					    f+=임시[0] ; del 임시[0]
+					    if w[i] in 초성:
+						임시.append(w[i])
+					    else:
+						f+=w[i]
+				    else:
+					if w[i] in 종성:
+					    if w[i] in 초성 and ((w[i+1] in 중성) if len(w)>=i+2 else False):
+						f+=chr(배코+초성.index(임시[0])*초코+중성.index(임시[1])*중코)
+						del 임시[1]
+						del 임시[0]
+						임시.append(w[i])
+					    else:
+						f += chr(배코 + 초성.index(임시[0])*초코 + 중성.index(임시[1])*중코 + 종성.index(w[i]))
+						del 임시[1]
+						del 임시[0]
+					else:
+					    f+=chr(배코 + 초성.index(임시[0])*초코 + 중성.index(임시[1])*중코)
+					    del 임시[1]
+					    del 임시[0]
+					    if w[i] in 초성:
+						임시.append(w[i])
+					    else:
+						f+=w[i]
+				for i in 임시:
+					 f+=i
+				await message.channel.send(f)
 
 	except Exception as e:
 		await message.add_reaction(엑스)
