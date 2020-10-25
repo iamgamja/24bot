@@ -20,7 +20,7 @@ client = discord.Client()
 한영 = dict(zip(한글, 영어))
 영한 = dict(zip(영어, 한글))
 겹글 = "rsfqhnm"
-땀표 = ('```', '​`​`​`​')
+빈공 = '​'
 폭팔 = "https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif"
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
@@ -136,15 +136,15 @@ async def on_message(message):
 				
 				
 				embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0xffccff)
-				embed.add_field(name=" ", value="**`도움`**", inline=False)
+				embed.add_field(name=빈공, value="**`도움`**", inline=False)
 				embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
-				embed.add_field(name=" ", value="**`재미`**", inline=False)
+				embed.add_field(name=빈공, value="**`재미`**", inline=False)
 				embed.add_field(name=",핑", value="으악 핑", inline=True)
 				embed.add_field(name=",에블핑", value="으악 핑", inline=True)
 				embed.add_field(name=",히어핑", value="으악 핑", inline=True)
 				embed.add_field(name=",폭8", value="폭☆8", inline=True)
 				embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기를 할수", inline=True)
-				embed.add_field(name=" ", value="**`기능`**", inline=False)
+				embed.add_field(name=빈공, value="**`기능`**", inline=False)
 				embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
 				embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
 				embed.add_field(name=",계산 <식>", value="<식>을 계산합니다.", inline=True)
@@ -152,7 +152,7 @@ async def on_message(message):
 				embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
 				embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
 				embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
-				embed.add_field(name=" ", value="**`기타`**", inline=False)
+				embed.add_field(name=빈공, value="**`기타`**", inline=False)
 				embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
 				embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
 				embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
