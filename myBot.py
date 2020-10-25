@@ -159,7 +159,7 @@ async def on_message(message):
 				embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
 				embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
 				embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
-				embed.set_footer(text= message.author.name + 시간())
+				embed.set_footer(text= f'{message.author.name} | {시간()}')
 				await message.channel.send(embed=embed)
 				
 			elif 시작("핑"):
