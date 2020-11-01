@@ -63,11 +63,10 @@ client = discord.Client()
 def 시간():
 
 	utcnow = datetime.datetime.utcnow()
-        time_gap = datetime.timedelta(hours=9)
-        kor_time = utcnow + time_gap
-	
-	return str(kor_time)
+	time_gap = datetime.timedelta(hours=9)
+	kor_time = utcnow + time_gap
 
+	return str(kor_time)
 
 	#n=datetime.datetime.now()
 	#if n.hour+9>23:
@@ -78,9 +77,6 @@ def 시간():
 @client.event
 async def on_ready():
 	# print('시작')
-
-	
-
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	startmsg = await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
 
