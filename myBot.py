@@ -62,11 +62,11 @@ client = discord.Client()
 
 def 시간():
 
-	utcnow = datetime.datetime.utcnow()
+	utcnow   = datetime.datetime.utcnow()
 	time_gap = datetime.timedelta(hours=9)
 	kor_time = utcnow + time_gap
-
-	return str(kor_time)
+	n        = kor_time.strftime('%Y-%m-%d %p %I:%M:%S')
+	return n
 
 	#n=datetime.datetime.now()
 	#if n.hour+9>23:
