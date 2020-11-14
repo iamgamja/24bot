@@ -175,12 +175,12 @@ async def on_message(message):
 			elif 시작("에블핑"):
 				msg = await message.channel.send("||@everyone||")
 				time.sleep(1)
-				await msg.edit("으악 핑")
+				await msg.edit(content="으악 핑")
 				
 			elif 시작("히어핑"):
 				msg = await message.channel.send("||@here||")
 				time.sleep(1)
-				await msg.edit("으악 핑")
+				await msg.edit(content="으악 핑")
 				
 			elif 시작("폭8"):
 				await message.channel.send(폭팔)
