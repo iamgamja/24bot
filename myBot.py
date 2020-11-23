@@ -47,7 +47,7 @@ client = discord.Client()
 
 	"ㅘ":와샍,
 	"와":와샍}
-지뢰 = [
+지뢰 = (
 	"<:0z:762919979388502027>", #0
 	"<:z1:750200417836859472>", #1
 	"<:z2:750200417564229673>", #2
@@ -58,7 +58,7 @@ client = discord.Client()
 	"<:z7:750200417748516965>", #7
 	"<:z8:750200417748779059>", #8
 	"<:z9:750200417417166879>", #9
-	"<:z_:750200417287274529>"] #10
+	"<:z_:750200417287274529>") #10
 
 def 시간():
 
@@ -67,12 +67,7 @@ def 시간():
 	kor_time = utcnow + time_gap
 	n        = kor_time.strftime('%Y-%m-%d %p %I:%M:%S')
 	return n
-
-	#n=datetime.datetime.now()
-	#if n.hour+9>23:
-	#	return str(datetime.datetime(n.year,n.month,n.day+1,n.hour-15,n.minute,n.second))
-	#else:
-	#	return str(datetime.datetime(n.year,n.month,n.day,n.hour+9,n.minute,n.second))
+	# return (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime('%Y-%m-%d %p %I:%M:%S')
 	
 @client.event
 async def on_ready():
@@ -92,17 +87,22 @@ async def on_message(message):
 		def 시작(s):
 			return m.startswith(s)
 
-		def 관맂():
+		def 관맂(): # 관리자(감자#9400)인지 확인
 			return message.author.id == 526889025894875158
 
-		def 체크(m):
+		def 체크(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인
 			return m.channel.id == message.channel.id and m.author == message.author
 		
 		if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
 			return
 
 		if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
-			await message.channel.send(f"m: `{m}`") # 메시지 내용 보내기
+			await message.channel.send(f"""
+			m: `{m}`
+			id: `{message.id}`
+			authorId: `{message.author.id}`
+			channelId: `{message.channel.id}`
+			""")
 			return
 
 		if 반복[0]:
