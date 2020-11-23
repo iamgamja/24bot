@@ -67,7 +67,7 @@ def 시간():
 	kor_time = utcnow + time_gap
 	n        = kor_time.strftime('%Y-%m-%d %p %I:%M:%S')
 	return n
-	# return (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime('%Y-%m-%d %p %I:%M:%S')
+	# return (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime('%Y-%m-%d %p %I:%M:%S')	
 	
 @client.event
 async def on_ready():
@@ -84,7 +84,7 @@ async def on_message(message):
 		def 포함(s):
 			return m.find(s)+1
 
-		def 시작(s):
+		def 시작(s, m=m):
 			return m.startswith(s)
 
 		def 관맂(): # 관리자(감자#9400)인지 확인
@@ -97,12 +97,10 @@ async def on_message(message):
 			return
 
 		if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
-			await message.channel.send(f"""
-			m: `{m}`
-			id: `{message.id}`
-			authorId: `{message.author.id}`
-			channelId: `{message.channel.id}`
-			""")
+			await message.channel.send(	f"m: `{m}`\n"                           + 
+							f"id: `{message.id}`"                   +
+							f"authorId: `{message.author.id}`"      +
+							f"channelId: `{message.channel.id}`"	)
 			return
 
 		if 반복[0]:
@@ -140,7 +138,6 @@ async def on_message(message):
 				# ":GWoicZenThink:"
 				# ":GWoicFidgetThinker:"
 				# ":GWmythicalThonkCool:"
-				
 				
 				embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0xffccff)
 				embed.add_field(name=빈공, value="**`도움`**", inline=False)
@@ -328,17 +325,7 @@ async def on_message(message):
 				msg = await message.channel.send(f"{m[3:]}개의 메시지를 지움")
 				time.sleep(2)
 				await msg.delete()
-				
-			elif 시작("계산"):
-				m = m[3:]
-				if '\n' in m:
-					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
-					outputmsg = str(출력)
-				else:
-					outputmsg = str(eval(m))
 
-				await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
-			
 			elif 시작("한영"):
 				f=''
 				for i in m[3:]:
@@ -413,9 +400,32 @@ async def on_message(message):
 				for i in 임시:
 					f+=i
 				await message.channel.send(f)
+		if message.content.startswith(",계산") or message.content.startswith("```"):
+			m = message.content
+			if m.startswith("```"):
+				m = m[:-3]
+			m = m[3:]
 				
-		elif 시작('```'):
-			m = m[3:-3]
+				if '\n' in m:
+					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
+					outputmsg = str(출력)
+				else:
+					outputmsg = str(eval(m))
+
+				await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
+
+	except Exception as e:
+		await message.add_reaction(엑스)
+		await message.channel.send(f"오류: {e}\n위치: {message.jump_url}")
+		
+@client.event
+async def on_message_edit(beforeMessage, message):
+	if message.content.startswith(",계산") or message.content.startswith("```"):
+		m = message.content
+		if m.startswith("```"):
+			m = m[:-3]
+		m = m[3:]
+
 			if '\n' in m:
 				exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
 				outputmsg = str(출력)
@@ -423,10 +433,6 @@ async def on_message(message):
 				outputmsg = str(eval(m))
 
 			await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
-
-	except Exception as e:
-		await message.add_reaction(엑스)
-		await message.channel.send(f"오류: {e}\n위치: {message.jump_url}")
 
 access_token = os.environ["BOR_TOKEN"]
 client.run(access_token)
