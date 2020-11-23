@@ -406,13 +406,13 @@ async def on_message(message):
 				m = m[:-3]
 			m = m[3:]
 				
-				if '\n' in m:
-					exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
-					outputmsg = str(출력)
-				else:
-					outputmsg = str(eval(m))
+			if '\n' in m:
+				exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
+				outputmsg = str(출력)
+			else:
+				outputmsg = str(eval(m))
 
-				await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
+			await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
 
 	except Exception as e:
 		await message.add_reaction(엑스)
@@ -426,13 +426,13 @@ async def on_message_edit(beforeMessage, message):
 			m = m[:-3]
 		m = m[3:]
 
-			if '\n' in m:
-				exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
-				outputmsg = str(출력)
-			else:
-				outputmsg = str(eval(m))
+		if '\n' in m:
+			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
+			outputmsg = str(출력)
+		else:
+			outputmsg = str(eval(m))
 
-			await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
+		await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
 
 access_token = os.environ["BOR_TOKEN"]
 client.run(access_token)
