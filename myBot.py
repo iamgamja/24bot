@@ -84,7 +84,7 @@ async def on_message(message):
 		def 포함(s):
 			return m.find(s)+1
 
-		def 시작(s, m):
+		def 시작(s):
 			return m.startswith(s)
 
 		def 관맂(): # 관리자(감자#9400)인지 확인
