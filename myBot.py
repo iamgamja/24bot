@@ -415,7 +415,7 @@ async def on_message(message):
 				await message.channel.send(f)
 				
 		elif 시작('```'):
-			m = m[3:]
+			m = m[3:-3]
 			if '\n' in m:
 				exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
 				outputmsg = str(출력)
