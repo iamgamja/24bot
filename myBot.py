@@ -338,7 +338,6 @@ async def on_message(message):
 					outputmsg = str(eval(m))
 
 				await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
-				time.sleep(1)
 			
 			elif 시작("한영"):
 				f=''
@@ -414,6 +413,16 @@ async def on_message(message):
 				for i in 임시:
 					f+=i
 				await message.channel.send(f)
+				
+		elif 시작('```'):
+			m = m[3:]
+			if '\n' in m:
+				exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
+				outputmsg = str(출력)
+			else:
+				outputmsg = str(eval(m))
+
+			await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
 
 	except Exception as e:
 		await message.add_reaction(엑스)
