@@ -74,7 +74,10 @@ def 시간():
 async def on_ready():
 	# print('시작')
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
-	startmsg = await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
+# 	startmsg = await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
+
+	author = await client.get_user(526889025894875158).create_dm()
+	await author.send(f"{시간()}, 시작")
 
 @client.event
 async def on_message(message):
@@ -99,8 +102,8 @@ async def on_message(message):
 
 		if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
 			await message.channel.send(	f"m: `{m}`\n"                           + 
-							f"id: `{message.id}`"                   +
-							f"authorId: `{message.author.id}`"      +
+							f"id: `{message.id}`\n"                 +
+							f"authorId: `{message.author.id}`\n"    +
 							f"channelId: `{message.channel.id}`"	)
 			return
 
