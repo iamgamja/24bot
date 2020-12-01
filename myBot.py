@@ -21,6 +21,7 @@ client = discord.Client()
 영한 = dict(zip(영어, 한글))
 겹글 = "rsfqhnm"
 빈공 = '​'
+땀표 = '```'
 폭팔 = "https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif"
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
