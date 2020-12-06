@@ -174,6 +174,8 @@ async def on_message(message):
 				await message.channel.send(embed=embed)
 				
 			elif 시작("핑"):
+				channel = await message.author.create_dm()
+				await channel.send("DM 채널이 없어서 만들고 보냈어요!")
 				await message.channel.send("으악 핑")
 				
 			elif 시작("에블핑"):
