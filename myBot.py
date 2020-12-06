@@ -79,7 +79,8 @@ async def on_ready():
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
 	try:
-		await id2author(526889025894875158).create_dm().send(f"{시간()}, 시작")
+		await client.wait_until_ready()
+		await client.get_id(526889025894875158).create_dm().send(f"{시간()}, 시작")
 	except Exception as e:
 		await client.get_channel(762916201654386701).send(e)
 
