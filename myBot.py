@@ -81,6 +81,11 @@ async def on_ready():
 		await client.get_channel(762916201654386701).send(e)
 
 @client.event
+async def on_error(event, *args, **kwargs):
+	await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {event}, {args}, {kwargs}")
+	return
+
+@client.event
 async def on_message(message, start=False):
 	if start:
 		await client.get_user(526889025894875158).create_dm().send(f"{시간()}, 시작")
