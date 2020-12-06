@@ -61,17 +61,12 @@ client = discord.Client()
 	"<:z9:750200417417166879>", #9
 	"<:z_:750200417287274529>") #10
 
-def id2author(id):
-	return client.get_user(id)
-
 def 시간():
-
 	utcnow   = datetime.datetime.utcnow()
 	time_gap = datetime.timedelta(hours=9)
 	kor_time = utcnow + time_gap
 	n        = kor_time.strftime('%Y-%m-%d %p %I:%M:%S')
 	return n
-	# return (datetime.datetime.utcnow() + datetime.timedelta(hours=9)).strftime('%Y-%m-%d %p %I:%M:%S')	
 	
 @client.event
 async def on_ready():
@@ -80,7 +75,7 @@ async def on_ready():
 	await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
 	try:
 		await client.wait_until_ready()
-		await client.get_id(526889025894875158).create_dm().send(f"{시간()}, 시작")
+		await client.get_user(526889025894875158).create_dm().send(f"{시간()}, 시작")
 	except Exception as e:
 		await client.get_channel(762916201654386701).send(e)
 
