@@ -76,14 +76,19 @@ async def on_ready():
 	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
 	try:
+		on_message(
 		#user = client.get_user(526889025894875158)
-		await client.get_user(526889025894875158).send(f"{시간()}, 시작")
+		await client.get_user(526889025894875158).create_dm().send(f"{시간()}, 시작")
+		#client.get_user(526889025894875158)
 		
 	except Exception as e:
 		await client.get_channel(762916201654386701).send(e)
 
 @client.event
-async def on_message(message):
+async def on_message(message, start=False):
+	if start:
+		channel = await message.author.create_dm()
+		await channel.send("DM 채널이 없어서 만들고 보냈어요!")
 	global 반복
 	try:
 		m = message.content
@@ -174,8 +179,6 @@ async def on_message(message):
 				await message.channel.send(embed=embed)
 				
 			elif 시작("핑"):
-				channel = await message.author.create_dm()
-				await channel.send("DM 채널이 없어서 만들고 보냈어요!")
 				await message.channel.send("으악 핑")
 				
 			elif 시작("에블핑"):
