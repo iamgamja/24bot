@@ -75,6 +75,7 @@ async def on_ready():
 	await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
 	try:
 		await client.wait_until_ready()
+		time.sleep(30)
 		await client.get_user(526889025894875158).create_dm().send(f"{시간()}, 시작")
 	except Exception as e:
 		await client.get_channel(762916201654386701).send(e)
