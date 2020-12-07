@@ -89,8 +89,6 @@ async def on_message(message):
 	def 포함(s):
 		return m.find(s)+1
 	
-	await message.channel.send(message.guild.id)
-	
 	def 시작(s):
 		if not m.startswith(s):
 			return False
@@ -213,6 +211,7 @@ async def on_message(message):
 			gumsajung = gumsajung[1:]
 
 	if 시작(","):
+		await message.channel.send(message.guild.id)###########################
 		m = m[1:]
 		if 시작("도움"):
 			embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0xffccff)
