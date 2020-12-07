@@ -410,12 +410,9 @@ async def on_message(message):
 			await message.add_reaction(동글)
 			
 		elif 시작("역할제거"):
-			try:
-				role = discord.utils.get(message.guild.roles, name=m[5:])
- 				#await client.delete_role(message.guild, role)
-				await role.delete()
-			except Exception as e:
-				await message.channel.send(e)
+			role = discord.utils.get(message.guild.roles, name=m[5:])
+			await role.delete()
+			await message.add_reaction(동글)
 
 	m = message.content
 	if 시작(",계산") or 시작("```"):
@@ -437,7 +434,7 @@ async def on_message_edit(beforeMessage, message):
 		if not m.startswith(s):
 			return False
 		if message.guild.id == 785083334929547284:
-			return s in ("역할생성", "역할제거")
+			return False
 		else:
 			return True
 
