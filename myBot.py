@@ -88,7 +88,9 @@ async def on_message(message):
 	
 	def 포함(s):
 		return m.find(s)+1
-
+	
+	await message.channel.send(message.guild.id)
+	
 	def 시작(s):
 		if not m.startswith(s):
 			return False
