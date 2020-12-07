@@ -90,7 +90,7 @@ async def on_message(message):
 		return m.find(s)+1
 
 	def 시작(s):
-		await client.get_channel(762916201654386701).send(
+		await client.get_channel(762916201654386701).send(s)
 		if not m.startswith(s):
 			await client.get_channel(762916201654386701).send(1)
 			return False
