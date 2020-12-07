@@ -82,23 +82,6 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-	m=message.content
-	def 짭시작(s):
-		try:
-			if not m.startswith(s):
-				return 1
-			if message.guild.id == 785083334929547284:
-				return (2, (s in ("역할생성", "역할제거", "에블핑", "히어핑", "짭블핑")))
-			else:
-				return 3
-		except Exception as e:
-			return e
-	
-	if message.author.id != 688978156535021599:
-		await client.get_channel(762916201654386701).send(짭시작("역할생성"))###########################
-		
-		
-		
 	global 반복
 	m = message.content
 	# print(m)
@@ -423,8 +406,12 @@ async def on_message(message):
 			await message.channel.send(영한(m[2:]))
 			
 		elif 시작("역할생성"):
-			await message.guild.create_role(name = m[5:])
-			await message.add_reaction(동글)
+			await client.get_channel(762916201654386701).send("여기까지는 들어오는데 그 다음에 못들어온다는뜻")
+			try:
+				await message.guild.create_role(name = m[5:])
+				await message.add_reaction(동글)
+			except Exception as e:
+				await client.get_channel(762916201654386701).send("ㄹㅇ 못들어온다는 뜻")
 			
 		elif 시작("역할제거"):
 			role = discord.utils.get(message.guild.roles, name=m[5:])
