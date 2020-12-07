@@ -410,7 +410,7 @@ async def on_message(message):
 				f+=i
 			await message.channel.send(f)
 		elif 시작("역할"):
-			await message.guild.create_role(name = "테스트역할", permissions = discord.Permissions(perrmission = True), reason = "테스트로 역할을 행성(?)했습니다."
+			await message.guild.create_role(name = "테스트역할", permissions = discord.Permissions(perrmission = True), reason = "테스트로 역할을 행성(?)했습니다.")
 	if message.content.startswith(",계산") or message.content.startswith("```"):
 		m = message.content
 		if m.startswith("```"):
