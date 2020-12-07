@@ -400,17 +400,20 @@ async def on_message(message):
 			await message.channel.send(영한(m[2:]))
 			
 		elif 시작("역할생성"):
-			await client.get_channel(762916201654386701).send("여기까지는 들어오는데 그 다음에 못들어온다는뜻")
 			try:
 				await message.guild.create_role(name = m[5:])
 				await message.add_reaction(동글)
-			except Exception as e:
-				await client.get_channel(762916201654386701).send(e)
+			except:
+				await message.add_reaction(엑스)
 				
 		elif 시작("역할제거"):
-			role = discord.utils.get(message.guild.roles, name=m[5:])
-			await role.delete()
-			await message.add_reaction(동글)
+			try:
+				role = discord.utils.get(message.guild.roles, name=m[5:])
+				await role.delete()
+				await message.add_reaction(동글)
+			except:
+				await message.add_reaction(엑스)
+			
 
 	m = message.content
 	if 시작(",계산") or 시작("```"):
