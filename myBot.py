@@ -215,7 +215,7 @@ async def on_message(message):
 			embed.add_field(name=",에블핑", value="으악 핑", inline=True)
 			embed.add_field(name=",히어핑", value="으악 핑", inline=True)
 			embed.add_field(name=",폭8", value="폭☆8", inline=True)
-			embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기를 할수", inline=True)
+			embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
 			embed.add_field(name=빈공, value=빈공, inline=True)
 			embed.add_field(name=빈공, value="**`기능`**", inline=False)
 			embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
@@ -223,6 +223,8 @@ async def on_message(message):
 			embed.add_field(name=",계산 <식>", value="<식>을 계산합니다.", inline=True)
 			embed.add_field(name=",청소 <수>", value="<수>만큼의 메시지를 지웁니다.", inline=True)
 			embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
+			embed.add_field(name=",역할생성 <이름>", value="<이름>의 역할을 생성합니다.", inline=True)
+			embed.add_field(name=",역할제거 <이름>", value="<이름>의 역할을 제거합니다.", inline=True)
 			embed.add_field(name=빈공, value=빈공, inline=True)
 			embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
 			embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
@@ -235,7 +237,7 @@ async def on_message(message):
 			await message.channel.send(embed=embed)
 
 		elif 시작("핑"):
-			await message.channel.send("으악 핑")
+			await message.channel.send(f"<@{message.author.id}>")
 
 		elif 시작("에블핑"):
 			await message.channel.send("@everyone")
@@ -244,7 +246,7 @@ async def on_message(message):
 			await message.channel.send("@here")
 
 		elif 시작("짭블핑"):
-			await message.channel.send("<@&785085545998057522")
+			await message.channel.send("<@&785085545998057522>")
 			
 		elif 시작("폭8"):
 			await message.channel.send(폭팔)
@@ -417,6 +419,8 @@ async def on_message(message):
 
 	m = message.content
 	if 시작(",계산") or 시작("```"):
+		if message.author.bot:
+			return
 		if 시작("```"):
 			m = m[3:-3]
 		if 시작(",계산"):
@@ -432,15 +436,12 @@ async def on_message(message):
 @client.event
 async def on_message_edit(beforeMessage, message):
 	def 시작(s):
-		if not m.startswith(s):
-			return False
-		if message.guild.id == 785083334929547284:
-			return False
-		else:
-			return True
+		m.startswith(s)
 
 	m = message.content
 	if 시작(",계산") or 시작("```"):
+		if message.author.bot:
+			return
 		if 시작("```"):
 			m = m[3:-3]
 		if 시작(",계산"):
