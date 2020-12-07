@@ -86,9 +86,6 @@ async def on_message(message):
 	m = message.content
 	# print(m)
 	
-	def 권한(serverId, word):
-		if serverId == 
-	
 	def 포함(s):
 		return m.find(s)+1
 
