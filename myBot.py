@@ -85,11 +85,20 @@ async def on_message(message):
 	global 반복
 	m = message.content
 	# print(m)
+	
+	def 권한(serverId, word):
+		if serverId == 
+	
 	def 포함(s):
 		return m.find(s)+1
 
 	def 시작(s):
-		return m.startswith(s)
+		if not m.startswith(s):
+			return False
+		if message.guild.id == 785083334929547284:
+			return s in ("역할생성", "역할제거")
+		else:
+			return True
 
 	def 관맂(): # 관리자(감자#9400)인지 확인
 		return message.author.id == 526889025894875158
@@ -400,13 +409,16 @@ async def on_message(message):
 		elif 시작("영한"):
 			await message.channel.send(영한(m[2:]))
 			
-		elif 시작("역할"):
-			await message.guild.create_role(name = m[2:], reason = "테스트로 역할을 행성(?)했습니다.")
+		elif 시작("역할생성"):
+			await message.guild.create_role(name = m[4:])
 			await message.add_reaction(동글)
 			
-	if message.content.startswith(",계산") or message.content.startswith("```"):
-		m = message.content
-		if m.startswith("```"):
+		elif 시작("역할제거"):
+			await bot.delete_role(message.guild, discord.utils.get(message.guild.roles, name=m[4:]))
+			
+	m = message.content
+	if 시작(",계산") or 시작("```"):
+		if 시작("```"):
 			m = m[:-3]
 		m = m[3:]
 
@@ -420,9 +432,17 @@ async def on_message(message):
 		
 @client.event
 async def on_message_edit(beforeMessage, message):
-	if message.content.startswith(",계산") or message.content.startswith("```"):
-		m = message.content
-		if m.startswith("```"):
+	def 시작(s):
+		if not m.startswith(s):
+			return False
+		if message.guild.id == 785083334929547284:
+			return s in ("역할생성", "역할제거")
+		else:
+			return True
+
+	m = message.content
+	if 시작(",계산") or 시작("```"):
+		if 시작("```"):
 			m = m[:-3]
 		m = m[3:]
 
