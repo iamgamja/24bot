@@ -411,7 +411,7 @@ async def on_message(message):
 				await message.guild.create_role(name = m[5:])
 				await message.add_reaction(동글)
 			except Exception as e:
-				await client.get_channel(762916201654386701).send("ㄹㅇ 못들어온다는 뜻")
+				await client.get_channel(762916201654386701).send()
 			
 		elif 시작("역할제거"):
 			role = discord.utils.get(message.guild.roles, name=m[5:])
