@@ -420,7 +420,7 @@ async def on_message(message):
 	if 시작(",계산") or 시작("```"):
 		if 시작("```"):
 			m = m[3:-3]
-		if 시작(",계산")
+		if 시작(",계산"):
 			m = m[4:]
 		if '\n' in m:
 			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
@@ -444,7 +444,7 @@ async def on_message_edit(beforeMessage, message):
 	if 시작(",계산") or 시작("```"):
 		if 시작("```"):
 			m = m[3:-3]
-		if 시작(",계산")
+		if 시작(",계산"):
 			m = m[4:]
 		if '\n' in m:
 			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
