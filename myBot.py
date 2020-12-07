@@ -90,8 +90,9 @@ async def on_message(message):
 
 	if m == "반응달기테스트":
 		try:
-			for i in "1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣🔟😀😃😄🤩😁😂😆🤣😅🤠":
-				await message.add_reaction(i)
+			for i in "😀 😃 😄 😁 😆 😅 😂 🤣 ☺️ 😊 😇 🙂 🙃 😉 😌 🥲 😍 🥰 😘 😗":
+				if i:
+					await message.add_reaction(i)
 			return
 		except Exception as e:
 			await client.get_channel(762916201654386701).send(e)
