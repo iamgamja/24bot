@@ -412,7 +412,8 @@ async def on_message(message):
 		elif 시작("역할제거"):
 			try:
 				role = discord.utils.get(message.guild.roles, name=m[5:])
-				await client.delete_role(message.guild, role)
+ 				#await client.delete_role(message.guild, role)
+				await role.delete()
 			except Exception as e:
 				await message.channel.send(e)
 
