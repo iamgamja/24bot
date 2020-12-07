@@ -84,27 +84,19 @@ async def on_ready():
 async def on_message(message):
 	global 반복
 	m = message.content
-	if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
-		return
 	# print(m)
-	await client.get_channel(762916201654386701).send(1)###################################
 	def 포함(s):
 		return m.find(s)+1
-	await client.get_channel(762916201654386701).send(1)###################################
+	
 	def 시작(s):
-		if not m.startswith(s):
-			return False
-		if message.guild.id == 785083334929547284:
-			return s in ("역할생성", "역할제거", "에블핑", "히어핑", "짭블핑")
-		else:
-			return True
-	await client.get_channel(762916201654386701).send(1)###################################
+		return m.startswith(s)
+		
 	def 관맂(): # 관리자(감자#9400)인지 확인
 		return message.author.id == 526889025894875158
-	await client.get_channel(762916201654386701).send(1)###################################
+	
 	def 체크(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인
 		return m.channel.id == message.channel.id and m.author == message.author
-	await client.get_channel(762916201654386701).send(1)###################################
+	
 	def 한영(m):
 		f=''
 		for i in m:
@@ -119,7 +111,7 @@ async def on_message(message):
 				except:
 					f += i
 		return f
-	await client.get_channel(762916201654386701).send(1)###################################
+	
 	def 영한(m):
 		f=''
 		w=''
@@ -178,25 +170,28 @@ async def on_message(message):
 		for i in 임시:
 			f+=i
 		return f
-	await client.get_channel(762916201654386701).send(1)###################################
+	
+	if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
+		return
+	
 	if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
 		await message.channel.send(	f"m: `{m}`\n"                           + 
 						f"id: `{message.id}`\n"                 +
 						f"authorId: `{message.author.id}`\n"    +
 						f"channelId: `{message.channel.id}`"	)
 		return
-	await client.get_channel(762916201654386701).send(1)###################################
+	
 	if 반복[0]:
 		반복[0] -= 1
 		await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
 		return
-	await client.get_channel(762916201654386701).send(1)###################################
+	
 	if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다.") or 포함("응답 대기 중입니다.") or 포함(", 메시지 개수는 `2 ~ 99`로 입력하세요."):
 		await message.add_reaction(청소)
 		time.sleep(1)
 		await message.delete()
 		return
-	await client.get_channel(762916201654386701).send(1)###################################
+	
 	# 반응달기
 	gumsajung = m[:]
 	while gumsajung:
@@ -208,7 +203,7 @@ async def on_message(message):
 				gumsajung = gumsajung[len(i):]
 		if isend:
 			gumsajung = gumsajung[1:]
-	await client.get_channel(762916201654386701).send(1)###################################
+			
 	if 시작(","):
 		m = m[1:]
 		if 시작("도움"):
@@ -403,16 +398,16 @@ async def on_message(message):
 
 		elif 시작("영한"):
 			await message.channel.send(영한(m[2:]))
-		await client.get_channel(762916201654386701).send(2)###################################
-		if 시작("역할생성"):##########
+			
+		elif 시작("역할생성"):
 			await client.get_channel(762916201654386701).send("여기까지는 들어오는데 그 다음에 못들어온다는뜻")
 			try:
 				await message.guild.create_role(name = m[5:])
 				await message.add_reaction(동글)
 			except Exception as e:
 				await client.get_channel(762916201654386701).send(e)
-		await client.get_channel(762916201654386701).send(3)###################################
-		if 시작("역할제거"):########
+				
+		elif 시작("역할제거"):
 			role = discord.utils.get(message.guild.roles, name=m[5:])
 			await role.delete()
 			await message.add_reaction(동글)
