@@ -5,6 +5,7 @@ client = discord.Client()
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
 와샍 = "<:aemoji_29:736146757716803605>"
+동글 = "⭕"
 엑스 = "❌"
 청소 = "🗑️"
 배코 = 44032
@@ -400,10 +401,9 @@ async def on_message(message):
 			await message.channel.send(영한(m[2:]))
 			
 		elif 시작("역할"):
-			try:
-				await message.guild.create_role(name = m[2:], reason = "테스트로 역할을 행성(?)했습니다.")
-			except Exception as e:
-				await message.channel.send(e)
+			await message.guild.create_role(name = m[2:], reason = "테스트로 역할을 행성(?)했습니다.")
+			await message.add_reaction(동글)
+			
 	if message.content.startswith(",계산") or message.content.startswith("```"):
 		m = message.content
 		if m.startswith("```"):
