@@ -95,6 +95,80 @@ async def on_message(message):
 
 	def 체크(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인
 		return m.channel.id == message.channel.id and m.author == message.author
+	
+	def 한영(m):
+		f=''
+		for i in m:
+			c=ord(i)
+			if 배코<=c<=맥코:
+				c%=배코 ; f+=한영[초성[c//초코]]
+				c%=초코 ; f+=한영[중성[c//중코]]
+				c%=중코 ; f+=한영[종성[c//종코]]
+			else:
+				try:
+					f += 한영[i]
+				except:
+					f += i
+		return f
+	
+	def 영한(m):
+		f=''
+		w=''
+		임시 = "NaN"
+		#한글로 바꾸기
+		for i in range(len(m)):
+			if m[i] in 겹글 and len(m)>=i+2 and 임시 == "NaN":
+				임시 = m[i]
+			elif 임시+m[i] in 영한:
+				w+=영한[임시+m[i]] ; 임시 = "NaN"
+			elif 임시 != "NaN":
+				w+=영한[임시] ; 임시 = "NaN"
+				if m[i] in 겹글 and len(m)>=i+2 and 임시 == "NaN":
+					임시 = m[i]
+				else:
+					w+=영한[m[i]] if m[i] in 영한 else m[i]
+			else:
+				w+=영한[m[i]] if m[i] in 영한 else m[i]
+		#한글을 합치기
+		w=list(w)
+		임시 = []
+		for i in range(len(w)):
+			if len(임시) == 0:
+				if w[i] in 초성:
+					임시.append(w[i])
+				else:
+					f+=w[i]
+			elif len(임시) == 1:
+				if w[i] in 중성:
+					임시.append(w[i])
+				else:
+					f+=임시[0] ; del 임시[0]
+					if w[i] in 초성:
+						임시.append(w[i])
+					else:
+						f+=w[i]
+			else:
+				if w[i] in 종성:
+					if w[i] in 초성 and ((w[i+1] in 중성) if len(w)>=i+2 else False):
+						f+=chr(배코+초성.index(임시[0])*초코+중성.index(임시[1])*중코)
+						del 임시[1]
+						del 임시[0]
+						임시.append(w[i])
+					else:
+						f += chr(배코 + 초성.index(임시[0])*초코 + 중성.index(임시[1])*중코 + 종성.index(w[i]))
+						del 임시[1]
+						del 임시[0]
+				else:
+					f+=chr(배코 + 초성.index(임시[0])*초코 + 중성.index(임시[1])*중코)
+					del 임시[1]
+					del 임시[0]
+					if w[i] in 초성:
+						임시.append(w[i])
+					else:
+						f+=w[i]
+		for i in 임시:
+			f+=i
+		return f
 
 	if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
 		return
@@ -320,82 +394,14 @@ async def on_message(message):
 			await msg.delete()
 
 		elif 시작("한영"):
-			f=''
-			for i in m[3:]:
-				c=ord(i)
-				if 배코<=c<=맥코:
-					c-=배코 ; f+=한영[초성[c//초코]]
-					c%=초코 ; f+=한영[중성[c//중코]]
-					c%=중코 ; f+=한영[종성[c//종코]]
-				else:
-					try:
-						f += 한영[i]
-					except:
-						f += i
-			await message.channel.send(f)
+			await message.channel.send(한영(m[2:]))
 
 		elif 시작("영한"):
-			f=''
-			m=m[3:]
-			w=''
-			임시 = "NaN"
-			#한글로 바꾸기
-			for i in range(len(m)):
-				if m[i] in 겹글 and len(m)>=i+2 and 임시 == "NaN":
-					임시 = m[i]
-				elif 임시+m[i] in 영한:
-					w+=영한[임시+m[i]] ; 임시 = "NaN"
-				elif 임시 != "NaN":
-					w+=영한[임시] ; 임시 = "NaN"
-					if m[i] in 겹글 and len(m)>=i+2 and 임시 == "NaN":
-						임시 = m[i]
-					else:
-						w+=영한[m[i]] if m[i] in 영한 else m[i]
-				else:
-					w+=영한[m[i]] if m[i] in 영한 else m[i]
-			#한글을 합치기
-			w=list(w)
-			임시 = []
-			for i in range(len(w)):
-				if len(임시) == 0:
-					if w[i] in 초성:
-						임시.append(w[i])
-					else:
-						f+=w[i]
-				elif len(임시) == 1:
-					if w[i] in 중성:
-						임시.append(w[i])
-					else:
-						f+=임시[0] ; del 임시[0]
-						if w[i] in 초성:
-							임시.append(w[i])
-						else:
-							f+=w[i]
-				else:
-					if w[i] in 종성:
-						if w[i] in 초성 and ((w[i+1] in 중성) if len(w)>=i+2 else False):
-							f+=chr(배코+초성.index(임시[0])*초코+중성.index(임시[1])*중코)
-							del 임시[1]
-							del 임시[0]
-							임시.append(w[i])
-						else:
-							f += chr(배코 + 초성.index(임시[0])*초코 + 중성.index(임시[1])*중코 + 종성.index(w[i]))
-							del 임시[1]
-							del 임시[0]
-					else:
-						f+=chr(배코 + 초성.index(임시[0])*초코 + 중성.index(임시[1])*중코)
-						del 임시[1]
-						del 임시[0]
-						if w[i] in 초성:
-							임시.append(w[i])
-						else:
-							f+=w[i]
-			for i in 임시:
-				f+=i
-			await message.channel.send(f)
+			await message.channel.send(영한(m[2:]))
+			
 		elif 시작("역할"):
 			try:
-				await message.guild.create_role(name = "테스트역할", permissions = discord.Permissions(perrmission = True), reason = "테스트로 역할을 행성(?)했습니다.")
+				await message.guild.create_role(name = m[2:], reason = "테스트로 역할을 행성(?)했습니다.")
 			except Exception as e:
 				await message.channel.send(e)
 	if message.content.startswith(",계산") or message.content.startswith("```"):
