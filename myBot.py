@@ -93,7 +93,7 @@ async def on_message(message):
 		if not m.startswith(s):
 			return False
 		if message.guild.id == 785083334929547284:
-			return s in ("역할생성", "역할제거")
+			return s in ("역할생성", "역할제거", "에블핑", "히어핑", "짭블핑")
 		else:
 			return True
 
@@ -244,15 +244,14 @@ async def on_message(message):
 			await message.channel.send("으악 핑")
 
 		elif 시작("에블핑"):
-			msg = await message.channel.send("||@everyone||")
-			time.sleep(1)
-			await msg.edit(content="으악 핑")
+			await message.channel.send("@everyone")
 
 		elif 시작("히어핑"):
-			msg = await message.channel.send("||@here||")
-			time.sleep(1)
-			await msg.edit(content="으악 핑")
+			await message.channel.send("@here")
 
+		elif 시작("짭블핑"):
+			await message.channel.send("<@&785085545998057522")
+			
 		elif 시작("폭8"):
 			await message.channel.send(폭팔)
 
