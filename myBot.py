@@ -84,6 +84,8 @@ async def on_ready():
 async def on_message(message):
 	global 반복
 	m = message.content
+	if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
+		return
 	# print(m)
 	await client.get_channel(762916201654386701).send(1)###################################
 	def 포함(s):
@@ -176,9 +178,6 @@ async def on_message(message):
 		for i in 임시:
 			f+=i
 		return f
-	await client.get_channel(762916201654386701).send(1)###################################
-	if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
-		return
 	await client.get_channel(762916201654386701).send(1)###################################
 	if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
 		await message.channel.send(	f"m: `{m}`\n"                           + 
