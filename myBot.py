@@ -82,8 +82,20 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+	
+	def 짭시작(s):
+		if not m.startswith(s):
+			return 1
+		if message.guild.id == 785083334929547284:
+			return (2, (s in ("역할생성", "역할제거", "에블핑", "히어핑", "짭블핑")))
+		else:
+			return 3
+	
 	if message.author.id != 688978156535021599:
-		await client.get_channel(762916201654386701).send(message.guild.id)###########################
+		await client.get_channel(762916201654386701).send(짭시작("역할생성"))###########################
+		
+		
+		
 	global 반복
 	m = message.content
 	# print(m)
