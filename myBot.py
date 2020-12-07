@@ -90,16 +90,11 @@ async def on_message(message):
 		return m.find(s)+1
 
 	def 시작(s):
-		await client.get_channel(762916201654386701).send(s)
 		if not m.startswith(s):
-			await client.get_channel(762916201654386701).send(1)
 			return False
 		if message.guild.id == 785083334929547284:
-			await client.get_channel(762916201654386701).send(2)
-			await client.get_channel(762916201654386701).send(s in ("역할생성", "역할제거", "에블핑", "히어핑", "짭블핑"))
 			return s in ("역할생성", "역할제거", "에블핑", "히어핑", "짭블핑")
 		else:
-			await client.get_channel(762916201654386701).send(3)
 			return True
 
 	def 관맂(): # 관리자(감자#9400)인지 확인
