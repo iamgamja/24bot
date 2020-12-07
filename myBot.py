@@ -76,14 +76,8 @@ async def on_error(event, *args, **kwargs):
 @client.event
 async def on_ready():
 	# print('시작')
-	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
+	await client.change_presence(status = discord.Status.online, activity = discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
-	try:
-		await client.wait_until_ready()
-		time.sleep(30)
-		await client.get_user(526889025894875158).create_dm().send(f"{시간()}, 시작")
-	except Exception as e:
-		await client.get_channel(762916201654386701).send(e)
 
 @client.event
 async def on_message(message):
@@ -138,16 +132,6 @@ async def on_message(message):
 	if 시작(","):
 		m = m[1:]
 		if 시작("도움"):
-			# **`도움`**
-
-			# ":GWchadMEGATHINK:"
-			# ":GWchadThonkery:"
-			# ":GWchadThinkeyes:"
-			# ":GWchadThink:"
-			# ":GWoicZenThink:"
-			# ":GWoicFidgetThinker:"
-			# ":GWmythicalThonkCool:"
-
 			embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0xffccff)
 			embed.add_field(name=빈공, value="**`도움`**", inline=False)
 			embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
@@ -410,7 +394,10 @@ async def on_message(message):
 				f+=i
 			await message.channel.send(f)
 		elif 시작("역할"):
-			await message.guild.create_role(name = "테스트역할", permissions = discord.Permissions(perrmission = True), reason = "테스트로 역할을 행성(?)했습니다.")
+			try:
+				await message.guild.create_role(name = "테스트역할", permissions = discord.Permissions(perrmission = True), reason = "테스트로 역할을 행성(?)했습니다.")
+			except Exception as e:
+				await message.channel.send(e)
 	if message.content.startswith(",계산") or message.content.startswith("```"):
 		m = message.content
 		if m.startswith("```"):
