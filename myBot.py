@@ -406,18 +406,22 @@ async def on_message(message):
 			await message.channel.send(영한(m[2:]))
 			
 		elif 시작("역할생성"):
-			await message.guild.create_role(name = m[4:])
+			await message.guild.create_role(name = m[5:])
 			await message.add_reaction(동글)
 			
 		elif 시작("역할제거"):
-			await bot.delete_role(message.guild, discord.utils.get(message.guild.roles, name=m[4:]))
-			
+			try:
+				role = discord.utils.get(message.guild.roles, name=m[5:])
+				await bot.delete_role(message.guild, role)
+			except Exception as e:
+				await message.channel.send(e)
+
 	m = message.content
 	if 시작(",계산") or 시작("```"):
 		if 시작("```"):
-			m = m[:-3]
-		m = m[3:]
-
+			m = m[3:-3]
+		if 시작(",계산")
+			m = m[4:]
 		if '\n' in m:
 			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
 			outputmsg = str(출력)
@@ -439,9 +443,9 @@ async def on_message_edit(beforeMessage, message):
 	m = message.content
 	if 시작(",계산") or 시작("```"):
 		if 시작("```"):
-			m = m[:-3]
-		m = m[3:]
-
+			m = m[3:-3]
+		if 시작(",계산")
+			m = m[4:]
 		if '\n' in m:
 			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
 			outputmsg = str(출력)
