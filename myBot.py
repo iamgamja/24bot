@@ -456,8 +456,8 @@ async def on_message(message):
 	elif 시작(",채널생성") and 관맂():
 		m = m[6:]
 		try:
-			category = discord.utils.get(message.guild.categories, name=' '.join(m.split(' ')[1:]))
-			await message.guild.create_text_channel(m.split(' ')[0], category=category)
+			category = discord.utils.get(message.guild.categories, name=' '.join(m.split(' ')[:-1]))
+			await message.guild.create_text_channel(m.split(' ')[-1], category=category)
 			await message.add_reaction(동글)
 		except:
 			await message.add_reaction(엑스)
