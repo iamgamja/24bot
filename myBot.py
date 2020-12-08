@@ -107,7 +107,7 @@ async def on_message(message):
 			m = ' '.join(m.split(' ')[1:])
 			return True
 		else:
-			reutn False
+			return False
 
 	def 끝남(s):
 		global m
