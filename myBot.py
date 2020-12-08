@@ -88,13 +88,13 @@ async def on_message(message):
 	m = message.content
 
 
-	if m == "반응달기테스트":
-		try:
-			for i in "😀😃😆😄😶😐😑😬🙄😯😦😧😮😲😴😁😅🖱🥔➕":
-				await message.add_reaction(i)
-			return
-		except Exception as e:
-			await client.get_channel(762916201654386701).send(e)
+# 	if m == "반응달기테스트":
+# 		try:
+# 			for i in "😀😃😆😄😶😐😑😬🙄😯😦😧😮😲😴😁😅🖱🥔➕":
+# 				await message.add_reaction(i)
+# 			return
+# 		except Exception as e:
+# 			await client.get_channel(762916201654386701).send(e)
 
 
 	# print(m)
@@ -102,7 +102,22 @@ async def on_message(message):
 		return m.find(s)+1
 	
 	def 시작(s):
-		return m.startswith(s)
+		global m
+		if m.split()[0] == s:
+			m = m.split()[1:]
+			return True
+		else:
+			False
+			
+	def 끝남(s):
+		global m
+		if m.split()[-1] == s:
+			m = m.split()[:-1]
+			return True
+		else:
+			False
+			
+			
 		
 	def 관맂(): # 관리자(감자#9400)인지 확인
 		return message.author.id == 526889025894875158
@@ -184,7 +199,7 @@ async def on_message(message):
 			f+=i
 		return f
 	
-	if message.author.id == 688978156535021599: # 자신이 보낸 메시지 무시
+	if message.author.bot: # 봇이 보낸 메시지 무시
 		return
 	
 	if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
@@ -217,227 +232,231 @@ async def on_message(message):
 		if isend:
 			gumsajung = gumsajung[1:]
 			
-	if 시작(","):
-		m = m[1:]
-		if 시작("도움"):
-			embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0xffccff)
-			embed.add_field(name=빈공, value="**`도움`**", inline=False)
-			embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
-			embed.add_field(name=빈공, value="**`재미`**", inline=False)
-			embed.add_field(name=",핑", value="으악 핑", inline=True)
-			embed.add_field(name=",에블핑", value="으악 핑", inline=True)
-			embed.add_field(name=",히어핑", value="으악 핑", inline=True)
-			embed.add_field(name=",폭8", value="폭☆8", inline=True)
-			embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
-			embed.add_field(name=빈공, value=빈공, inline=True)
-			embed.add_field(name=빈공, value="**`기능`**", inline=False)
-			embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
-			embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
-			embed.add_field(name=",계산 <식>", value="<식>을 계산합니다.", inline=True)
-			embed.add_field(name=",청소 <수>", value="<수>만큼의 메시지를 지웁니다.", inline=True)
-			embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
-			embed.add_field(name=",역할생성 <이름>", value="<이름>의 역할을 생성합니다.", inline=True)
-			embed.add_field(name=",역할제거 <이름>", value="<이름>의 역할을 제거합니다.", inline=True)
-			embed.add_field(name=빈공, value=빈공, inline=True)
-			embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
-			embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
-			embed.add_field(name=빈공, value=빈공, inline=True)
-			embed.add_field(name=빈공, value="**`기타`**", inline=False)
-			embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
-			embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
-			embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
-			embed.set_footer(text= f'{message.author.name} | {시간()}')
-			await message.channel.send(embed=embed)
-
-		elif 시작("핑"):
-			await message.channel.send(f"<@{message.author.id}>")
-
-		elif 시작("에블핑"):
-			await message.channel.send("@everyone")
 			
-		elif 시작("히어핑"):
-			await message.channel.send("@here")
-
-		elif 시작("짭블핑"):
-			await message.channel.send("<@&785085545998057522>")
 			
-		elif 시작("폭8"):
-			await message.channel.send(폭팔)
+			
+	if 시작(",도움"):
+		embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0xffccff)
+		embed.add_field(name=빈공, value="**`도움`**", inline=False)
+		embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
+		embed.add_field(name=빈공, value="**`재미`**", inline=False)
+		embed.add_field(name=",핑", value="으악 핑", inline=True)
+		embed.add_field(name=",에블핑", value="으악 핑", inline=True)
+		embed.add_field(name=",히어핑", value="으악 핑", inline=True)
+		embed.add_field(name=",폭8", value="폭☆8", inline=True)
+		embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
+		embed.add_field(name=빈공, value=빈공, inline=True)
+		embed.add_field(name=빈공, value="**`기능`**", inline=False)
+		embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
+		embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
+		embed.add_field(name=",계산 <식>", value="<식>을 계산합니다.", inline=True)
+		embed.add_field(name=",청소 <수>", value="<수>만큼의 메시지를 지웁니다.", inline=True)
+		embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
+		embed.add_field(name=",역할생성 <이름>", value="<이름>의 역할을 생성합니다.", inline=True)
+		embed.add_field(name=",역할제거 <이름>", value="<이름>의 역할을 제거합니다.", inline=True)
+		embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
+		embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
+		embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
+		embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
+		embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
+		embed.add_field(name=빈공, value=빈공, inline=True)
+		embed.add_field(name=빈공, value="**`기타`**", inline=False)
+		embed.add_field(name=",초대", value="초대 링크를 보냅니다.", inline=True)
+		embed.add_field(name=",정보", value="만든 사람을 찾습니다.", inline=True)
 
-		elif 시작("프사"):
-			await message.channel.send(embed=discord.Embed(title=킹똥+"프사"+똥킹, color=0xffccff).set_image(url=message.author.avatar_url))
+		embed.set_footer(text= f'{message.author.name} | {시간()}')
+		await message.channel.send(embed=embed)
 
-		elif 시작("말"):
-			await message.channel.send(m[2:])
+	elif 시작(",초대"):
+		await message.channel.send("https://discord.com/oauth2/authorize?&client_id=688978156535021599&scope=bot&permissions=8")
 
-		elif 시작("반복"):
-			if 반복[0]:
-				await message.channel.send(f"아직 {반복[0]}번 남음")
-			반복[0], 반복[1] = int(m.split()[1]), m.split()[2]
-			await message.channel.send(f"앞으로 {반복[0]}번 반복")
+	elif 시작(",핑"):
+		await message.channel.send(f"<@{message.author.id}>")
 
-		elif 시작("임베드"):
-			inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
-			look_dict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
-			mymsg = await message.channel.send("준비중...")
-			for i in range(len(list(inputdict.keys()))):
-				await mymsg.delete()
-				mymsg = await message.channel.send(str(i) + ". " + str(list(inputdict.keys())[i]) + "을(를) 입력해주세요.\n```yaml\n" + str(str(look_dict)[1:-1].replace(', ', ',\n').replace(땀표[0], 땀표[1])) + 땀표[0])
-				inputmsg = await client.wait_for('message', timeout=30.0, check=체크)
-				inputmsg = inputmsg.content
-				inputdict[list(inputdict.keys())[i]] = inputmsg
-				look_dict[list(inputdict.keys())[i]] = str(inputmsg)[:7]+'...' if len(str(inputmsg)) > 10 else str(inputmsg)
+	elif 시작(",정보"):
+		await message.channel.send(f"만든사람: <@526889025894875158>")
+
+	elif 시작(",에블핑"):
+		await message.channel.send("@everyone")
+
+	elif 시작(",히어핑"):
+		await message.channel.send("@here")
+
+	elif 시작(",짭블핑"):
+		await message.channel.send("<@&785085545998057522>")
+
+	elif 시작(",폭8"):
+		await message.channel.send(폭팔)
+
+	elif 시작(",프사"):
+		await message.channel.send(embed=discord.Embed(title=킹똥+"프사"+똥킹, color=0xffccff).set_image(url=message.author.avatar_url))
+
+	elif 시작(",말"):
+		await message.channel.send(m)
+
+	elif 시작(",반복") and 관맂():
+		if 반복[0]:
+			await message.channel.send(f"아직 {반복[0]}번 남음")
+			return
+		반복[0], 반복[1] = int(m.split()[0]), m.split()[1]
+		await message.channel.send(f"앞으로 {반복[0]}번 반복")
+
+	elif 시작(",임베드"):
+		inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
+		look_dict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
+		mymsg = await message.channel.send("준비중...")
+		for i in range(len(list(inputdict.keys()))):
 			await mymsg.delete()
-			try:
-				embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=int("0x"+inputdict["색"]))
-			except:
-				embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=0x000000)
-			embed.add_field(name=inputdict["소제목"], value=inputdict["내용"], inline=False)
-			embed.set_footer(text=inputdict["푸터"])
-			await message.channel.send(embed=embed)
+			mymsg = await message.channel.send(str(i) + ". " + str(list(inputdict.keys())[i]) + "을(를) 입력해주세요.\n```yaml\n" + str(str(look_dict)[1:-1].replace(', ', ',\n').replace(땀표[0], 땀표[1])) + 땀표[0])
+			inputmsg = await client.wait_for('message', timeout=30.0, check=체크)
+			inputmsg = inputmsg.content
+			inputdict[list(inputdict.keys())[i]] = inputmsg
+			look_dict[list(inputdict.keys())[i]] = str(inputmsg)[:7]+'...' if len(str(inputmsg)) > 10 else str(inputmsg)
+		await mymsg.delete()
+		try:
+			embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=int("0x"+inputdict["색"]))
+		except:
+			embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=0x000000)
+		embed.add_field(name=inputdict["소제목"], value=inputdict["내용"], inline=False)
+		embed.set_footer(text=inputdict["푸터"])
+		await message.channel.send(embed=embed)
 
-		elif 시작("기억"):
-			q = m[3:].split()
-			if len(q) == 0: # 목록
-				await message.channel.send(str(기억.keys())[10:-1].replace(', ', ',\n'))
-			elif len(q) == 1: # 찾기
-				await message.channel.send(f"{기억[q[0]][0]} - `{기억[q[0]][1]}`" if q[0] in 기억 else "없음")
-			elif len(q) == 2: # 등록
-				if q[0] in list(기억.keys()):
-					기억[q[0]] = [q[1], str(message.author)]
-					await message.channel.send(q[0] + " 을(를) 덮음")
-				else:
-					기억[q[0]] = [q[1], str(message.author)]
-					await message.channel.send(q[0] + " 을(를) 기억")
+	elif 시작(",기억"):
+		q = m.split()
+		if len(q) == 0: # 목록
+			await message.channel.send(str(기억.keys())[10:-1].replace(', ', ',\n'))
+		elif len(q) == 1: # 찾기
+			await message.channel.send(f"{기억[q[0]][0]} - `{기억[q[0]][1]}`" if q[0] in 기억 else "없음")
+		elif len(q) == 2: # 등록
+			if q[0] in list(기억.keys()):
+				기억[q[0]] = [q[1], str(message.author)]
+				await message.channel.send(q[0] + " 을(를) 덮음")
 			else:
-				await message.channel.send("ㅏ 띄어쓰기 안됨")
-				
-		elif 시작("지뢰찾기"):
-			#제대로 input 했는지 확인
-			mine_input = m[5:].split()
-			if len(mine_input) != 3:
-				await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y```") ; return
-			mine_x = int(mine_input[0])
-			mine_y = int(mine_input[1])
-			mine_z = int(mine_input[2])
-			if (mine_x < 1) or (mine_y < 1) or (mine_z < 1) or (mine_x > 17) or (mine_y > 50) or (mine_z > mine_x * mine_y):
-				await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y```") ; return
-			#확인 끝, 틀 만들기
-			mine_map = []
-			for i in range(mine_y):
-				mine_map.append([])
-				for j in range(mine_x):
-					mine_map[i].append(지뢰[0])
-			#틀 만들기 끝, 지뢰 넣기
-			i=0
-			while i < mine_z:
-				i1 = random.randrange(mine_y)
-				i2 = random.randrange(mine_x)
+				기억[q[0]] = [q[1], str(message.author)]
+				await message.channel.send(q[0] + " 을(를) 기억")
+		else:
+			await message.channel.send("ㅏ 띄어쓰기 안됨")
+
+	elif 시작(",지뢰찾기"):
+		#제대로 input 했는지 확인
+		mine_input = m.split()
+		if len(mine_input) != 3:
+			await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y```") ; return
+		mine_x = int(mine_input[0])
+		mine_y = int(mine_input[1])
+		mine_z = int(mine_input[2])
+		if (mine_x < 1) or (mine_y < 1) or (mine_z < 1) or (mine_x > 17) or (mine_y > 50) or (mine_z > mine_x * mine_y):
+			await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y```") ; return
+		#확인 끝, 틀 만들기
+		mine_map = []
+		for i in range(mine_y):
+			mine_map.append([])
+			for j in range(mine_x):
+				mine_map[i].append(지뢰[0])
+		#틀 만들기 끝, 지뢰 넣기
+		i=0
+		while i < mine_z:
+			i1 = random.randrange(mine_y)
+			i2 = random.randrange(mine_x)
+			if mine_map[i1][i2] == 지뢰[10]:
+				continue
+			else:
+				mine_map[i1][i2] = 지뢰[10]
+				i+=1
+		#지뢰 넣기 끝, 숫자 넣기
+		for i1 in range(mine_y):
+			for i2 in range(mine_x):
 				if mine_map[i1][i2] == 지뢰[10]:
 					continue
 				else:
-					mine_map[i1][i2] = 지뢰[10]
-					i+=1
-			#지뢰 넣기 끝, 숫자 넣기
-			for i1 in range(mine_y):
-				for i2 in range(mine_x):
-					if mine_map[i1][i2] == 지뢰[10]:
-						continue
-					else:
-						i=0
+					i=0
 
-						try:
-							i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
-						except:
-							pass
+					try:
+						i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
+					except:
+						pass
 
-						try:
-							i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2] == 지뢰[10] else 0
-						except:
-							pass
+					try:
+						i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2] == 지뢰[10] else 0
+					except:
+						pass
 
-						try:
-							i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2+1] == 지뢰[10] else 0
-						except:
-							pass
+					try:
+						i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2+1] == 지뢰[10] else 0
+					except:
+						pass
 
-						try:
-							i += 1 if mine_map[i1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
-						except:
-							pass
+					try:
+						i += 1 if mine_map[i1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
+					except:
+						pass
 
-						#try:
-							#i += 1 if mine_map[i1][i2] == 지뢰[10] else 0
-						#except:
-							#pass
+					#try:
+						#i += 1 if mine_map[i1][i2] == 지뢰[10] else 0
+					#except:
+						#pass
 
-						try:
-							i += 1 if mine_map[i1][i2+1] == 지뢰[10] else 0
-						except:
-							pass
+					try:
+						i += 1 if mine_map[i1][i2+1] == 지뢰[10] else 0
+					except:
+						pass
 
-						try:
-							i += 1 if mine_map[i1+1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
-						except:
-							pass
+					try:
+						i += 1 if mine_map[i1+1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
+					except:
+						pass
 
-						try:
-							i += 1 if mine_map[i1+1][i2] == 지뢰[10] else 0
-						except:
-							pass
+					try:
+						i += 1 if mine_map[i1+1][i2] == 지뢰[10] else 0
+					except:
+						pass
 
-						try:
-							i += 1 if mine_map[i1+1][i2+1] == 지뢰[10] else 0
-						except:
-							pass
+					try:
+						i += 1 if mine_map[i1+1][i2+1] == 지뢰[10] else 0
+					except:
+						pass
 
-						mine_map[i1][i2] = 지뢰[i]
-			mine_map_lookver = ''
-			for i in mine_map:
-				for j in i:
-					mine_map_lookver += f"||{j}||"
-				mine_map_lookver += '\n'
+					mine_map[i1][i2] = 지뢰[i]
+		mine_map_lookver = ''
+		for i in mine_map:
+			for j in i:
+				mine_map_lookver += f"||{j}||"
+			mine_map_lookver += '\n'
 
-			for j in mine_map_lookver.split():
-				time.sleep(1)
-				await message.channel.send(j)
+		for j in mine_map_lookver.split():
+			time.sleep(1)
+			await message.channel.send(j)
 
-		elif 시작("청소"):
-			await message.channel.purge(limit=int(m[3:])+1)
-			msg = await message.channel.send(f"{m[3:]}개의 메시지를 지움")
-			time.sleep(2)
-			await msg.delete()
+	elif 시작(",청소"):
+		await message.channel.purge(limit=int(m)+1)
+		msg = await message.channel.send(f"{m}개의 메시지를 지움")
+		time.sleep(2)
+		await msg.delete()
 
-		elif 시작("한영"):
-			await message.channel.send(한영(m[2:]))
+	elif 시작(",한영"):
+		await message.channel.send(한영(m))
 
-		elif 시작("영한"):
-			await message.channel.send(영한(m[2:]))
+	elif 시작(",영한"):
+		await message.channel.send(영한(m))
+
+	elif 시작(",역할생성"):
+		try:
+			await message.guild.create_role(name = m)
+			await message.add_reaction(동글)
+		except:
+			await message.add_reaction(엑스)
+
+	elif 시작(",역할제거"):
+		try:
+			role = discord.utils.get(message.guild.roles, name=m)
+			await role.delete()
+			await message.add_reaction(동글)
+		except:
+			await message.add_reaction(엑스)
 			
-		elif 시작("역할생성"):
-			try:
-				await message.guild.create_role(name = m[5:])
-				await message.add_reaction(동글)
-			except:
-				await message.add_reaction(엑스)
-				
-		elif 시작("역할제거"):
-			try:
-				role = discord.utils.get(message.guild.roles, name=m[5:])
-				await role.delete()
-				await message.add_reaction(동글)
-			except:
-				await message.add_reaction(엑스)
-			
-
 	m = message.content
-	if 시작(",계산") or 시작("```"):
-		if message.author.bot:
-			return
-		if 시작("```"):
-			m = m[3:-3]
-		if 시작(",계산"):
-			m = m[4:]
+	
+	if 시작(",계산"):
 		if '\n' in m:
 			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
 			outputmsg = str(출력)
@@ -448,17 +467,16 @@ async def on_message(message):
 		
 @client.event
 async def on_message_edit(beforeMessage, message):
+	
 	def 시작(s):
 		m.startswith(s)
 
+	if message.author.bot: # 봇이 보낸 메시지 무시
+		return
+		
 	m = message.content
-	if 시작(",계산") or 시작("```"):
-		if message.author.bot:
-			return
-		if 시작("```"):
-			m = m[3:-3]
-		if 시작(",계산"):
-			m = m[4:]
+	
+	if 시작(",계산"):
 		if '\n' in m:
 			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
 			outputmsg = str(출력)
