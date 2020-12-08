@@ -100,25 +100,23 @@ async def on_message(message):
 	# print(m)
 	def 포함(s):
 		return m.find(s)+1
-	
+
 	def 시작(s):
 		global m
 		if m.split()[0] == s:
-			m = m.split()[1:]
+			m = ' '.join(m.split(' ')[1:])
 			return True
 		else:
-			False
-			
+			reutn False
+
 	def 끝남(s):
 		global m
 		if m.split()[-1] == s:
-			m = m.split()[:-1]
+			m = ' '.join(m.split(' ')[:-1])
 			return True
 		else:
-			False
-			
-			
-		
+			return False
+
 	def 관맂(): # 관리자(감자#9400)인지 확인
 		return message.author.id == 526889025894875158
 	
