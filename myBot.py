@@ -454,10 +454,23 @@ async def on_message(message):
 			await message.add_reaction(엑스)
 			
 	elif 시작(",채널생성") and 관맂():
-		await guild.create_text_channel('cool-channel')
+		m = m[6:]
+		try:
+			category = discord.utils.get(message.guild.categories, name=' '.join(m.split(' ')[1:]))
+			await message.guild.create_text_channel(m.split(' ')[0], category=category)
+			await message.add_reaction(동글)
+		except:
+			await message.add_reaction(엑스)
 	
 	elif 시작(",채널제거") and 관맂():
-		pass
+		m = m[6:]
+		try:
+			channel = discord.utils.get(message.guild.channels, name=m)
+			await channel.delete()
+			await message.add_reaction(동글)
+		except:
+			await message.add_reaction(엑스)
+			
 			
 	elif 시작(",계산") and 관리():
 		m = m[4:]
