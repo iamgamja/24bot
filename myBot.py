@@ -102,20 +102,7 @@ async def on_message(message):
 		return m.find(s)+1
 
 	def 시작(s):
-		global m
-		if m.split()[0] == s:
-			m = ' '.join(m.split(' ')[1:])
-			return True
-		else:
-			return False
-
-	def 끝남(s):
-		global m
-		if m.split()[-1] == s:
-			m = ' '.join(m.split(' ')[:-1])
-			return True
-		else:
-			return False
+		return m.startswith(s)
 
 	def 관맂(): # 관리자(감자#9400)인지 확인
 		return message.author.id == 526889025894875158
@@ -290,9 +277,11 @@ async def on_message(message):
 		await message.channel.send(embed=discord.Embed(title=킹똥+"프사"+똥킹, color=0xffccff).set_image(url=message.author.avatar_url))
 
 	elif 시작(",말"):
+		m = m[3:]
 		await message.channel.send(m)
 
 	elif 시작(",반복") and 관맂():
+		m = m[4:]
 		if 반복[0]:
 			await message.channel.send(f"아직 {반복[0]}번 남음")
 			return
@@ -320,6 +309,7 @@ async def on_message(message):
 		await message.channel.send(embed=embed)
 
 	elif 시작(",기억"):
+		m = m[4:]
 		q = m.split()
 		if len(q) == 0: # 목록
 			await message.channel.send(str(기억.keys())[10:-1].replace(', ', ',\n'))
@@ -336,6 +326,7 @@ async def on_message(message):
 			await message.channel.send("ㅏ 띄어쓰기 안됨")
 
 	elif 시작(",지뢰찾기"):
+		m = m[6:]
 		#제대로 input 했는지 확인
 		mine_input = m.split()
 		if len(mine_input) != 3:
@@ -426,18 +417,22 @@ async def on_message(message):
 			await message.channel.send(j)
 
 	elif 시작(",청소"):
+		m = m[4:]
 		await message.channel.purge(limit=int(m)+1)
 		msg = await message.channel.send(f"{m}개의 메시지를 지움")
 		time.sleep(2)
 		await msg.delete()
 
 	elif 시작(",한영"):
+		m = m[4:]
 		await message.channel.send(한영(m))
 
 	elif 시작(",영한"):
+		m = m[4:]
 		await message.channel.send(영한(m))
 
 	elif 시작(",역할생성"):
+		m = m[6:]
 		try:
 			await message.guild.create_role(name = m)
 			await message.add_reaction(동글)
@@ -445,6 +440,7 @@ async def on_message(message):
 			await message.add_reaction(엑스)
 
 	elif 시작(",역할제거"):
+		m = m[6:]
 		try:
 			role = discord.utils.get(message.guild.roles, name=m)
 			await role.delete()
@@ -452,9 +448,8 @@ async def on_message(message):
 		except:
 			await message.add_reaction(엑스)
 			
-	m = message.content
-	
-	if 시작(",계산"):
+	elif 시작(",계산"):
+		m = m[4:]
 		if '\n' in m:
 			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
 			outputmsg = str(출력)
@@ -466,15 +461,16 @@ async def on_message(message):
 @client.event
 async def on_message_edit(beforeMessage, message):
 	
+	m = message.content
+	
 	def 시작(s):
 		m.startswith(s)
 
 	if message.author.bot: # 봇이 보낸 메시지 무시
 		return
 		
-	m = message.content
-	
 	if 시작(",계산"):
+		m = m[4:]
 		if '\n' in m:
 			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
 			outputmsg = str(출력)
