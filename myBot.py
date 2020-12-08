@@ -104,8 +104,11 @@ async def on_message(message):
 	def 시작(s):
 		return m.startswith(s)
 
-	def 관맂(): # 관리자(감자#9400)인지 확인
+	def 관리(): # 관리자(감자#9400)인지 확인
 		return message.author.id == 526889025894875158
+	
+	def 관맂(): # 관리자(감자#9400) 이거나 yee서버이거나
+		return message.author.id == 526889025894875158 or message.guild.id == 785083334929547284
 	
 	def 체크(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인
 		return m.channel.id == message.channel.id and m.author == message.author
@@ -226,19 +229,19 @@ async def on_message(message):
 		embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
 		embed.add_field(name=빈공, value="**`재미`**", inline=False)
 		embed.add_field(name=",핑", value="으악 핑", inline=True)
-		embed.add_field(name=",에블핑", value="으악 핑", inline=True)
-		embed.add_field(name=",히어핑", value="으악 핑", inline=True)
+		embed.add_field(name="~~,에블핑~~", value="~~으악 핑~~", inline=True)
+		embed.add_field(name="~~,히어핑~~", value="~~으악 핑~~", inline=True)
 		embed.add_field(name=",폭8", value="폭☆8", inline=True)
 		embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
 		embed.add_field(name=빈공, value=빈공, inline=True)
 		embed.add_field(name=빈공, value="**`기능`**", inline=False)
 		embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
 		embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
-		embed.add_field(name=",계산 <식>", value="<식>을 계산합니다.", inline=True)
-		embed.add_field(name=",청소 <수>", value="<수>만큼의 메시지를 지웁니다.", inline=True)
+		embed.add_field(name="~~,계산 <식>~~", value="~~<식>을 계산합니다.~~", inline=True)
+		embed.add_field(name="~~,청소 <수>~~", value="~~<수>만큼의 메시지를 지웁니다.~~", inline=True)
 		embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
-		embed.add_field(name=",역할생성 <이름>", value="<이름>의 역할을 생성합니다.", inline=True)
-		embed.add_field(name=",역할제거 <이름>", value="<이름>의 역할을 제거합니다.", inline=True)
+		embed.add_field(name="~~,역할생성 <이름>~~", value="~~<이름>의 역할을 생성합니다.~~", inline=True)
+		embed.add_field(name="~~,역할제거 <이름>~~", value="~~<이름>의 역할을 제거합니다.~~", inline=True)
 		embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
 		embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
 		embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
@@ -261,10 +264,10 @@ async def on_message(message):
 	elif 시작(",정보"):
 		await message.channel.send(f"만든사람: <@526889025894875158>")
 
-	elif 시작(",에블핑"):
+	elif 시작(",에블핑") and 관맂():
 		await message.channel.send("@everyone")
 
-	elif 시작(",히어핑"):
+	elif 시작(",히어핑") and 관맂():
 		await message.channel.send("@here")
 
 	elif 시작(",짭블핑"):
@@ -416,7 +419,7 @@ async def on_message(message):
 			time.sleep(1)
 			await message.channel.send(j)
 
-	elif 시작(",청소"):
+	elif 시작(",청소") and 관맂():
 		m = m[4:]
 		await message.channel.purge(limit=int(m)+1)
 		msg = await message.channel.send(f"{m}개의 메시지를 지움")
@@ -431,7 +434,7 @@ async def on_message(message):
 		m = m[4:]
 		await message.channel.send(영한(m))
 
-	elif 시작(",역할생성"):
+	elif 시작(",역할생성") and 관맂():
 		m = m[6:]
 		try:
 			await message.guild.create_role(name = m)
@@ -439,7 +442,7 @@ async def on_message(message):
 		except:
 			await message.add_reaction(엑스)
 
-	elif 시작(",역할제거"):
+	elif 시작(",역할제거") and 관맂():
 		m = m[6:]
 		try:
 			role = discord.utils.get(message.guild.roles, name=m)
@@ -448,7 +451,7 @@ async def on_message(message):
 		except:
 			await message.add_reaction(엑스)
 			
-	elif 시작(",계산"):
+	elif 시작(",계산") and 관리():
 		m = m[4:]
 		if '\n' in m:
 			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
@@ -466,10 +469,16 @@ async def on_message_edit(beforeMessage, message):
 	def 시작(s):
 		m.startswith(s)
 
+	def 관리(): # 관리자(감자#9400)인지 확인
+		return message.author.id == 526889025894875158
+	
+	def 관맂(): # 관리자(감자#9400) 이거나 yee서버이거나
+		return message.author.id == 526889025894875158 or message.guild.id == 785083334929547284
+	
 	if message.author.bot: # 봇이 보낸 메시지 무시
 		return
 		
-	if 시작(",계산"):
+	if 시작(",계산") and 관리():
 		m = m[4:]
 		if '\n' in m:
 			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
