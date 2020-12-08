@@ -242,6 +242,8 @@ async def on_message(message):
 		embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
 		embed.add_field(name="~~,역할생성 <이름>~~", value="~~<이름>의 역할을 생성합니다.~~", inline=True)
 		embed.add_field(name="~~,역할제거 <이름>~~", value="~~<이름>의 역할을 제거합니다.~~", inline=True)
+		embed.add_field(name="~~,채널생성 <이름>~~", value="~~<이름>의 채널을 생성합니다.~~", inline=True)
+		embed.add_field(name="~~,채널제거 <이름>~~", value="~~<이름>의 채널을 제거합니다.~~", inline=True)
 		embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
 		embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
 		embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
@@ -450,6 +452,12 @@ async def on_message(message):
 			await message.add_reaction(동글)
 		except:
 			await message.add_reaction(엑스)
+			
+	elif 시작(",채널생성") and 관맂():
+		await guild.create_text_channel('cool-channel')
+	
+	elif 시작(",채널제거") and 관맂():
+		pass
 			
 	elif 시작(",계산") and 관리():
 		m = m[4:]
