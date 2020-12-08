@@ -242,7 +242,7 @@ async def on_message(message):
 		embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
 		embed.add_field(name="~~,역할생성 <이름>~~", value="~~<이름>의 역할을 생성합니다.~~", inline=True)
 		embed.add_field(name="~~,역할제거 <이름>~~", value="~~<이름>의 역할을 제거합니다.~~", inline=True)
-		embed.add_field(name="~~,채널생성 <이름>~~", value="~~<이름>의 채널을 생성합니다.~~", inline=True)
+		embed.add_field(name="~~,채널생성 <카테고리> <이름>~~", value="~~<카테고리>에 <이름>의 채널을 생성합니다.~~", inline=True)
 		embed.add_field(name="~~,채널제거 <이름>~~", value="~~<이름>의 채널을 제거합니다.~~", inline=True)
 		embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
 		embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
