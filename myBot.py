@@ -490,6 +490,7 @@ async def on_message(message):
 		Agains = list(map(str, list(range(51))))
 
 		if (시작("+") or 시작("-")) and (message.author.id == 647001590766632966 or message.author.id == 526889025894875158): # 생강 또는 감자 + 또는 -
+			ㅂ=0/0
 			q=m[1:].split()
 			money = q[0]
 			user = await message.guild.fetch_member(526889025894875158)
