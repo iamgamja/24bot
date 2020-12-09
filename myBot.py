@@ -493,7 +493,6 @@ async def on_message(message):
 			q=m[1:].split()
 			money = q[0]
 			user = await message.guild.fetch_member(526889025894875158)
-			await message.channel.send(user)
 			#유저가 가지고 있는 역할의 이름 찾기
 			for userRank in Ranks:
 				if discord.utils.get(user.roles, name=userRank):
@@ -516,7 +515,7 @@ async def on_message(message):
 			userTotalRank += Tears.index(userTear)*len(Ranks)
 			userTotalRank += Agains.index(userAgain)*len(Ranks)*len(Tears)
 			userTotalRank += int(money)
-			
+			q=0/0
 			#환생횟수 적용
 			if userTotalRank // (len(Ranks)*len(Tears)) == 0:
 				pass
