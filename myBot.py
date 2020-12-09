@@ -511,7 +511,7 @@ async def on_message(message):
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
 			if userAgain != "0":
 				await user.remove_roles(discord.utils.get(message.guild.roles, name=userAgain))
-			await message.channel.send(1)
+			
 			#유저랭크 계산
 			userTotalRank = 0
 			userTotalRank += Ranks.index(userRank)
@@ -527,13 +527,10 @@ async def on_message(message):
 			else:
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
 			userTotalRank %= (len(Ranks)*len(Tears))
-			#티어 적용
-			if userTotalRank // len(Ranks) == 0:
-				pass
-			else:
-				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
+			#티어 적용 (0이어도 0번째(아톰))
+			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
 			userTotalRank %= len(Ranks)
-			#랭크 적용
+			#랭크 적용 (0이어도 0번째(L))
 			await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
 			await message.add_reaction(동글)
 	except Exception as e:
