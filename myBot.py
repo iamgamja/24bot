@@ -480,56 +480,59 @@ async def on_message(message):
 			await message.add_reaction(엑스)
 			
 	##########
-	Ranks = ('L', 'XLIX', 'XLVIII', 'XLVII', 'XLVI', 'XLV', 'XLIV', 'XLIII', 'XLII', 'XLI', 'XL', 'XXXIX', 'XXXVIII', 'XXXVII', 'XXXVI', 'XXXV', 'XXXIV', 'XXXIII', 'XXXII', 'XXXI', 'XXX', 'XXIX', 'XXVIII', 'XXVII', 'XXVI', 'XXV', 'XXIV', 'XXIII', 'XXII', 'XXI', 'XX', 'XIX', 'XVIII', 'XVII', 'XVI', 'XV', 'XIV', 'XIII', 'XII', 'XI', 'X', 'IX', 'VIII', 'VII', 'VI', 'V', 'IV', 'III', 'II', 'I')
-	
-	Tears = ('아톰', '몰레큘', '셀', '슈퍼셀', '하이퍼셀', '워터', '클린워터', '아이스', '클린아이스', '하드아이스', '소일', '우드', '페이퍼', '샌드', '글래스', '클리어글래스', '미러', '클리어미러', '스톤', '하드스톤', '아이언', '하드아이언', '브론즈', '클리어브론즈', '브론즈메달', '실버', '클리어실버', '실버메달', '골드', '클리어골드', '골드메달', '아메티스트(자수정)', '크리스탈', '클리어크리스탈', '블랙크리스탈', '다이아몬드', '블랙다이아몬드', '아다만티움', '사파이어', '에메랄드', '루비', '우루', '비브라늄', '클래식', '프리미엄', '딜럭스', '익스트림', '플래티넘', '미스틱', '챌린저', '마스터', '그랜드', '챔피언', '레전드')
-	
-	Agains = list(map(str, list(range(51))))
-	
-	if (시작("+") or 시작("-")) and message.author.id == 647001590766632966: # 생강 +
-		q=m[1:].split()
-		money = q[1]
-		user = client.get_user(int(q[2][2:-1]))
-		#유저가 가지고 있는 역할의 이름 찾기
-		for userRank in Ranks:
-			if discord.utils.get(user.roles, name=userRank):
-				break
-		for userTear in Tears:
-			if discord.utils.get(user.roles, name=userTear):
-				break
-		for userAgain in Agains:
-			if discord.utils.get(user.roles, name=userAgain):
-				break
-		else:
-			userAgain = 0
-		#역할제거
-		await user.remove_roles(discord.utils.get(user.roles, name=userRank))
-		await user.remove_roles(discord.utils.get(user.roles, name=userTear))
-		await user.remove_roles(discord.utils.get(user.roles, name=userAgain))
-		#유저랭크 계산
-		userTotalRank = 0
-		userTotalRank += Ranks.index(userRank)
-		userTotalRank += Tears.index(userTear)*len(Ranks)
-		userTotalRank += Agains.index(userAgain)*len(Ranks)*len(Tears)
-		userTotalRank += int(money)
-		#환생횟수 적용
-		if userTotalRank // (len(Ranks)*len(Tears)) == 0:
-			pass
-		elif userTotalRank // (len(Ranks)*len(Tears)) > 50:
-			await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342))
-		else:
-			await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
-		userTotalRank %= (len(Ranks)*len(Tears))
-		#티어 적용
-		if userTotalRank // len(Ranks) == 0:
-			pass
-		else:
-			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
-		userTotalRank %= len(Ranks)
-		#랭크 적용
-		await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
+	try:
+		Ranks = ('L', 'XLIX', 'XLVIII', 'XLVII', 'XLVI', 'XLV', 'XLIV', 'XLIII', 'XLII', 'XLI', 'XL', 'XXXIX', 'XXXVIII', 'XXXVII', 'XXXVI', 'XXXV', 'XXXIV', 'XXXIII', 'XXXII', 'XXXI', 'XXX', 'XXIX', 'XXVIII', 'XXVII', 'XXVI', 'XXV', 'XXIV', 'XXIII', 'XXII', 'XXI', 'XX', 'XIX', 'XVIII', 'XVII', 'XVI', 'XV', 'XIV', 'XIII', 'XII', 'XI', 'X', 'IX', 'VIII', 'VII', 'VI', 'V', 'IV', 'III', 'II', 'I')
+
+		Tears = ('아톰', '몰레큘', '셀', '슈퍼셀', '하이퍼셀', '워터', '클린워터', '아이스', '클린아이스', '하드아이스', '소일', '우드', '페이퍼', '샌드', '글래스', '클리어글래스', '미러', '클리어미러', '스톤', '하드스톤', '아이언', '하드아이언', '브론즈', '클리어브론즈', '브론즈메달', '실버', '클리어실버', '실버메달', '골드', '클리어골드', '골드메달', '아메티스트(자수정)', '크리스탈', '클리어크리스탈', '블랙크리스탈', '다이아몬드', '블랙다이아몬드', '아다만티움', '사파이어', '에메랄드', '루비', '우루', '비브라늄', '클래식', '프리미엄', '딜럭스', '익스트림', '플래티넘', '미스틱', '챌린저', '마스터', '그랜드', '챔피언', '레전드')
+
+		Agains = list(map(str, list(range(51))))
+
+		if (시작("+") or 시작("-")) and message.author.id == 647001590766632966: # 생강 +
+			q=m[1:].split()
+			money = q[1]
+			user = client.get_user(int(q[2][2:-1]))
+			#유저가 가지고 있는 역할의 이름 찾기
+			for userRank in Ranks:
+				if discord.utils.get(user.roles, name=userRank):
+					break
+			for userTear in Tears:
+				if discord.utils.get(user.roles, name=userTear):
+					break
+			for userAgain in Agains:
+				if discord.utils.get(user.roles, name=userAgain):
+					break
+			else:
+				userAgain = 0
+			#역할제거
+			await user.remove_roles(discord.utils.get(user.roles, name=userRank))
+			await user.remove_roles(discord.utils.get(user.roles, name=userTear))
+			await user.remove_roles(discord.utils.get(user.roles, name=userAgain))
+			#유저랭크 계산
+			userTotalRank = 0
+			userTotalRank += Ranks.index(userRank)
+			userTotalRank += Tears.index(userTear)*len(Ranks)
+			userTotalRank += Agains.index(userAgain)*len(Ranks)*len(Tears)
+			userTotalRank += int(money)
+			#환생횟수 적용
+			if userTotalRank // (len(Ranks)*len(Tears)) == 0:
+				pass
+			elif userTotalRank // (len(Ranks)*len(Tears)) > 50:
+				await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342))
+			else:
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
+			userTotalRank %= (len(Ranks)*len(Tears))
+			#티어 적용
+			if userTotalRank // len(Ranks) == 0:
+				pass
+			else:
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
+			userTotalRank %= len(Ranks)
+			#랭크 적용
+			await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
+	except Exception as e:
+		await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
 	##########
-	elif 시작(",계산") and 관리():
+	if 시작(",계산") and 관리():
 		m = m[4:]
 		if '\n' in m:
 			exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
