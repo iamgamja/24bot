@@ -494,6 +494,7 @@ async def on_message(message):
 			money = q[0]
 			user = await message.guild.fetch_member(526889025894875158)
 			#유저가 가지고 있는 역할의 이름 찾기
+			q=0/0
 			for userRank in Ranks:
 				if discord.utils.get(user.roles, name=userRank):
 					break
