@@ -522,7 +522,7 @@ async def on_message(message):
 						for Tear in Tears:
 							if discord.utils.get(message.author.roles, name=Tear):
 								break
-						role = discord.utils.get(message.guild.roles, name=tear)
+						role = discord.utils.get(message.guild.roles, name=Tear)
 						await message.author.remove_roles(role) # 현재 티어 제거
 						if Tears.index(Tear) == len(Tears)-1: # 마지막 티어일경우
 							pass # 미구현
