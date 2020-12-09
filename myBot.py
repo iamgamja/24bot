@@ -202,53 +202,55 @@ async def on_message(message):
 # 		return
 	
 	# 반응달기
-	gumsajung = m[:]
-	while gumsajung:
-		isend = True
-		for i in 이몾.keys():
-			if gumsajung.startswith(i):
-				isend = False
-				await message.add_reaction(이몾[i])
-				gumsajung = gumsajung[len(i):]
-		if isend:
-			gumsajung = gumsajung[1:]
+	if 관ㄹ():
+		gumsajung = m[:]
+		while gumsajung:
+			isend = True
+			for i in 이몾.keys():
+				if gumsajung.startswith(i):
+					isend = False
+					await message.add_reaction(이몾[i])
+					gumsajung = gumsajung[len(i):]
+			if isend:
+				gumsajung = gumsajung[1:]
 			
 			
 			
 			
-	if 시작(",도움") and 관ㄹ():
-		embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0xffccff)
-		embed.add_field(name=빈공, value="**`도움`**", inline=False)
-		embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
-		embed.add_field(name=빈공, value="**`재미`**", inline=False)
-		embed.add_field(name=",핑", value="으악 핑", inline=True)
-		embed.add_field(name="~~,에블핑~~", value="~~으악 핑~~", inline=True)
-		embed.add_field(name="~~,히어핑~~", value="~~으악 핑~~", inline=True)
-		embed.add_field(name=",폭8", value="폭☆8", inline=True)
-		embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
-		embed.add_field(name=빈공, value=빈공, inline=True)
-		embed.add_field(name=빈공, value="**`기능`**", inline=False)
-		embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
-		embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
-		embed.add_field(name="~~,계산 <식>~~", value="~~<식>을 계산합니다.~~", inline=True)
-		embed.add_field(name="~~,청소 <수>~~", value="~~<수>만큼의 메시지를 지웁니다.~~", inline=True)
-		embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
-		embed.add_field(name="~~,역할생성 <이름>~~", value="~~<이름>의 역할을 생성합니다.~~", inline=True)
-		embed.add_field(name="~~,역할제거 <이름>~~", value="~~<이름>의 역할을 제거합니다.~~", inline=True)
-		embed.add_field(name="~~,채널생성 <카테고리> <이름>~~", value="~~<카테고리>에 <이름>의 채널을 생성합니다.~~", inline=True)
-		embed.add_field(name="~~,채널제거 <이름>~~", value="~~<이름>의 채널을 제거합니다.~~", inline=True)
-		embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
-		embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
-		embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
-		embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
-		embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
-		embed.add_field(name=빈공, value=빈공, inline=True)
-		embed.add_field(name=빈공, value="**`기타`**", inline=False)
-		embed.add_field(name=",초대", value="초대 링크를 보냅니다.", inline=True)
-		embed.add_field(name=",정보", value="만든 사람을 찾습니다.", inline=True)
+	if 시작(",도움"):
+		if 관ㄹ():
+			embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=825)
+			embed.add_field(name=빈공, value="**`도움`**", inline=False)
+			embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
+			embed.add_field(name=빈공, value="**`재미`**", inline=False)
+			embed.add_field(name=",핑", value="으악 핑", inline=True)
+			embed.add_field(name="~~,에블핑~~", value="~~으악 핑~~", inline=True)
+			embed.add_field(name="~~,히어핑~~", value="~~으악 핑~~", inline=True)
+			embed.add_field(name=",폭8", value="폭☆8", inline=True)
+			embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
+			embed.add_field(name=빈공, value=빈공, inline=True)
+			embed.add_field(name=빈공, value="**`기능`**", inline=False)
+			embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
+			embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
+			embed.add_field(name="~~,계산 <식>~~", value="~~<식>을 계산합니다.~~", inline=True)
+			embed.add_field(name="~~,청소 <수>~~", value="~~<수>만큼의 메시지를 지웁니다.~~", inline=True)
+			embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
+			embed.add_field(name="~~,역할생성 <이름>~~", value="~~<이름>의 역할을 생성합니다.~~", inline=True)
+			embed.add_field(name="~~,역할제거 <이름>~~", value="~~<이름>의 역할을 제거합니다.~~", inline=True)
+			embed.add_field(name="~~,채널생성 <카테고리> <이름>~~", value="~~<카테고리>에 <이름>의 채널을 생성합니다.~~", inline=True)
+			embed.add_field(name="~~,채널제거 <이름>~~", value="~~<이름>의 채널을 제거합니다.~~", inline=True)
+			embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
+			embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
+			embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
+			embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
+			embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
+			embed.add_field(name=빈공, value=빈공, inline=True)
+			embed.add_field(name=빈공, value="**`기타`**", inline=False)
+			embed.add_field(name=",초대", value="초대 링크를 보냅니다.", inline=True)
+			embed.add_field(name=",정보", value="만든 사람을 찾습니다.", inline=True)
 
-		embed.set_footer(text= f'{message.author.name} | {시간()}')
-		await message.channel.send(embed=embed)
+			embed.set_footer(text= f'{message.author.name} | {시간()}')
+			await message.channel.send(embed=embed)
 
 	elif 시작(",초대") and 관ㄹ():
 		await message.channel.send("https://discord.com/oauth2/authorize?&client_id=688978156535021599&scope=bot&permissions=8")
@@ -487,10 +489,15 @@ async def on_message(message):
 
 		Agains = list(map(str, list(range(51))))
 
-		if (시작("+") or 시작("-")) and message.author.id == 647001590766632966: # 생강 +
+		if (시작("+") or 시작("-")) and (message.author.id == 647001590766632966 or message.author.id == 526889025894875158): # 생강 또는 감자 + 또는 -
 			q=m[1:].split()
 			money = q[0]
 			user = client.get_user(int(q[1][3:-1]))
+			await client.get_channel(762916201654386701).send(q)
+			await client.get_channel(762916201654386701).send(q[1])
+			await client.get_channel(762916201654386701).send(q[1][3:-1])
+			await client.get_channel(762916201654386701).send(int(q[1][3:-1]))
+			await client.get_channel(762916201654386701).send(client.get_user(int(q[1][3:-1])))
 			#유저가 가지고 있는 역할의 이름 찾기
 			for userRank in Ranks:
 				if discord.utils.get(user.roles, name=userRank):
