@@ -506,8 +506,6 @@ async def on_message(message):
 					break
 			else:
 				userAgain = 0
-			await message.channel.send(type(user))
-			await message.channel.send(user)
 			#역할제거
 			await user.remove_roles(discord.utils.get(user.roles, name=userRank))
 			await user.remove_roles(discord.utils.get(user.roles, name=userTear))
