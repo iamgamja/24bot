@@ -506,11 +506,12 @@ async def on_message(message):
 					break
 			else:
 				userAgain = 0
-			q=0/0
+			
 			#역할제거
 			await user.remove_roles(discord.utils.get(user.roles, name=userRank))
 			await user.remove_roles(discord.utils.get(user.roles, name=userTear))
 			await user.remove_roles(discord.utils.get(user.roles, name=userAgain))
+			q=0/0
 			#유저랭크 계산
 			userTotalRank = 0
 			userTotalRank += Ranks.index(userRank)
