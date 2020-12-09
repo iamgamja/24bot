@@ -489,8 +489,8 @@ async def on_message(message):
 
 		if (시작("+") or 시작("-")) and message.author.id == 647001590766632966: # 생강 +
 			q=m[1:].split()
-			money = q[1]
-			user = client.get_user(int(q[2][3:-1]))
+			money = q[0]
+			user = client.get_user(int(q[1][3:-1]))
 			#유저가 가지고 있는 역할의 이름 찾기
 			for userRank in Ranks:
 				if discord.utils.get(user.roles, name=userRank):
@@ -510,39 +510,29 @@ async def on_message(message):
 			#유저랭크 계산
 			userTotalRank = 0
 			userTotalRank += Ranks.index(userRank)
-			await client.get_channel(762916201654386701).send(userTotalRank)
 			userTotalRank += Tears.index(userTear)*len(Ranks)
-			await client.get_channel(762916201654386701).send(userTotalRank)
 			userTotalRank += Agains.index(userAgain)*len(Ranks)*len(Tears)
-			await client.get_channel(762916201654386701).send(userTotalRank)
 			userTotalRank += int(money)
-			await client.get_channel(762916201654386701).send(userTotalRank)
 			
 			#환생횟수 적용
 			if userTotalRank // (len(Ranks)*len(Tears)) == 0:
-				await client.get_channel(762916201654386701).send(1)
 				pass
 			elif userTotalRank // (len(Ranks)*len(Tears)) > 50:
-				await client.get_channel(762916201654386701).send(2)
 				await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342))
 			else:
-				await client.get_channel(762916201654386701).send(3)
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
 			userTotalRank %= (len(Ranks)*len(Tears))
-			await client.get_channel(762916201654386701).send(userTotalRank)
 			#티어 적용
 			if userTotalRank // len(Ranks) == 0:
-				await client.get_channel(762916201654386701).send(1)
 				pass
 			else:
-				await client.get_channel(762916201654386701).send(2)
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
 			userTotalRank %= len(Ranks)
-			await client.get_channel(762916201654386701).send(userTotalRank)
 			#랭크 적용
 			await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
-			await client.get_channel(762916201654386701).send(userTotalRank)
+			await message.add_reaction(동글)
 	except Exception as e:
+		await message.add_reaction(엑스)
 		await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
 	##########
 	if 시작(",계산") and 관리():
