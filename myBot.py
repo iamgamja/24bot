@@ -492,12 +492,12 @@ async def on_message(message):
 		if (시작("+") or 시작("-")) and (message.author.id == 647001590766632966 or message.author.id == 526889025894875158): # 생강 또는 감자 + 또는 -
 			q=m[1:].split()
 			money = q[0]
-			user = client.get_user(int(q[1][3:-1]))
+			user = client.get_user(int(q[1][2:-1]))
 			await client.get_channel(762916201654386701).send(q)
 			await client.get_channel(762916201654386701).send(q[1])
-			await client.get_channel(762916201654386701).send(q[1][3:-1])
-			await client.get_channel(762916201654386701).send(int(q[1][3:-1]))
-			await client.get_channel(762916201654386701).send(client.get_user(int(q[1][3:-1])))
+			await client.get_channel(762916201654386701).send(q[1][2:-1])
+			await client.get_channel(762916201654386701).send(int(q[1][2:-1]))
+			await client.get_channel(762916201654386701).send(client.get_user(int(q[1][2:-1])))
 			#유저가 가지고 있는 역할의 이름 찾기
 			for userRank in Ranks:
 				if discord.utils.get(user.roles, name=userRank):
