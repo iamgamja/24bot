@@ -509,7 +509,7 @@ async def on_message(message):
 			#역할제거
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=userRank))
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
-			if userAgain == "0":
+			if userAgain != "0":
 				await user.remove_roles(discord.utils.get(message.guild.roles, name=userAgain))
 			await message.channel.send(1)
 			#유저랭크 계산
@@ -518,6 +518,7 @@ async def on_message(message):
 			userTotalRank += Tears.index(userTear)*len(Ranks)
 			userTotalRank += Agains.index(userAgain)*len(Ranks)*len(Tears)
 			userTotalRank += int(money)
+			await message.channel.send(uerTotalRank)
 			#환생횟수 적용
 			if userTotalRank // (len(Ranks)*len(Tears)) == 0:
 				pass
