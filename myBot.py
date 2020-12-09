@@ -490,7 +490,7 @@ async def on_message(message):
 		if (시작("+") or 시작("-")) and message.author.id == 647001590766632966: # 생강 +
 			q=m[1:].split()
 			money = q[1]
-			user = client.get_user(int(q[2][2:-1]))
+			user = client.get_user(int(q[2][3:-1]))
 			#유저가 가지고 있는 역할의 이름 찾기
 			for userRank in Ranks:
 				if discord.utils.get(user.roles, name=userRank):
