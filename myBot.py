@@ -518,7 +518,7 @@ async def on_message(message):
 			userTotalRank += Tears.index(userTear)*len(Ranks)
 			userTotalRank += Agains.index(userAgain)*len(Ranks)*len(Tears)
 			userTotalRank += int(money)
-			await message.channel.send(uerTotalRank)
+			await message.channel.send(userTotalRank)
 			#환생횟수 적용
 			if userTotalRank // (len(Ranks)*len(Tears)) == 0:
 				pass
