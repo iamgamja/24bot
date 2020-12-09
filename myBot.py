@@ -505,11 +505,12 @@ async def on_message(message):
 				if discord.utils.get(user.roles, name=userAgain):
 					break
 			else:
-				userAgain = 0
+				userAgain = "0"
 			#역할제거
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=userRank))
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
-			await user.remove_roles(discord.utils.get(message.guild.roles, name=userAgain))
+			if userAgain == "0":
+				await user.remove_roles(discord.utils.get(message.guild.roles, name=userAgain))
 			await message.channel.send(1)
 			#유저랭크 계산
 			userTotalRank = 0
