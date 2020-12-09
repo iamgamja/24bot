@@ -526,7 +526,7 @@ async def on_message(message):
                                 role = discord.utils.get(message.author.roles, name=RomeNumber)
                                 await message.author.remove_roles(role)
                                 role = discord.utils.get(message.guild.roles, name=RomeNumbers[RomeNumbers.index(RomeNumber)+1])
-                                await message.author.add_reols(role)
+                                await message.author.add_roles(role)
 	##########
 			
 	elif 시작(",계산") and 관리():
