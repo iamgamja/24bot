@@ -492,7 +492,7 @@ async def on_message(message):
 		if (시작("+") or 시작("-")) and (message.author.id == 647001590766632966 or message.author.id == 526889025894875158): # 생강 또는 감자 + 또는 -
 			q=m[1:].split()
 			money = q[0]
-			user = message.guild.fetch_member(526889025894875158)
+			user = await message.guild.fetch_member(526889025894875158)
 			#유저가 가지고 있는 역할의 이름 찾기
 			for userRank in Ranks:
 				if discord.utils.get(user.roles, name=userRank):
