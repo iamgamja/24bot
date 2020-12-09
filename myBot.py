@@ -487,24 +487,7 @@ async def on_message(message):
 			await message.add_reaction(엑스)
 			
 	##########
-			
-	if message.channel.name == "랭크업" or message.channel.name == "시간의-방": # 랭크업 가능한 채널의 메시지일경우
-                commands = {'ㅇ':1, 'ㄱ':2, 'ㅅ':3, 'ㅌ':4, 'ㅊ':5, '!ranker':2, '!important':3}
-                rankup = message.content.split()[0]
-                if rankup in commands:
-                        randomlist = []
-                        randomlist +=     commands[rankup] *[True]
-                        randomlist += (10-commands[rankup])*[False]
-                        randomRankup = random.choice(randomlist)
-                        if randomRankup:
-                                await message.channel.send("랭크업에 성공하였습니다!")
-                                ifRankup = True
-                        else:
-                                await message.channel.send("랭크업에 실패하였습니다...")
-                                ifRankup = False
-                        
-                        if ifRankup:
-                                RomeNumbers = ["I",  "II",  "III",  "IV", "V",
+	RomeNumbers = ("I",  "II",  "III",  "IV", "V",
                                                "VI", "VII", "VIII", "IX", "X",
                                                
                                                "XI",  "XII",  "XIII",  "XIV",  "XV",
@@ -517,16 +500,56 @@ async def on_message(message):
                                                "XXXVI", "XXXVII", "XXXVIII", "XXXIX",  "XL",
                                                
                                                "XLI",  "XLII",  "XLIII",  "XLIV", "XLV",
-                                               "XLVI", "XLVII", "XLVIII", "XLIX", "L"]
-                                
-                                for RomeNumber in RomeNumbers:
-                                        if discord.utils.get(message.author.roles, name=RomeNumber):
-                                                break
-                                                
-                                role = discord.utils.get(message.author.roles, name=RomeNumber)
-                                await message.author.remove_roles(role)
-                                role = discord.utils.get(message.guild.roles, name=RomeNumbers[RomeNumbers.index(RomeNumber)+1])
-                                await message.author.add_roles(role)
+                                               "XLVI", "XLVII", "XLVIII", "XLIX", "L")
+	
+	Tears = ('아톰', '몰레큘', '셀', '슈퍼셀', '하이퍼셀', '워터', '클린워터', '아이스', '클린아이스', 
+		'하드아이스', '소일', '우드', '페이퍼', '샌드', '글래스', '클리어글래스', '미러', '클리어미러', 
+		'스톤', '하드스톤', '아이언', '하드아이언', '브론즈', '클리어브론즈', '브론즈메달', '실버', 
+		'클리어실버', '실버메달', '골드', '클리어골드', '골드메달', '아메티스트(자수정)', '크리스탈', 
+		'클리어크리스탈', '블랙크리스탈', '다이아몬드', '블랙다이아몬드', '아다만티움', '사파이어', 
+		'에메랄드', '루비', '우루', '비브라늄', '클래식', '프리미엄', '딜럭스', '익스트림', '플래티넘', 
+		'미스틱', '챌린저', '마스터', '그랜드', '챔피언', '레전드')
+	
+	if message.channel.name == "랭크업" or message.channel.name == "시간의-방": # 랭크업 가능한 채널의 메시지일경우
+		commands = {'ㅇ':1, 'ㄱ':2, 'ㅅ':3, 'ㅌ':4, 'ㅊ':5, '!ranker':2, '!important':3}
+		rankup = message.content.split()[0]
+		if rankup in commands:
+			randomlist = []
+			randomlist +=     commands[rankup] *[True]
+			randomlist += (10-commands[rankup])*[False]
+			randomRankup = random.choice(randomlist)
+			if randomRankup:
+				await message.channel.send("랭크업에 성공하였습니다!")
+				ifRankup = True
+			else:
+				await message.channel.send("랭크업에 실패하였습니다...")
+				ifRankup = False
+
+			if ifRankup:
+				for RomeNumber in RomeNumbers:
+					if discord.utils.get(message.author.roles, name=RomeNumber):
+						break
+
+				role = discord.utils.get(message.author.roles, name=RomeNumber)
+				await message.author.remove_roles(role)
+				if RomeNumbers.index(RomeNumber) == len(RomeNumbers)-1:
+					role = discord.utils.get(message.guild.roles, name=RomeNumbers[0])
+					await message.author.add_roles(role)
+
+					for Tear in Tears:
+						if discord.utils.get(message.author.roles, name=Tear):
+							break
+					role = discord.utils.get(message.guild.roles, name=tear)
+					await message.author.remove_roles(role)
+					if Tears.index(Tear) == len(Tears)-1:
+						pass
+					else:
+						role = discord.utils.get(message.guild.roles, name=Tears[Tears.index(Tear)+1])
+						await message.author.add_roles(role)
+				else:
+					role = discord.utils.get(message.guild.roles, name=RomeNumbers[RomeNumbers.index(RomeNumber)+1])
+					await message.author.add_roles(role)
+
 	##########
 			
 	elif 시작(",계산") and 관리():
