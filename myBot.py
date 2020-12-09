@@ -472,14 +472,14 @@ async def on_message(message):
 			await message.add_reaction(엑스)
 			
 	elif 시작(",권한설정테스트") and 관리():
-		m = m[6:]
+		m = m[9:]
 		try:
 			q = len(m.split()) if len(m.split()) % 2 == 0 else 0/0
 			channels = m.split()[:q//2]
 			roles    = m.split()[q//2:]
 			
 			
-			for i in len(channels):
+			for i in range(len(channels)):
 				await discord.utils.get(message.guild.channels, name=channels[i]).set_permissions(discord.utils.get(message.guild.roles, name=roles[i]), read_messages=True)
 			await message.add_reaction(동글)
 		except Exception as e:
