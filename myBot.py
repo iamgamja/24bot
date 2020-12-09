@@ -482,7 +482,8 @@ async def on_message(message):
 			for i in len(channels):
 				await discord.utils.get(message.guild.channels, name=channels[i]).set_permissions(discord.utils.get(message.guild.roles, name=roles[i]), read_messages=True)
 			await message.add_reaction(동글)
-		except:
+		except Exception as e:
+			await message.channel.send(e)
 			await message.add_reaction(엑스)
 			
 			
