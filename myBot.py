@@ -486,6 +486,48 @@ async def on_message(message):
 			await message.channel.send(e)
 			await message.add_reaction(엑스)
 			
+	##########
+			
+	if message.channel.name == "랭크업" or message.channel.name == "시간의-방": # 랭크업 가능한 채널의 메시지일경우
+                commands = {'ㅇ':1, 'ㄱ':2, 'ㅅ':3, 'ㅌ':4, 'ㅊ':5, '!ranker':2, '!important':3}
+                rankup = message.content.split()[0]
+                if rankup in commands:
+                        randomlist = []
+                        randomlist +=     commands[rankup] *[True]
+                        randomlist += (10-commands[rankup])*[False]
+                        randomRankup = random.choice(randomlist)
+                        if randomRankup:
+                                await message.channel.send("랭크업에 성공하였습니다!")
+                                ifRankup = True
+                        else:
+                                await message.channel.send("랭크업에 실패하였습니다...")
+                                ifRankup = False
+                        
+                        if ifRankup:
+                                RomeNumbers = ["I",  "II",  "III",  "IV", "V",
+                                               "VI", "VII", "VIII", "IX", "X",
+                                               
+                                               "XI",  "XII",  "XIII",  "XIV",  "XV",
+                                               "XVI", "XVII", "XVIII", "XIX",  "XX",
+                                               
+                                               "XXI",  "XXII",  "XXIII",  "XXIV",  "XXV",
+                                               "XXVI", "XXVII", "XXVIII", "XXIX",  "XXX",
+                                               
+                                               "XXXI",  "XXXII",  "XXXIII",  "XXXIV",  "XXXV",
+                                               "XXXVI", "XXXVII", "XXXVIII", "XXXIX",  "XL",
+                                               
+                                               "XLI",  "XLII",  "XLIII",  "XLIV", "XLV",
+                                               "XLVI", "XLVII", "XLVIII", "XLIX", "L"]
+                                
+                                for RomeNumber in RomeNumbers:
+                                        if discord.utils.get(message.author.roles, name=RomeNumber):
+                                                break
+                                                
+                                role = discord.utils.get(message.author.roles, name=RomeNumber)
+                                await message.author.remove_roles(role)
+                                role = discord.utils.get(message.guild.roles, name=RomeNumbers[RomeNumbers.index(RomeNumber)+1])
+                                await message.author.add_reols(role)
+	##########
 			
 	elif 시작(",계산") and 관리():
 		m = m[4:]
