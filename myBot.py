@@ -466,21 +466,6 @@ async def on_message(message):
 		except:
 			await message.add_reaction(엑스)
 			
-	elif 시작(",권한설정테스트") and 관리():
-		m = m[9:]
-		try:
-			q = len(m.split()) if len(m.split()) % 2 == 0 else 0/0
-			channels = m.split()[:q//2]
-			roles    = m.split()[q//2:]
-			
-			
-			for i in range(len(channels)):
-				await discord.utils.get(message.guild.channels, name=channels[i]).set_permissions(discord.utils.get(message.guild.roles, name=roles[i]), read_messages=True)
-			await message.add_reaction(동글)
-		except Exception as e:
-			await message.channel.send(e)
-			await message.add_reaction(엑스)
-			
 	##########
 	try:
 		Ranks = ('L', 'XLIX', 'XLVIII', 'XLVII', 'XLVI', 'XLV', 'XLIV', 'XLIII', 'XLII', 'XLI', 'XL', 'XXXIX', 'XXXVIII', 'XXXVII', 'XXXVI', 'XXXV', 'XXXIV', 'XXXIII', 'XXXII', 'XXXI', 'XXX', 'XXIX', 'XXVIII', 'XXVII', 'XXVI', 'XXV', 'XXIV', 'XXIII', 'XXII', 'XXI', 'XX', 'XIX', 'XVIII', 'XVII', 'XVI', 'XV', 'XIV', 'XIII', 'XII', 'XI', 'X', 'IX', 'VIII', 'VII', 'VI', 'V', 'IV', 'III', 'II', 'I')
@@ -506,6 +491,7 @@ async def on_message(message):
 					break
 			else:
 				userAgain = "0"
+			await message.channel.send(f"{userRank} {userTear} {userAgain}"
 			#역할제거
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=userRank))
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
@@ -537,6 +523,14 @@ async def on_message(message):
 		await message.add_reaction(엑스)
 		await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
 	##########
+	if 시작(",테스트") and 관맂():
+		for i in Ranks:
+			await message.guild.create_role(name = i)
+		for i in Tears:
+			await message.guild.create_role(name = i)
+		for i in Agains:
+			await message.guild.create_role(name = i)
+		
 	if 시작(",계산") and 관리():
 		m = m[4:]
 		if '\n' in m:
