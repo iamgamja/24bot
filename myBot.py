@@ -479,6 +479,8 @@ async def on_message(message):
 				pota = await message.guild.fetch_member(526889025894875158)
 				user = await message.guild.fetch_member(int(q[1][2:-1]))
 				await message.channel.send(pota==user)
+				await message.channel.send(pota)
+				await message.channel.send(user)
 				#유저가 가지고 있는 역할의 이름 찾기
 
 				for userRank in Ranks:
