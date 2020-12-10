@@ -491,7 +491,7 @@ async def on_message(message):
 					break
 			else:
 				userAgain = "0"
-			await message.channel.send(f"{userRank} {userTear} {userAgain}"
+			await message.channel.send(f"{userRank} {userTear} {userAgain}")
 			#역할제거
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=userRank))
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
