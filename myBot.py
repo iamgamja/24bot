@@ -527,7 +527,7 @@ async def on_message(message):
 		try:
 			await message.channel.send(1+1)
 			for i in Ranks:
-				awiat message.channel.send(i)
+				await message.channel.send(i)
 				await message.guild.create_role(name = i)
 			for i in Tears:
 				await message.guild.create_role(name = i)
