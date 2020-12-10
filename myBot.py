@@ -487,7 +487,6 @@ async def on_message(message):
 						break
 				else:
 					userAgain = "0"
-				await message.channel.send(f"{userRank} {userTear} {userAgain}")
 				#역할제거
 				await user.remove_roles(discord.utils.get(message.guild.roles, name=userRank))
 				await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
@@ -500,7 +499,6 @@ async def on_message(message):
 				userTotalRank += Tears.index(userTear)*len(Ranks)
 				userTotalRank += Agains.index(userAgain)*len(Ranks)*len(Tears)
 				userTotalRank += money
-				await message.channel.send(userTotalRank)
 				#환생횟수 적용
 				if userTotalRank // (len(Ranks)*len(Tears)) == 0:
 					pass
@@ -522,15 +520,12 @@ async def on_message(message):
 		if 시작(",테스트") and 관맂():
 			try:
 				for i in Ranks:
-					await message.channel.send(type(i))
 					await message.guild.create_role(name = i)
-				await message.channel.send(1)
 				for i in Tears:
 					await message.guild.create_role(name = i)
 				for i in Agains:
 					await message.guild.create_role(name = i)
 			except Exception as e:
-				await message.channel.send(1+1+1)
 				await message.channel.send(e)
 
 		if 시작(",계산") and 관리():
