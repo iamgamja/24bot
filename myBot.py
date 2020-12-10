@@ -473,7 +473,10 @@ async def on_message(message):
 			if (시작("+") or 시작("-")) and (message.author.id == 647001590766632966 or message.author.id == 526889025894875158): # 생강 또는 감자 + 또는 -
 				q=m.split()
 				money = int(q[0])
-				user = await message.guild.fetch_member(int(q[1][2:-1]))
+				await message.channel.send(q[1][1:-1])
+				await message.channel.send(q[1][2:-1])
+				await message.channel.send(q[1][3:-1])
+				user = await message.guild.fetch_member(int(q[1][3:-1]))
 				#유저가 가지고 있는 역할의 이름 찾기
 
 				for userRank in Ranks:
