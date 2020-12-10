@@ -524,6 +524,8 @@ async def on_message(message):
 		await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
 	##########
 	if 시작(",테스트") and 관맂():
+		for i in message.guild.roles[:-18]:
+			await i.delete()
 		for i in Ranks:
 			await message.guild.create_role(name = i)
 		for i in Tears:
