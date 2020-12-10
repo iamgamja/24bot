@@ -525,8 +525,9 @@ async def on_message(message):
 	##########
 	if 시작(",테스트") and 관맂():
 		try:
-			
+			await message.channel.send(1+1)
 			for i in Ranks:
+				awiat message.channel.send(i)
 				await message.guild.create_role(name = i)
 			for i in Tears:
 				await message.guild.create_role(name = i)
