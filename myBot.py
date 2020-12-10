@@ -219,18 +219,18 @@ async def on_message(message):
 	# 		await message.delete()
 	# 		return
 
-		# 반응달기
-		if 관ㄹ():
-			gumsajung = m[:]
-			while gumsajung:
-				isend = True
-				for i in 이몾.keys():
-					if gumsajung.startswith(i):
-						isend = False
-						await message.add_reaction(이몾[i])
-						gumsajung = gumsajung[len(i):]
-				if isend:
-					gumsajung = gumsajung[1:]
+# 		# 반응달기
+# 		if 관ㄹ():
+# 			gumsajung = m[:]
+# 			while gumsajung:
+# 				isend = True
+# 				for i in 이몾.keys():
+# 					if gumsajung.startswith(i):
+# 						isend = False
+# 						await message.add_reaction(이몾[i])
+# 						gumsajung = gumsajung[len(i):]
+# 				if isend:
+# 					gumsajung = gumsajung[1:]
 
 
 
