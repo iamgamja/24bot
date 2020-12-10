@@ -238,7 +238,7 @@ async def on_message(message):
 		if 시작(",도움"):
 			if 관ㄹ():
 				embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=825)
-				embed.add_field(name=빈공, value="**`도움`**", inline=False)
+				embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="**`도움`**", inline=False)
 				embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
 				embed.add_field(name=빈공, value="**`재미`**", inline=False)
 				embed.add_field(name=",핑", value="으악 핑", inline=True)
