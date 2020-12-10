@@ -524,14 +524,20 @@ async def on_message(message):
 		await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
 	##########
 	if 시작(",테스트") and 관맂():
-		for i in message.guild.roles[:-18]:
-			await i.delete()
-		for i in Ranks:
-			await message.guild.create_role(name = i)
-		for i in Tears:
-			await message.guild.create_role(name = i)
-		for i in Agains:
-			await message.guild.create_role(name = i)
+		try:
+			
+			
+			for i in message.guild.roles[1:-18]:
+				await i.delete()
+			for i in Ranks:
+				await message.guild.create_role(name = i)
+			for i in Tears:
+				await message.guild.create_role(name = i)
+			for i in Agains:
+				await message.guild.create_role(name = i)
+				
+		except Exception as e:
+			await message.channel.send(e)
 		
 	if 시작(",계산") and 관리():
 		m = m[4:]
