@@ -526,9 +526,6 @@ async def on_message(message):
 	if 시작(",테스트") and 관맂():
 		try:
 			
-			
-			for i in message.guild.roles[1:-18]:
-				await i.delete()
 			for i in Ranks:
 				await message.guild.create_role(name = i)
 			for i in Tears:
