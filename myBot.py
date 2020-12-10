@@ -35,7 +35,7 @@ client = discord.Client()
 폭팔 = "https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif"
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
-반복 = [0, ""] # ,반복 명령어에 사용
+# 반복 = [0, ""] # ,반복 명령어에 사용
 출력 = ""      # ,계산 명령어에 사용
 기억 = {}      # ,기억 명령어에 사용
 이몾 = {
@@ -115,11 +115,11 @@ async def on_message(message):
 		def 관ㄹ(): # 노가다 서버가 아닌지 확인
 			return message.guild.id != 766932314973929522
 
-		def 관리(): # 관리자(감자#9400)이고 노가다 서버가 아닌지 확인
-			return message.author.id == 526889025894875158 and message.guild.id != 766932314973929522
-
-		def 관맂(): # (관리자(감자#9400)이거나 yee서버) 이고 노가다 서버가 아닌지 확인
+		def 관리(): # (관리자(감자#9400)이거나 yee서버) 이고 노가다 서버가 아닌지 확인
 			return (message.author.id == 526889025894875158 or message.guild.id == 785083334929547284) and message.guild.id != 766932314973929522
+		
+		def 관맂(): # 관리자(감자#9400)이고 노가다 서버가 아닌지 확인
+			return message.author.id == 526889025894875158 and message.guild.id != 766932314973929522
 
 		def 체크(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인
 			return m.channel.id == message.channel.id and m.author == message.author
@@ -208,10 +208,10 @@ async def on_message(message):
 							f"channelId: `{message.channel.id}`"	)
 			return
 
-		if 반복[0]:
-			반복[0] -= 1
-			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
-			return
+# 		if 반복[0]:
+# 			반복[0] -= 1
+# 			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
+# 			return
 
 	# 	if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다.") or 포함("응답 대기 중입니다.") or 포함(", 메시지 개수는 `2 ~ 99`로 입력하세요."):
 	# 		await message.add_reaction(청소)
@@ -235,40 +235,39 @@ async def on_message(message):
 
 
 
-		if 시작(",도움"):
-			if 관ㄹ():
-				embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=825)
-				embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="**`도움`**", inline=False)
-				embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
-				embed.add_field(name=빈공, value="**`재미`**", inline=False)
-				embed.add_field(name=",핑", value="으악 핑", inline=True)
-				embed.add_field(name="~~,에블핑~~", value="~~으악 핑~~", inline=True)
-				embed.add_field(name="~~,히어핑~~", value="~~으악 핑~~", inline=True)
-				embed.add_field(name=",폭8", value="폭☆8", inline=True)
-				embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
-				embed.add_field(name=빈공, value=빈공, inline=True)
-				embed.add_field(name=빈공, value="**`기능`**", inline=False)
-				embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
-				embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
-				embed.add_field(name="~~,계산 <식>~~", value="~~<식>을 계산합니다.~~", inline=True)
-				embed.add_field(name="~~,청소 <수>~~", value="~~<수>만큼의 메시지를 지웁니다.~~", inline=True)
-				embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
-				embed.add_field(name="~~,역할생성 <이름>~~", value="~~<이름>의 역할을 생성합니다.~~", inline=True)
-				embed.add_field(name="~~,역할제거 <이름>~~", value="~~<이름>의 역할을 제거합니다.~~", inline=True)
-				embed.add_field(name="~~,채널생성 <카테고리> <이름>~~", value="~~<카테고리>에 <이름>의 채널을 생성합니다.~~", inline=True)
-				embed.add_field(name="~~,채널제거 <이름>~~", value="~~<이름>의 채널을 제거합니다.~~", inline=True)
-				embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
-				embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
-				embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
-				embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
-				embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
-				embed.add_field(name=빈공, value=빈공, inline=True)
-				embed.add_field(name=빈공, value="**`기타`**", inline=False)
-				embed.add_field(name=",초대", value="초대 링크를 보냅니다.", inline=True)
-				embed.add_field(name=",정보", value="만든 사람을 찾습니다.", inline=True)
+		if 시작(",도움") and 관ㄹ():
+			embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=825)
+			embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="**`도움`**", inline=False)
+			embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
+			embed.add_field(name=빈공, value="**`재미`**", inline=False)
+			embed.add_field(name=",핑", value="으악 핑", inline=True)
+			embed.add_field(name="~~,에블핑~~", value="~~으악 핑~~", inline=True)
+			embed.add_field(name="~~,히어핑~~", value="~~으악 핑~~", inline=True)
+			embed.add_field(name=",폭8", value="폭☆8", inline=True)
+			embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
+			embed.add_field(name=빈공, value=빈공, inline=True)
+			embed.add_field(name=빈공, value="**`기능`**", inline=False)
+			embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
+			embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
+			embed.add_field(name="~~,계산 <식>~~", value="~~<식>을 계산합니다.~~", inline=True)
+			embed.add_field(name="~~,청소 <수>~~", value="~~<수>만큼의 메시지를 지웁니다.~~", inline=True)
+			embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
+			embed.add_field(name="~~,역할생성 <이름>~~", value="~~<이름>의 역할을 생성합니다.~~", inline=True)
+			embed.add_field(name="~~,역할제거 <이름>~~", value="~~<이름>의 역할을 제거합니다.~~", inline=True)
+			embed.add_field(name="~~,채널생성 <카테고리> <이름>~~", value="~~<카테고리>에 <이름>의 채널을 생성합니다.~~", inline=True)
+			embed.add_field(name="~~,채널제거 <이름>~~", value="~~<이름>의 채널을 제거합니다.~~", inline=True)
+			embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
+			embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
+			embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
+			embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
+			embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
+			embed.add_field(name=빈공, value=빈공, inline=True)
+			embed.add_field(name=빈공, value="**`기타`**", inline=False)
+			embed.add_field(name=",초대", value="초대 링크를 보냅니다.", inline=True)
+			embed.add_field(name=",정보", value="만든 사람을 찾습니다.", inline=True)
 
-				embed.set_footer(text= f'{message.author.name} | {시간()}')
-				await message.channel.send(embed=embed)
+			embed.set_footer(text= f'{message.author.name} | {시간()}')
+			await message.channel.send(embed=embed)
 
 		elif 시작(",초대") and 관ㄹ():
 			await message.channel.send("https://discord.com/oauth2/authorize?&client_id=688978156535021599&scope=bot&permissions=8")
@@ -279,13 +278,13 @@ async def on_message(message):
 		elif 시작(",정보") and 관ㄹ():
 			await message.channel.send(f"만든사람: <@526889025894875158>")
 
-		elif 시작(",에블핑") and 관맂():
+		elif 시작(",에블핑") and 관리():
 			await message.channel.send("@everyone")
 
-		elif 시작(",히어핑") and 관맂():
+		elif 시작(",히어핑") and 관리():
 			await message.channel.send("@here")
 
-		elif 시작(",짭블핑") and 관ㄹ():
+		elif 시작(",짭블핑") and 관리():
 			await message.channel.send("<@&785085545998057522>")
 
 		elif 시작(",폭8") and 관ㄹ():
@@ -298,13 +297,13 @@ async def on_message(message):
 			m = m[3:]
 			await message.channel.send(m)
 
-		elif 시작(",반복") and 관맂():
-			m = m[4:]
-			if 반복[0]:
-				await message.channel.send(f"아직 {반복[0]}번 남음")
-				return
-			반복[0], 반복[1] = int(m.split()[0]), m.split()[1]
-			await message.channel.send(f"앞으로 {반복[0]}번 반복")
+# 		elif 시작(",반복") and 관맂():
+# 			m = m[4:]
+# 			if 반복[0]:
+# 				await message.channel.send(f"아직 {반복[0]}번 남음")
+# 				return
+# 			반복[0], 반복[1] = int(m.split()[0]), m.split()[1]
+# 			await message.channel.send(f"앞으로 {반복[0]}번 반복")
 
 		elif 시작(",임베드") and 관ㄹ():
 			inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
@@ -434,7 +433,7 @@ async def on_message(message):
 				time.sleep(1)
 				await message.channel.send(j)
 
-		elif 시작(",청소") and 관맂():
+		elif 시작(",청소") and 관리():
 			m = m[4:]
 			await message.channel.purge(limit=int(m)+1)
 			msg = await message.channel.send(f"{m}개의 메시지를 지움")
@@ -449,7 +448,7 @@ async def on_message(message):
 			m = m[4:]
 			await message.channel.send(영한(m))
 
-		elif 시작(",역할생성") and 관맂():
+		elif 시작(",역할생성") and 관리():
 			m = m[6:]
 			try:
 				await message.guild.create_role(name = m)
@@ -457,7 +456,7 @@ async def on_message(message):
 			except:
 				await message.add_reaction(엑스)
 
-		elif 시작(",역할제거") and 관맂():
+		elif 시작(",역할제거") and 관리():
 			m = m[6:]
 			try:
 				role = discord.utils.get(message.guild.roles, name=m)
@@ -466,7 +465,7 @@ async def on_message(message):
 			except:
 				await message.add_reaction(엑스)
 
-		elif 시작(",채널생성") and 관맂():
+		elif 시작(",채널생성") and 관리():
 			m = m[6:]
 			try:
 				category = discord.utils.get(message.guild.categories, name=' '.join(m.split(' ')[:-1]))
@@ -475,7 +474,7 @@ async def on_message(message):
 			except:
 				await message.add_reaction(엑스)
 
-		elif 시작(",채널제거") and 관맂():
+		elif 시작(",채널제거") and 관리():
 			m = m[6:]
 			try:
 				channel = discord.utils.get(message.guild.channels, name=m)
@@ -560,7 +559,7 @@ async def on_message(message):
 
 			await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
 	except Exception as e:
-		await message.channel.send(e)
+		await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}, {message.jump_url}")
 
 access_token = os.environ["BOR_TOKEN"]
 client.run(access_token)
