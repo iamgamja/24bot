@@ -525,7 +525,6 @@ async def on_message(message):
 	##########
 	if 시작(",테스트") and 관맂():
 		try:
-			await message.channel.send(1+1)
 			for i in Ranks:
 				await message.channel.send(i)
 				await message.guild.create_role(name = i)
@@ -533,8 +532,8 @@ async def on_message(message):
 				await message.guild.create_role(name = i)
 			for i in Agains:
 				await message.guild.create_role(name = i)
-				
 		except Exception as e:
+			await message.channel.send(1+1+1)
 			await message.channel.send(e)
 		
 	if 시작(",계산") and 관리():
