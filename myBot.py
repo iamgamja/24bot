@@ -525,10 +525,10 @@ async def on_message(message):
 					pass
 				elif userTotalRank // (len(Ranks)*len(Tears)) > 50:
 					await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342))
-					await user.add_roles(discord.utils.get(message.guild.roles, id=784344731730706442))
-					await user.add_roles(discord.utils.get(message.guild.roles, id=784345861106434068))
 				else:
 					await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
+					await user.add_roles(discord.utils.get(message.guild.roles, id=784344731730706442))
+					await user.add_roles(discord.utils.get(message.guild.roles, id=784345861106434068))
 				userTotalRank %= (len(Ranks)*len(Tears))
 				#티어 적용 (0이어도 0번째(아톰))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
