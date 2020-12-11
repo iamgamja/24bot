@@ -124,7 +124,7 @@ async def on_message(message):
 		def 체크(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인
 			return m.channel.id == message.channel.id and m.author == message.author
 
-		def 한영(m):
+		def 한영변환(m):
 			f=''
 			for i in m:
 				c=ord(i)
@@ -139,7 +139,7 @@ async def on_message(message):
 						f += i
 			return f
 
-		def 영한(m):
+		def 영한변환(m):
 			f=''
 			w=''
 			임시 = "NaN"
@@ -442,11 +442,11 @@ async def on_message(message):
 
 		elif 시작(",한영") and 관ㄹ():
 			m = m[4:]
-			await message.channel.send(한영(m))
+			await message.channel.send(한영변환(m))
 
 		elif 시작(",영한") and 관ㄹ():
 			m = m[4:]
-			await message.channel.send(영한(m))
+			await message.channel.send(영한변환(m))
 
 		elif 시작(",역할생성") and 관리():
 			m = m[6:]
