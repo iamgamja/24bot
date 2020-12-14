@@ -494,7 +494,6 @@ async def on_message(message):
 					   discord.utils.get(message.guild.roles, name="MIP") in message.author.roles:
 						tryRank = [1,1,1,0,0,0,0,0,0,0]
 					
-
 				if not tryRank:
 					return
 				if not random.choice(tryRank):
@@ -542,7 +541,7 @@ async def on_message(message):
 				userTotalRank %= len(Ranks)
 				#랭크 적용 (0이어도 0번째(L))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
-				await message.add_reaction(동글)
+				await message.channel.send("랭크업에 성공하였습니다!")
 
 		except Exception as e:
 			await message.add_reaction(엑스)
