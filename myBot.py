@@ -38,41 +38,7 @@ client = discord.Client()
 # 반복 = [0, ""] # ,반복 명령어에 사용
 출력 = ""      # ,계산 명령어에 사용
 기억 = {}      # ,기억 명령어에 사용
-이몾 = {
-	"띵킹":띵킹,
-	"띤킹":띵킹,
-	"흠터":띵킹,
-	":소ㅑㅜㅏㅑㅜㅎ:":띵킹,
-	띵킹:띵킹,
 
-	"똥킹":똥킹,
-	"똔킹":똥킹,
-	"ㅁㄴㅇㄹ":똥킹,
-	":쇄ㅜㅏㅑㅜㅎ:":똥킹,
-	":thonking:":똥킹,
-
-	"킹똥":킹똥,
-	"킹똔":킹똥,
-	":kingthon":킹똥,
-	":gniknoht:":킹똥,
-
-	"와":와샍,
-	"wa":와샍,
-	
-	"저런":저런,
-	
-	"흠":흠ㅁ,
-	
-	"히히":히히,
-	
-	"헐":헐ㄹ,
-	
-	"아":아ㅏ,
-	"ㅏ":아ㅏ,
-	
-	"ㅘ":와ㅏ}
-	
-	
 지뢰 = (
 	"<:0z:762919979388502027>", #0
 	"<:z1:750200417836859472>", #1
@@ -208,32 +174,6 @@ async def on_message(message):
 							f"channelId: `{message.channel.id}`"	)
 			return
 
-# 		if 반복[0]:
-# 			반복[0] -= 1
-# 			await message.channel.send(str(eval(반복[1]))+f"\n(앞으로 {반복[0]}번 반복)")
-# 			return
-
-	# 	if 시작("!청소 ") or 포함("건 중에 ") and 포함("건의 메시지를 삭제했습니다.") or 포함("응답 대기 중입니다.") or 포함(", 메시지 개수는 `2 ~ 99`로 입력하세요."):
-	# 		await message.add_reaction(청소)
-	# 		time.sleep(1)
-	# 		await message.delete()
-	# 		return
-
-# 		# 반응달기
-# 		if 관ㄹ():
-# 			gumsajung = m[:]
-# 			while gumsajung:
-# 				isend = True
-# 				for i in 이몾.keys():
-# 					if gumsajung.startswith(i):
-# 						isend = False
-# 						await message.add_reaction(이몾[i])
-# 						gumsajung = gumsajung[len(i):]
-# 				if isend:
-# 					gumsajung = gumsajung[1:]
-
-
-
 
 		if 시작(",도움") and 관ㄹ():
 			embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=825)
@@ -296,14 +236,6 @@ async def on_message(message):
 		elif 시작(",말") and 관ㄹ():
 			m = m[3:]
 			await message.channel.send(m)
-
-# 		elif 시작(",반복") and 관맂():
-# 			m = m[4:]
-# 			if 반복[0]:
-# 				await message.channel.send(f"아직 {반복[0]}번 남음")
-# 				return
-# 			반복[0], 반복[1] = int(m.split()[0]), m.split()[1]
-# 			await message.channel.send(f"앞으로 {반복[0]}번 반복")
 
 		elif 시작(",임베드") and 관ㄹ():
 			inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
@@ -484,12 +416,10 @@ async def on_message(message):
 				await message.add_reaction(엑스)
 
 		##########
+		Ranks = ('L', 'XLIX', 'XLVIII', 'XLVII', 'XLVI', 'XLV', 'XLIV', 'XLIII', 'XLII', 'XLI', 'XL', 'XXXIX', 'XXXVIII', 'XXXVII', 'XXXVI', 'XXXV', 'XXXIV', 'XXXIII', 'XXXII', 'XXXI', 'XXX', 'XXIX', 'XXVIII', 'XXVII', 'XXVI', 'XXV', 'XXIV', 'XXIII', 'XXII', 'XXI', 'XX', 'XIX', 'XVIII', 'XVII', 'XVI', 'XV', 'XIV', 'XIII', 'XII', 'XI', 'X', 'IX', 'VIII', 'VII', 'VI', 'V', 'IV', 'III', 'II', 'I')
+		Tears = ('아톰', '몰레큘', '셀', '슈퍼 셀', '하이퍼 셀', '워터', '클린 워터', '아이스', '클린 아이스', '하드 아이스', '소일', '우드', '페이퍼', '샌드', '글래스', '클리어 글래스', '미러', '클리어 미러', '스톤', '하드 스톤', '아이언', '하드 아이언', '브론즈', '클리어 브론즈', '브론즈 메달', '실버', '클리어 실버', '실버 메달', '골드', '클리어 골드', '골드 메달', '아메티스트(자수정)', '크리스탈', '클리어 크리스탈', '블랙 크리스탈', '다이아몬드', '블랙 다이아몬드', '아다만티움', '사파이어', '에메랄드', '루비', '우루', '비브라늄', '클래식', '프리미엄', '딜럭스', '익스트림', '플래티넘', '미스틱', '챌린저', '마스터', '그랜드', '챔피언', '레전드')
+		Agains = list(map(str, list(range(51))))
 		try: # 랭크 ±
-			Ranks = ('L', 'XLIX', 'XLVIII', 'XLVII', 'XLVI', 'XLV', 'XLIV', 'XLIII', 'XLII', 'XLI', 'XL', 'XXXIX', 'XXXVIII', 'XXXVII', 'XXXVI', 'XXXV', 'XXXIV', 'XXXIII', 'XXXII', 'XXXI', 'XXX', 'XXIX', 'XXVIII', 'XXVII', 'XXVI', 'XXV', 'XXIV', 'XXIII', 'XXII', 'XXI', 'XX', 'XIX', 'XVIII', 'XVII', 'XVI', 'XV', 'XIV', 'XIII', 'XII', 'XI', 'X', 'IX', 'VIII', 'VII', 'VI', 'V', 'IV', 'III', 'II', 'I')
-
-			Tears = ('아톰', '몰레큘', '셀', '슈퍼 셀', '하이퍼 셀', '워터', '클린 워터', '아이스', '클린 아이스', '하드 아이스', '소일', '우드', '페이퍼', '샌드', '글래스', '클리어 글래스', '미러', '클리어 미러', '스톤', '하드 스톤', '아이언', '하드 아이언', '브론즈', '클리어 브론즈', '브론즈 메달', '실버', '클리어 실버', '실버 메달', '골드', '클리어 골드', '골드 메달', '아메티스트(자수정)', '크리스탈', '클리어 크리스탈', '블랙 크리스탈', '다이아몬드', '블랙 다이아몬드', '아다만티움', '사파이어', '에메랄드', '루비', '우루', '비브라늄', '클래식', '프리미엄', '딜럭스', '익스트림', '플래티넘', '미스틱', '챌린저', '마스터', '그랜드', '챔피언', '레전드')
-
-			Agains = list(map(str, list(range(51))))
 
 			if (시작("+") or 시작("-")) and message.author.id == 647001590766632966: # 생강 + 또는 -
 				q=m.split()
@@ -555,9 +485,15 @@ async def on_message(message):
 				if 시작("ㅊ"):
 					tryRank = [1,1,1,1,1,0,0,0,0,0]
 				if 시작("!ranker"):
-					tryRank = [1,1,0,0,0,0,0,0,0,0]
+					if discord.utils.get(message.guild.roles, name="랭커") in message.author.roles:
+						tryRank = [1,1,0,0,0,0,0,0,0,0]
 				if 시작("!important"):
-					tryRank = [1,1,1,0,0,0,0,0,0,0]
+					if discord.utils.get(message.guild.roles, name="SIP") in message.author.roles or\
+					   discord.utils.get(message.guild.roles, name="HIP") in message.author.roles or\
+					   discord.utils.get(message.guild.roles, name="UIP") in message.author.roles or\
+					   discord.utils.get(message.guild.roles, name="MIP") in message.author.roles:
+						tryRank = [1,1,1,0,0,0,0,0,0,0]
+					
 
 				if not tryRank:
 					return
