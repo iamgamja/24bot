@@ -498,6 +498,7 @@ async def on_message(message):
 				if not tryRank:
 					return
 				if not random.choice(tryRank):
+					await message.channel.send("랭크업에 실패하였습니다...")
 					return
 
 				#랭크업했을경우
