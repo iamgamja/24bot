@@ -500,8 +500,7 @@ async def on_message(message):
 					   시간()[5:7] == "12" and 시간()[8:10] == "04":
 						tryRank = [1,1,1,1,0,0,0,0,0,0]
 				if 시작("ㅊ"):
-					if 시간()[5:7] == "01" and 시간()[8:10] == "26" or\
-					   시간()[5:7] == "12" and 시간()[8:10] == "14":
+					if 시간()[5:7] == "01" and 시간()[8:10] == "26":
 						tryRank = [1,1,1,1,1,0,0,0,0,0]
 				if 시작("!ranker"):
 					if discord.utils.get(message.guild.roles, name="랭커") in message.author.roles:
