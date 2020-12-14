@@ -565,6 +565,7 @@ async def on_message(message):
 					return
 
 				#랭크업했을경우
+				money = 1
 				user = message.author
 				for userRank in Ranks:
 					if discord.utils.get(user.roles, name=userRank):
