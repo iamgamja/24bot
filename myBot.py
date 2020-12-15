@@ -91,7 +91,7 @@ async def on_message(message):
 			return m.channel.id == message.channel.id and m.author == message.author
 
 		def 체크2(r,u): # 리엑션이 o이거나 x 그리고 같은 사람 그리고 같은 메시지
-			return str(r.emoji) in (동글, 엑스) and u == message.author and r.message.id == message.id
+			return str(r.emoji) in (동글, 엑스) and u == message.author and r.message == mymsg2
 
 		def 한영변환(m):
 			f=''
@@ -636,9 +636,9 @@ async def on_message(message):
 				dp = random.choice([0,0.5,1,1.5,2])
 				await message.channel.send(f"{dp}배")
 				if dp in (0,0.5) and userTotalRank >= 25:
-					msg = await message.channel.send("실드를 구매 및 사용하시겠습니까?")
-					await msg.add_reaction(동글)
-					await msg.add_reaction(엑스)
+					mymsg2 = await message.channel.send("실드를 구매 및 사용하시겠습니까?")
+					await mymsg2.add_reaction(동글)
+					await mymsg2.add_reaction(엑스)
 					reaction, temp = await client.wait_for('reaction_add', timeout=60.0, check=체크2)
 					if str(reaction.emoji) == 동글:
 						money = -25
