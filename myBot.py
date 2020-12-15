@@ -90,6 +90,9 @@ async def on_message(message):
 		def 체크(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인
 			return m.channel.id == message.channel.id and m.author == message.author
 
+		def 체크2(r,u): # 리엑션이 o이거나 x 그리고 같은 사람 그리고 같은 메시지
+			return str(r.emoji) in (동글, 엑스) and u == message.author and r.message == message
+
 		def 한영변환(m):
 			f=''
 			for i in m:
@@ -589,6 +592,88 @@ async def on_message(message):
 		except Exception as e:
 			await message.add_reaction(엑스)
 			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
+		try: # 도박
+			if message.channel.id == 784228694940057640:
+				#도박 아니면 제거
+				if not 시작("도박"):
+					return
+
+				#얼마나 걸었는지
+				dmoney = int(message.content.split()[1])
+
+				#현재 얼마있는지
+				user = message.author
+				
+				for userRank in Ranks:
+					if discord.utils.get(user.roles, name=userRank):
+						break
+				for userTear in Tears:
+					if discord.utils.get(user.roles, name=userTear):
+						break
+				for userAgain in Agains:
+					if discord.utils.get(user.roles, name=userAgain):
+						break
+				else:
+					userAgain = "0"
+				
+				userTotalRank = 0
+				userTotalRank += Ranks.index(userRank)
+				userTotalRank += Tears.index(userTear)*len(Ranks)
+				userTotalRank += Agains.index(userAgain)*len(Ranks)*len(Tears)
+
+				#10~(환생횟수+1)*100 아닐경우 제거
+				if not 10 <= dmoney <= (int(userAgain)+1)*100:
+					await message.channel.send("`10~(환생횟수+1)*100` 만 걸수 있습니다.")
+					return
+
+				#가진돈보다 건돈이 많다면 알림
+				if dmoney > userTotalRank:
+					await message.channel.send("랭크가 부족합니다.")
+					return
+				
+				#도박을 해봄
+				dp = random.choice([0,0.5,1,1.5,2])
+				await message.channel.send(f"{dp}배")
+				if dp in (0,0.5) and userTotalRank >= 25:
+					msg = await message.channel.send("실드를 구매 및 사용하시겠습니까?")
+					await msg.add_reaction(동글)
+					await msg.add_reaction(엑스)
+					reaction, temp = await client.wait_for('reaction_add', timeout=60.0, check=체크2)
+					if str(reaction.emoji) == 동글:
+						money = -25
+						await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 1개 구매함")
+					else:
+						money = -dmoney+dmoney*dp
+				else:
+					money = -dmoney+dmoney*dp
+				
+				#랭크적용...
+				#역할제거
+				await user.remove_roles(discord.utils.get(message.guild.roles, name=userRank))
+				await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
+				if userAgain != "0":
+					await user.remove_roles(discord.utils.get(message.guild.roles, name=userAgain))
+
+				#환생횟수 적용
+				if userTotalRank // (len(Ranks)*len(Tears)) == 0:
+					pass
+				elif userTotalRank // (len(Ranks)*len(Tears)) > 50:
+					await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342))
+				else:
+					await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
+					await user.add_roles(discord.utils.get(message.guild.roles, id=784344731730706442))
+					await user.add_roles(discord.utils.get(message.guild.roles, id=784345861106434068))
+				userTotalRank %= (len(Ranks)*len(Tears))
+				#티어 적용 (0이어도 0번째(아톰))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
+				userTotalRank %= len(Ranks)
+				#랭크 적용 (0이어도 0번째(L))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
+
+		except Exception as e:
+			await message.add_reaction(엑스)
+			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
+			
 		##########
 		if 시작(",테스트") and 관맂():
 			try:
