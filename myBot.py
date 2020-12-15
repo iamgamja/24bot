@@ -531,10 +531,10 @@ async def on_message(message):
 				if 시작("ㅊ"):
 					if 시간()[5:7] == "01" and 시간()[8:10] == "26":
 						tryRank = [1,1,1,1,1,0,0,0,0,0]
-				if 시작("!ranker"):
+				if 시작("ㄹ"):
 					if discord.utils.get(message.guild.roles, name="랭커") in message.author.roles:
 						tryRank = [1,1,0,0,0,0,0,0,0,0]
-				if 시작("!important"):
+				if 시작("ㅍ"):
 					if discord.utils.get(message.guild.roles, name="SIP") in message.author.roles or\
 					   discord.utils.get(message.guild.roles, name="HIP") in message.author.roles or\
 					   discord.utils.get(message.guild.roles, name="UIP") in message.author.roles or\
