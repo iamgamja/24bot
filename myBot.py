@@ -91,7 +91,7 @@ async def on_message(message):
 			return m.channel.id == message.channel.id and m.author == message.author
 
 		def 체크2(r,u): # 리엑션이 o이거나 x 그리고 같은 사람 그리고 같은 메시지
-			return str(r.emoji) in (동글, 엑스) and u == message.author and r.message == message
+			return str(r.emoji) in (동글, 엑스) and u == message.author and r.message.id == message.id
 
 		def 한영변환(m):
 			f=''
@@ -644,9 +644,9 @@ async def on_message(message):
 						money = -25
 						await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 1개 구매함")
 					else:
-						money = -dmoney+dmoney*dp
+						money = round(-dmoney+dmoney*dp)
 				else:
-					money = -dmoney+dmoney*dp
+					money = round(-dmoney+dmoney*dp)
 				
 				#랭크적용...
 				userTotalRank += money
@@ -662,17 +662,14 @@ async def on_message(message):
 				elif userTotalRank // (len(Ranks)*len(Tears)) > 50:
 					await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342))
 				else:
-					await message.channel.send(userTotalRank // (len(Ranks)*len(Tears)))
 					await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
 					await user.add_roles(discord.utils.get(message.guild.roles, id=784344731730706442))
 					await user.add_roles(discord.utils.get(message.guild.roles, id=784345861106434068))
 				userTotalRank %= (len(Ranks)*len(Tears))
 				#티어 적용 (0이어도 0번째(아톰))
-				await message.channel.send(userTotalRank // len(Ranks))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
 				userTotalRank %= len(Ranks)
 				#랭크 적용 (0이어도 0번째(L))
-				await message.channel.send(userTotalRank)
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
 
 
