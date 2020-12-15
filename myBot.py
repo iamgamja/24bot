@@ -91,7 +91,7 @@ async def on_message(message):
 			return m.channel.id == message.channel.id and m.author == message.author
 
 		def 체크2(r,u): # 리엑션이 o이거나 x 그리고 같은 사람 그리고 같은 메시지
-			return str(r.emoji) in (동글, 엑스) and u == message.author and r.message == mymsg2
+			return str(r.emoji) in (동글, 엑스) and u == message.author and r.message.id == mymsg2.id
 
 		def 한영변환(m):
 			f=''
