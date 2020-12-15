@@ -7,6 +7,7 @@ client = discord.Client()
 동글 = "⭕"
 엑스 = "❌"
 청소 = "🗑️"
+체크 = "✅"
 똥킹 = "<:thonking:732864307196592199>"
 킹똥 = "<:gniknoht:733977049743753247>"
 와샍 = "<:aemoji_29:736146757716803605>"
@@ -87,7 +88,7 @@ async def on_message(message):
 		def 관맂(): # 관리자(감자#9400)이고 노가다 서버가 아닌지 확인
 			return message.author.id == 526889025894875158 and message.guild.id != 766932314973929522
 
-		def 체크(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인
+		def 체크1(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인
 			return m.channel.id == message.channel.id and m.author == message.author
 
 		def 체크2(r,u): # 리엑션이 o이거나 x 그리고 같은 사람 그리고 같은 메시지
@@ -247,7 +248,7 @@ async def on_message(message):
 			for i in range(len(list(inputdict.keys()))):
 				await mymsg.delete()
 				mymsg = await message.channel.send(str(i) + ". " + str(list(inputdict.keys())[i]) + "을(를) 입력해주세요.\n```yaml\n" + str(str(look_dict)[1:-1].replace(', ', ',\n').replace(땀표[0], 땀표[1])) + 땀표[0])
-				inputmsg = await client.wait_for('message', timeout=30.0, check=체크)
+				inputmsg = await client.wait_for('message', timeout=30.0, check=체크1)
 				inputmsg = inputmsg.content
 				inputdict[list(inputdict.keys())[i]] = inputmsg
 				look_dict[list(inputdict.keys())[i]] = str(inputmsg)[:7]+'...' if len(str(inputmsg)) > 10 else str(inputmsg)
@@ -588,7 +589,7 @@ async def on_message(message):
 				#랭크 적용 (0이어도 0번째(L))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
 				await message.channel.send("랭크업에 성공하였습니다!")
-
+				await message.add_reaction(체크)
 		except Exception as e:
 			await message.add_reaction(엑스)
 			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
@@ -671,7 +672,7 @@ async def on_message(message):
 				userTotalRank %= len(Ranks)
 				#랭크 적용 (0이어도 0번째(L))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
-
+				await message.add_reaction(체크)
 
 		except Exception as e:
 			await message.add_reaction(엑스)
