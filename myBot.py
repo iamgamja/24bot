@@ -593,7 +593,7 @@ async def on_message(message):
 			await message.add_reaction(엑스)
 			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
 		try: # 도박
-			if message.channel.id == 784228694940057640:
+			if message.channel.id == 787976375301701692: # ㅇㅇ채널일경우
 				#도박 아니면 제거
 				if not 시작("도박"):
 					return
