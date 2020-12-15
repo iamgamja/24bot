@@ -471,7 +471,7 @@ async def on_message(message):
 			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
 
 		try: # 랭크업
-			if message.channel.id == 787976375301701692: # ㅇㅇ 채널일경우
+			if message.channel.id == 766932314973929527 or message.channel.id == 783516524685688842: # 랭크업 가능한 채널일경우
 				tryRank = False # 기본값
 
 				if 시작("ㅇ"):
