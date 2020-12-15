@@ -670,6 +670,12 @@ async def on_message(message):
 				#랭크 적용 (0이어도 0번째(L))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
 
+
+				await message.channel.send(f"dmoney: {dmoney}")
+				await message.channel.send(f"dp: {dp}")
+				await message.channel.send(f"money: {money}")
+				await message.channel.send(f"userTotalRank: {userTotalRank}")
+
 		except Exception as e:
 			await message.add_reaction(엑스)
 			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
