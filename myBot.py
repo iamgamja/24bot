@@ -640,8 +640,12 @@ async def on_message(message):
 					mymsg2 = await message.channel.send("실드를 구매 및 사용하시겠습니까?")
 					await mymsg2.add_reaction(동글)
 					await mymsg2.add_reaction(엑스)
-					reaction, temp = await client.wait_for('reaction_add', timeout=60.0, check=체크2)
-					if str(reaction.emoji) == 동글:
+					try:
+						reaction, temp = await client.wait_for('reaction_add', timeout=60.0, check=체크2)
+						reaction = str(reaction.emoji)
+					except:
+						reaction = 엑스
+					if reaction == 동글:
 						money = -25
 						await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 1개 구매함")
 					else:
