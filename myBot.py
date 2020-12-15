@@ -620,6 +620,7 @@ async def on_message(message):
 				userTotalRank += Ranks.index(userRank)
 				userTotalRank += Tears.index(userTear)*len(Ranks)
 				userTotalRank += Agains.index(userAgain)*len(Ranks)*len(Tears)
+				
 
 				#10~(환생횟수+1)*100 아닐경우 제거
 				if not 10 <= dmoney <= (int(userAgain)+1)*100:
@@ -648,6 +649,7 @@ async def on_message(message):
 					money = -dmoney+dmoney*dp
 				
 				#랭크적용...
+				userTotalRank += money
 				#역할제거
 				await user.remove_roles(discord.utils.get(message.guild.roles, name=userRank))
 				await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
