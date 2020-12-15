@@ -662,21 +662,19 @@ async def on_message(message):
 				elif userTotalRank // (len(Ranks)*len(Tears)) > 50:
 					await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342))
 				else:
+					await message.channel.send(userTotalRank // (len(Ranks)*len(Tears)))
 					await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
 					await user.add_roles(discord.utils.get(message.guild.roles, id=784344731730706442))
 					await user.add_roles(discord.utils.get(message.guild.roles, id=784345861106434068))
 				userTotalRank %= (len(Ranks)*len(Tears))
 				#티어 적용 (0이어도 0번째(아톰))
+				await message.channel.send(userTotalRank // len(Ranks))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
 				userTotalRank %= len(Ranks)
 				#랭크 적용 (0이어도 0번째(L))
+				await message.channel.send(userTotalRank)
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
 
-
-				await message.channel.send(f"dmoney: {dmoney}")
-				await message.channel.send(f"dp: {dp}")
-				await message.channel.send(f"money: {money}")
-				await message.channel.send(f"userTotalRank: {userTotalRank}")
 
 		except Exception as e:
 			await message.add_reaction(엑스)
