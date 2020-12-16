@@ -712,3 +712,4 @@ except:
 	f = open("token.txt", "r")
 	access_token = f.read()
 	f.close()
+client.run(access_token)
