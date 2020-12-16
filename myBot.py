@@ -62,7 +62,7 @@ def 시간():
 
 @client.event
 async def on_ready():
-	# print('시작')
+	print('시작')
 	await client.change_presence(status = discord.Status.online, activity = discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
 
@@ -378,11 +378,11 @@ async def on_message(message):
 
 		elif 시작(",한영") and 관ㄹ():
 			m = m[4:]
-			await message.channel.send(한영변환(m))
+			await message.channel.send(한영변환(m + '.')[:-1])
 
 		elif 시작(",영한") and 관ㄹ():
 			m = m[4:]
-			await message.channel.send(영한변환(m))
+			await message.channel.send(영한변환(m + '.')[:-1])
 
 		elif 시작(",역할생성") and 관리():
 			m = m[6:]
@@ -706,5 +706,9 @@ async def on_message(message):
 	except Exception as e:
 		await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}, {message.jump_url}")
 
-access_token = os.environ["BOR_TOKEN"]
-client.run(access_token)
+try:
+	access_token = os.environ["BOR_TOKEN"]
+except:
+	f = open("token.txt", "r")
+	access_token = f.read()
+	f.close()
