@@ -91,8 +91,8 @@ async def on_message(message):
 		def 체크1(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인
 			return m.channel.id == message.channel.id and m.author == message.author
 
-		def 체크2(r,u): # 리엑션이 o이거나 x 그리고 같은 사람 그리고 같은 메시지
-			return str(r.emoji) in (동글, 엑스) and u == message.author
+		def 체크2(r,u): # 리엑션이 0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣ 그리고 같은 사람
+			return str(r.emoji) in "0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣" and u == message.author
 
 		def 한영변환(m):
 			f=''
@@ -637,22 +637,64 @@ async def on_message(message):
 				dp = random.choice([0,0.5,1,1.5,2])
 				await message.channel.send(f"{dp}배")
 				if dp in (0,0.5) and userTotalRank >= 25:
-					mymsg2 = await message.channel.send("실드를 구매 및 사용하시겠습니까?")
-					await mymsg2.add_reaction(동글)
-					await mymsg2.add_reaction(엑스)
+					mymsg2 = await message.channel.send(f"실드를 구매 및 사용하시겠습니까?\n실드 1개당 15랭크, 20%입니다.\n0️⃣ `100% {-dmoney+dmoney*dp}`\n1️⃣ `20% {-15}, 80% {-15-dmoney+dmoney*dp}`\n2️⃣ `40% {-30}, 60% {-30-dmoney+dmoney*dp}`\n3️⃣ `60% {-45}, 40% {-45-dmoney+dmoney*dp}`\n 4️⃣ `80% {-60}, 20% {-60-dmoney+dmoney*dp}`\n5️⃣ `100% {-75}`")
+					await mymsg2.add_reaction("0️⃣");time.sleep(0.5)
+					await mymsg2.add_reaction("1️⃣");time.sleep(0.5)
+					await mymsg2.add_reaction("2️⃣");time.sleep(0.5)
+					await mymsg2.add_reaction("3️⃣");time.sleep(0.5)
+					await mymsg2.add_reaction("4️⃣");time.sleep(0.5)
+					await mymsg2.add_reaction("5️⃣")
 					try:
 						reaction, temp = await client.wait_for('reaction_add', timeout=60.0, check=체크2)
 						reaction = str(reaction.emoji)
 					except:
-						reaction = 엑스
-					if reaction == 동글:
-						money = -25
-						await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 1개 구매함")
-					else:
+						reaction = "0️⃣"
+					if reaction == "0️⃣":
 						money = round(-dmoney+dmoney*dp)
+					elif reaction == "1️⃣":
+						if random.choice([1,0,0,0,0]):
+							money = round(-15)
+							await message.channel.send(f"실드 사용에 성공함 ({money})")
+						else:
+							money = round(-15-dmoney+dmoney*dp)
+							await message.channel.send(f"실드 사용에 실패함 ({money})")
+							
+						await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
+					
+					elif reaction == "2️⃣":
+						if random.choice([1,1,0,0,0]):
+							money = round(-30)
+							await message.channel.send(f"실드 사용에 성공함 ({money})")
+						else:
+							money = round(-30-dmoney+dmoney*dp)
+							await message.channel.send(f"실드 사용에 실패함 ({money})")
+
+
+					elif reaction == "3️⃣":
+						if random.choice([1,1,1,0,0]):
+							money = round(-45)
+							await message.channel.send(f"실드 사용에 성공함 ({money})")
+						else:
+							money = round(-45-dmoney+dmoney*dp)
+							await message.channel.send(f"실드 사용에 실패함 ({money})")
+
+
+					elif reaction == "4️⃣":
+						if random.choice([1,1,1,1,0]):
+							money = round(-60)
+							await message.channel.send(f"실드 사용에 성공함 ({money})")
+						else:
+							money = round(-60-dmoney+dmoney*dp)
+							await message.channel.send(f"실드 사용에 실패함 ({money})")
+					
+				
+					elif reaction == "5️⃣":
+						money = round(-75)
+						await message.channel.send(f"실드 사용에 성공함 ({money})")
+
 				else:
 					money = round(-dmoney+dmoney*dp)
-				
+
 				#랭크적용...
 				userTotalRank += money
 				#역할제거
