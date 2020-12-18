@@ -1,4 +1,4 @@
-import discord, time, datetime, random, os, math
+import discord, time, datetime, random, os, math, asyncio
 client = discord.Client()
 
 
@@ -68,7 +68,7 @@ async def on_ready():
 
 	while True:
 		await client.get_channel(762916201654386701).send(시간()[:10])
-		time.sleep(10)
+		await asyncio.sleep(1.0)
 
 @client.event
 async def on_message(message):
