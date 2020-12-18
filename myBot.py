@@ -594,7 +594,7 @@ async def on_message(message):
 			await message.add_reaction(엑스)
 			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
 		try: # 도박
-			if message.channel.id == 784228694940057640: # 도박채널일경우
+			if message.channel.id == 784228694940057640 or message.channel.id == 787976375301701692: # 도박채널 또는 일경우
 				#도박 아니면 제거
 				if not 시작("도박"):
 					return
@@ -669,6 +669,7 @@ async def on_message(message):
 							money = round(-30-dmoney+dmoney*dp)
 							await message.channel.send(f"실드 사용에 실패함 ({money})")
 
+						await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
 
 					elif reaction == "3️⃣":
 						if random.choice([1,1,1,0,0]):
@@ -678,6 +679,7 @@ async def on_message(message):
 							money = round(-45-dmoney+dmoney*dp)
 							await message.channel.send(f"실드 사용에 실패함 ({money})")
 
+						await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
 
 					elif reaction == "4️⃣":
 						if random.choice([1,1,1,1,0]):
@@ -687,11 +689,13 @@ async def on_message(message):
 							money = round(-60-dmoney+dmoney*dp)
 							await message.channel.send(f"실드 사용에 실패함 ({money})")
 					
+						await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
 				
 					elif reaction == "5️⃣":
 						money = round(-75)
 						await message.channel.send(f"실드 사용에 성공함 ({money})")
 
+						await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
 				else:
 					money = round(-dmoney+dmoney*dp)
 
