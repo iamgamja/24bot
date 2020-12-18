@@ -745,7 +745,8 @@ async def on_message(message):
 		try:
 			if 시작(",일급") and message.author.id == 647001590766632966:
 				for l in ((581662002259427328, 10), (526889025894875158, 10)):
-					user, money = l[0], l[1]
+					uzer, money = l[0], l[1]
+					user = await message.guild.fetch_member(uzer)
 					for userRank in Ranks:
 						if discord.utils.get(user.roles, name=userRank):
 							break
