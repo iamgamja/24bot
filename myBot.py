@@ -78,8 +78,9 @@ async def on_message(message):
 
 		def 시작(s):
 			s = 한영변환(s)
-			m = 한영변환(m)
-			return m.startswith(s)
+			mm = m
+			mmm = 한영변환(mm)
+			return mmm.startswith(s)
 
 		def 관ㄹ(): # 노가다 서버가 아닌지 확인
 			return message.guild.id != 766932314973929522
