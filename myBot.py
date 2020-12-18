@@ -173,7 +173,8 @@ async def on_message(message):
 				f+=i
 			return f[:-1]
 
-		if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842):
+		if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640):
+			#랭크업, 시간, 도박장에서의 슷칼봇 메시지 삭제
 			await message.delete()
 			return
 		
