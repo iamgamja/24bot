@@ -751,6 +751,7 @@ async def on_message(message):
 			if message.guild.id == 766932314973929522:
 				if 시간()[:10] != client.get_channel(766932314973929522).name:
 					role = discord.utils.get(message.guild.roles, name="인턴")
+					await client.get_channel(762916201654386701).send(role)
 					for user in message.guild.members:
 						if role in user.roles:
 							money = 10
@@ -806,7 +807,7 @@ async def on_message(message):
 
 
 		except Exception as e:
-			await message.add_reaction(엑스)
+			# await message.add_reaction(엑스)
 			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
 			
 		##########
