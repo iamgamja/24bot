@@ -173,6 +173,10 @@ async def on_message(message):
 				f+=i
 			return f[:-1]
 
+		if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842):
+			await message.delete()
+			return
+		
 		if message.author.bot: # 봇이 보낸 메시지 무시
 			return
 
