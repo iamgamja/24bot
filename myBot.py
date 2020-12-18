@@ -751,51 +751,51 @@ async def on_message(message):
 			if message.guild.id == 766932314973929522:
 				if 시간()[:10] != client.get_channel(766932314973929522).name:
 					role = discord.utils.get(message.guild.roles, name="인턴")
-						for user in message.guild.members:
-							if role in user.roles:
-								money = 10
-								
+					for user in message.guild.members:
+						if role in user.roles:
+							money = 10
+							
 
 
 
-							for userRank in Ranks:
-								if discord.utils.get(user.roles, name=userRank):
-									break
-							for userTear in Tears:
-								if discord.utils.get(user.roles, name=userTear):
-									break
-							for userAgain in Agains:
-								if discord.utils.get(user.roles, name=userAgain):
-									break
-							else:
-								userAgain = "0"
-							#역할제거
-							await user.remove_roles(discord.utils.get(message.guild.roles, name=userRank))
-							await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
-							if userAgain != "0":
-								await user.remove_roles(discord.utils.get(message.guild.roles, name=userAgain))
+						for userRank in Ranks:
+							if discord.utils.get(user.roles, name=userRank):
+								break
+						for userTear in Tears:
+							if discord.utils.get(user.roles, name=userTear):
+								break
+						for userAgain in Agains:
+							if discord.utils.get(user.roles, name=userAgain):
+								break
+						else:
+							userAgain = "0"
+						#역할제거
+						await user.remove_roles(discord.utils.get(message.guild.roles, name=userRank))
+						await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
+						if userAgain != "0":
+							await user.remove_roles(discord.utils.get(message.guild.roles, name=userAgain))
 
-							#유저랭크 계산
-							userTotalRank = 0
-							userTotalRank += Ranks.index(userRank)
-							userTotalRank += Tears.index(userTear)*len(Ranks)
-								userTotalRank += Agains.index(userAgain)*len(Ranks)*len(Tears)
-							userTotalRank += money
-							#환생횟수 적용
-							if userTotalRank // (len(Ranks)*len(Tears)) == 0:
-								pass
-							elif userTotalRank // (len(Ranks)*len(Tears)) > 50:
-								await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342))
-							else:
-								await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
-								await user.add_roles(discord.utils.get(message.guild.roles, id=784344731730706442))
-								await user.add_roles(discord.utils.get(message.guild.roles, id=784345861106434068))
-							userTotalRank %= (len(Ranks)*len(Tears))
-							#티어 적용 (0이어도 0번째(아톰))
-							await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
-							userTotalRank %= len(Ranks)
-							#랭크 적용 (0이어도 0번째(L))
-							await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
+						#유저랭크 계산
+						userTotalRank = 0
+						userTotalRank += Ranks.index(userRank)
+						userTotalRank += Tears.index(userTear)*len(Ranks)
+						userTotalRank += Agains.index(userAgain)*len(Ranks)*len(Tears)
+						userTotalRank += money
+						#환생횟수 적용
+						if userTotalRank // (len(Ranks)*len(Tears)) == 0:
+							pass
+						elif userTotalRank // (len(Ranks)*len(Tears)) > 50:
+							await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342))
+						else:
+							await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
+							await user.add_roles(discord.utils.get(message.guild.roles, id=784344731730706442))
+							await user.add_roles(discord.utils.get(message.guild.roles, id=784345861106434068))
+						userTotalRank %= (len(Ranks)*len(Tears))
+						#티어 적용 (0이어도 0번째(아톰))
+						await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
+						userTotalRank %= len(Ranks)
+						#랭크 적용 (0이어도 0번째(L))
+						await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
 							
 
 
