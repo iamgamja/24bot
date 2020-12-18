@@ -637,7 +637,7 @@ async def on_message(message):
 				dp = random.choice([0,0.5,1,1.5,2])
 				await message.channel.send(f"{dp}배")
 				if dp in (0,0.5) and userTotalRank >= 25:
-					mymsg2 = await message.channel.send(f"실드를 구매 및 사용하시겠습니까?\n실드 1개당 15랭크, 20%입니다.\n0️⃣ `100% {-dmoney+dmoney*dp}`\n1️⃣ `20% {-15}, 80% {-15-dmoney+dmoney*dp}`\n2️⃣ `40% {-30}, 60% {-30-dmoney+dmoney*dp}`\n3️⃣ `60% {-45}, 40% {-45-dmoney+dmoney*dp}`\n 4️⃣ `80% {-60}, 20% {-60-dmoney+dmoney*dp}`\n5️⃣ `100% {-75}`")
+					mymsg2 = await message.channel.send(f"실드를 구매 및 사용하시겠습니까?\n실드 1개당 15랭크, 20%입니다.\n0️⃣ `100% {round(-dmoney+dmoney*dp)}`\n1️⃣ `20% {round(-15)}, 80% {round(-15-dmoney+dmoney*dp)}`\n2️⃣ `40% {round(-30)}, 60% {round(-30-dmoney+dmoney*dp)}`\n3️⃣ `60% {round(-45)}, 40% {round(-45-dmoney+dmoney*dp)}`\n4️⃣ `80% {round(-60)}, 20% {round(-60-dmoney+dmoney*dp)}`\n5️⃣ `100% {round(-75)}`")
 					await mymsg2.add_reaction("0️⃣");time.sleep(0.5)
 					await mymsg2.add_reaction("1️⃣");time.sleep(0.5)
 					await mymsg2.add_reaction("2️⃣");time.sleep(0.5)
