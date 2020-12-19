@@ -745,7 +745,7 @@ async def on_message(message):
 			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
 		try:
 			if 시작(",일급") and message.author.id == 647001590766632966:
-				for l in ((581662002259427328, 10), (526889025894875158, 10)):
+				for l in ((581662002259427328, 10), (526889025894875158, 10), (681403207620100135, 10), (693386027036835912, 10), (544076137593176120, 10)):
 					uzer, money = l[0], l[1]
 					user = await message.guild.fetch_member(uzer)
 					for userRank in Ranks:
