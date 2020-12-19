@@ -708,7 +708,7 @@ async def on_message(message):
 						await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
 				else:
 					money = round(-dmoney+dmoney*dp)
-				await client.get_channel(762916201654386701).send((userTotalRank, money))
+				await client.get_channel(762916201654386701).send((userRank, userTear, userAgain), (userTotalRank, money))
 				#랭크적용...
 				userTotalRank += money
 				await client.get_channel(762916201654386701).send((userTotalRank, money))
@@ -730,14 +730,17 @@ async def on_message(message):
 					await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
 					await user.add_roles(discord.utils.get(message.guild.roles, name="환생 횟수"))
 					await user.add_roles(discord.utils.get(message.guild.roles, name="회"))
+				await client.get_channel(762916201654386701).send(userTotalRank % (len(Ranks)*len(Tears)))
 				userTotalRank %= (len(Ranks)*len(Tears))
 				await client.get_channel(762916201654386701).send((userTotalRank, money))
 				#티어 적용 (0이어도 0번째(아톰))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
+				await client.get_channel(762916201654386701).send(userTotalRank % len(Ranks))
 				userTotalRank %= len(Ranks)
 				await client.get_channel(762916201654386701).send((userTotalRank, money))
 				#랭크 적용 (0이어도 0번째(L))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
+				await client.get_channel(762916201654386701).send(userTotalRank)
 				await message.add_reaction(체크)
 
 		except Exception as e:
