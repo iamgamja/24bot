@@ -715,7 +715,6 @@ async def on_message(message):
 				if userTotalRank < 0:
 					await message.channel.send("이런! 랭크가 부족합니다.")
 					return
-				await client.get_channel(762916201654386701).send((userTotalRank, money))
 				#역할제거
 				await user.remove_roles(discord.utils.get(message.guild.roles, name=userRank))
 				await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
