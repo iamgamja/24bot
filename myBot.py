@@ -711,7 +711,7 @@ async def on_message(message):
 				await client.get_channel(762916201654386701).send(((userRank, userTear, userAgain), (userTotalRank, money)))
 				#랭크적용...
 				userTotalRank += money
-				await client.get_channel(762916201654386701).send((userTotalRank, money))
+				await client.get_channel(762916201654386701).send((userTotalRank, f"%{(len(Ranks)*len(Tears))}"))
 				if userTotalRank < 0:
 					await message.channel.send("이런! 랭크가 부족합니다.")
 					return
@@ -732,12 +732,12 @@ async def on_message(message):
 					await user.add_roles(discord.utils.get(message.guild.roles, name="회"))
 				await client.get_channel(762916201654386701).send((userTotalRank % (len(Ranks)*len(Tears))))
 				userTotalRank %= (len(Ranks)*len(Tears))
-				await client.get_channel(762916201654386701).send((userTotalRank, money))
+				await client.get_channel(762916201654386701).send((userTotalRank, f"%{len(Ranks)}"))
 				#티어 적용 (0이어도 0번째(아톰))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
 				await client.get_channel(762916201654386701).send((userTotalRank % len(Ranks)))
 				userTotalRank %= len(Ranks)
-				await client.get_channel(762916201654386701).send((userTotalRank, money))
+				await client.get_channel(762916201654386701).send((userTotalRank, "%1"))
 				#랭크 적용 (0이어도 0번째(L))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
 				await client.get_channel(762916201654386701).send(userTotalRank)
