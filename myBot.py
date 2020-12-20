@@ -64,7 +64,7 @@ def 시간():
 async def on_ready():
 	print('시작')
 	await client.change_presence(status = discord.Status.online, activity = discord.Activity(name=",도움", type=discord.ActivityType.listening))
-	await client.get_channel(762916201654386701).send(f"{시간()}, 시작")
+	await client.get_channel(762916201654386701).send(f"{시간()}, <@526889025894875158>, 시작")
 
 @client.event
 async def on_message(message):
@@ -182,15 +182,16 @@ async def on_message(message):
 			return
 
 		if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
-			await message.channel.send(	f"m: `{m}`\n"                           + 
-							f"id: `{message.id}`\n"                 +
-							f"authorId: `{message.author.id}`\n"    +
-							f"channelId: `{message.channel.id}`"	)
+			await message.channel.send(	f"m: `{m}`\n"				+
+							f"message_id: `{message.id}`\n"		+
+							f"author_id: `{message.author.id}`\n"	+
+							f"channel_id: `{message.channel.id}`"	+
+							f"guild_id: `{message.guild.id}`"	)
 			return
 
 
 		if 시작(",도움") and 관ㄹ():
-			embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=825)
+			embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0x825cff)
 			embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="**`도움`**", inline=False)
 			embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
 			embed.add_field(name=빈공, value="**`재미`**", inline=False)
