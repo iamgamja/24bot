@@ -489,7 +489,7 @@ async def on_message(message):
 				tryRank = False # 기본값
 
 				if 시작("ㅇ"):
-					tryRank = [1,0,0,0,0,0,0,0,0,0]
+					tryRank = [1,1,0,0,0,0,0,0,0,0]
 				if 시작("ㄱ"):
 					if 시간()[5:7] == "02" and 시간()[8:10] == "14" or\
 					   시간()[5:7] == "04" and 시간()[8:10] == "15" or\
@@ -500,14 +500,14 @@ async def on_message(message):
 					   시간()[5:7] == "11" and 시간()[8:10] == "15" or\
 					   시간()[5:7] == "12" and 시간()[8:10] == "01" or\
 					   시간()[5:7] == "12" and 시간()[8:10] == "25":
-						tryRank = [1,1,0,0,0,0,0,0,0,0]
+						tryRank = [1,1,1,0,0,0,0,0,0,0]
 				if 시작("ㅅ"):
 					if 시간()[5:7] == "03" and 시간()[8:10] == "01" or\
 					   시간()[5:7] == "07" and 시간()[8:10] == "17" or\
 					   시간()[5:7] == "08" and 시간()[8:10] == "15" or\
 					   시간()[5:7] == "10" and 시간()[8:10] == "03" or\
 					   시간()[5:7] == "10" and 시간()[8:10] == "09":
-						tryRank = [1,1,1,0,0,0,0,0,0,0]
+						tryRank = [1,1,1,1,0,0,0,0,0,0]
 				if 시작("ㅌ"):
 					if 시간()[5:7] == "01" and 시간()[8:10] == "01" or\
 					   시간()[5:7] == "08" and 시간()[8:10] == "08" or\
@@ -538,19 +538,19 @@ async def on_message(message):
 					   시간()[2:4] == "29" and 시간()[5:7] == "09" and 시간()[8:10] == "22" or\
 					   시간()[2:4] == "30" and 시간()[5:7] == "09" and 시간()[8:10] == "12":
 
-						tryRank = [1,1,1,1,0,0,0,0,0,0]
+						tryRank = [1,1,1,1,1,0,0,0,0,0]
 				if 시작("ㅊ"):
 					if 시간()[5:7] == "01" and 시간()[8:10] == "26":
-						tryRank = [1,1,1,1,1,0,0,0,0,0]
+						tryRank = [1,1,1,1,1,1,0,0,0,0]
 				if 시작("ㄹ"):
 					if discord.utils.get(message.guild.roles, name="랭커") in message.author.roles:
-						tryRank = [1,1,0,0,0,0,0,0,0,0]
+						tryRank = [1,1,1,0,0,0,0,0,0,0]
 				if 시작("ㅍ"):
 					if discord.utils.get(message.guild.roles, name="SIP") in message.author.roles or\
 					   discord.utils.get(message.guild.roles, name="HIP") in message.author.roles or\
 					   discord.utils.get(message.guild.roles, name="UIP") in message.author.roles or\
 					   discord.utils.get(message.guild.roles, name="MIP") in message.author.roles:
-						tryRank = [1,1,1,0,0,0,0,0,0,0]
+						tryRank = [1,1,1,1,0,0,0,0,0,0]
 					
 				if not tryRank:
 					return
