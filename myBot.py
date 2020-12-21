@@ -792,12 +792,32 @@ async def on_message(message):
 					await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
 				await message.add_reaction(동글)
 
-
-
 		except Exception as e:
 			await message.add_reaction(엑스)
 			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
-		
+
+		try:
+			if 시작(",내정보") and message.channel.id in (779175022014365717, 783514748217589760):
+				user = message.author
+				for userRank in Ranks:
+					if discord.utils.get(user.roles, name=userRank):
+						break
+				for userTear in Tears:
+					if discord.utils.get(user.roles, name=userTear):
+						break
+				for userAgain in Agains:
+					if discord.utils.get(user.roles, name=userAgain):
+						break
+				else:
+					userAgain = "0"
+				await message.channel.send(	f"랭크: {userRank}\n" +
+								f"티어: {userTear}\n" +
+								f"환생횟수: {userAgain}\n" )
+		except Exception as e:
+			await message.add_reaction(엑스)
+			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
+
+
 		##########
 		if 시작(",테스트") and 관맂():
 			try:
