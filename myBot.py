@@ -635,8 +635,8 @@ async def on_message(message):
 				
 
 				#10~(환생횟수+1)*100 아닐경우 제거
-				if not 10 <= dmoney <= (int(userAgain)+1)*100:
-					await message.channel.send("`10~(환생횟수+1)*100` 만 걸수 있습니다.")
+				if not 10 <= dmoney <= 100+int(userAgain)*50:
+					await message.channel.send("`10~100+(환생횟수)*50` 만 걸수 있습니다.")
 					return
 
 				#가진돈보다 건돈이 많다면 알림
