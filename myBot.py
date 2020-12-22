@@ -645,9 +645,9 @@ async def on_message(message):
 					return
 				
 				#도박을 해봄
-				dp = random.choice([2,2,1.5,1.5,1.5,1,1,0.5,0.5,0])
+				dp = random.choice([2, 2, 1.5, 1.5, 1.5, 1.5, 1, 1, 0.5, 0.5])
 				await message.channel.send(f"{dp}배")
-				if dp in (0,0.5) and userTotalRank >= 20:
+				if dp == 0.5 and userTotalRank >= 20:
 					mymsg2 = await message.channel.send(f"실드를 구매 및 사용하시겠습니까?\n실드 1개당 20랭크, 20%입니다.\n0️⃣ `100% {round(-dmoney+dmoney*dp)}`\n1️⃣ `20% {round(-20)}, 80% {round(-20-dmoney+dmoney*dp)}`\n2️⃣ `40% {round(-40)}, 60% {round(-40-dmoney+dmoney*dp)}`\n3️⃣ `60% {round(-60)}, 40% {round(-60-dmoney+dmoney*dp)}`\n4️⃣ `80% {round(-80)}, 20% {round(-80-dmoney+dmoney*dp)}`\n5️⃣ `100% {round(-100)}`")
 					await mymsg2.add_reaction("0️⃣");time.sleep(0.5)
 					await mymsg2.add_reaction("1️⃣");time.sleep(0.5)
