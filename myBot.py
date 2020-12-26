@@ -522,7 +522,6 @@ async def on_message(message):
 						tryRank = [1,1,1,1,0,0,0,0,0,0]
 				if 시작("ㅌ"):
 					if 시간()[5:7] == "01" and 시간()[8:10] == "01" or\
-					   시간()[5:7] == "08" and 시간()[8:10] == "08" or\
 					   시간()[5:7] == "08" and 시간()[8:10] == "30" or\
 					   시간()[5:7] == "12" and 시간()[8:10] == "04" or\
 					   not "아래는 설날" or\
@@ -765,11 +764,29 @@ async def on_message(message):
 			await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}")
 		try:
 			if 시작(",일급") and message.author.id == 647001590766632966:
-				for l in ((526889025894875158, 10), (693386027036835912, 10), (544076137593176120, 10)):
-					uzer, money = l[0], l[1]
-					user = await message.guild.fetch_member(uzer)
-
+				users = [
+					526889025894875158, #감자
+					693386027036835912, #민트망고
+					544076137593176120, #둔난늑대
+					]
+				
+				ilGup = {
+					'인턴'   : '10',
+					'과장'   : '20',
+					'부장'   : '30',
+					'사장'   : '50',
+					'부회장' : '100',
+					}
+				
+				for l in users:
+					user = await message.guild.fetch_member(l)
 					q=[i.name for i in user.roles]
+					
+					##
+					for i in ilGup:
+						if i in q:
+							money = ilGup[i] ; break
+					##
 					for i in Ranks:
 						if i in q:
 							userRank = i ; break
