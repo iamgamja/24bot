@@ -98,6 +98,12 @@ async def on_message(message):
 
 		def 체크2(r,u): # 리엑션이 0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣ 그리고 같은 사람
 			return str(r.emoji) in "0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣" and u == message.author
+		
+		def 제목(s):
+			return 킹똥 + s + 똥킹
+		
+		def 코드(s):
+			return 땀표 + s + 땀표
 
 		def 한영변환(m):
 			m+='.'
@@ -174,6 +180,11 @@ async def on_message(message):
 			for i in 임시:
 				f+=i
 			return f[:-1]
+		
+		
+		
+		
+		
 
 		if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640):
 			#랭크업, 시간, 도박장에서의 슷칼봇 메시지 삭제
@@ -193,7 +204,7 @@ async def on_message(message):
 
 
 		if 시작(",도움") and 관ㄹ():
-			embed = discord.Embed(title=킹똥+"도움말"+똥킹, color=0x825cff)
+			embed = discord.Embed(title=제목("도움말"), color=0x825cff)
 			embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="**`도움`**", inline=False)
 			embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
 			embed.add_field(name=빈공, value="**`재미`**", inline=False)
@@ -248,7 +259,7 @@ async def on_message(message):
 			await message.channel.send(폭팔)
 
 		elif 시작(",프사") and 관ㄹ():
-			await message.channel.send(embed=discord.Embed(title=킹똥+"프사"+똥킹, color=0xffccff).set_image(url=message.author.avatar_url))
+			await message.channel.send(embed=discord.Embed(title=제목("프사"), color=0xffccff).set_image(url=message.author.avatar_url))
 
 		elif 시작(",말") and 관ㄹ():
 			m = ' '.join(m.split(' ')[1:])
@@ -267,9 +278,9 @@ async def on_message(message):
 				look_dict[list(inputdict.keys())[i]] = str(inputmsg)[:7]+'...' if len(str(inputmsg)) > 10 else str(inputmsg)
 			await mymsg.delete()
 			try:
-				embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=int("0x"+inputdict["색"], 16))
+				embed = discord.Embed(title=제목(inputdict["제목"]), color=int("0x"+inputdict["색"], 16))
 			except:
-				embed = discord.Embed(title=킹똥+inputdict["제목"]+똥킹, color=0x000000)
+				embed = discord.Embed(title=제목(inputdict["제목"]), color=0x000000)
 			embed.add_field(name=inputdict["소제목"], value=inputdict["내용"], inline=False)
 			embed.set_footer(text=inputdict["푸터"])
 			await message.channel.send(embed=embed)
