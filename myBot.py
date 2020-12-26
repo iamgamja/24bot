@@ -456,7 +456,7 @@ async def on_message(message):
 			}
 		
 		for nickname in mentions:
-			if m = nickname:
+			if m == nickname:
 				ping = await message.channel.send(f"{message.author if name != '시인' else '익명 히히'} : {mentions[nickname]}")
 				await asyncio.sleep(1.0)
 				await ping.delete()
