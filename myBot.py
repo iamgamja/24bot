@@ -4,22 +4,21 @@ client = discord.Client()
 # await asyncio.sleep()
 # await message.channel.send()
 
-# 반응(이모지)
+# 반응
 띵킹 = "🤔"
 동글 = "⭕"
 엑스 = "❌"
 청소 = "🗑️"
 체크 = "✅"
-똥킹 = "<:thonking:732864307196592199>"
-킹똥 = "<:gniknoht:733977049743753247>"
-와샍 = "<:aemoji_29:736146757716803605>"
+똥킹 = "<:thonking:792609223099940864>"
+킹똥 = "<:gniknoht:792609325562068992>"
 저런 = "<:wjfjs:783226650664894544>"
 흠ㅁ = "<:gma:783226674413043733>"
 히히 = "<:glgl:783226584575508484>"
 헐ㄹ = "<:gjf:783226547515555890>"
 아ㅏ = "<:dk:783226610529599488>"
 와ㅏ = "<:dhk:783226517655912478>"
-# 기타(다른거)
+# 한영
 배코 = 44032
 초코 = 588
 중코 = 28
@@ -33,12 +32,14 @@ client = discord.Client()
 한영 = dict(zip(한글, 영어))
 영한 = dict(zip(영어, 한글))
 겹글 = "rsfqhnm"
+# 기타
 빈공 = '​'
 땀표 = '```'
+# 사진
 폭팔 = "https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif"
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
-# 반복 = [0, ""] # ,반복 명령어에 사용
+# 기능
 출력 = ""      # ,계산 명령어에 사용
 기억 = {}      # ,기억 명령어에 사용
 
@@ -224,6 +225,7 @@ async def on_message(message):
 			embed.add_field(name="~~,역할제거 <이름>~~", value="~~<이름>의 역할을 제거합니다.~~", inline=True)
 			embed.add_field(name="~~,채널생성 <카테고리> <이름>~~", value="~~<카테고리>에 <이름>의 채널을 생성합니다.~~", inline=True)
 			embed.add_field(name="~~,채널제거 <이름>~~", value="~~<이름>의 채널을 제거합니다.~~", inline=True)
+			embed.add_field(name=",시간", value="현재시간을 알려줍니다", inline=True)
 			embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
 			embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
 			embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
@@ -243,6 +245,9 @@ async def on_message(message):
 		elif 시작(",핑") and 관ㄹ():
 			await message.channel.send(f"<@{message.author.id}>")
 
+		elif 시작(",시간") and 관ㄹ():
+			await message.channel.send(시간())
+
 		elif 시작(",정보") and 관ㄹ():
 			await message.channel.send(f"만든사람: <@526889025894875158>")
 
@@ -251,9 +256,6 @@ async def on_message(message):
 
 		elif 시작(",히어핑") and 관리():
 			await message.channel.send("@here")
-
-		elif 시작(",짭블핑") and 관리():
-			await message.channel.send("<@&785085545998057522>")
 
 		elif 시작(",폭8") and 관ㄹ():
 			await message.channel.send(폭팔)
