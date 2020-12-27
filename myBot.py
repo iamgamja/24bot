@@ -75,10 +75,7 @@ async def on_message(message):
 	try:
 		global 반복
 		m = message.content
-
 		# print(m)
-		def 포함(s):
-			return m.find(s)+1
 
 		def 시작(s):
 			s = 한영변환(s)
@@ -89,16 +86,13 @@ async def on_message(message):
 		def 관ㄹ(): # 노가다 서버가 아닌지 확인
 			return message.guild.id != 766932314973929522
 
-		def 관리(): # (관리자(감자#9400)이거나 yee서버) 이고 노가다 서버가 아닌지 확인
-			return (message.author.id == 526889025894875158 or message.guild.id == 785083334929547284) and message.guild.id != 766932314973929522
-		
-		def 관맂(): # 관리자(감자#9400)이고 노가다 서버가 아닌지 확인
+		def 관리(): # 관리자(감자#9400) 이고 노가다 서버가 아닌지 확인
 			return message.author.id == 526889025894875158 and message.guild.id != 766932314973929522
 
-		def 체크1(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인
+		def 체크1(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인 (임베드)
 			return m.channel.id == message.channel.id and m.author == message.author
 
-		def 체크2(r,u): # 리엑션이 0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣ 그리고 같은 사람
+		def 체크2(r,u): # 리엑션이 0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣ 그리고 같은 사람 (실드)
 			return str(r.emoji) in "0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣" and u == message.author
 		
 		def 제목(s):
@@ -218,7 +212,7 @@ async def on_message(message):
 			embed.add_field(name=빈공, value="**`기능`**", inline=False)
 			embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
 			embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
-			embed.add_field(name="~~,계산 <식>~~", value="~~<식>을 계산합니다.~~", inline=True)
+			embed.add_field(name=",계산 <식>", value="~~<식>을 계산합니다.~~", inline=True)
 			embed.add_field(name="~~,청소 <수>~~", value="~~<수>만큼의 메시지를 지웁니다.~~", inline=True)
 			embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
 			embed.add_field(name="~~,역할생성 <이름>~~", value="~~<이름>의 역할을 생성합니다.~~", inline=True)
@@ -446,7 +440,7 @@ async def on_message(message):
 				await message.add_reaction(엑스)
 				
 				
-		elif 시작(",테스트") and 관맂():
+		elif 시작(",테스트") and 관리():
 			try:
 				for i in Ranks:
 					await message.guild.create_role(name = i)
@@ -466,6 +460,25 @@ async def on_message(message):
 				outputmsg = str(eval(m))
 
 			await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
+		
+		elif 시작(",계산"):
+			m = ' '.join(m.split(' ')[1:])
+			
+			f = ''
+			p = '2 ^ 100 / 2'
+			for i in p:
+				if i in '1234567890.':
+					f += i
+				elif i in '+-*/^%':
+					if not f[-1] in '+-*/^%':
+						f += i
+						
+			f = '0'+f if f[0] == '.' else f
+			f = f[:-1] if f[-1] == '.' else f
+
+			f = f.replace("^", "**")
+
+			await message.channel.send(eval(f))
 
 		if 관ㄹ():
 			return
