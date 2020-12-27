@@ -12,6 +12,7 @@ client = discord.Client()
 체크 = "✅"
 똥킹 = "<:thonking:792609223099940864>"
 킹똥 = "<:gniknoht:792609325562068992>"
+똥키 = "<:thonkery:792646930077188096>"
 저런 = "<:wjfjs:783226650664894544>"
 흠ㅁ = "<:gma:783226674413043733>"
 히히 = "<:glgl:783226584575508484>"
@@ -197,6 +198,9 @@ async def on_message(message):
 							f"channel_id: `{message.channel.id}`\n"	+
 							f"guild_id: `{message.guild.id}`\n"	)
 			return
+		
+		if '@everyone' in m or '@here' in m:
+			await message.add_reaction(똥키)
 
 
 		if 시작(",도움"):
