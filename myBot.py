@@ -201,6 +201,7 @@ async def on_message(message):
 		
 		if '@everyone' in m or '@here' in m:
 			await message.add_reaction(똥키)
+			return
 
 
 		if 시작(",도움"):
