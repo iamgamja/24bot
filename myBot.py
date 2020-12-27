@@ -182,11 +182,6 @@ async def on_message(message):
 				f+=i
 			return f[:-1]
 		
-		
-		
-		
-		
-
 		if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640):
 			#랭크업, 시간, 도박장에서의 슷칼봇 메시지 삭제
 			await message.delete()
@@ -204,7 +199,7 @@ async def on_message(message):
 			return
 
 
-		if 시작(",도움") and 관ㄹ():
+		if 시작(",도움"):
 			embed = discord.Embed(title=제목("도움말"), color=0x825cff)
 			embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="**`도움`**", inline=False)
 			embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
@@ -242,13 +237,13 @@ async def on_message(message):
 		elif 시작(",초대") and 관ㄹ():
 			await message.channel.send("https://discord.com/oauth2/authorize?&client_id=688978156535021599&scope=bot&permissions=8")
 
-		elif 시작(",핑") and 관ㄹ():
+		elif 시작(",핑"):
 			await message.channel.send(f"<@{message.author.id}>")
 
-		elif 시작(",시간") and 관ㄹ():
+		elif 시작(",시간"):
 			await message.channel.send(시간())
 
-		elif 시작(",정보") and 관ㄹ():
+		elif 시작(",정보"):
 			await message.channel.send(f"만든사람: <@526889025894875158>")
 
 		elif 시작(",에블핑") and 관리():
@@ -257,17 +252,17 @@ async def on_message(message):
 		elif 시작(",히어핑") and 관리():
 			await message.channel.send("@here")
 
-		elif 시작(",폭8") and 관ㄹ():
+		elif 시작(",폭8"):
 			await message.channel.send(폭팔)
 
-		elif 시작(",프사") and 관ㄹ():
+		elif 시작(",프사"):
 			await message.channel.send(embed=discord.Embed(title=제목("프사"), color=0xffccff).set_image(url=message.author.avatar_url))
 
-		elif 시작(",말") and 관ㄹ():
+		elif 시작(",말"):
 			m = ' '.join(m.split(' ')[1:])
 			await message.channel.send(m)
 
-		elif 시작(",임베드") and 관ㄹ():
+		elif 시작(",임베드"):
 			inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
 			look_dict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
 			mymsg = await message.channel.send("준비중...")
@@ -287,7 +282,7 @@ async def on_message(message):
 			embed.set_footer(text=inputdict["푸터"])
 			await message.channel.send(embed=embed)
 
-		elif 시작(",기억") and 관ㄹ():
+		elif 시작(",기억"):
 			m = ' '.join(m.split(' ')[1:])
 			q = m.split()
 			if len(q) == 0: # 목록
@@ -304,7 +299,7 @@ async def on_message(message):
 			else:
 				await message.channel.send("ㅏ 띄어쓰기 안됨")
 
-		elif 시작(",지뢰찾기") and 관ㄹ():
+		elif 시작(",지뢰찾기"):
 			m = ' '.join(m.split(' ')[1:])
 			#제대로 input 했는지 확인
 			mine_input = m.split()
@@ -402,11 +397,11 @@ async def on_message(message):
 			await asyncio.sleep(2.0)
 			await msg.delete()
 
-		elif 시작(",한영") and 관ㄹ():
+		elif 시작(",한영"):
 			m = ' '.join(m.split(' ')[1:])
 			await message.channel.send(한영변환(m))
 
-		elif 시작(",영한") and 관ㄹ():
+		elif 시작(",영한"):
 			m = ' '.join(m.split(' ')[1:])
 			await message.channel.send(영한변환(m))
 
