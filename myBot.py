@@ -209,8 +209,8 @@ async def on_message(message):
 			embed.add_field(name="~~,에블핑~~", value="~~으악 핑~~", inline=True)
 			embed.add_field(name="~~,히어핑~~", value="~~으악 핑~~", inline=True)
 			embed.add_field(name=",폭8", value="폭☆8", inline=True)
+			embed.add_field(name=",지뢰찾기 <랜덤|최대|최소>", value="<랜덤|최대|최소> 크기의 지뢰찾기 판을 만듭니다.", inline=True)
 			embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
-			embed.add_field(name=빈공, value=빈공, inline=True)
 			embed.add_field(name=빈공, value="**`기능`**", inline=False)
 			embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
 			embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
@@ -227,11 +227,10 @@ async def on_message(message):
 			embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
 			embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
 			embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
-			embed.add_field(name=빈공, value=빈공, inline=True)
 			embed.add_field(name=빈공, value="**`기타`**", inline=False)
 			embed.add_field(name=",초대", value="초대 링크를 보냅니다.", inline=True)
 			embed.add_field(name=",정보", value="만든 사람을 찾습니다.", inline=True)
-
+			
 			embed.set_footer(text= f'{message.author.name} | {시간()}')
 			await message.channel.send(embed=embed)
 
@@ -303,14 +302,22 @@ async def on_message(message):
 		elif 시작(",지뢰찾기"):
 			m = ' '.join(m.split(' ')[1:])
 			#제대로 input 했는지 확인
+			if m == '랜덤':
+				m = str(random.randint(1, 17)) + ' '
+				m += str(random.randint(1, 50)) + ' '
+				m += str(random.randint(1, int(m.split()[0]) * int(m.split()[1])))
+			
+			m = '17 50 850' if m == '최대' else m
+			m = '1 1 1' if m == '최소' else m
 			mine_input = m.split()
+			
 			if len(mine_input) != 3:
-				await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y```") ; return
+				await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y\n또는 ,지뢰찾기 <랜덤|최대|최소>```") ; return
 			mine_x = int(mine_input[0])
 			mine_y = int(mine_input[1])
 			mine_z = int(mine_input[2])
 			if (mine_x < 1) or (mine_y < 1) or (mine_z < 1) or (mine_x > 17) or (mine_y > 50) or (mine_z > mine_x * mine_y):
-				await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y```") ; return
+				await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y\n또는 ,지뢰찾기 <랜덤|최대|최소>```") ; return
 			#확인 끝, 틀 만들기
 			mine_map = []
 			for i in range(mine_y):
