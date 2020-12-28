@@ -552,8 +552,6 @@ async def on_message(message):
 				await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342)) ; return
 			else:
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
-				await user.add_roles(discord.utils.get(message.guild.roles, name="환생 횟수"))
-				await user.add_roles(discord.utils.get(message.guild.roles, name="회"))
 			userTotalRank %= (len(Ranks)*len(Tears))
 			#티어 적용 (0이어도 0번째(아톰))
 			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
@@ -674,8 +672,6 @@ async def on_message(message):
 				await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342)) ; return
 			else:
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
-				await user.add_roles(discord.utils.get(message.guild.roles, name="환생 횟수"))
-				await user.add_roles(discord.utils.get(message.guild.roles, name="회"))
 			userTotalRank %= (len(Ranks)*len(Tears))
 			#티어 적용 (0이어도 0번째(아톰))
 			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
@@ -794,7 +790,7 @@ async def on_message(message):
 					await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
 			else:
 				money = round(-dmoney+dmoney*dp)
-			await client.get_channel(762916201654386701).send(((userRank, userTear, userAgain), (userTotalRank, money)))
+			await client.get_channel(762916201654386701).send(((userRank, userTear, userAgain), (userTotalRank, money), [message.jump_url]))
 			#랭크적용...
 			userTotalRank += money
 			await client.get_channel(762916201654386701).send((userTotalRank, f"%{(len(Ranks)*len(Tears))}"))
@@ -806,6 +802,7 @@ async def on_message(message):
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
 			if userAgain != "0":
 				await user.remove_roles(discord.utils.get(message.guild.roles, name=userAgain))
+			await client.get_channel(762916201654386701).send("역할을 제거함")
 
 			#환생횟수 적용
 			if userTotalRank // (len(Ranks)*len(Tears)) == 0:
@@ -814,19 +811,15 @@ async def on_message(message):
 				await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342)) ; return
 			else:
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
-				await user.add_roles(discord.utils.get(message.guild.roles, name="환생 횟수"))
-				await user.add_roles(discord.utils.get(message.guild.roles, name="회"))
-			await client.get_channel(762916201654386701).send((userTotalRank % (len(Ranks)*len(Tears))))
+			await client.get_channel(762916201654386701).send(("환생 횟수를 적용함:", userTotalRank//2700, "다음:", userTotalRank%2700))
 			userTotalRank %= (len(Ranks)*len(Tears))
-			await client.get_channel(762916201654386701).send((userTotalRank, f"%{len(Ranks)}"))
 			#티어 적용 (0이어도 0번째(아톰))
 			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
-			await client.get_channel(762916201654386701).send((userTotalRank % len(Ranks)))
+			await client.get_channel(762916201654386701).send(("티어를 적용함:", userTotalRank//50, "다음:", userTotalRank%50))
 			userTotalRank %= len(Ranks)
-			await client.get_channel(762916201654386701).send((userTotalRank, "%1"))
 			#랭크 적용 (0이어도 0번째(L))
 			await user.add_roles(discord.utils.get(message.guild.roles, name=Ranks[userTotalRank]))
-			await client.get_channel(762916201654386701).send(userTotalRank)
+			await client.get_channel(762916201654386701).send(("랭크를 적용함:", userTotalRank))
 			await message.add_reaction(체크)
 
 		elif 시작(",일급") and message.author.id == 647001590766632966: # 생강 
@@ -888,8 +881,6 @@ async def on_message(message):
 					await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342)) ; return
 				else:
 					await user.add_roles(discord.utils.get(message.guild.roles, name=Agains[userTotalRank // (len(Ranks)*len(Tears))]))
-					await user.add_roles(discord.utils.get(message.guild.roles, name="환생 횟수"))
-					await user.add_roles(discord.utils.get(message.guild.roles, name="회"))
 				userTotalRank %= (len(Ranks)*len(Tears))
 				#티어 적용 (0이어도 0번째(아톰))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank // len(Ranks)]))
@@ -920,7 +911,7 @@ async def on_message(message):
 		
 	except Exception as e:
 		await message.add_reaction(엑스)
-		await client.get_channel(762916201654386701).send(f"{시간()}, 에러, {e}, {message.jump_url}")
+		await client.get_channel(762916201654386701).send(f"{시간()}, <@526889025894875158>, 에러, {e}, {message.jump_url}")
 
 try:
 	access_token = os.environ["BOR_TOKEN"]
