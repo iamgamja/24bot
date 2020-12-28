@@ -488,6 +488,26 @@ async def on_message(message):
 
 			await message.channel.send(eval(f))
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		if 관ㄹ():
 			return
 		m = message.content
@@ -826,6 +846,7 @@ async def on_message(message):
 				526889025894875158, #감자
 				693386027036835912, #민트망고
 				544076137593176120, #둔난늑대
+				506786900195934218, #자감
 				]
 
 			ilGup = {
