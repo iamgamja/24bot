@@ -519,9 +519,13 @@ async def on_message(message):
 			for i in Ranks:
 				if i in q:
 					userRank = i ; break
+			else:
+				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 			for i in Tears:
 				if i in q:
 					userTear = i ; break
+			else:
+				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 			for i in Agains:
 				if i in q:
 					userAgain = i ; break
@@ -637,9 +641,13 @@ async def on_message(message):
 			for i in Ranks:
 				if i in q:
 					userRank = i ; break
+			else:
+				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 			for i in Tears:
 				if i in q:
 					userTear = i ; break
+			else:
+				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 			for i in Agains:
 				if i in q:
 					userAgain = i ; break
@@ -691,9 +699,13 @@ async def on_message(message):
 			for i in Ranks:
 				if i in q:
 					userRank = i ; break
+			else:
+				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 			for i in Tears:
 				if i in q:
 					userTear = i ; break
+			else:
+				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 			for i in Agains:
 				if i in q:
 					userAgain = i ; break
@@ -843,9 +855,13 @@ async def on_message(message):
 				for i in Ranks:
 					if i in q:
 						userRank = i ; break
+				else:
+					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 				for i in Tears:
 					if i in q:
 						userTear = i ; break
+				else:
+					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 				for i in Agains:
 					if i in q:
 						userAgain = i ; break
