@@ -489,6 +489,7 @@ async def on_message(message):
 		Agains = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50')
 		
 		mentions = {
+			'시인': '<@!647001590766632966>'
 			'둔늑': '<@!544076137593176120>',
 			'민망': '<@!693386027036835912>',
 			'감자': '<@!526889025894875158>',
@@ -501,13 +502,6 @@ async def on_message(message):
 				await ping.delete()
 				await message.delete()
 				return
-
-		if message.content == '시인':
-			ping = await message.channel.send(f"익명 히히 : <@!647001590766632966>")
-			await asyncio.sleep(1.0)
-			await ping.delete()
-			await message.delete()
-			return
 
 		if (시작("+") or 시작("-")) and message.author.id == 647001590766632966: # 생강 + 또는 -
 			q=m.split()
