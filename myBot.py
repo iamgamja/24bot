@@ -85,11 +85,8 @@ async def on_message(message):
 			mmm = 한영변환(mm)
 			return mmm.startswith(s)
 
-		def 관ㄹ(): # 노가다 서버가 아닌지 확인
-			return message.guild.id != 766932314973929522
-
-		def 관리(): # 관리자(감자#9400) 이고 노가다 서버가 아닌지 확인
-			return message.author.id == 526889025894875158 and message.guild.id != 766932314973929522
+		def 관리(): # 관리자(감자#9400)인지 확인
+			return message.author.id == 526889025894875158
 
 		def 체크1(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인 (임베드)
 			return m.channel.id == message.channel.id and m.author == message.author
@@ -234,7 +231,7 @@ async def on_message(message):
 			embed.set_footer(text= f'{message.author.name} | {시간()}')
 			await message.channel.send(embed=embed)
 
-		elif 시작(",초대") and 관ㄹ():
+		elif 시작(",초대"):
 			await message.channel.send("https://discord.com/oauth2/authorize?&client_id=688978156535021599&scope=bot&permissions=8")
 
 		elif 시작(",핑"):
@@ -508,7 +505,7 @@ async def on_message(message):
 
 
 
-		if 관ㄹ():
+		if message.guild.id != 766932314973929522:
 			return
 		m = message.content
 		
