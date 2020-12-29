@@ -1012,7 +1012,7 @@ async def on_message(message):
 				userAgain += 0
 
 			await message.channel.send(	f"랭크: {userRank}\n" +
-							f"티어: {userTear}\n" +
+							f"티어: {Tears[userTear]}({userTear}번째)\n" +
 							f"환생횟수: {userAgain}\n" )
 		
 	except Exception as e:
