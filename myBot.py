@@ -708,7 +708,7 @@ async def on_message(message):
 			#역할제거
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userRank//10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userRank% 10]))
-			await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
+			await user.remove_roles(discord.utils.get(message.guild.roles, name=Tears[userTear]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_10[userAgain//10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_01[userAgain% 10]))
 
@@ -867,7 +867,7 @@ async def on_message(message):
 			#역할제거
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userRank//10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userRank% 10]))
-			await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
+			await user.remove_roles(discord.utils.get(message.guild.roles, name=Tears[userTear]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_10[userAgain//10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_01[userAgain% 10]))			
 			await client.get_channel(762916201654386701).send("역할을 제거함")
@@ -947,7 +947,7 @@ async def on_message(message):
 				#역할제거
 				await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userRank//10]))
 				await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userRank% 10]))
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
+				await user.remove_roles(discord.utils.get(message.guild.roles, name=Tears[userTear]))
 				await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_10[userAgain//10]))
 				await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_01[userAgain% 10]))
 
