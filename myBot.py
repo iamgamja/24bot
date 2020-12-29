@@ -592,7 +592,7 @@ async def on_message(message):
 				await user.add_roles(discord.utils.get(message.guild.roles, id=Agains_01[(userTotalRank//2700) %  10]))
 			userTotalRank %= 2700
 			#티어 적용 (0이어도 0번째(아톰))
-			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRanks//50]))
+			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
 			userTotalRank %= 50
 			#랭크 적용 (0이어도 0번째(L))
 			await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userTotalRank // 10]))
@@ -726,7 +726,7 @@ async def on_message(message):
 				await user.add_roles(discord.utils.get(message.guild.roles, id=Agains_01[(userTotalRank//2700) %  10]))
 			userTotalRank %= 2700
 			#티어 적용 (0이어도 0번째(아톰))
-			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRanks//50]))
+			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
 			userTotalRank %= 50
 			#랭크 적용 (0이어도 0번째(L))
 			await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userTotalRank // 10]))
@@ -881,7 +881,7 @@ async def on_message(message):
 			await client.get_channel(762916201654386701).send(f"{userTotalRank}에서 /2700, 환생 횟수를 {userTotalRank//2700} 로 적용함, -> {userTotalRank%2700}")
 			userTotalRank %= 2700
 			#티어 적용 (0이어도 0번째(아톰))
-			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRanks//50]))
+			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
 			await client.get_channel(762916201654386701).send(f"{userTotalRank}에서 /50, 티어를 {userTotalRank//50} 로 적용함, -> {userTotalRank%50}")
 			userTotalRank %= 50
 			#랭크 적용 (0이어도 0번째(L))
@@ -965,7 +965,7 @@ async def on_message(message):
 					await user.add_roles(discord.utils.get(message.guild.roles, id=Agains_01[(userTotalRank//2700) %  10]))
 				userTotalRank %= 2700
 				#티어 적용 (0이어도 0번째(아톰))
-				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRanks//50]))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
 				userTotalRank %= 50
 				#랭크 적용 (0이어도 0번째(L))
 				await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userTotalRank // 10]))
