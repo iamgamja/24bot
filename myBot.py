@@ -517,8 +517,9 @@ async def on_message(message):
 		
 		Tears = ('아톰', '몰레큘', '셀', '슈퍼 셀', '하이퍼 셀', '워터', '클린 워터', '아이스', '클린 아이스', '하드 아이스', '소일', '샌드', '우드', '페이퍼', '글래스', '클리어 글래스', '미러', '클리어 미러', '스톤', '하드 스톤', '아이언', '하드 아이언', '브론즈', '클리어 브론즈', '브론즈 메달', '실버', '클리어 실버', '실버 메달', '골드', '클리어 골드', '골드 메달', '아메티스트(자수정)', '크리스탈', '클리어 크리스탈', '블랙 크리스탈', '다이아몬드', '블랙 다이아몬드', '아다만티움', '사파이어', '에메랄드', '루비', '우루', '비브라늄', '클래식', '프리미엄', '딜럭스', '익스트림', '플래티넘', '미스틱', '챌린저', '마스터', '그랜드', '챔피언', '레전드')
 		
-		Agains_10 = (786107367707770890, 786107331485106186, 786107334912376872, 786107343121285140, 786107346077614094, 786107347994935309, 786107350759112714, 786107353136365609, 786107359373426688, 786107363169927178)
-		Agains_01 = (786107373814284350, 786107379531907072, 786107383575347240, 786107388927148032, 786107393192099840, 786107409176330270, 786107411563413504, 786107414138322974, 786107416328536066, 786107428915511306)
+		Agains_10 = ('환생 횟수 : 0', '환생 횟수 : 1', '환생 횟수 : 2', '환생 횟수 : 3', '환생 횟수 : 4', '환생 횟수 : 5')
+		Agains_10 = ('0회', '1회', '2회', '3회', '4회', '5회', '6회', '7회', '8회', '9회')
+		
 		
 		mentions = {
 			'시인': '<@!647001590766632966>',
@@ -561,12 +562,13 @@ async def on_message(message):
 			
 			userAgain = 0
 			for i in range(len(Agains_10)):
-				if Agains_10[i] in [i.id for i in user.roles]:
+				if Agains_10[i] in [i.name for i in user.roles]:
 					userAgain += i*10 ; break
 			else:
 				userAgain += 0*10
+				
 			for i in range(len(Agains_01)):
-				if Agains_01[i] in [i.id for i in user.roles]:
+				if Agains_01[i] in [i.name for i in user.roles]:
 					userAgain += i ; break
 			else:
 				userAgain += 0
@@ -575,8 +577,8 @@ async def on_message(message):
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userRank//10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userRank% 10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=Tears[userTear]))
-			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_10[userAgain//10]))
-			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_01[userAgain% 10]))
+			await user.remove_roles(discord.utils.get(message.guild.roles, name=Agains_10[userAgain//10]))
+			await user.remove_roles(discord.utils.get(message.guild.roles, name=Agains_01[userAgain% 10]))
 
 			#유저랭크 계산
 			userTotalRank = 0
@@ -588,8 +590,8 @@ async def on_message(message):
 			if userTotalRank // 2700 > 50:
 				await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342)) ; return
 			else:
-				await user.add_roles(discord.utils.get(message.guild.roles, id=Agains_10[(userTotalRank//2700) // 10]))
-				await user.add_roles(discord.utils.get(message.guild.roles, id=Agains_01[(userTotalRank//2700) %  10]))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_10[(userTotalRank//2700) // 10]))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_01[(userTotalRank//2700) %  10]))
 			userTotalRank %= 2700
 			#티어 적용 (0이어도 0번째(아톰))
 			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
@@ -695,12 +697,13 @@ async def on_message(message):
 			
 			userAgain = 0
 			for i in range(len(Agains_10)):
-				if Agains_10[i] in [i.id for i in user.roles]:
+				if Agains_10[i] in [i.name for i in user.roles]:
 					userAgain += i*10 ; break
 			else:
 				userAgain += 0*10
+				
 			for i in range(len(Agains_01)):
-				if Agains_01[i] in [i.id for i in user.roles]:
+				if Agains_01[i] in [i.name for i in user.roles]:
 					userAgain += i ; break
 			else:
 				userAgain += 0
@@ -709,8 +712,8 @@ async def on_message(message):
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userRank//10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userRank% 10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=Tears[userTear]))
-			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_10[userAgain//10]))
-			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_01[userAgain% 10]))
+			await user.remove_roles(discord.utils.get(message.guild.roles, name=Agains_10[userAgain//10]))
+			await user.remove_roles(discord.utils.get(message.guild.roles, name=Agains_01[userAgain% 10]))
 
 			#유저랭크 계산
 			userTotalRank = 0
@@ -722,8 +725,8 @@ async def on_message(message):
 			if userTotalRank // 2700 > 50:
 				await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342)) ; return
 			else:
-				await user.add_roles(discord.utils.get(message.guild.roles, id=Agains_10[(userTotalRank//2700) // 10]))
-				await user.add_roles(discord.utils.get(message.guild.roles, id=Agains_01[(userTotalRank//2700) %  10]))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_10[(userTotalRank//2700) // 10]))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_01[(userTotalRank//2700) %  10]))
 			userTotalRank %= 2700
 			#티어 적용 (0이어도 0번째(아톰))
 			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
@@ -765,12 +768,13 @@ async def on_message(message):
 			
 			userAgain = 0
 			for i in range(len(Agains_10)):
-				if Agains_10[i] in [i.id for i in user.roles]:
+				if Agains_10[i] in [i.name for i in user.roles]:
 					userAgain += i*10 ; break
 			else:
 				userAgain += 0*10
+				
 			for i in range(len(Agains_01)):
-				if Agains_01[i] in [i.id for i in user.roles]:
+				if Agains_01[i] in [i.name for i in user.roles]:
 					userAgain += i ; break
 			else:
 				userAgain += 0
@@ -868,16 +872,16 @@ async def on_message(message):
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userRank//10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userRank% 10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, name=Tears[userTear]))
-			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_10[userAgain//10]))
-			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_01[userAgain% 10]))			
+			await user.remove_roles(discord.utils.get(message.guild.roles, name=Agains_10[userAgain//10]))
+			await user.remove_roles(discord.utils.get(message.guild.roles, name=Agains_01[userAgain% 10]))
 			await client.get_channel(762916201654386701).send("역할을 제거함")
 			
 			#환생횟수 적용
 			if userTotalRank // 2700 > 50:
 				await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342)) ; return
 			else:
-				await user.add_roles(discord.utils.get(message.guild.roles, id=Agains_10[(userTotalRank//2700) // 10]))
-				await user.add_roles(discord.utils.get(message.guild.roles, id=Agains_01[(userTotalRank//2700) %  10]))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_10[(userTotalRank//2700) // 10]))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_01[(userTotalRank//2700) %  10]))
 			await client.get_channel(762916201654386701).send(f"{userTotalRank}에서 /2700, 환생 횟수를 {userTotalRank//2700} 로 적용함, -> {userTotalRank%2700}")
 			userTotalRank %= 2700
 			#티어 적용 (0이어도 0번째(아톰))
@@ -934,12 +938,13 @@ async def on_message(message):
 
 				userAgain = 0
 				for i in range(len(Agains_10)):
-					if Agains_10[i] in [i.id for i in user.roles]:
+					if Agains_10[i] in [i.name for i in user.roles]:
 						userAgain += i*10 ; break
 				else:
 					userAgain += 0*10
+
 				for i in range(len(Agains_01)):
-					if Agains_01[i] in [i.id for i in user.roles]:
+					if Agains_01[i] in [i.name for i in user.roles]:
 						userAgain += i ; break
 				else:
 					userAgain += 0
@@ -948,8 +953,8 @@ async def on_message(message):
 				await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userRank//10]))
 				await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userRank% 10]))
 				await user.remove_roles(discord.utils.get(message.guild.roles, name=Tears[userTear]))
-				await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_10[userAgain//10]))
-				await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_01[userAgain% 10]))
+				await user.remove_roles(discord.utils.get(message.guild.roles, name=Agains_10[userAgain//10]))
+				await user.remove_roles(discord.utils.get(message.guild.roles, name=Agains_01[userAgain% 10]))
 
 				#유저랭크 계산
 				userTotalRank = 0
@@ -961,8 +966,8 @@ async def on_message(message):
 				if userTotalRank // 2700 > 50:
 					await user.add_roles(discord.utils.get(message.guild.roles, id=766932654988984342)) ; return
 				else:
-					await user.add_roles(discord.utils.get(message.guild.roles, id=Agains_10[(userTotalRank//2700) // 10]))
-					await user.add_roles(discord.utils.get(message.guild.roles, id=Agains_01[(userTotalRank//2700) %  10]))
+					await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_10[(userTotalRank//2700) // 10]))
+					await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_01[(userTotalRank//2700) %  10]))
 				userTotalRank %= 2700
 				#티어 적용 (0이어도 0번째(아톰))
 				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
@@ -995,12 +1000,13 @@ async def on_message(message):
 			
 			userAgain = 0
 			for i in range(len(Agains_10)):
-				if Agains_10[i] in [i.id for i in user.roles]:
+				if Agains_10[i] in [i.name for i in user.roles]:
 					userAgain += i*10 ; break
 			else:
 				userAgain += 0*10
+				
 			for i in range(len(Agains_01)):
-				if Agains_01[i] in [i.id for i in user.roles]:
+				if Agains_01[i] in [i.name for i in user.roles]:
 					userAgain += i ; break
 			else:
 				userAgain += 0
