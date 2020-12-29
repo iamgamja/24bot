@@ -553,8 +553,8 @@ async def on_message(message):
 			else:
 				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 			
-			for i in Tears:
-				if i in [i.name for i in user.roles]:
+			for i in range(len(Tears)):
+				if Tears[i] in [i.name for i in user.roles]:
 					userTear = i ; break
 			else:
 				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
@@ -574,15 +574,15 @@ async def on_message(message):
 			#역할제거
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userRank//10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userRank% 10]))
-			await user.remove_roles(discord.utils.get(message.guild.roles, name=userTear))
+			await user.remove_roles(discord.utils.get(message.guild.roles, name=Tears[userTear]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_10[userAgain//10]))
 			await user.remove_roles(discord.utils.get(message.guild.roles, id=Agains_01[userAgain% 10]))
 
 			#유저랭크 계산
 			userTotalRank = 0
-			userTotalRank += Ranks.index(userRank)
-			userTotalRank += Tears.index(userTear)*50
-			userTotalRank += Agains.index(userAgain)*2700
+			userTotalRank += userRank
+			userTotalRank += userTear*50
+			userTotalRank += userAgain*2700
 			userTotalRank += money
 			#환생횟수 적용
 			if userTotalRank // 2700 > 50:
@@ -687,8 +687,8 @@ async def on_message(message):
 			else:
 				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 			
-			for i in Tears:
-				if i in [i.name for i in user.roles]:
+			for i in range(len(Tears)):
+				if Tears[i] in [i.name for i in user.roles]:
 					userTear = i ; break
 			else:
 				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
@@ -714,9 +714,9 @@ async def on_message(message):
 
 			#유저랭크 계산
 			userTotalRank = 0
-			userTotalRank += Ranks.index(userRank)
-			userTotalRank += Tears.index(userTear)*50
-			userTotalRank += Agains.index(userAgain)*2700
+			userTotalRank += userRank
+			userTotalRank += userTear*50
+			userTotalRank += userAgain*2700
 			userTotalRank += money
 			#환생횟수 적용
 			if userTotalRank // 2700 > 50:
@@ -757,8 +757,8 @@ async def on_message(message):
 			else:
 				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 			
-			for i in Tears:
-				if i in [i.name for i in user.roles]:
+			for i in range(len(Tears)):
+				if Tears[i] in [i.name for i in user.roles]:
 					userTear = i ; break
 			else:
 				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
@@ -777,9 +777,9 @@ async def on_message(message):
 
 			#유저랭크 계산
 			userTotalRank = 0
-			userTotalRank += Ranks.index(userRank)
-			userTotalRank += Tears.index(userTear)*50
-			userTotalRank += Agains.index(userAgain)*2700
+			userTotalRank += userRank
+			userTotalRank += userTear*50
+			userTotalRank += userAgain*2700
 
 
 			#10~(환생횟수+1)*100 아닐경우 제거
@@ -926,8 +926,8 @@ async def on_message(message):
 				else:
 					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 
-				for i in Tears:
-					if i in [i.name for i in user.roles]:
+				for i in range(len(Tears)):
+					if Tears[i] in [i.name for i in user.roles]:
 						userTear = i ; break
 				else:
 					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
@@ -953,9 +953,9 @@ async def on_message(message):
 
 				#유저랭크 계산
 				userTotalRank = 0
-				userTotalRank += Ranks.index(userRank)
-				userTotalRank += Tears.index(userTear)*50
-				userTotalRank += Agains.index(userAgain)*2700
+				userTotalRank += userRank
+				userTotalRank += userTear*50
+				userTotalRank += userAgain*2700
 				userTotalRank += money
 				#환생횟수 적용
 				if userTotalRank // 2700 > 50:
@@ -987,8 +987,8 @@ async def on_message(message):
 			else:
 				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 			
-			for i in Tears:
-				if i in [i.name for i in user.roles]:
+			for i in range(len(Tears)):
+				if Tears[i] in [i.name for i in user.roles]:
 					userTear = i ; break
 			else:
 				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
