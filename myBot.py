@@ -486,7 +486,7 @@ async def on_message(message):
 				
 			for i in f.split():
 				await asyncio.sleep(1.0)
-				await message.channel.send(i)
+				await message.channel.send(i+)
 			await message.channel.send(f"{Sx} * {Sy}")
 			
 				
