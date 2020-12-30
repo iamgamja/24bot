@@ -458,7 +458,7 @@ async def on_message(message):
 				await message.channel.send("```yaml\nx : 2~17\ny : 1~50```") ; return
 			Sx = int(m.split()[0])
 			Sy = int(m.split()[1])
-			if (mine_x < 2) or (mine_y < 1) or (mine_x > 17) or (mine_y > 50):
+			if (Sx < 2) or (Sy < 1) or (Sx > 17) or (Sy > 50):
 				await message.channel.send("```yaml\nx : 2~17\ny : 1~50```") ; return
 			#틀
 			Slist = []
