@@ -61,7 +61,7 @@ client = discord.Client()
 사달 = {
 	"아" : "<:down:793740736583303168>" ,
 	"오" : "<:right:793740751904309269>",
-	"왼" : "<:left:793740768010436618>" }
+	"왼" : "<:left:793743882944118794>" }
 
 def 시간():
 	utcnow   = datetime.datetime.utcnow()
