@@ -59,9 +59,9 @@ client = discord.Client()
 	"<:z9:750200417417166879>", #9
 	"<:z_:750200417287274529>") #10
 사달 = {
-	"아" : ("<:down:793721993790619739>",) ,
-	"오" : ("<:right:793721970897977375>",),
-	"왼" : ("<:left:793721952132136970>",) }
+	"아" : ("<:down1:793736619601166366>", "<:down2:793736576894500874>", "<:down3:793736543666700320>") ,
+	"오" : ("<:right1:793736393905930242>", "<:right2:793736464482566175>", "<:right3:793736518979289118>"),
+	"왼" : ("<:left1:793736426037575700>", "<:left2:793736445537157180>", "<:left3:793736495470739456>") }
 
 def 시간():
 	utcnow   = datetime.datetime.utcnow()
@@ -464,7 +464,7 @@ async def on_message(message):
 			for i in range(Sy):
 				Slist.append([])
 				for j in range(Sx):
-					Slist[i].append(사달[0])
+					Slist[i].append(None)
 			#넣
 			for i in range(Sy):
 				Smix = random.randint(0, Sx-2)
