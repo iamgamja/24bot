@@ -213,6 +213,7 @@ async def on_message(message):
 			embed.add_field(name=",폭8", value="폭☆8", inline=True)
 			embed.add_field(name=",지뢰찾기 <랜덤|최대|최소>", value="<랜덤|최대|최소> 크기의 지뢰찾기 판을 만듭니다.", inline=True)
 			embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
+			embed.add_field(name=",사다리타기 <x> <y>", value="사다리타기 판을 만듭니다.", inline=True)
 			embed.add_field(name=빈공, value="**`기능`**", inline=False)
 			embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
 			embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
@@ -399,6 +400,7 @@ async def on_message(message):
 			for j in mine_map_lookver.split():
 				await asyncio.sleep(1.0)
 				await message.channel.send(j)
+			await message.channel.send(f"{mine_x} * {mine_y}, 지뢰 수: {mine_z}")
 
 		elif 시작(",청소") and 관리():
 			m = ' '.join(m.split(' ')[1:])
@@ -458,14 +460,14 @@ async def on_message(message):
 			Sy = int(m.split()[1])
 			#틀
 			Slist = []
-			for i in range(y):
+			for i in range(Sy):
 				Slist.append([])
-				for j in range(x):
+				for j in range(Sx):
 					Slist[i].append(사달[0])
 			#넣
-			for i in range(y):
-				Smix = random.randint(0, x-2)
-				for j in range(x):
+			for i in range(Sy):
+				Smix = random.randint(0, Sx-2)
+				for j in range(Sx):
 					if j == Smix:
 						Slist[i][j] = 사달[2] # 오른쪽
 					elif j == Smix + 1:
@@ -483,6 +485,7 @@ async def on_message(message):
 			for i in f.split():
 				await asyncio.sleep(1.0)
 				await message.channel.send(i)
+			await message.channel.send(f"{Sx} * {Sy}")
 			
 				
 				
