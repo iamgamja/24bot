@@ -1,7 +1,7 @@
 import discord, time, datetime, random, os, math, asyncio
 client = discord.Client()
 
-# await asyncio.sleep()
+# await asyncio.sleep(1.0)
 # await message.channel.send()
 # eval() 식
 # exec() 코드
@@ -58,6 +58,11 @@ client = discord.Client()
 	"<:z8:750200417748779059>", #8
 	"<:z9:750200417417166879>", #9
 	"<:z_:750200417287274529>") #10
+사달 = (
+	"<:blank:793722739411124234>",
+	"<:down:793721993790619739>" ,
+	"<:right:793721970897977375>",
+	"<:left:793721952132136970>" )
 
 def 시간():
 	utcnow   = datetime.datetime.utcnow()
@@ -392,7 +397,7 @@ async def on_message(message):
 				mine_map_lookver += '\n'
 
 			for j in mine_map_lookver.split():
-				time.sleep(1)
+				await asyncio.sleep(1.0)
 				await message.channel.send(j)
 
 		elif 시작(",청소") and 관리():
@@ -444,6 +449,41 @@ async def on_message(message):
 				await message.add_reaction(동글)
 			except:
 				await message.add_reaction(엑스)
+				
+		elif 시작(",사다리타기"):
+			m = ' '.join(m.split(' ')[1:])
+			if len(m.split()) != 2:
+				await message.channel.send("```yaml\nx : 1~17\ny : 1~50```") ; return
+			Sx = int(m.split()[0])
+			Sy = int(m.split()[1])
+			#틀
+			Slist = []
+			for i in range(y):
+				Slist.append([])
+				for j in range(x):
+					Slist[i].append(사달[0])
+			#넣
+			for i in range(y):
+				Smix = random.randint(0, x-2)
+				for j in range(x):
+					if j == Smix:
+						Slist[i][j] = 사달[2] # 오른쪽
+					elif j == Smix + 1:
+						Slist[i][j] = 사달[3] # 왼쪽
+					else:
+						Slist[i][j] = 사달[1] # 아래
+			
+			#보
+			f = ""
+			for i in Slist:
+				for j in i:
+					f += j
+				f += '\n'
+				
+			for i in f.split():
+				await asyncio.sleep(1.0)
+				await message.channel.send(i)
+			
 				
 				
 		elif 시작(",테스트") and 관리():
