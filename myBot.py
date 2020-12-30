@@ -59,9 +59,9 @@ client = discord.Client()
 	"<:z9:750200417417166879>", #9
 	"<:z_:750200417287274529>") #10
 사달 = {
-	"아" : ("<:down1:793736619601166366>", "<:down2:793736576894500874>", "<:down3:793736543666700320>") ,
-	"오" : ("<:right1:793736393905930242>", "<:right2:793736464482566175>", "<:right3:793736518979289118>"),
-	"왼" : ("<:left1:793736426037575700>", "<:left2:793736445537157180>", "<:left3:793736495470739456>") }
+	"아" : "<:down:793740736583303168>" ,
+	"오" : "<:right:793740751904309269>",
+	"왼" : "<:left:793740768010436618>" }
 
 def 시간():
 	utcnow   = datetime.datetime.utcnow()
@@ -470,11 +470,11 @@ async def on_message(message):
 				Smix = random.randint(0, Sx-2)
 				for j in range(Sx):
 					if j == Smix:
-						Slist[i][j] = random.choice(사달["오"]) # 오른쪽
+						Slist[i][j] = 사달["오"] # 오른쪽
 					elif j == Smix + 1:
-						Slist[i][j] = random.choice(사달["왼"]) # 왼쪽
+						Slist[i][j] = 사달["왼"] # 왼쪽
 					else:
-						Slist[i][j] = random.choice(사달["아"]) # 아래
+						Slist[i][j] = 사달["아"] # 아래
 			
 			#보
 			f = ""
