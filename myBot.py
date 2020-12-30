@@ -455,9 +455,11 @@ async def on_message(message):
 		elif 시작(",사다리타기"):
 			m = ' '.join(m.split(' ')[1:])
 			if len(m.split()) != 2:
-				await message.channel.send("```yaml\nx : 1~17\ny : 1~50```") ; return
+				await message.channel.send("```yaml\nx : 2~17\ny : 1~50```") ; return
 			Sx = int(m.split()[0])
 			Sy = int(m.split()[1])
+			if (mine_x < 2) or (mine_y < 1) or (mine_x > 17) or (mine_y > 50):
+				await message.channel.send("```yaml\nx : 2~17\ny : 1~50```") ; return
 			#틀
 			Slist = []
 			for i in range(Sy):
