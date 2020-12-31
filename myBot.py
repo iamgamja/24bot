@@ -506,7 +506,7 @@ async def on_message(message):
 			ghkrfbf += [6]*34507
 			msg = await message.channel.send(슬롯[0]*3)
 			await asyncio.sleep(1.0)
-			await msg.edit(슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)])
+			await msg.edit(content = 슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)])
 			await message.channel.send("테스트")
 				
 		elif 시작(",테스트") and 관리():
