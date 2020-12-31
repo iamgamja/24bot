@@ -491,6 +491,11 @@ async def on_message(message):
 				await message.channel.send(i+빈공)
 			await message.channel.send(f"{Sx} * {Sy}")
 			
+		elif 시작(",슬롯 잭팟"):
+			await message.channel.send(슬롯[1]*3)
+		elif 시작(",슬롯 빅윈") or 시작(",슬롯 비긴"):
+			await message.channel.send(슬롯[1]+슬롯[1]+슬롯[2])
+			
 		elif 시작(",슬롯"):
 			ghkrfbf = []
 			ghkrfbf += [1]*4930
@@ -499,7 +504,9 @@ async def on_message(message):
 			ghkrfbf += [4]*17606
 			ghkrfbf += [5]*22535
 			ghkrfbf += [6]*34507
-			msg = await message.channel.send(슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)])
+			msg = await message.channel.send(슬롯[0]*3)
+			await asyncio.sleep(1.0)
+			await msg.edit(슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)])
 			await message.channel.send("테스트")
 				
 		elif 시작(",테스트") and 관리():
