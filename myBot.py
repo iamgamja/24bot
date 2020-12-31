@@ -182,8 +182,8 @@ async def on_message(message):
 				f+=i
 			return f[:-1]
 		
-		if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640):
-			#랭크업, 시간, 도박장에서의 슷칼봇 메시지 삭제
+		if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640, 794146499034480661):
+			#랭크업, 시간, 도박장, 도박2 에서의 슷칼봇 메시지 삭제
 			await message.delete()
 			return
 		
@@ -798,7 +798,7 @@ async def on_message(message):
 			await message.channel.send("랭크업에 성공하였습니다!")
 			await message.add_reaction(체크)
 		
-		elif message.channel.id == 784228694940057640 or message.channel.id == 787976375301701692: # 도박채널 또는 ㅇㅇ(테스트채널)일경우
+		elif message.channel.id == 784228694940057640 or message.channel.id == 794146499034480661 or message.channel.id == 787976375301701692: # 도박채널 또는 도박2 채널 또는 ㅇㅇ(테스트채널)일경우
 			#도박 아니면 제거
 			if not 시작("도박"):
 				return
