@@ -63,6 +63,8 @@ client = discord.Client()
 	"오" : "<:right:793740751904309269>",
 	"왼" : "<:left:793743882944118794>" }
 
+슬롯 = ('<a:slotspin:793667557419778069>', '<a:slotseven:793668040712650783>', '<a:slotdia:793668088817123358>', '<a:slotstar:793668066692956160>', '<a:slotspade:793668129350877184>', '<a:slotheart:793668152319016980>', '<a:slotclover:793668174783709194>')
+
 def 시간():
 	utcnow   = datetime.datetime.utcnow()
 	time_gap = datetime.timedelta(hours=9)
@@ -213,6 +215,7 @@ async def on_message(message):
 			embed.add_field(name=",지뢰찾기 <랜덤|최대|최소>", value="<랜덤|최대|최소> 크기의 지뢰찾기 판을 만듭니다.", inline=True)
 			embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
 			embed.add_field(name=",사다리타기 <x> <y>", value="사다리타기 판을 만듭니다.", inline=True)
+			embed.add_field(name=",슬롯", value="슬롯머신을 돌립니다.", inline=True)
 			embed.add_field(name=빈공, value="**`기능`**", inline=False)
 			embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
 			embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
@@ -488,7 +491,16 @@ async def on_message(message):
 				await message.channel.send(i+빈공)
 			await message.channel.send(f"{Sx} * {Sy}")
 			
-				
+		elif 시작(",슬롯"):
+			ghkrfbf = []
+			ghkrfbf += [1]*4930
+			ghkrfbf += [2]*8451
+			ghkrfbf += [3]*11972
+			ghkrfbf += [4]*17606
+			ghkrfbf += [5]*22535
+			ghkrfbf += [6]*34507
+			msg = await message.channel.send(슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)])
+			await message.channel.send("테스트")
 				
 		elif 시작(",테스트") and 관리():
 			try:
