@@ -603,7 +603,7 @@ async def on_message(message):
 			money = int(q[0])
 			users = []
 			for i in q[1:]:
-				user.append(await message.guild.fetch_member(int(i[-18:] if i[-1] in "1234567890" else i[-19:-1])))
+				users.append(await message.guild.fetch_member(int(i[-18:] if i[-1] in "1234567890" else i[-19:-1])))
 			#유저가 가지고 있는 역할의 이름 찾기
 			for user in users:
 				userRank = 0
