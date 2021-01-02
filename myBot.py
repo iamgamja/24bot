@@ -615,7 +615,7 @@ async def on_message(message):
 				try:
 					userGod = God2.index(userGod)
 				except:
-					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+					userGod = 0
 				
 				for i in range(len(Ranks_10)):
 					if Ranks_10[i] in [i.id for i in user.roles]:
@@ -766,7 +766,7 @@ async def on_message(message):
 			try:
 				userGod = God2.index(userGod)
 			except:
-				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+				userGod = 0
 
 			for i in range(len(Ranks_10)):
 				if Ranks_10[i] in [i.id for i in user.roles]:
@@ -852,7 +852,7 @@ async def on_message(message):
 			try:
 				userGod = God2.index(userGod)
 			except:
-				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+				userGod = 0
 
 			for i in range(len(Ranks_10)):
 				if Ranks_10[i] in [i.id for i in user.roles]:
@@ -1041,7 +1041,7 @@ async def on_message(message):
 				try:
 					userGod = God2.index(userGod)
 				except:
-					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+					userGod = 0
 				
 				for i in range(len(Ranks_10)):
 					if Ranks_10[i] in [i.id for i in user.roles]:
@@ -1119,7 +1119,7 @@ async def on_message(message):
 			try:
 				userGod = God2.index(userGod)
 			except:
-				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+				userGod = 0
 
 			for i in range(len(Ranks_10)):
 				if Ranks_10[i] in [i.id for i in user.roles]:
