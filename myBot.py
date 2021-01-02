@@ -608,7 +608,7 @@ async def on_message(message):
 			for user in users:
 				userRank = 0
 				
-				userGod1 = ''
+				userGod = ''
 				for i in God1:
 					if i in [i.name for i in user.roles]:
 						userGod += i
@@ -759,7 +759,7 @@ async def on_message(message):
 
 			userRank = 0
 
-			userGod1 = ''
+			userGod = ''
 			for i in God1:
 				if i in [i.name for i in user.roles]:
 					userGod += i
@@ -845,7 +845,7 @@ async def on_message(message):
 
 			userRank = 0
 
-			userGod1 = ''
+			userGod = ''
 			for i in God1:
 				if i in [i.name for i in user.roles]:
 					userGod += i
@@ -1034,7 +1034,7 @@ async def on_message(message):
 				##
 				userRank = 0
 				
-				userGod1 = ''
+				userGod = ''
 				for i in God1:
 					if i in [i.name for i in user.roles]:
 						userGod += i
@@ -1112,7 +1112,7 @@ async def on_message(message):
 
 			userRank = 0
 
-			userGod1 = ''
+			userGod = ''
 			for i in God1:
 				if i in [i.name for i in user.roles]:
 					userGod += i
