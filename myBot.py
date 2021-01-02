@@ -661,7 +661,7 @@ async def on_message(message):
 				userTotalRank += userRank
 				userTotalRank += userTear*50
 				userTotalRank += userAgain*2700
-				userTotalRank += God2.index(userGod)*81000
+				userTotalRank += userGod*81000
 				userTotalRank += money
 				
 				#신급적용
@@ -812,7 +812,7 @@ async def on_message(message):
 			userTotalRank += userRank
 			userTotalRank += userTear*50
 			userTotalRank += userAgain*2700
-			userTotalRank += God2.index(userGod)*81000
+			userTotalRank += userGod*81000
 			userTotalRank += money
 			#신급적용
 			for i in God2[userTotalRank // 81000]:
@@ -889,7 +889,7 @@ async def on_message(message):
 			userTotalRank += userRank
 			userTotalRank += userTear*50
 			userTotalRank += userAgain*2700
-			userTotalRank += God2.index(userGod)*81000
+			userTotalRank += userGod*81000
 
 
 			#10~(환생횟수+1)*100 아닐경우 제거
@@ -1087,7 +1087,7 @@ async def on_message(message):
 				userTotalRank += userRank
 				userTotalRank += userTear*50
 				userTotalRank += userAgain*2700
-				userTotalRank += God2.index(userGod)*81000
+				userTotalRank += userGod*81000
 				userTotalRank += money
 				
 				#신급적용
