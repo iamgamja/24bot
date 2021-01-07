@@ -45,6 +45,7 @@ client = discord.Client()
 # 기능
 출력 = ""      # ,계산 명령어에 사용
 기억 = {}      # ,기억 명령어에 사용
+피버 = False   # ,피버 명령어에 사용
 
 지뢰 = (
 	"<:0z:762919979388502027>", #0
@@ -597,8 +598,12 @@ async def on_message(message):
 				await ping.delete()
 				await message.delete()
 				return
+			
+		if 시작(",피버") and message.author.id == 647001590766632966: # 생강 피버타임
+			global 피버
+			피버 = not 피버
 
-		if (시작("+") or 시작("-")) and message.author.id == 647001590766632966: # 생강 + 또는 -
+		elif (시작("+") or 시작("-")) and message.author.id == 647001590766632966: # 생강 + 또는 -
 			q=m.split()
 			money = int(q[0])
 			users = []
@@ -746,6 +751,9 @@ async def on_message(message):
 				   discord.utils.get(message.guild.roles, name="UIP") in message.author.roles or\
 				   discord.utils.get(message.guild.roles, name="MIP") in message.author.roles:
 					tryRank = [1,1,1,1,0,0,0,0,0,0]
+			if 시작("ㅂ"):
+				if 피버:
+					tryRank = [1,1,1,0,0,0,0,0,0,0]
 
 			if not tryRank:
 				return
