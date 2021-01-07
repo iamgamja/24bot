@@ -602,6 +602,10 @@ async def on_message(message):
 		if 시작(",피버") and message.author.id == 647001590766632966: # 생강 피버타임
 			global 피버
 			피버 = not 피버
+			if 피버:
+				await message.channel.send("피버타임이 **켜**졌습니다")
+			else:
+				await message.channel.send("피버타임이 **꺼**졌습니다")
 
 		elif (시작("+") or 시작("-")) and message.author.id == 647001590766632966: # 생강 + 또는 -
 			q=m.split()
