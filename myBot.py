@@ -235,7 +235,7 @@ async def on_message(message):
 			embed = discord.Embed(title=제목("도움말"), color=0x825cff)
 			
 			if m in help_list:
-				for i in help_list[m.split()[1]]:
+				for i in help_list[m]:
 					embed.add_field(name=i, value=help_list[m][i], inline=False)
 			else:
 				embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="`,도움 <명령어>`로 세부 도움말을 확인할수 있습니다", inline=False)
