@@ -205,38 +205,45 @@ async def on_message(message):
 
 
 		if 시작(",도움"):
-			embed = discord.Embed(title=제목("도움말"), color=0x825cff)
-			embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="**`도움`**", inline=False)
-			embed.add_field(name=",도움", value="이 메시지를 출력합니다.", inline=True)
-			embed.add_field(name=빈공, value="**`재미`**", inline=False)
-			embed.add_field(name=",핑", value="으악 핑", inline=True)
-			embed.add_field(name="~~,에블핑~~", value="~~으악 핑~~", inline=True)
-			embed.add_field(name="~~,히어핑~~", value="~~으악 핑~~", inline=True)
-			embed.add_field(name=",폭8", value="폭☆8", inline=True)
-			embed.add_field(name=",지뢰찾기 <랜덤|최대|최소>", value="<랜덤|최대|최소> 크기의 지뢰찾기 판을 만듭니다.", inline=True)
-			embed.add_field(name=",지뢰찾기 <x> <y> <지뢰 수>", value="지뢰찾기 판을 만듭니다.", inline=True)
-			embed.add_field(name=",사다리타기 <x> <y>", value="사다리타기 판을 만듭니다.", inline=True)
-			embed.add_field(name=",슬롯", value="슬롯머신을 돌립니다.", inline=True)
-			embed.add_field(name=빈공, value="**`기능`**", inline=False)
-			embed.add_field(name=",프사", value="프사를 출력합니다.", inline=True)
-			embed.add_field(name=",말 <할말>", value="<할말>을 출력합니다.", inline=True)
-			embed.add_field(name=",계산 <식>", value="~~<식>을 계산합니다.~~", inline=True)
-			embed.add_field(name="~~,청소 <수>~~", value="~~<수>만큼의 메시지를 지웁니다.~~", inline=True)
-			embed.add_field(name=",임베드", value="임베드를 만듭니다.", inline=True)
-			embed.add_field(name="~~,역할생성 <이름>~~", value="~~<이름>의 역할을 생성합니다.~~", inline=True)
-			embed.add_field(name="~~,역할제거 <이름>~~", value="~~<이름>의 역할을 제거합니다.~~", inline=True)
-			embed.add_field(name="~~,채널생성 <카테고리> <이름>~~", value="~~<카테고리>에 <이름>의 채널을 생성합니다.~~", inline=True)
-			embed.add_field(name="~~,채널제거 <이름>~~", value="~~<이름>의 채널을 제거합니다.~~", inline=True)
-			embed.add_field(name=",시간", value="현재시간을 알려줍니다", inline=True)
-			embed.add_field(name=",한영 <한글>", value="<한글>을 영타로 번역합니다.", inline=True)
-			embed.add_field(name=",영한 <영어>", value="<영어>을 한타로 번역합니다.", inline=True)
-			embed.add_field(name=",기억", value="기억된 목록을 확인합니다", inline=True)
-			embed.add_field(name=",기억 <단어>", value="<단어>를 찾습니다", inline=True)
-			embed.add_field(name=",기억 <단어> <뜻>", value="<단어>에 <뜻>을 등록합니다", inline=True)
-			embed.add_field(name=빈공, value="**`기타`**", inline=False)
-			embed.add_field(name=",초대", value="초대 링크를 보냅니다.", inline=True)
-			embed.add_field(name=",정보", value="만든 사람을 찾습니다.", inline=True)
+			m = ' '.join(m.split(' ')[1:])
 			
+			help_list = {
+				"도움" : {"`,도움`" : "전체 도움말을 출력합니다.", "`,도움 <명령어>`" : "<명령어> 에 대한 세부 도움말을 출력합니다."},
+				"핑" : {"`,핑`" : "명령어를 입력한 사람을 핑합니다."},
+				"에블핑" : {"`,에블핑`" : "@everyone을 출력합니다."},
+				"히어핑" : {"`,히어핑`" : "@here을 출력합니다."},
+				"폭8" : {"`,폭8`" : "폭☆8하는 gif를 출력합니다."},
+				"지뢰찾기" : {"`,지뢰찾기 <랜덤|최소|최대>`" : "<랜덤|최소|최대> 크기의 지뢰찾기 판을 출력합니다.", "`,지뢰찾기 <x> <y> <지뢰 수>`" : "지뢰찾기 판을 출력합니다."},
+				"사다리타기" : {"`,사다리타기 <x> <y>`" : "사다리타기 판을 출력합니다."},
+				"슬롯" : {"`,슬롯 (잭팟|빅윈|비긴)`" : "슬롯머신을 돌립니다."},
+				"프사" : {"`,프사`" : "명령어를 입력한 사람의 프사를 출력합니다."},
+				"말" : {"`,말 <할 말>`" : "<할 말>을 출력합니다."},
+				"계산" : {"`,계산 <식>`" : "<식>을 계산합니다."},
+				"청소" : {"`,청소 <수>`" : "<수>만큼의 메시지를 지웁니다."},
+				"임베드" : {"`,임베드`" : "임베드를 만듭니다."},
+				"역할생성" : {"`,역할생성 <이름>`" : "<이름>의 역할을 생성합니다."},
+				"역할제거" : {"`,역할제거 <이름>`" : "<이름>의 역할을 제거합니다."},
+				"채널생성" : {"`,채널생성 (카테고리) <이름>`" : "(카테고리)에 <이름>의 채널을 생성합니다."},
+				"채널제거" : {"`,채널제거 <이름>`" : "<이름>의 채널을 제거합니다."},
+				"시간" : {"`,시간`" : "현재시간을 출력합니다."},
+				"한영" : {"`,한영 <한글>`" : "<한글>을 영타로 바꿉니다."},
+				"영한" : {"`,영한 <영어>`" : "<영어>를 한타로 바꿉니다."},
+				"기억" : {"`,기억`" : "기억된 목록을 출력합니다.", "`,기억 <키워드>`" : "<키워드>에 기억된 <대답>을 출력합니다.", "`,기억 <키워드> <대답>" : "<키워드>에 <대답>을 기억합니다."},
+				"초대" : {"`,초대`" : "이 봇의 초대링크를 출력합니다."},
+				"정보" : {"`,정보`" : "이 봇을 만든 사람을 핑합니다."},
+			}
+			embed = discord.Embed(title=제목("도움말"), color=0x825cff)
+			
+			if m.split()[1] in help_list:
+				for i in help_list[m.split()[1]]:
+					embed.add_field(name=i, value=help_list[m.split()[1]][i], inline=False)
+			else:
+				embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="`,도움 <명령어>`로 세부 도움말을 확인할수 있습니다", inline=False)
+				embed.add_field(name="**`도움`**", value="`도움`", inline=False)
+				embed.add_field(name="**`재미`**", value="`핑` ~~`에블핑`~~ ~~`히어핑`~~ `폭8` `지뢰찾기` `사다리타기` `슬롯`", inline=False)
+				embed.add_field(name="**`기능`**", value="`프사` `말` `계산` ~~`청소`~~ `임베드` ~~`역할생성`~~ ~~`역할제거`~~ ~~`채널생성`~~ ~~`채널제거`~~ `시간` `한영` `영한` `기억`", inline=False)
+				embed.add_field(name="**`기타`**", value="`초대` `정보`", inline=False)
+				
 			embed.set_footer(text= f'{message.author.name} | {시간()}')
 			await message.channel.send(embed=embed)
 
