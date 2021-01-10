@@ -540,6 +540,9 @@ async def on_message(message):
 		
 		elif 시작(",계산"):
 			m = ' '.join(m.split(' ')[1:])
+			if m == "목록":
+				await message.channel.send("목록:\n```\n1 일 하나 2 이 둘 3 삼 셋 4 사 넷 5 오 다섯 6 육 여섯 7 칠 일곱 8 팔 여덟 9 구 아홉 0 영 . 점 + ＋ 더하기 - － 빼기 * × 곱하기 / ÷ 나누기 ^ 제곱 % 나머지 ( ) π 파이 원주율 √ 루트\n```")
+				return
 			
 			f = ''
 			for i in m:
@@ -581,7 +584,6 @@ async def on_message(message):
 			f = f.replace("제곱", "**")
 			f = f.replace("^", "**")
 			f = f.replace("나머지", "%")
-			f = f.replace("목록", "목록:\n```\n1 일 하나 2 이 둘 3 삼 셋 4 사 넷 5 오 다섯 6 육 여섯 7 칠 일곱 8 팔 여덟 9 구 아홉 0 영 . 점 + ＋ 더하기 - － 빼기 * × 곱하기 / ÷ 나누기 ^ 제곱 % 나머지 ( ) π 파이 원주율 √ 루트\n```")
 			
 
 			await message.channel.send(eval(f))
