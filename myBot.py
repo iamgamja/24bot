@@ -953,8 +953,8 @@ async def on_message(message):
 					await message.channel.send(f"`10~100+(환생횟수)*50 (10~{100+userAgain*50})` 만 걸수 있습니다.")
 					return
 			elif 시작("ㅅ"):
-				if not 10 <= dmoney <= 100*(userAgain+1):
-					await message.channel.send(f"`10~100*(환생횟수+1) (10~{100*(userAgain+1)})` 만 걸수 있습니다.")
+				if not 10 <= dmoney <= 100+userAgain*100:
+					await message.channel.send(f"`10~100+(환생횟수)*100 (10~{100+userAgain*100})` 만 걸수 있습니다.")
 					return
 
 			#가진돈보다 건돈이 많다면 알림
