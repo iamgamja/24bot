@@ -528,7 +528,7 @@ async def on_message(message):
 			except Exception as e:
 				await message.channel.send(e)
 
-		elif 시작(",계산") and 관리():
+		elif 시작(",코드") and 관리():
 			m = ' '.join(m.split(' ')[1:])
 			if '\n' in m:
 				exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
@@ -543,7 +543,7 @@ async def on_message(message):
 			
 			f = ''
 			for i in m:
-				if i in '1일하나2이둘3삼셋4사넷5오다섯6육여섯7칠일곱8팔여덟9구아홉0영.점+＋더하기-－빼기*×곱하기/÷나누기^제곱%나머지()π파이원주율√루트':
+				if i in '1일하나2이둘3삼셋4사넷5오다섯6육여섯7칠일곱8팔여덟9구아홉0영.점+＋더하기-－빼기*×곱하기/÷나누기^제곱%나머지()π파이원주율√루트목록':
 					f += i
 
 			f = f.replace("π", "math.pi")
@@ -581,6 +581,8 @@ async def on_message(message):
 			f = f.replace("제곱", "**")
 			f = f.replace("^", "**")
 			f = f.replace("나머지", "%")
+			f = f.replace("목록", "목록:\n```\n1 일 하나 2 이 둘 3 삼 셋 4 사 넷 5 오 다섯 6 육 여섯 7 칠 일곱 8 팔 여덟 9 구 아홉 0 영 . 점 + ＋ 더하기 - － 빼기 * × 곱하기 / ÷ 나누기 ^ 제곱 % 나머지 ( ) π 파이 원주율 √ 루트\n```")
+			
 
 			await message.channel.send(eval(f))
 
