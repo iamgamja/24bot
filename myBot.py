@@ -543,16 +543,39 @@ async def on_message(message):
 			
 			f = ''
 			for i in m:
-				if i in '1234567890.':
+				if i in '1일하나2이둘3삼셋4사넷5오다섯6육여섯7칠일곱8팔여덟9구아홉0영.점+＋더하기-－빼기*×곱하기/÷나누기^제곱%나머지()':
 					f += i
-				elif i in '+-*/^%':
-					if not f[-1] in '+-*/^%':
-						f += i
-						
-			f = '0'+f if f[0] == '.' else f
-			f = f[:-1] if f[-1] == '.' else f
 
+			f = f.replace("일", "1")
+			f = f.replace("하나", "1")
+			f = f.replace("이", "2")
+			f = f.replace("둘", "2")
+			f = f.replace("삼", "3")
+			f = f.replace("셋", "3")
+			f = f.replace("사", "4")
+			f = f.replace("넷", "4")
+			f = f.replace("오", "5")
+			f = f.replace("다섯", "5")
+			f = f.replace("육", "6")
+			f = f.replace("여섯", "6")
+			f = f.replace("칠", "7")
+			f = f.replace("일곱", "7")
+			f = f.replace("팔", "8")
+			f = f.replace("여덟", "8")
+			f = f.replace("구", "9")
+			f = f.replace("아홉", "9")
+			f = f.replace("영", "0")
+			f = f.replace("더하기", "+")
+			f = f.replace("＋", "+")
+			f = f.replace("빼기", "-")
+			f = f.replace("－", "-")
+			f = f.replace("곱하기", "*")
+			f = f.replace("×", "*")
+			f = f.replace("나누기", "/")
+			f = f.replace("÷", "/")
+			f = f.replace("제곱", "**")
 			f = f.replace("^", "**")
+			f = f.replace("나머지", "%")
 
 			await message.channel.send(eval(f))
 
@@ -574,8 +597,8 @@ async def on_message(message):
 
 
 
-
-
+		if message.guild is None:
+			return
 		if message.guild.id != 766932314973929522:
 			return
 		m = message.content
