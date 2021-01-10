@@ -543,7 +543,7 @@ async def on_message(message):
 			
 			f = ''
 			for i in m:
-				if i in '1일하나2이둘3삼셋4사넷5오다섯6육여섯7칠일곱8팔여덟9구아홉0영.점+＋더하기-－빼기*×곱하기/÷나누기^제곱%나머지()':
+				if i in '1일하나2이둘3삼셋4사넷5오다섯6육여섯7칠일곱8팔여덟9구아홉0영.점+＋더하기-－빼기*×곱하기/÷나누기^제곱%나머지()π파이원주율':
 					f += i
 
 			f = f.replace("일", "1")
@@ -576,6 +576,9 @@ async def on_message(message):
 			f = f.replace("제곱", "**")
 			f = f.replace("^", "**")
 			f = f.replace("나머지", "%")
+			f = f.replace("π", "3.141592653589793")
+			f = f.replace("파이", "3.141592653589793")
+			f = f.replace("나머지", "3.141592653589793")
 
 			await message.channel.send(eval(f))
 
