@@ -876,7 +876,11 @@ async def on_message(message):
 		
 		elif message.channel.id == 784228694940057640 or message.channel.id == 794146499034480661 or message.channel.id == 787976375301701692: # 도박채널 또는 도박2 채널 또는 ㅇㅇ(테스트채널)일경우
 			#도박 아니면 제거
-			if not 시작("도박"):
+			if 시작("ㄷ"):
+				dp = random.choice([2, 2, 1.5, 1.5, 1.5, 1.5, 1, 1, 0.5, 0.5])
+			elif 시작("ㅅ"):
+				dp = random.choice([2, 2, 2, 1.5, 1.5, 1.5, 1.5, 1, 1, 0.5])
+			else:
 				return
 
 			#얼마나 걸었는지
@@ -935,17 +939,24 @@ async def on_message(message):
 
 
 			#10~(환생횟수+1)*100 아닐경우 제거
-			if not 10 <= dmoney <= 100+int(userAgain)*50:
-				await message.channel.send(f"`10~100+(환생횟수)*50 (10~{100+int(userAgain)*50})` 만 걸수 있습니다.")
-				return
+			if 시작("ㄷ"):
+				if not 10 <= dmoney <= 100+userAgain*50:
+					await message.channel.send(f"`10~100+(환생횟수)*50 (10~{100+userAgain*50})` 만 걸수 있습니다.")
+					return
+			elif 시작("ㅅ"):
+				if not 10 <= dmoney <= 100*(userAgain+1):
+					await message.channel.send(f"`10~100*(환생횟수+1) (10~{100*(userAgain+1)})` 만 걸수 있습니다.")
+					return
 
 			#가진돈보다 건돈이 많다면 알림
 			if dmoney > userTotalRank:
 				await message.channel.send("랭크가 부족합니다.")
 				return
+			if 시작("ㅅ"):
+				if userTotalRank < 81000:
+					await message.channel.send("초하-급신부터 사용할수 있습니다.")
 
 			#도박을 해봄
-			dp = random.choice([2, 2, 1.5, 1.5, 1.5, 1.5, 1, 1, 0.5, 0.5])
 			await message.channel.send(f"{dp}배")
 			if dp == 0.5 and userTotalRank >= 20:
 				mymsg2 = await message.channel.send(f"실드를 구매 및 사용하시겠습니까?\n실드 1개당 20랭크, 20%입니다.\n0️⃣ `100% {round(-dmoney+dmoney*dp)}`\n1️⃣ `20% {round(-20)}, 80% {round(-20-dmoney+dmoney*dp)}`\n2️⃣ `40% {round(-40)}, 60% {round(-40-dmoney+dmoney*dp)}`\n3️⃣ `60% {round(-60)}, 40% {round(-60-dmoney+dmoney*dp)}`\n4️⃣ `80% {round(-80)}, 20% {round(-80-dmoney+dmoney*dp)}`\n5️⃣ `100% {round(-100)}`")
