@@ -46,7 +46,7 @@ client = discord.Client()
 출력 = ""      # ,계산 명령어에 사용
 기억 = {}      # ,기억 명령어에 사용
 피버 = False   # ,피버 명령어에 사용
-
+note = None
 지뢰 = (
 	"<:0z:762919979388502027>", #0
 	"<:z1:750200417836859472>", #1
@@ -81,6 +81,64 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+	if message.guild.id == 798353590040920094:
+		global note
+			if note is None:
+				if await client.get_channel(798358860456001566).fetch_message(798395027675676693):
+					note = await client.get_channel(798358860456001566).fetch_message(798395027675676693)
+			else:
+				note = await client.get_channel(798358860456001566).send("이름 : 돈")
+
+		if message.content == "!등록":
+			if "<@"+str(message.author.id)+">" in note.content:
+				await message.channel.send("이미 등록되었습니다")
+				return
+			else:
+				await note.edit(content=f"{note.content}\n<@{message.author.id}> : 0")
+				await message.channel.send("완료")
+  
+		if message.author.id == 646998005643476993:
+			if message.content.startswith("!돈"):
+				m = message.content
+				m = m[5:]
+				if m.startswith("!"):
+					m = m[1:]
+				user = "<@"+m[:18]+">"
+				m = m[18:]
+				m = m[2:]
+				usermoney = int(m)
+				if not (user in note.content):
+					await message.channel.send("등록되어있지 않은 유저입니다.")
+					return
+				else:
+					notec = note.content
+					notec = notec.split("\n")[1:]
+					for i in range(len(notec)):
+						if notec[i].startswith(user):
+							noten = i
+					notec[noten] = notec[noten][:24] + str(int(notec[noten][24:])+usermoney)
+					notem = "이름 : 돈\n" + "\n".join(notec)
+					await note.edit(content = notem)
+					await message.channel.send("완료")
+			if message.content.startswith("!등록"):
+				mm = message.content[4:]
+				m = ""
+				for i in mm:
+					if i in "1234567890":
+						m += i
+				if len(m) != 16:
+					await message.channel.send("잘못된 유저입니다.")
+					return
+				if m in note.content:
+					await message.channel.send("이미 등록되었습니다.")
+					return
+				else:
+					await note.edit(content=f"{note.content}\n{m} : 0")
+					await message.channel.send("완료")
+
+	if message.guild.id == 798353590040920094: 
+		return
+
 	try:
 		global 반복
 		m = message.content
