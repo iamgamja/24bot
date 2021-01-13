@@ -82,16 +82,11 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
-	if message.content == "ㅁ":
-		await message.channel.send("이름 : 돈")
 	if message.guild.id == 798353590040920094:
 		global note
 		if True:
 			if note is None:
-				if await client.get_channel(798358860456001566).fetch_message(798395027675676693):
-					note = await client.get_channel(798358860456001566).fetch_message(798395027675676693)
-			else:
-				note = await client.get_channel(798358860456001566).send("이름 : 돈")
+				note = await client.get_channel(798358860456001566).fetch_message(798724124188475392)
 
 		if message.content == "!등록":
 			if "<@"+str(message.author.id)+">" in note.content:
