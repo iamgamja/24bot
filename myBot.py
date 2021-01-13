@@ -571,7 +571,7 @@ async def on_message(message):
 			ghkrfbf += [6]*34507
 			msg = await message.channel.send(str(message.author) + "\n" + 슬롯[0]*3)
 			await asyncio.sleep(1.0)
-			a = (random.choice(ghkrfbf), random.choice(ghkrfbf), random.choice(ghkrfbf))
+			a = [random.choice(ghkrfbf), random.choice(ghkrfbf), random.choice(ghkrfbf)]
 			await msg.edit(content = str(message.author) + "\n" + 슬롯[a[0]] + 슬롯[a[1]] + 슬롯[a[2]])
 			
 			a.sort()
