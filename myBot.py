@@ -272,7 +272,7 @@ async def on_message(message):
 				"폭8" : {"`,폭8`" : "폭☆8하는 gif를 출력합니다."},
 				"지뢰찾기" : {"`,지뢰찾기 <랜덤|최소|최대>`" : "<랜덤|최소|최대> 크기의 지뢰찾기 판을 출력합니다.", "`,지뢰찾기 <x> <y> <지뢰 수>`" : "지뢰찾기 판을 출력합니다."},
 				"사다리타기" : {"`,사다리타기 <x> <y>`" : "사다리타기 판을 출력합니다."},
-				"슬롯" : {"`,슬롯 (잭팟|빅윈|비긴)`" : "슬롯머신을 돌립니다."},
+				"슬롯" : {"`,슬롯`" : "슬롯머신을 돌립니다."},
 				"프사" : {"`,프사`" : "명령어를 입력한 사람의 프사를 출력합니다."},
 				"말" : {"`,말 <할 말>`" : "<할 말>을 출력합니다."},
 				"계산" : {"`,계산 <식>`" : "<식>을 계산합니다."},
@@ -555,13 +555,9 @@ async def on_message(message):
 				await asyncio.sleep(1.0)
 				await message.channel.send(i+빈공)
 			await message.channel.send(f"{Sx} * {Sy}")
-			
-		elif 시작(",슬롯 잭팟"):
-			await message.channel.send(슬롯[1]*3)
-		elif 시작(",슬롯 빅윈") or 시작(",슬롯 비긴"):
-			await message.channel.send(슬롯[1]+슬롯[1]+슬롯[2])
-			
+				
 		elif 시작(",슬롯"):
+			await message.channel.send(message.author)
 			ghkrfbf = []
 			ghkrfbf += [1]*4930
 			ghkrfbf += [2]*8451
@@ -569,17 +565,17 @@ async def on_message(message):
 			ghkrfbf += [4]*17606
 			ghkrfbf += [5]*22535
 			ghkrfbf += [6]*34507
-			msg = await message.channel.send(str(message.author) + "\n" + 슬롯[0]*3)
+			msg = await message.channel.send(슬롯[0]*3)
 			await asyncio.sleep(1.0)
 			a = [random.choice(ghkrfbf), random.choice(ghkrfbf), random.choice(ghkrfbf)]
-			await msg.edit(content = str(message.author) + "\n" + 슬롯[a[0]] + 슬롯[a[1]] + 슬롯[a[2]])
+			await msg.edit(content = 슬롯[a[0]] + 슬롯[a[1]] + 슬롯[a[2]])
 			
 			a.sort()
 			a = tuple(a)
 			if a in [(1,1,1) , (2,2,2) , (3,3,3)]:
-				await msg.edit(content = msg.content + "\n" + "**잭팟!**")
+				awiat message.channel.send("**잭팟!**")
 			if a in [(1,1,2) , (1,1,3) , (1,2,2) , (2,2,3) , (1,3,3) , (2,3,3)]:
-				await msg.edit(content = msg.content + "\n" + "**빅윈!**")
+				awiat message.channel.send("**빅윈!**")
 
 		elif 시작(",테스트") and 관리():
 			try:
