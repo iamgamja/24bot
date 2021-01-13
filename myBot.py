@@ -81,6 +81,9 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+
+	if message.content == "ㅁ":
+		await message.channel.send("이름 : 돈")
 	if message.guild.id == 798353590040920094:
 		global note
 		if True:
