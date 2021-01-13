@@ -83,6 +83,7 @@ async def on_ready():
 async def on_message(message):
 	if message.guild.id == 798353590040920094:
 		global note
+		if True:
 			if note is None:
 				if await client.get_channel(798358860456001566).fetch_message(798395027675676693):
 					note = await client.get_channel(798358860456001566).fetch_message(798395027675676693)
