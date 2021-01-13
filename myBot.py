@@ -576,7 +576,7 @@ async def on_message(message):
 			
 			a.sort()
 			if a in [(1,1,1) , (2,2,2) , (3,3,3)]:
-				await msg.edit(content = msg.content + "\n" + "**잭팟!**)
+				await msg.edit(content = msg.content + "\n" + "**잭팟!**")
 			if a in [(1,1,2) , (1,1,3) , (1,2,2) , (2,2,3) , (1,3,3) , (2,3,3)]:
 				await msg.edit(content = msg.content + "\n" + "**빅윈!**")
 
