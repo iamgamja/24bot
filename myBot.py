@@ -569,11 +569,17 @@ async def on_message(message):
 			ghkrfbf += [4]*17606
 			ghkrfbf += [5]*22535
 			ghkrfbf += [6]*34507
-			msg = await message.channel.send(슬롯[0]*3)
+			msg = await message.channel.send(str(message.author) + "\n" + 슬롯[0]*3)
 			await asyncio.sleep(1.0)
-			await msg.edit(content = 슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)] + 슬롯[random.choice(ghkrfbf)])
-			await message.channel.send("테스트")
-				
+			a = (random.choice(ghkrfbf), random.choice(ghkrfbf), random.choice(ghkrfbf))
+			await msg.edit(content = str(message.author) + "\n" + 슬롯[a[0]] + 슬롯[a[1]] + 슬롯[a[2]])
+			
+			a.sort()
+			if a in [(1,1,1) , (2,2,2) , (3,3,3)]:
+				await msg.edit(content = msg.content + "\n" + "**잭팟!**)
+			if a in [(1,1,2) , (1,1,3) , (1,2,2) , (2,2,3) , (1,3,3) , (2,3,3)]:
+				await msg.edit(content = msg.content + "\n" + "**빅윈!**)
+
 		elif 시작(",테스트") and 관리():
 			try:
 				for i in Ranks:
