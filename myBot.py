@@ -1042,6 +1042,7 @@ async def on_message(message):
 			if 시작("ㅅ"):
 				if userTotalRank < 81000:
 					await message.channel.send("초하-급신부터 사용할수 있습니다.")
+					return
 
 			#도박을 해봄
 			await message.channel.send(f"{dp}배")
