@@ -190,7 +190,12 @@ async def on_message(message):
 				if m[i] in 겹글 and len(m)>=i+2 and 임시 == "NaN":
 					임시 = m[i]
 				elif 임시+m[i] in 영한:
-					w+=영한[임시+m[i]] ; 임시 = "NaN"
+					임시 += m[i]
+				elif len(임시) == 2 and 영한[m[i]] in 중성:
+					w+=영한[임시[0]]
+					w+=영한[임시[1]]
+					w+=영한[m[i]]
+					임시 = "NaN"
 				elif 임시 != "NaN":
 					w+=영한[임시] ; 임시 = "NaN"
 					if m[i] in 겹글 and len(m)>=i+2 and 임시 == "NaN":
