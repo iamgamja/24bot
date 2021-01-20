@@ -970,16 +970,6 @@ async def on_message(message):
 			else:
 				return
 
-			#얼마나 걸었는지
-			if message.content.split()[1] == "최대":
-				if 시작("ㄷ"):
-					dmoney = 100+userAgain*50
-				else:
-					dmoney = 100+userAgain*100
-				await message.channel.send(f"{dmoney}만큼의 돈을 겁니다..."
-			else:
-				dmoney = int(message.content.split()[1])
-
 			#현재 얼마있는지
 			user = message.author
 
@@ -1030,9 +1020,18 @@ async def on_message(message):
 			userTotalRank += userTear*50
 			userTotalRank += userAgain*2700
 			userTotalRank += userGod*81000
-
-
-			#10~(환생횟수+1)*100 아닐경우 제거
+			
+			#얼마나 걸었는지
+			if message.content.split()[1] == "최대":
+				if 시작("ㄷ"):
+					dmoney = 100+userAgain*50
+				else:
+					dmoney = 100+userAgain*100
+				await message.channel.send(f"{dmoney}만큼의 돈을 겁니다...")
+			else:
+				dmoney = int(message.content.split()[1])
+			
+			#건 돈이 10~(환생횟수+1)*100 아닐경우 제거
 			if 시작("ㄷ"):
 				if not 10 <= dmoney <= 100+userAgain*50:
 					await message.channel.send(f"`10~100+(환생횟수)*50 (10~{100+userAgain*50})` 만 걸수 있습니다.")
