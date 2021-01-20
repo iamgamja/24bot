@@ -971,7 +971,14 @@ async def on_message(message):
 				return
 
 			#얼마나 걸었는지
-			dmoney = int(message.content.split()[1])
+			if message.content.split()[1] == "최대":
+				if 시작("ㄷ"):
+					dmoney = 100+userAgain*50
+				else:
+					dmoney = 100+userAgain*100
+				await message.channel.send(f"{dmoney}만큼의 돈을 겁니다..."
+			else:
+				dmoney = int(message.content.split()[1])
 
 			#현재 얼마있는지
 			user = message.author
