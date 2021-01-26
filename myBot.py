@@ -732,9 +732,9 @@ async def on_message(message):
 			else:
 				await message.channel.send("피버타임이 **꺼**졌습니다")
 
-		elif (시작("+") or 시작("-")) and message.author.id == 647001590766632966: # 생강 + 또는 -
+		elif (시작(",+") or 시작(",-")) and message.author.id == 647001590766632966: # 생강 + 또는 -
 			q=m.split()
-			money = int(q[0])
+			money = int(q[0][1:])
 			users = []
 			for i in q[1:]:
 				users.append(await message.guild.fetch_member(int(i[-18:] if i[-1] in "1234567890" else i[-19:-1])))
