@@ -583,7 +583,7 @@ async def on_message(message):
 			if a in [(1,1,2) , (1,1,3) , (1,2,2) , (2,2,3) , (1,3,3) , (2,3,3)]:
 				await message.channel.send("**빅윈!**")
 			if a in [(1,2,3)]:
-				await message.channel.send("**유사잭팟!**")
+				await message.channel.send("~~**유사잭팟!**~~")
 
 		
 		elif 시작(",ㄹ"):
@@ -607,7 +607,7 @@ async def on_message(message):
 			if a in [(1,1,2) , (1,1,3) , (1,2,2) , (2,2,3) , (1,3,3) , (2,3,3)]:
 				await msg.edit(content = msg.content + "\n" + "**빅윈!**")
 			if a in [(1,2,3)]:
-				await msg.edit(content = msg.content + "\n" + "**유사잭팟!**")
+				await msg.edit(content = msg.content + "\n" + "~~**유사잭팟!**~~")
 
 		elif 시작(",테스트") and 관리():
 			try:
@@ -638,7 +638,7 @@ async def on_message(message):
 			
 			f = ''
 			for i in m:
-				if i in '1일하나2이둘3삼셋4사넷5오다섯6육여섯7칠일곱8팔여덟9구아홉0영.점+＋더하기-－빼기*×곱하기/÷나누기^제곱%나머지()π파이원주율√루트목록':
+				if i in '1일하나2이둘3삼셋4사넷5오다섯6육여섯7칠일곱8팔여덟9구아홉0영.점+＋더하기-－빼기*×곱하기/÷나누기^제곱%나머지()π파이원주율√루트':
 					f += i
 
 			f = f.replace("π", "math.pi")
