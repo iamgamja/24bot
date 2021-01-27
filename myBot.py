@@ -378,13 +378,13 @@ async def on_message(message):
 		elif 시작(",지뢰찾기"):
 			m = ' '.join(m.split(' ')[1:])
 			#제대로 input 했는지 확인
-			if m == '랜덤':
+			if 시작("랜덤"):
 				m = str(random.randint(1, 17)) + ' '
 				m += str(random.randint(1, 50)) + ' '
 				m += str(random.randint(1, int(m.split()[0]) * int(m.split()[1])))
 			
-			m = '17 50 850' if m == '최대' else m
-			m = '1 1 1' if m == '최소' else m
+			m = '17 50 850' if 시작("최대") else m
+			m = '1 1 1' if 시작('최소') else m
 			mine_input = m.split()
 			
 			if len(mine_input) != 3:
@@ -1071,7 +1071,7 @@ async def on_message(message):
 			userTotalRank += userGodAgain*4050000
 			
 			#얼마나 걸었는지
-			if message.content.split()[1] == "최대":
+			if message.content.split()[1] == "최대" or message.content.split()[1] == "chleo":
 				if 시작("ㄷ"):
 					dmoney = 100+userAgain*50
 				else:
