@@ -262,7 +262,7 @@ async def on_message(message):
 			return
 		
 		if '@everyone' in m or '@here' in m:
-			await message.add_reaction(똥키)
+			# await message.add_reaction(똥키)
 			return
 
 
