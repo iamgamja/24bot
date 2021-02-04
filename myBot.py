@@ -611,7 +611,7 @@ async def on_message(message):
 				await msg.edit(content = msg.content + "\n" + "~~**유사잭팟!**~~")
 
 		elif 시작(",테스트") and 관리():
-			await client.get_channel(783502506470146049).send("유저 : 성공 횟수")
+			pass
 
 		elif 시작(",코드") and 관리():
 			m = ' '.join(m.split(' ')[1:])
@@ -997,7 +997,7 @@ async def on_message(message):
 			global note2
 			if True:
 				if note2 is None:
-					note2 = await client.get_channel(783507226983399504).fetch_message(99999999999999999999999999999999999) # 메시지를 보내고 수정
+					note2 = await client.get_channel(783507226983399504).fetch_message(806721717551497237) # 메시지를 보내고 수정
 
 			if 시작("참가"):
 				if "<@"+str(message.author.id)+">" in note2.content:
