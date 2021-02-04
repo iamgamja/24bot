@@ -1504,7 +1504,7 @@ async def on_message(message):
 		
 	except Exception as e:
 		await message.add_reaction(엑스)
-		await client.get_channel(762916201654386701).send(f"{시간()}, <@526889025894875158>, 에러, {e}, {message.jump_url}")
+		await client.get_channel(762916201654386701).send(f"{시간()} , <@526889025894875158> , 에러 , {message.guild} , {e} , {message.jump_url} , {message}")
 
 try:
 	access_token = os.environ["BOR_TOKEN"]
