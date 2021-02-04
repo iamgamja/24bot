@@ -47,6 +47,7 @@ client = discord.Client()
 기억 = {}      # ,기억 명령어에 사용
 피버 = False   # ,피버 명령어에 사용
 note = None
+note2 = None
 지뢰 = (
 	"<:0z:762919979388502027>", #0
 	"<:z1:750200417836859472>", #1
@@ -610,15 +611,7 @@ async def on_message(message):
 				await msg.edit(content = msg.content + "\n" + "~~**유사잭팟!**~~")
 
 		elif 시작(",테스트") and 관리():
-			try:
-				for i in Ranks:
-					await message.guild.create_role(name = i)
-				for i in Tears:
-					await message.guild.create_role(name = i)
-				for i in Agains:
-					await message.guild.create_role(name = i)
-			except Exception as e:
-				await message.channel.send(e)
+			await client.get_channel(783507226983399504).send("유저 : 성공 횟수")
 
 		elif 시작(",코드") and 관리():
 			m = ' '.join(m.split(' ')[1:])
@@ -717,7 +710,7 @@ async def on_message(message):
 			}
 		
 		for nickname in mentions:
-			if message.content == nickname:
+			if m == nickname:
 				ping = await message.channel.send(f"{message.author} : {mentions[nickname]}")
 				await asyncio.sleep(1.0)
 				await ping.delete()
@@ -830,7 +823,7 @@ async def on_message(message):
 				await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userTotalRank %  10]))
 			await message.add_reaction(동글)
 		
-		elif message.channel.id == 766932314973929527 or message.channel.id == 783516524685688842: # 랭크업 가능한 채널일경우
+		elif message.channel.id in (766932314973929527, 783516524685688842): # 랭크업 가능한 채널일경우
 			tryRank = False # 기본값
 
 			if 시작("ㅇ"):
@@ -882,7 +875,6 @@ async def on_message(message):
 				   시간()[2:4] == "28" and 시간()[5:7] == "10" and 시간()[8:10] == "03" or\
 				   시간()[2:4] == "29" and 시간()[5:7] == "09" and 시간()[8:10] == "22" or\
 				   시간()[2:4] == "30" and 시간()[5:7] == "09" and 시간()[8:10] == "12":
-
 					tryRank = [1,1,1,1,1,0,0,0,0,0]
 			if 시작("ㅊ"):
 				if 시간()[5:7] == "01" and 시간()[8:10] == "26":
@@ -1000,6 +992,43 @@ async def on_message(message):
 			
 			await message.channel.send("랭크업에 성공하였습니다!")
 			await message.add_reaction(체크)
+			
+		elif message.channel.id == 783507226983399504: #이벤트채널일경우
+			global note2
+			if True:
+				if note2 is None:
+					note2 = await client.get_channel(783507226983399504).fetch_message(99999999999999999999999999999999999) # 메시지를 보내고 수정
+
+			if 시작("참가"):
+				if "<@"+str(message.author.id)+">" in note2.content:
+					await message.channel.send("이미 등록되었습니다")
+					return
+				else:
+					await note2.edit(content=f"{note2.content}\n<@{message.author.id}> : 0")
+					await message.channel.send("완료되었습니다")
+
+			elif 시작("ㅇ"):
+				user = f"<@{message.author.id}>"
+				
+				if user in note2.content:
+					await message.channel.send("등록되어있지 않은 유저입니다. `등록`을 입력하여 등록해보세요")
+					return
+				
+				if not random.choice([1,1,0,0,0,0,0,0,0,0]):
+					await message.channel.send("랭크업에 실패하였습니다...")
+					return
+
+				note2c = note2.content.split("\n")[1:]
+				
+				for i in range(len(note2c)):
+					if note2c[i].startswith(user):
+						note2n = i
+				note2c[note2n] = note2c[note2n][:24] + str(int(notec[noten][24:])+1)
+				
+				note2m = "유저 : 성공 횟수\n" + "\n".join(note2c)
+				await note2.edit(content = notem)
+				await message.channel.send("랭크업에 성공하였습니다!")
+			
 		
 		elif message.channel.id == 784228694940057640 or message.channel.id == 794146499034480661 or message.channel.id == 787976375301701692: # 도박채널 또는 도박2 채널 또는 ㅇㅇ(테스트채널)일경우
 			#도박 아니면 제거
