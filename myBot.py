@@ -997,7 +997,7 @@ async def on_message(message):
 			global note2
 			if True:
 				if note2 is None:
-					note2 = await client.get_channel(783507226983399504).fetch_message(806721717551497237) # 메시지를 보내고 수정
+					note2 = await client.get_channel(783502506470146049).fetch_message(806721717551497237) # 메시지를 보내고 수정
 
 			if 시작("참가"):
 				if "<@"+str(message.author.id)+">" in note2.content:
