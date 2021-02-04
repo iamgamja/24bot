@@ -1027,6 +1027,99 @@ async def on_message(message):
 				
 				note2m = "유저 : 성공 횟수\n" + "\n".join(note2c)
 				await note2.edit(content = notem)
+				
+				
+				money = 1
+				user = message.author
+
+				userRank = 0
+
+				userGod = ''
+				for i in God1:
+					if i in [i.name for i in user.roles]:
+						userGod += i
+				try:
+					userGod = God2.index(userGod)
+				except:
+					userGod = 0
+
+				for i in range(len(Ranks_10)):
+					if Ranks_10[i] in [i.id for i in user.roles]:
+						userRank += i*10 ; break
+				else:
+					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+				for i in range(len(Ranks_01)):
+					if Ranks_01[i] in [i.id for i in user.roles]:
+						userRank += i ; break
+				else:
+					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+
+				for i in range(len(Tears)):
+					if Tears[i] in [i.name for i in user.roles]:
+						userTear = i ; break
+				else:
+					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+
+				userAgain = 0
+				for i in range(len(Agains_10)):
+					if Agains_10[i] in [i.name for i in user.roles]:
+						userAgain += i*10 ; break
+				else:
+					userAgain += 0*10
+
+				for i in range(len(Agains_01)):
+					if Agains_01[i] in [i.name for i in user.roles]:
+						userAgain += i ; break
+				else:
+					userAgain += 0
+
+				userGodAgain = 0
+				for i in range(len(God_Agains_10)):
+					if God_Agains_10[i] in [i.id for i in user.roles]:
+						userGodAgain += i*10 ; break
+				for i in range(len(God_Agains_01)):
+					if God_Agains_01[i] in [i.id for i in user.roles]:
+						userGodAgain += i ; break
+
+				#역할제거
+				for i in God2[userGod]:
+					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
+				await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userRank//10]))
+				await user.remove_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userRank% 10]))
+				await user.remove_roles(discord.utils.get(message.guild.roles, name=Tears[userTear]))
+				await user.remove_roles(discord.utils.get(message.guild.roles, name=Agains_10[userAgain//10]))
+				await user.remove_roles(discord.utils.get(message.guild.roles, name=Agains_01[userAgain% 10]))
+				await user.remove_roles(discord.utils.get(message.guild.roles, name=God_Agains_10[userGodAgain//10]))
+				await user.remove_roles(discord.utils.get(message.guild.roles, name=God_Agains_01[userGodAgain% 10]))
+
+				#유저랭크 계산
+				userTotalRank = 0
+				userTotalRank += userRank
+				userTotalRank += userTear*50
+				userTotalRank += userAgain*2700
+				userTotalRank += userGod*81000
+				userTotalRank += userGodAgain*4050000
+				userTotalRank += money
+
+				#신급환생적용
+				await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_10[(userTotalRank//4050000) // 10]))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_01[(userTotalRank//4050000) %  10]))
+				userTotalRank %= 4050000
+				#신급적용
+				for i in God2[userTotalRank // 81000]:
+					await user.add_roles(discord.utils.get(message.guild.roles, name=i))
+				userTotalRank %= 81000
+				#환생횟수 적용
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_10[(userTotalRank//2700) // 10]))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_01[(userTotalRank//2700) %  10]))
+				userTotalRank %= 2700
+				#티어 적용 (0이어도 0번째(아톰))
+				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
+				userTotalRank %= 50
+				#랭크 적용 (0이어도 0번째(L))
+				await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userTotalRank // 10]))
+				await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userTotalRank %  10]))
+				
 				await message.channel.send("랭크업에 성공하였습니다!")
 			
 		
