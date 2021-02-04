@@ -611,7 +611,7 @@ async def on_message(message):
 				await msg.edit(content = msg.content + "\n" + "~~**유사잭팟!**~~")
 
 		elif 시작(",테스트") and 관리():
-			await client.get_channel(783507226983399504).send("유저 : 성공 횟수")
+			await client.get_channel(783502506470146049).send("유저 : 성공 횟수")
 
 		elif 시작(",코드") and 관리():
 			m = ' '.join(m.split(' ')[1:])
