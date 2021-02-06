@@ -997,11 +997,10 @@ async def on_message(message):
 			global note2
 			if True:
 				if note2 is None:
-					note2 = await client.get_channel(783502506470146049).fetch_message(806721717551497237) # 메시지를 보내고 수정
-
+					note2 = await client.get_channel(783502506470146049).fetch_message(806721717551497237)
 			if 시작("참가") or 시작("등록"):
 				if "<@"+str(message.author.id)+">" in note2.content:
-					await message.channel.send("이미 참가(등록)ㅂ되었습니다")
+					await message.channel.send("이미 참가(등록)되었습니다")
 					return
 				else:
 					await note2.edit(content=f"{note2.content}\n<@{message.author.id}> : 0")
@@ -1023,10 +1022,10 @@ async def on_message(message):
 				for i in range(len(note2c)):
 					if note2c[i].startswith(user):
 						note2n = i
-				note2c[note2n] = note2c[note2n][:24] + str(int(notec[noten][24:])+1)
+				note2c[note2n] = note2c[note2n][:24] + str(int(note2c[note2n][24:])+1)
 				
 				note2m = "유저 : 성공 횟수\n" + "\n".join(note2c)
-				await note2.edit(content = notem)
+				await note2.edit(content = note2m)
 				
 				
 				money = 1
