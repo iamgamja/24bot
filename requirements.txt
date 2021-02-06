@@ -1,2 +1,2 @@
 discord.py==1.3.4
-Pillow==8.1.0
+Pillow.py==8.1.0
