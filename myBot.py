@@ -12,6 +12,7 @@ client = discord.Client()
 엑스 = "❌"
 청소 = "🗑️"
 체크 = "✅"
+크체 = "❎"
 똥킹 = "<:thonking:792609223099940864>"
 킹똥 = "<:gniknoht:792609325562068992>"
 똥키 = "<:thonkery:792646930077188096>"
@@ -1120,8 +1121,8 @@ async def on_message(message):
 				await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userTotalRank %  10]))
 				
 				await message.channel.send("랭크업에 성공하였습니다!")
-			
-		
+				await message.add_reaction(체크)
+
 		elif message.channel.id == 784228694940057640 or message.channel.id == 794146499034480661 or message.channel.id == 787976375301701692: # 도박채널 또는 도박2 채널 또는 ㅇㅇ(테스트채널)일경우
 			#도박 아니면 제거
 			if 시작("ㄷ"):
