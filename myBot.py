@@ -1010,7 +1010,7 @@ async def on_message(message):
 			elif 시작("ㅇ"):
 				user = f"<@{message.author.id}>"
 				
-				if user in note2.content:
+				if user not in note2.content:
 					await message.channel.send("등록되어있지 않은 유저입니다. `등록`을 입력하여 등록해보세요")
 					return
 				
