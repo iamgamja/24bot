@@ -1330,7 +1330,12 @@ async def on_message(message):
 			
 			await message.add_reaction(체크)
 
-		elif 시작(",일급") and message.author.id == 647001590766632966: # 생강 
+		elif 시작(",일급") and message.author.id == 647001590766632966: # 생강
+			m = ' '.join(m.split(' ')[1:])
+			try:
+				a = int(m)
+			except:
+				a = 1
 			users = [
 				526889025894875158, #감자
 				693386027036835912, #민트망고
@@ -1422,7 +1427,7 @@ async def on_message(message):
 				userTotalRank += userAgain*2700
 				userTotalRank += userGod*81000
 				userTotalRank += userGodAgain*4050000
-				userTotalRank += money
+				userTotalRank += money*a
 				
 				#신급환생적용
 				await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_10[(userTotalRank//4050000) // 10]))
