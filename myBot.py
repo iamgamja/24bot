@@ -83,8 +83,8 @@ async def on_ready():
 
 @client.event
 async def on_reaction_add(reaction, user):
-	await client.get_channel(762916201654386701).send(dir(reaction))
-	await client.get_channel(762916201654386701).send(dir(user))
+	await reaction.message.channel.id == 762916201654386701 and str(reaction) == 체크:
+		await reaction.message.add_reaction(체크)
 
 @client.event
 async def on_message(message):
