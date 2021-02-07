@@ -779,23 +779,17 @@ async def on_message(message):
 						userGodAgain += i ; break
 
 				#역할제거
-				for i in Ranks_10:
-					await user.remove_roles(discord.utils.get(message.guild.roles, id=i))
-				for i in Ranks_01:
-					await user.remove_roles(discord.utils.get(message.guild.roles, id=i))
-				for i in Tears:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in Agains_10:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in Agains_01:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in God2:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in God_Agains_10:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in God_Agains_01:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-
+				for i in user.roles:
+					if i.id in Ranks_10 or \
+					   i.id in Ranks_01 or \
+					   i.name in Tears or \
+					   i.name in Agains_10 or \
+					   i.name in Agains_01 or \
+					   i.name in God2 or \
+					   i.name in God_Agains_10 or \
+					   i.name in God_Agains_01:
+						await user.remove_roles(i)
+				
 				#유저랭크 계산
 				userTotalRank = 0
 				userTotalRank += userRank
@@ -955,22 +949,16 @@ async def on_message(message):
 					userGodAgain += i ; break
 			
 			#역할제거
-			for i in Ranks_10:
-				await user.remove_roles(discord.utils.get(message.guild.roles, id=i))
-			for i in Ranks_01:
-				await user.remove_roles(discord.utils.get(message.guild.roles, id=i))
-			for i in Tears:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-			for i in Agains_10:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-			for i in Agains_01:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-			for i in God2:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-			for i in God_Agains_10:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-			for i in God_Agains_01:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
+			for i in user.roles:
+				if i.id in Ranks_10 or \
+				   i.id in Ranks_01 or \
+				   i.name in Tears or \
+				   i.name in Agains_10 or \
+				   i.name in Agains_01 or \
+				   i.name in God2 or \
+				   i.name in God_Agains_10 or \
+				   i.name in God_Agains_01:
+					await user.remove_roles(i)
 
 			#유저랭크 계산
 			userTotalRank = 0
@@ -1091,22 +1079,16 @@ async def on_message(message):
 						userGodAgain += i ; break
 
 				#역할제거
-				for i in Ranks_10:
-					await user.remove_roles(discord.utils.get(message.guild.roles, id=i))
-				for i in Ranks_01:
-					await user.remove_roles(discord.utils.get(message.guild.roles, id=i))
-				for i in Tears:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in Agains_10:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in Agains_01:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in God2:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in God_Agains_10:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in God_Agains_01:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
+				for i in user.roles:
+					if i.id in Ranks_10 or \
+					   i.id in Ranks_01 or \
+					   i.name in Tears or \
+					   i.name in Agains_10 or \
+					   i.name in Agains_01 or \
+					   i.name in God2 or \
+					   i.name in God_Agains_10 or \
+					   i.name in God_Agains_01:
+						await user.remove_roles(i)
 
 				#유저랭크 계산
 				userTotalRank = 0
@@ -1309,22 +1291,16 @@ async def on_message(message):
 				return
 			
 			#역할제거
-			for i in Ranks_10:
-				await user.remove_roles(discord.utils.get(message.guild.roles, id=i))
-			for i in Ranks_01:
-				await user.remove_roles(discord.utils.get(message.guild.roles, id=i))
-			for i in Tears:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-			for i in Agains_10:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-			for i in Agains_01:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-			for i in God2:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-			for i in God_Agains_10:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-			for i in God_Agains_01:
-				await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
+			for i in user.roles:
+				if i.id in Ranks_10 or \
+				   i.id in Ranks_01 or \
+				   i.name in Tears or \
+				   i.name in Agains_10 or \
+				   i.name in Agains_01 or \
+				   i.name in God2 or \
+				   i.name in God_Agains_10 or \
+				   i.name in God_Agains_01:
+					await user.remove_roles(i)
 			await client.get_channel(762916201654386701).send("역할을 제거함")
 			
 			#신급환생적용
@@ -1433,22 +1409,16 @@ async def on_message(message):
 						userGodAgain += i ; break
 
 				#역할제거
-				for i in Ranks_10:
-					await user.remove_roles(discord.utils.get(message.guild.roles, id=i))
-				for i in Ranks_01:
-					await user.remove_roles(discord.utils.get(message.guild.roles, id=i))
-				for i in Tears:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in Agains_10:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in Agains_01:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in God2:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in God_Agains_10:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
-				for i in God_Agains_01:
-					await user.remove_roles(discord.utils.get(message.guild.roles, name=i))
+				for i in user.roles:
+					if i.id in Ranks_10 or \
+					   i.id in Ranks_01 or \
+					   i.name in Tears or \
+					   i.name in Agains_10 or \
+					   i.name in Agains_01 or \
+					   i.name in God2 or \
+					   i.name in God_Agains_10 or \
+					   i.name in God_Agains_01:
+						await user.remove_roles(i)
 
 				#유저랭크 계산
 				userTotalRank = 0
