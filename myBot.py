@@ -82,13 +82,7 @@ async def on_ready():
 	await client.get_channel(762916201654386701).send(f"{시간()}, <@526889025894875158>, 시작")
 
 @client.event
-async def on_reaction_add(reaction, user):
-	await reaction.message.channel.id == 762916201654386701 and str(reaction) == 체크:
-		await reaction.message.add_reaction(체크)
-
-@client.event
 async def on_message(message):
-
 	if message.guild.id == 798353590040920094:
 		global note
 		if True:
