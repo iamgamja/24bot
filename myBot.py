@@ -83,8 +83,8 @@ async def on_ready():
 
 @client.event
 async def on_reaction_add(reaction, user):
-	await client.get_channel(762916201654386701).send(reaction)
-	await client.get_channel(762916201654386701).send(user)
+	await client.get_channel(762916201654386701).send(dir(reaction))
+	await client.get_channel(762916201654386701).send(dir(user))
 
 @client.event
 async def on_message(message):
