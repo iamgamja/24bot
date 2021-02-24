@@ -155,7 +155,7 @@ async def on_message(message):
 		def 체크1(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인 (임베드)
 			return m.channel.id == message.channel.id and m.author == message.author
 
-		def 체크2(r,u): # 리엑션이 0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣ 그리고 같은 사람 (실드)
+		def 체크2(r,u): # 반응이 0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣ 그리고 같은 사람 (실드)
 			return str(r.emoji) in "0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣" and u == message.author
 		
 		def 제목(s):
@@ -632,7 +632,7 @@ async def on_message(message):
 					except:
 						pass
 					try:
-						try_list[4] += string.uppercase[i+1]
+						try_list[4] += string.ascii_uppercase[i+1]
 					except:
 						pass
 				elif i.endswith(","): # 숫자
@@ -675,7 +675,7 @@ async def on_message(message):
 					except:
 						pass
 					try:
-						try_list[4] += string.lowercase[i+1]
+						try_list[4] += string.ascii_lowercase[i+1]
 					except:
 						pass
 			for i in try_list:
