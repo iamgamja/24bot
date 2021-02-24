@@ -617,8 +617,8 @@ async def on_message(message):
 					i = i[:-1]
 					try_list[0] += chr(int(i, 10))
 					try_list[1] += chr(int(i, 16))
-					try_list[2] += dict(zip(string.lowercase, string.uppercase))[chr(int(i, 10))]
-					try_list[3] += dict(zip(string.lowercase, string.uppercase))[chr(int(i, 16))]
+					try_list[2] += dict(zip(string.ascii_lowercase, string.ascii_uppercase))[chr(int(i, 10))]
+					try_list[3] += dict(zip(string.ascii_lowercase, string.ascii_uppercase))[chr(int(i, 16))]
 					try_list[4] += string.uppercase[i+1]
 				elif i.endswith(","): # 숫자
 					i = i[:-1]
@@ -630,8 +630,8 @@ async def on_message(message):
 				else: # 소문자
 					try_list[0] += chr(int(i, 10))
 					try_list[1] += chr(int(i, 16))
-					try_list[2] += dict(zip(string.uppercase, string.lowercase))[chr(int(i, 10))]
-					try_list[3] += dict(zip(string.uppercase, string.lowercase))[chr(int(i, 16))]
+					try_list[2] += dict(zip(string.ascii_uppercase, string.ascii_lowercase))[chr(int(i, 10))]
+					try_list[3] += dict(zip(string.ascii_uppercase, string.ascii_lowercase))[chr(int(i, 16))]
 					try_list[4] += string.lowercase[i+1]
 			for i in try_list:
 				await message.channel.send(f"discord.gg/{i}")
