@@ -657,7 +657,7 @@ async def on_message(message):
 						try_list[4] += str(i)
 					except:
 						pass
-				else: # 소문자
+				else: # 없음
 					try:
 						try_list[0] += chr(int(i, 10))
 					except:
@@ -676,8 +676,8 @@ async def on_message(message):
 						pass
 					try:
 						try_list[4] += string.ascii_lowercase[i+1]
-					except:
-						pass
+					except Exception as e:
+						await message.channel.send(f"log: {e}")
 			for i in try_list:
 				await message.channel.send(f"discord.gg/{i}")
 				
