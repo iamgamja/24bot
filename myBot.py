@@ -826,7 +826,7 @@ async def on_message(message):
 			if 시작("ㄱ"):
 				if 시간()[5:7] == "02" and 시간()[8:10] == "14" or\
 				   시간()[5:7] == "03" and 시간()[8:10] == "14" or\
-				   시간()[5:7] == "04" and 시간()[8:10] == "15" or\
+				   시간()[5:7] == "04" and 시간()[8:10] == "12" or\
 				   시간()[5:7] == "05" and 시간()[8:10] == "05" or\
 				   시간()[5:7] == "05" and 시간()[8:10] == "08" or\
 				   시간()[5:7] == "06" and 시간()[8:10] == "06" or\
@@ -890,7 +890,8 @@ async def on_message(message):
 					await message.channel.send("랭커만 사용할 수 있는 커맨드입니다.")
 			if 시작("ㅍ"):
 				if discord.utils.get(message.guild.roles, name="마스터(칭호)") in message.author.roles or\
-				   discord.utils.get(message.guild.roles, name="신") in message.author.roles:
+				   discord.utils.get(message.guild.roles, name="신") in message.author.roles or\
+				   discord.utils.get(message.guild.roles, name="챔피언(칭호)") in message.author.roles:
 					tryRank = [1,1,1,1,0,0,0,0,0,0]
 				else:
 					await message.channel.send("마스터 이상만 사용할 수 있는 커맨드입니다.")
