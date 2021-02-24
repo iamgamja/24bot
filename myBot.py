@@ -310,9 +310,6 @@ async def on_message(message):
 			embed.set_footer(text= f'{message.author.name} | {시간()}')
 			await message.channel.send(embed=embed)
 
-		elif 시작(",초대"):
-			await message.channel.send("https://discord.com/oauth2/authorize?&client_id=688978156535021599&scope=bot&permissions=8")
-
 		elif 시작(",핑"):
 			await message.channel.send(f"<@{message.author.id}>")
 
@@ -638,6 +635,9 @@ async def on_message(message):
 					try_list[4] += string.lowercase[i+1]
 			for i in try_list:
 				await message.channel.send(f"discord.gg/{i}")
+				
+		elif 시작(",초대"):
+			await message.channel.send("https://discord.com/oauth2/authorize?&client_id=688978156535021599&scope=bot&permissions=8")
 				
 		elif 시작(",코드") and 관리():
 			m = ' '.join(m.split(' ')[1:])
