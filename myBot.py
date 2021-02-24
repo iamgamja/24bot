@@ -632,7 +632,7 @@ async def on_message(message):
 					except:
 						pass
 					try:
-						try_list[4] += string.ascii_uppercase[i+1]
+						try_list[4] += string.ascii_uppercase[int(i)+1]
 					except:
 						pass
 				elif i.endswith(","): # 숫자
@@ -675,9 +675,9 @@ async def on_message(message):
 					except:
 						pass
 					try:
-						try_list[4] += string.ascii_lowercase[i+1]
-					except Exception as e:
-						await message.channel.send(f"log: {e}")
+						try_list[4] += string.ascii_lowercase[int(i)+1]
+					except:
+						pass
 			for i in try_list:
 				await message.channel.send(f"discord.gg/{i}")
 				
