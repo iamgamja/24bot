@@ -1,4 +1,4 @@
-import discord, time, datetime, random, os, math, asyncio
+import discord, time, datetime, random, os, math, asyncio, string
 client = discord.Client()
 
 # await asyncio.sleep(1.0)
@@ -612,6 +612,33 @@ async def on_message(message):
 		elif 시작(",테스트") and 관리():
 			pass
 
+		elif 시작(",초대코드") and 관리():
+			m = ' '.join(m.split(' ')[1:])
+			try_list = ['', '', '', '', ''] # 10진 아스키, 16진 아스키, 10진 아스키(대문자.), 16진 아스키(대문자.), 알파벳 순서(대문자.숫자,)
+			for i in m.split():
+				if i.endswith("."): # 대문자
+					i = i[:-1]
+					try_list[0] += chr(int(i, 10))
+					try_list[1] += chr(int(i, 16))
+					try_list[2] += dict(zip(string.lowercase, string.uppercase))[chr(int(i, 10))]
+					try_list[3] += dict(zip(string.lowercase, string.uppercase))[chr(int(i, 16))]
+					try_list[4] += string.uppercase[i+1]
+				elif i.endswith(","): # 숫자
+					i = i[:-1]
+					try_list[0] += chr(int(i, 10))
+					try_list[1] += chr(int(i, 16))
+					try_list[2] += chr(int(i, 10))
+					try_list[3] += chr(int(i, 16))
+					try_list[4] += str(i)
+				else: # 소문자
+					try_list[0] += chr(int(i, 10))
+					try_list[1] += chr(int(i, 16))
+					try_list[2] += dict(zip(string.uppercase, string.lowercase))[chr(int(i, 10))]
+					try_list[3] += dict(zip(string.uppercase, string.lowercase))[chr(int(i, 16))]
+					try_list[4] += string.lowercase[i+1]
+			for i in try_list:
+				await message.channel.send(f"discord.gg/{i}")
+				
 		elif 시작(",코드") and 관리():
 			m = ' '.join(m.split(' ')[1:])
 			if '\n' in m:
