@@ -1,4 +1,4 @@
-import discord, time, datetime, random, os, math, asyncio, string
+import discord, time, datetime, random, os, math, asyncio, string, sys
 client = discord.Client()
 
 # await asyncio.sleep(1.0)
