@@ -1410,8 +1410,13 @@ async def on_message(message):
 -----
 {시간()}
 <@526889025894875158>
-에러
+에러::
 오류: {e}
+sys.exc_info()[0]: {sys.exc_info()[0]}
+sys.exc_info()[1]: {sys.exc_info()[1]}
+sys.exc_info()[2]: {sys.exc_info()[2]}
+sys.exc_info(): {sys.exc_info()}
+메시지::
 링크: {message.jump_url}
 서버: {message.guild} ({message.guild.id})
 채널: {message.channel} ({message.channel.id})
