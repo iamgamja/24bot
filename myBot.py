@@ -1404,11 +1404,8 @@ async def on_message(message):
 			await message.add_reaction(동글)
 			
 	except Exception as e:
-		def 조인1(s):
+		def 조인(s):
 			return "".join(s)
-
-		def 조인2(s):
-			return "\n".join(s)
 
 		await message.add_reaction(엑스)
 		await client.get_channel(762916201654386701).send(f"""
@@ -1417,8 +1414,8 @@ async def on_message(message):
 <@526889025894875158>
 에러::
 e: {e}
-sys.exc_info(): {조인2(sys.exc_info())}
-traceback.format_stack(): {조인1(traceback.format_stack())}
+sys.exc_info(): {sys.exc_info()}
+traceback.format_stack(): {조인t(traceback.format_stack())}
 메시지::
 링크: {message.jump_url}
 서버: {message.guild} ({message.guild.id})
