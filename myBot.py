@@ -139,7 +139,6 @@ async def on_message(message):
 		return
 
 	try:
-		global 반복
 		m = message.content
 		# print(m)
 
@@ -163,6 +162,12 @@ async def on_message(message):
 		
 		def 코드(s):
 			return 땀표 + s + 땀표
+
+		def 조인1(s):
+			return "".join(s)
+
+		def 조인2(s):
+			return "\n".join(s)
 
 		def 한영변환(m):
 			m+='.'
@@ -1412,13 +1417,14 @@ async def on_message(message):
 <@526889025894875158>
 에러::
 e: {e}
-sys.exc_info(): {'\n'.join(sys.exc_info())}
-traceback.format_stack(): {''.join(traceback.format_stack())}
+sys.exc_info(): {조인2(sys.exc_info())}
+traceback.format_stack(): {조인1(traceback.format_stack())}
 메시지::
 링크: {message.jump_url}
 서버: {message.guild} ({message.guild.id})
 채널: {message.channel} ({message.channel.id})
 보낸이: {message.author} ({message.author.id})
+
 {message}
 -----
 """)
