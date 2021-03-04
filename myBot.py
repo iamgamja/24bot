@@ -67,19 +67,6 @@ note = None
 
 슬롯 = ('<a:slotspin:793667557419778069>', '<a:slotseven:793668040712650783>', '<a:slotdia:793668088817123358>', '<a:slotstar:793668066692956160>', '<a:slotspade:793668129350877184>', '<a:slotheart:793668152319016980>', '<a:slotclover:793668174783709194>')
 
-
-def 제목(s):
-	return 킹똥 + s + 똥킹
-		
-def 코드(s):
-	return 땀표 + s + 땀표
-
-def 조인1(s):
-	return "".join(s)
-
-def 조인2(s):
-	return "\n".join(s)
-
 def 시간():
 	utcnow   = datetime.datetime.utcnow()
 	time_gap = datetime.timedelta(hours=9)
@@ -169,6 +156,12 @@ async def on_message(message):
 
 		def 체크2(r,u): # 반응이 0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣ 그리고 같은 사람 (실드)
 			return str(r.emoji) in "0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣" and u == message.author
+
+		def 제목(s):
+			return 킹똥 + s + 똥킹
+		
+		def 코드(s):
+			return 땀표 + s + 땀표
 
 		def 한영변환(m):
 			m+='.'
@@ -1411,6 +1404,12 @@ async def on_message(message):
 			await message.add_reaction(동글)
 			
 	except Exception as e:
+		def 조인1(s):
+			return "".join(s)
+
+		def 조인2(s):
+			return "\n".join(s)
+
 		await message.add_reaction(엑스)
 		await client.get_channel(762916201654386701).send(f"""
 -----
