@@ -1,4 +1,4 @@
-import discord, time, datetime, random, os, math, asyncio, string, sys
+import discord, time, datetime, random, os, math, asyncio, string, sys, traceback
 client = discord.Client()
 
 # await asyncio.sleep(1.0)
@@ -1411,11 +1411,9 @@ async def on_message(message):
 {시간()}
 <@526889025894875158>
 에러::
-오류: {e}
-sys.exc_info()[0]: {sys.exc_info()[0]}
-sys.exc_info()[1]: {sys.exc_info()[1]}
-sys.exc_info()[2]: {sys.exc_info()[2]}
-sys.exc_info(): {sys.exc_info()}
+e: {e}
+sys.exc_info(): {'\n'.join(sys.exc_info())}
+traceback.format_stack(): {''.join(traceback.format_stack())}
 메시지::
 링크: {message.jump_url}
 서버: {message.guild} ({message.guild.id})
