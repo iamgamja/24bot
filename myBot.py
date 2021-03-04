@@ -1415,7 +1415,7 @@ async def on_message(message):
 에러::
 e: {e}
 sys.exc_info(): {sys.exc_info()}
-traceback.format_stack(): {조인t(traceback.format_stack())}
+traceback.format_stack(): {조인(traceback.format_stack())}
 메시지::
 링크: {message.jump_url}
 서버: {message.guild} ({message.guild.id})
