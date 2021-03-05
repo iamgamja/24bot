@@ -1236,7 +1236,19 @@ async def on_message(message):
 					await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
 			else:
 				money = round(-dmoney+dmoney*dp)
-			await client.get_channel(762916201654386701).send(f"{message.author.roles}")
+			d = [] # 디버그용 리스트
+			for i in user.roles:
+				if i.id in Ranks_10 or \
+				   i.id in Ranks_01 or \
+				   i.name in Tears or \
+				   i.name in Agains_10 or \
+				   i.name in Agains_01 or \
+				   i.name in God2 or \
+				   i.name in God_Agains_10 or \
+				   i.name in God_Agains_01: # 랭크와 관련된 역할이라면
+					d.append(f"{i.name}({i.id})") # d에 문자열로 추가
+			d = "\n".join(d) # 줄바꿈된 문자열로 만듬
+			await client.get_channel(762916201654386701).send(d)
 			await client.get_channel(762916201654386701).send(f"{userRank}, {userTear}, {userAgain}, {userGod}; {userTotalRank}+{money} {message.jump_url}")
 			#랭크적용...
 			userTotalRank += money
