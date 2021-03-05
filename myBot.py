@@ -1236,6 +1236,7 @@ async def on_message(message):
 					await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
 			else:
 				money = round(-dmoney+dmoney*dp)
+			await client.get_channel(762916201654386701).send(f"{message.author.roles}")
 			await client.get_channel(762916201654386701).send(f"{userRank}, {userTear}, {userAgain}, {userGod}; {userTotalRank}+{money} {message.jump_url}")
 			#랭크적용...
 			userTotalRank += money
@@ -1299,10 +1300,10 @@ async def on_message(message):
 				]
 
 			ilGup = {
-				'인턴'   : 10,
-				'과장'   : 20,
-				'부장'   : 30,
-				'사장'   : 50,
+				'인턴' : 10,
+				'과장' : 20,
+				'부장' : 30,
+				'사장' : 50,
 				'부회장' : 100,
 				}
 
