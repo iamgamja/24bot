@@ -1197,8 +1197,6 @@ async def on_message(message):
 						money = round(-20-dmoney+dmoney*dp)
 						await message.channel.send(f"실드 사용에 실패함 ({money})")
 
-					await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
-
 				elif reaction == "2️⃣":
 					if random.choice([1,1,0,0,0]):
 						money = round(-40)
@@ -1206,8 +1204,6 @@ async def on_message(message):
 					else:
 						money = round(-40-dmoney+dmoney*dp)
 						await message.channel.send(f"실드 사용에 실패함 ({money})")
-
-					await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
 
 				elif reaction == "3️⃣":
 					if random.choice([1,1,1,0,0]):
@@ -1217,8 +1213,6 @@ async def on_message(message):
 						money = round(-60-dmoney+dmoney*dp)
 						await message.channel.send(f"실드 사용에 실패함 ({money})")
 
-					await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
-
 				elif reaction == "4️⃣":
 					if random.choice([1,1,1,1,0]):
 						money = round(-80)
@@ -1227,13 +1221,10 @@ async def on_message(message):
 						money = round(-80-dmoney+dmoney*dp)
 						await message.channel.send(f"실드 사용에 실패함 ({money})")
 
-					await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
-
 				elif reaction == "5️⃣":
 					money = round(-100)
 					await message.channel.send(f"실드 사용에 성공함 ({money})")
 
-					await client.get_channel(783513080352079872).send(f"{message.author}님이 실드를 구매함")
 			else:
 				money = round(-dmoney+dmoney*dp)
 			d = [] # 디버그용 리스트
