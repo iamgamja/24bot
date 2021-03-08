@@ -263,7 +263,7 @@ async def on_message(message):
 		#					f"guild_id: `{message.guild.id}`\n"	)
 		#	return
 		
-		if message.chennel.id == 743339107731767366: # 숫자세기채널일경우
+		if message.channel.id == 743339107731767366: # 숫자세기채널일경우
 			if message.content.endswith("52"):
 				await message.add_reaction("🥒") # 52
 			if message.content.endswith("69"):
