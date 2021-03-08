@@ -150,6 +150,9 @@ async def on_message(message):
 
 		def 관리(): # 관리자(감자#9400)인지 확인
 			return message.author.id == 526889025894875158
+		
+		def 유저(): # 유저가 보낸 메시지인지 확인
+			return not message.author.bot
 
 		def 체크1(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인 (임베드)
 			return m.channel.id == message.channel.id and m.author == message.author
@@ -701,7 +704,7 @@ async def on_message(message):
 			
 			f = ''
 			for i in m:
-				if i in '1일하나2이둘3삼셋4사넷5오다섯6육여섯7칠일곱8팔여덟9구아홉0영.점+＋더하기-－빼기*×곱하기/÷나누기^제곱%나머지()π파이원주율√루트':
+				if i in "π파이원주율√루트^":
 					f += i
 
 			f = f.replace("π", "math.pi")
@@ -709,36 +712,7 @@ async def on_message(message):
 			f = f.replace("원주율", "math.pi")
 			f = f.replace("√", "math.sqrt")
 			f = f.replace("루트", "math.sqrt")
-			f = f.replace("일", "1")
-			f = f.replace("하나", "1")
-			f = f.replace("이", "2")
-			f = f.replace("둘", "2")
-			f = f.replace("삼", "3")
-			f = f.replace("셋", "3")
-			f = f.replace("사", "4")
-			f = f.replace("넷", "4")
-			f = f.replace("오", "5")
-			f = f.replace("다섯", "5")
-			f = f.replace("육", "6")
-			f = f.replace("여섯", "6")
-			f = f.replace("칠", "7")
-			f = f.replace("일곱", "7")
-			f = f.replace("팔", "8")
-			f = f.replace("여덟", "8")
-			f = f.replace("구", "9")
-			f = f.replace("아홉", "9")
-			f = f.replace("영", "0")
-			f = f.replace("더하기", "+")
-			f = f.replace("＋", "+")
-			f = f.replace("빼기", "-")
-			f = f.replace("－", "-")
-			f = f.replace("곱하기", "*")
-			f = f.replace("×", "*")
-			f = f.replace("나누기", "/")
-			f = f.replace("÷", "/")
-			f = f.replace("제곱", "**")
 			f = f.replace("^", "**")
-			f = f.replace("나머지", "%")
 			
 			await message.channel.send(eval(f))
 
@@ -748,12 +722,14 @@ async def on_message(message):
 
 
 
+		##### 여기서부터는 노가다 서버 랭크 관련 코드임. #####
 
 
-
-		if message.guild is None:
+		if message.guild is None: # dm
 			return
 		if message.guild.id != 766932314973929522:
+			return
+		if message.author.bot:
 			return
 		m = message.content
 		
@@ -1149,7 +1125,7 @@ async def on_message(message):
 					dmoney = 100+userAgain*50
 				else:
 					dmoney = 100+userAgain*100
-				await message.channel.send(f"{dmoney}만큼의 돈을 겁니다...")
+				await message.channel.send(f"{dmoney}을 겁니다...")
 			else:
 				dmoney = int(message.content.split()[1])
 			
@@ -1418,10 +1394,12 @@ async def on_message(message):
 -----
 {시간()}
 <@526889025894875158>
+
 에러::
 e: {e}
 sys.exc_info(): {sys.exc_info()}
 traceback.format_exc(): {traceback.format_exc()}
+
 메시지::
 링크: {message.jump_url}
 서버: {message.guild} ({message.guild.id})
