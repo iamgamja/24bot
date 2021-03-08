@@ -263,6 +263,12 @@ async def on_message(message):
 		#					f"guild_id: `{message.guild.id}`\n"	)
 		#	return
 		
+		if message.chennel.id == 743339107731767366: # 숫자세기채널일경우
+			if message.content.endswith("52"):
+				await message.add_reaction("🥒") # 52
+			if message.content.endswith("69"):
+				await message.add_reaction("♋") # 69
+		
 		if '@everyone' in m or '@here' in m:
 			# await message.add_reaction(똥키)
 			return
