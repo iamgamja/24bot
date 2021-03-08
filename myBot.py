@@ -582,10 +582,16 @@ async def on_message(message):
 				await msg.edit(msg.content+"\n**빅윈!**")
 
 		elif 시작(",테스트") and 관리():
-			m = ' '.join(m.split(' ')[1:])
-			OBJECT = m.split()[0]
-			m = ' '.join(m.split(' ')[1:])
-			await eval(m)(OBJECT)
+			m = m.split(' ')[1:]
+			number = int(m[0])
+			m = m[1:]
+			o = m[:number]
+			o2 = {}
+			for i in o:
+				i1, i2 = i.split("=")
+				o2[i1] = eval(i2)
+			m = ' '.join(m[number:])
+			await eval(m)(o2)
 			
 
 		elif 시작(",초대코드") and 관리():
