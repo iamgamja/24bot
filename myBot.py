@@ -612,7 +612,7 @@ async def on_message(message):
 			m = ' '.join(m.split(' ')[1:])
 			OBJECT = m.split()[0]
 			m = ' '.join(m.split(' ')[1:])
-			await exec(m)(OBJECT)
+			await eval(m)(OBJECT)
 			
 
 		elif 시작(",초대코드") and 관리():
