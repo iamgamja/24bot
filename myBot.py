@@ -249,8 +249,8 @@ async def on_message(message):
 			await message.delete()
 			return
 		
-		if message.author.bot: # 봇이 보낸 메시지 무시
-			return
+		#if message.author.bot: # 봇이 보낸 메시지 무시
+		#	return
 
 		if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
 			await message.channel.send(	f"m: `{m}`\n"				+
