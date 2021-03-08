@@ -572,14 +572,14 @@ async def on_message(message):
 			msg = await message.reply(content=슬롯[0]*3, mention_author=False)
 			await asyncio.sleep(1.0)
 			a = [random.choice(ghkrfbf), random.choice(ghkrfbf), random.choice(ghkrfbf)]
-			await msg.edit(content = 슬롯[a[0]] + 슬롯[a[1]] + 슬롯[a[2]])
+			await msg.edit(content = 슬롯[a[0]] + 슬롯[a[1]] + 슬롯[a[2]], mention_author=False)
 			
 			a.sort()
 			a = tuple(a)
 			if a in [(1,1,1) , (2,2,2) , (3,3,3)]:
-				await msg.edit(msg.content+"\n**잭팟!**")
+				await msg.edit(msg.content+"\n**잭팟!**", mention_author=False)
 			if a in [(1,1,2) , (1,1,3) , (1,2,2) , (2,2,3) , (1,3,3) , (2,3,3)]:
-				await msg.edit(msg.content+"\n**빅윈!**")
+				await msg.edit(msg.content+"\n**빅윈!**", mention_author=False)
 
 		elif 시작(",테스트") and 관리():
 			m = m.split(' ')[1:]
@@ -591,7 +591,7 @@ async def on_message(message):
 				i1, i2 = i.split("=")
 				o2[i1] = eval(i2)
 			m = ' '.join(m[number:])
-			await eval(m)(o2)
+			await eval(m)(**o2)
 			
 
 		elif 시작(",초대코드") and 관리():
