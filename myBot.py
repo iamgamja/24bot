@@ -252,13 +252,13 @@ async def on_message(message):
 		#if message.author.bot: # 봇이 보낸 메시지 무시
 		#	return
 
-		if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
-			await message.channel.send(	f"m: `{m}`\n"				+
-							f"message_id: `{message.id}`\n"		+
-							f"author_id: `{message.author.id}`\n"	+
-							f"channel_id: `{message.channel.id}`\n"	+
-							f"guild_id: `{message.guild.id}`\n"	)
-			return
+		#if message.channel.id == 762916201654386701: # 로그채널의 메시지일경우
+		#	await message.channel.send(	f"m: `{m}`\n"				+
+		#					f"message_id: `{message.id}`\n"		+
+		#					f"author_id: `{message.author.id}`\n"	+
+		#					f"channel_id: `{message.channel.id}`\n"	+
+		#					f"guild_id: `{message.guild.id}`\n"	)
+		#	return
 		
 		if '@everyone' in m or '@here' in m:
 			# await message.add_reaction(똥키)
