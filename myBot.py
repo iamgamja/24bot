@@ -587,9 +587,9 @@ async def on_message(message):
 			a.sort()
 			a = tuple(a)
 			if a in [(1,1,1) , (2,2,2) , (3,3,3)]:
-				await msg.edit(msg.content+"\n**잭팟!**", mention_author=False)
+				await msg.edit(content=msg.content+"\n**잭팟!**")
 			if a in [(1,1,2) , (1,1,3) , (1,2,2) , (2,2,3) , (1,3,3) , (2,3,3)]:
-				await msg.edit(msg.content+"\n**빅윈!**", mention_author=False)
+				await msg.edit(content=msg.content+"\n**빅윈!**")
 
 		elif 시작(",테스트") and 관리():
 			m = m.split(' ')[1:]
