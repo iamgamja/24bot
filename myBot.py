@@ -697,7 +697,7 @@ async def on_message(message):
 			
 			f = ''
 			for i in m:
-				if i in "π파이원주율√루트^1234567890+-*/×÷":
+				if i in "π파이원주율√루트^1234567890+-*/×÷()":
 					f += i
 
 			f = f.replace("×", "*")
