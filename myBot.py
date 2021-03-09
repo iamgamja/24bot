@@ -265,12 +265,13 @@ async def on_message(message):
 		
 		if message.channel.id == 743339107731767366: # 숫자세기채널일경우
 			number = m[:5] # ???: 어차피 5자리니까 처음부터 5글자로하샌즈
-			if number.endswith("52"):
-				await message.add_reaction("🥒") # 52
-			if number.endswith("69"):
-				await message.add_reaction("♋") # 69
-			if number[0] == number[4] and number[1] == number[3]: # 거울수라면
-				await message.add_reaction("🪞") # 거울
+			if len(number) == 5 and number.isdecimal(): #5글자 숫자로 시작할경우에만 반응달기
+				if number.endswith("52"):
+					await message.add_reaction("🥒") # 52
+				if number.endswith("69"):
+					await message.add_reaction("♋") # 69
+				if number[0] == number[4] and number[1] == number[3]: # 거울수라면
+					await message.add_reaction("🪞") # 거울
 		
 		if '@everyone' in m or '@here' in m:
 			# await message.add_reaction(똥키)
