@@ -427,50 +427,14 @@ async def on_message(message):
 					else:
 						i=0
 
-						try:
-							i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
-						except:
-							pass
-
-						try:
-							i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2] == 지뢰[10] else 0
-						except:
-							pass
-
-						try:
-							i += 1 if mine_map[i1-1 if i1>0 else 0/0][i2+1] == 지뢰[10] else 0
-						except:
-							pass
-
-						try:
-							i += 1 if mine_map[i1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
-						except:
-							pass
-
-						#try:
-							#i += 1 if mine_map[i1][i2] == 지뢰[10] else 0
-						#except:
-							#pass
-
-						try:
-							i += 1 if mine_map[i1][i2+1] == 지뢰[10] else 0
-						except:
-							pass
-
-						try:
-							i += 1 if mine_map[i1+1][i2-1 if i2>0 else 0/0] == 지뢰[10] else 0
-						except:
-							pass
-
-						try:
-							i += 1 if mine_map[i1+1][i2] == 지뢰[10] else 0
-						except:
-							pass
-
-						try:
-							i += 1 if mine_map[i1+1][i2+1] == 지뢰[10] else 0
-						except:
-							pass
+						i += 1 if i1>0 and i2>0 and mine_map[i1-1][i2-1] == 지뢰[10] else 0
+						i += 1 if i1>0 and mine_map[i1-1][i2] == 지뢰[10] else 0
+						i += 1 if i1>0 and mine_map[i1-1][i2+1] == 지뢰[10] else 0
+						i += 1 if i2>0 and mine_map[i1][i2-1] == 지뢰[10] else 0
+						i += 1 if mine_map[i1][i2+1] == 지뢰[10] else 0
+						i += 1 if i2>0 and mine_map[i1+1][i2-1] == 지뢰[10] else 0
+						i += 1 if mine_map[i1+1][i2] == 지뢰[10] else 0
+						i += 1 if mine_map[i1+1][i2+1] == 지뢰[10] else 0
 
 						mine_map[i1][i2] = 지뢰[i]
 			mine_map_lookver = ''
@@ -502,7 +466,7 @@ async def on_message(message):
 		elif 시작(",역할생성") and 관리():
 			m = ' '.join(m.split(' ')[1:])
 			try:
-				await message.guild.create_role(name = m)
+				await message.guild.create_role(name=m)
 				await message.add_reaction(동글)
 			except:
 				await message.add_reaction(엑스)
@@ -690,11 +654,7 @@ async def on_message(message):
 			await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
 		
 		elif 시작(",계산"):
-			m = ' '.join(m.split(' ')[1:])
-			if m == "목록":
-				await message.channel.send("목록:\n```\n1 일 하나 2 이 둘 3 삼 셋 4 사 넷 5 오 다섯 6 육 여섯 7 칠 일곱 8 팔 여덟 9 구 아홉 0 영 . 점 + ＋ 더하기 - － 빼기 * × 곱하기 / ÷ 나누기 ^ 제곱 % 나머지 ( ) π 파이 원주율 √ 루트\n```")
-				return
-			
+			m = ' '.join(m.split(' ')[1:])			
 			f = ''
 			for i in m:
 				if i in "π파이원주율√루트^1234567890+-*/×÷()":
