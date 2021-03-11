@@ -427,14 +427,15 @@ async def on_message(message):
 					else:
 						i=0
 
-						i += 1 if i1>0 and i2>0 and mine_map[i1-1][i2-1] == 지뢰[10] else 0
-						i += 1 if i1>0 and mine_map[i1-1][i2] == 지뢰[10] else 0
-						i += 1 if i1>0 and mine_map[i1-1][i2+1] == 지뢰[10] else 0
-						i += 1 if i2>0 and mine_map[i1][i2-1] == 지뢰[10] else 0
-						i += 1 if mine_map[i1][i2+1] == 지뢰[10] else 0
-						i += 1 if i2>0 and mine_map[i1+1][i2-1] == 지뢰[10] else 0
-						i += 1 if mine_map[i1+1][i2] == 지뢰[10] else 0
-						i += 1 if mine_map[i1+1][i2+1] == 지뢰[10] else 0
+						i += 1 if i1>0        and i2>0        and mine_map[i1-1][i2-1] == 지뢰[10] else 0
+						i += 1 if i1>0        and                 mine_map[i1-1][i2  ] == 지뢰[10] else 0
+						i += 1 if i1>0        and i2<mine_x-1 and mine_map[i1-1][i2+1] == 지뢰[10] else 0
+						i += 1 if                 i2>0        and mine_map[i1  ][i2-1] == 지뢰[10] else 0
+# 						i += 1 if                                 mine_map[i1  ][i2  ] == 지뢰[10] else 0
+						i += 1 if                 i2<mine_x-1 and mine_map[i1  ][i2+1] == 지뢰[10] else 0
+						i += 1 if i1<mine_y-1 and i2>0        and mine_map[i1+1][i2-1] == 지뢰[10] else 0
+						i += 1 if i1<mine_y-1 and                 mine_map[i1+1][i2  ] == 지뢰[10] else 0
+						i += 1 if i1<mine_y-1 and i2<mine_x-1 and mine_map[i1+1][i2+1] == 지뢰[10] else 0
 
 						mine_map[i1][i2] = 지뢰[i]
 			mine_map_lookver = ''
