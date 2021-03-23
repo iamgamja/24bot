@@ -865,7 +865,10 @@ async def on_message(message):
 				'사장' : 50,
 				'부회장' : 100,
 				}
-			users = list(map(lambda x: await message.guild.fetch_member(x), users))
+			temp_users = []
+			for i in users:
+				temp_users.append(await message.guild.fetch_member(i))
+			users = temp_users
 			
 			
 		for user in users:
