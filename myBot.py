@@ -77,7 +77,7 @@ def 시간():
 @client.event
 async def on_ready():
 	print('시작')
-	await client.change_presence(status = discord.Status.online, activity = discord.Activity(name=",도움", type=discord.ActivityType.listening))
+	await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
 	await client.get_channel(762916201654386701).send(f"{시간()}, <@526889025894875158>, 시작")
 
 @client.event
@@ -689,15 +689,21 @@ async def on_message(message):
 			return
 		m = message.content
 		
-		Ranks_10 = (766937626862682116, 766937654481780736, 766937674124623882, 766937691643183105, 766937708387631104, 766937752767037440)
+		Ranks_10 = (766937626862682116, 766937654481780736, 766937674124623882, 766937691643183105, 766937708387631104)
 		Ranks_01 = (766937776733159424, 766937795330703390, 766937812620017665, 766937834522411028, 766938115112697866, 766938128673144833, 766938145773060096, 766938159208071188, 766938180409753601, 766938192661184522)
 		Tears = ('아톰', '몰레큘', '셀', '슈퍼 셀', '하이퍼 셀', '워터', '클린 워터', '아이스', '클린 아이스', '하드 아이스', '소일', '샌드', '우드', '페이퍼', '글래스', '클리어 글래스', '미러', '클리어 미러', '스톤', '하드 스톤', '아이언', '하드 아이언', '브론즈', '클리어 브론즈', '브론즈 메달', '실버', '클리어 실버', '실버 메달', '골드', '클리어 골드', '골드 메달', '크리스탈', '클리어 크리스탈', '가넷', '아메티스트(자수정)', '아쿠아마린', '다이아몬드', '블랙 다이아몬드', '에메랄드', '문스톤', '루비', '페리도트', '사파이어', '오팔', '토파즈', '타코이즈(터키석)', '아다만티움', '우루', '비브라늄', '프리미엄', '딜럭스', '익스트림', '플래티넘', '미스틱', '챌린저(티어)', '마스터(티어)', '그랜드', '챔피언(티어)', '레전드')
-		Agains_10 = ('환생 횟수 : 0', '환생 횟수 : 1', '환생 횟수 : 2', '환생 횟수 : 3', '환생 횟수 : 4', '환생 횟수 : 5')
+		Agains_10 = ('환생 횟수 : 0', '환생 횟수 : 1', '환생 횟수 : 2')
 		Agains_01 = ('0회', '1회', '2회', '3회', '4회', '5회', '6회', '7회', '8회', '9회')
 		God1 = ('초', '중', '고', '하', '상', '-', '+')
 		God2 = ('', '초하-', '초하', '초하+', '초-', '초', '초+', '초상-', '초상', '초상+', '중하-', '중하', '중하+', '중-', '중', '중+', '중상-', '중상', '중상+', '고하-', '고하', '고하+', '고-', '고', '고+', '고상-', '고상', '고상+', '초고-', '초고', '초고+')
-		God_Agains_10 = ('신급 환생 횟수 : 0', '신급 환생 횟수 : 1', '신급 환생 횟수 : 2', '신급 환생 횟수 : 3', '신급 환생 횟수 : 4', '신급 환생 횟수 : 5')
+		God_Agains_10 = ('신급 환생 횟수 : 0', '신급 환생 횟수 : 1', '신급 환생 횟수 : 2', '신급 환생 횟수 : 3', '신급 환생 횟수 : 4')
 		God_Agains_01 = ('0회.', '1회.', '2회.', '3회.', '4회.', '5회.', '6회.', '7회.', '8회.', '9회.')
+		
+		number_1 = len(Ranks_10) * len(Ranks_01) # 50
+		number_2 = number_1 * len(Tears) # *54
+		number_3 = number_2 * len(Agains_10) * len(Agains_01) # *30
+		number_4 = number_3 * len(God_Agains_10) * len(God_Agains_01) # *50
+		
 		
 		mentions = {
 			'시인': '<@!647001590766632966>',
@@ -718,112 +724,26 @@ async def on_message(message):
 			global 피버
 			피버 = not 피버
 			if 피버:
-				await message.channel.send("피버타임이 **켜**졌습니다")
+				await message.channel.send("피버타임이 *켜*졌습니다")
 			else:
-				await message.channel.send("피버타임이 **꺼**졌습니다")
-
-		elif (시작(",+") or 시작(",-")) and message.author.id == 647001590766632966: # 생강 + 또는 -
-			q=m.split()
-			money = int(q[0][1:])
-			users = []
-			for i in q[1:]:
-				users.append(await message.guild.fetch_member(int(i[-18:] if i[-1] in "1234567890" else i[-19:-1])))
-			#유저가 가지고 있는 역할의 이름 찾기
-			for user in users:
-				userRank = 0
-				
-				userGod = ''
-				for i in God1:
-					if i in [i.name for i in user.roles]:
-						userGod += i
-				try:
-					userGod = God2.index(userGod)
-				except:
-					userGod = 0
-				
-				for i in range(len(Ranks_10)):
-					if Ranks_10[i] in [i.id for i in user.roles]:
-						userRank += i*10 ; break
-				else:
-					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
-				for i in range(len(Ranks_01)):
-					if Ranks_01[i] in [i.id for i in user.roles]:
-						userRank += i ; break
-				else:
-					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
-
-				for i in range(len(Tears)):
-					if Tears[i] in [i.name for i in user.roles]:
-						userTear = i ; break
-				else:
-					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
-
-				userAgain = 0
-				for i in range(len(Agains_10)):
-					if Agains_10[i] in [i.name for i in user.roles]:
-						userAgain += i*10 ; break
-				else:
-					userAgain += 0*10
-
-				for i in range(len(Agains_01)):
-					if Agains_01[i] in [i.name for i in user.roles]:
-						userAgain += i ; break
-				else:
-					userAgain += 0
-					
-				userGodAgain = 0
-				for i in range(len(God_Agains_10)):
-					if God_Agains_10[i] in [i.id for i in user.roles]:
-						userGodAgain += i*10 ; break
-				for i in range(len(God_Agains_01)):
-					if God_Agains_01[i] in [i.id for i in user.roles]:
-						userGodAgain += i ; break
-
-				#역할제거
-				for i in user.roles:
-					if i.id in Ranks_10 or \
-					   i.id in Ranks_01 or \
-					   i.name in Tears or \
-					   i.name in Agains_10 or \
-					   i.name in Agains_01 or \
-					   i.name in God2 or \
-					   i.name in God_Agains_10 or \
-					   i.name in God_Agains_01:
-						await user.remove_roles(i)
-				
-				#유저랭크 계산
-				userTotalRank = 0
-				userTotalRank += userRank
-				userTotalRank += userTear*50
-				userTotalRank += userAgain*2700
-				userTotalRank += userGod*81000
-				userTotalRank += userGodAgain*4050000
-				userTotalRank += money
+				await message.channel.send("피버타임이 *꺼*졌습니다")
 				
 				
-				#신급환생적용
-				await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_10[(userTotalRank//4050000) // 10]))
-				await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_01[(userTotalRank//4050000) %  10]))
-				userTotalRank %= 4050000
-				#신급적용
-				for i in God2[userTotalRank // 81000]:
-					await user.add_roles(discord.utils.get(message.guild.roles, name=i))
-				userTotalRank %= 81000
-				#환생횟수 적용
-				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_10[(userTotalRank//2700) // 10]))
-				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_01[(userTotalRank//2700) %  10]))
-				userTotalRank %= 2700
-				#티어 적용 (0이어도 0번째(아톰))
-				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
-				userTotalRank %= 50
-				#랭크 적용 (0이어도 0번째(L))
-				await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userTotalRank // 10]))
-				await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userTotalRank %  10]))
-			await message.add_reaction(동글)
+		if (시작(",+") or 시작(",-")) and message.author.id == 647001590766632966:
+			case = 1 # +-
+		elif message.channel.id in (766932314973929527, 783516524685688842):
+			case = 2 # 랭크업
+		elif message.channel.id == 784228694940057640 or message.channel.id == 794146499034480661:
+			case = 3 # 도박
+		elif 시작(",일급") and message.author.id == 647001590766632966:
+			case = 4 # 일급
+		else:
+			return
 		
-		elif message.channel.id in (766932314973929527, 783516524685688842): # 랭크업 가능한 채널일경우
-			tryRank = False # 기본값
-
+		if case == 1:
+			money = int(m.split()[0][1:])
+			users = [ (await message.guild.fetch_member(int(i[-18:] if i[-1] in "1234567890" else i[-19:-1]))) for i in m.split()[1:] ]
+		elif case == 2:
 			if 시작("ㅇ"):
 				tryRank = [1,1,0,0,0,0,0,0,0,0]
 			if 시작("ㄱ"):
@@ -839,7 +759,7 @@ async def on_message(message):
 				   시간()[5:7] == "12" and 시간()[8:10] == "25":
 					tryRank = [1,1,1,0,0,0,0,0,0,0]
 				else:
-					await message.channel.send("현재 사용할수 없는 커맨드입니다.")
+					await message.channel.send("현재 사용할수 없는 커맨드입니다.") ; return
 			if 시작("ㅅ"):
 				if 시간()[5:7] == "03" and 시간()[8:10] == "01" or\
 				   시간()[5:7] == "07" and 시간()[8:10] == "17" or\
@@ -848,7 +768,7 @@ async def on_message(message):
 				   시간()[5:7] == "10" and 시간()[8:10] == "09":
 					tryRank = [1,1,1,1,0,0,0,0,0,0]
 				else:
-					await message.channel.send("현재 사용할수 없는 커맨드입니다.")
+					await message.channel.send("현재 사용할수 없는 커맨드입니다.") ; return
 			if 시작("ㅌ"):
 				if 시간()[5:7] == "01" and 시간()[8:10] == "01" or\
 				   시간()[5:7] == "08" and 시간()[8:10] == "30" or\
@@ -880,133 +800,37 @@ async def on_message(message):
 				   시간()[2:4] == "30" and 시간()[5:7] == "09" and 시간()[8:10] == "12":
 					tryRank = [1,1,1,1,1,0,0,0,0,0]
 				else:
-					await message.channel.send("현재 사용할수 없는 커맨드입니다.")
+					await message.channel.send("현재 사용할수 없는 커맨드입니다.") ; return
 			if 시작("ㅊ"):
 				if 시간()[5:7] == "01" and 시간()[8:10] == "26":
 					tryRank = [1,1,1,1,1,1,0,0,0,0]
 				else:
-					await message.channel.send("현재 사용할수 없는 커맨드입니다.")
+					await message.channel.send("현재 사용할수 없는 커맨드입니다.") ; return
 			if 시작("ㄹ"):
 				if discord.utils.get(message.guild.roles, name="랭커") in message.author.roles:
 					tryRank = [1,1,1,0,0,0,0,0,0,0]
 				else:
-					await message.channel.send("랭커만 사용할 수 있는 커맨드입니다.")
+					await message.channel.send("랭커만 사용할 수 있는 커맨드입니다.") ; return
 			if 시작("ㅍ"):
 				if discord.utils.get(message.guild.roles, name="마스터(칭호)") in message.author.roles or\
 				   discord.utils.get(message.guild.roles, name="신") in message.author.roles or\
 				   discord.utils.get(message.guild.roles, name="챔피언(칭호)") in message.author.roles:
 					tryRank = [1,1,1,1,0,0,0,0,0,0]
 				else:
-					await message.channel.send("마스터 이상만 사용할 수 있는 커맨드입니다.")
+					await message.channel.send("마스터 이상만 사용할 수 있는 커맨드입니다.") ; return
 			if 시작("ㅂ"):
 				if 피버:
 					tryRank = [1,1,1,0,0,0,0,0,0,0]
 				else:
-					await message.channel.send("현재 사용할수 없는 커맨드입니다.")
-
+					await message.channel.send("현재 사용할수 없는 커맨드입니다.") ; return
 			if not tryRank:
 				return
 			if not random.choice(tryRank):
 				await message.channel.send("랭크업에 실패하였습니다...")
 				return
-
-			#랭크업했을경우
 			money = 1
-			user = message.author
-
-			userRank = 0
-
-			userGod = ''
-			for i in God1:
-				if i in [i.name for i in user.roles]:
-					userGod += i
-			try:
-				userGod = God2.index(userGod)
-			except:
-				userGod = 0
-
-			for i in range(len(Ranks_10)):
-				if Ranks_10[i] in [i.id for i in user.roles]:
-					userRank += i*10 ; break
-			else:
-				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
-			for i in range(len(Ranks_01)):
-				if Ranks_01[i] in [i.id for i in user.roles]:
-					userRank += i ; break
-			else:
-				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
-			
-			for i in range(len(Tears)):
-				if Tears[i] in [i.name for i in user.roles]:
-					userTear = i ; break
-			else:
-				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
-			
-			userAgain = 0
-			for i in range(len(Agains_10)):
-				if Agains_10[i] in [i.name for i in user.roles]:
-					userAgain += i*10 ; break
-			else:
-				userAgain += 0*10
-				
-			for i in range(len(Agains_01)):
-				if Agains_01[i] in [i.name for i in user.roles]:
-					userAgain += i ; break
-			else:
-				userAgain += 0
-
-			userGodAgain = 0
-			for i in range(len(God_Agains_10)):
-				if God_Agains_10[i] in [i.id for i in user.roles]:
-					userGodAgain += i*10 ; break
-			for i in range(len(God_Agains_01)):
-				if God_Agains_01[i] in [i.id for i in user.roles]:
-					userGodAgain += i ; break
-			
-			#역할제거
-			for i in user.roles:
-				if i.id in Ranks_10 or \
-				   i.id in Ranks_01 or \
-				   i.name in Tears or \
-				   i.name in Agains_10 or \
-				   i.name in Agains_01 or \
-				   i.name in God2 or \
-				   i.name in God_Agains_10 or \
-				   i.name in God_Agains_01:
-					await user.remove_roles(i)
-
-			#유저랭크 계산
-			userTotalRank = 0
-			userTotalRank += userRank
-			userTotalRank += userTear*50
-			userTotalRank += userAgain*2700
-			userTotalRank += userGod*81000
-			userTotalRank += userGodAgain*4050000
-			userTotalRank += money
-			
-			#신급환생적용
-			await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_10[(userTotalRank//4050000) // 10]))
-			await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_01[(userTotalRank//4050000) %  10]))
-			userTotalRank %= 4050000
-			#신급적용
-			for i in God2[userTotalRank // 81000]:
-				await user.add_roles(discord.utils.get(message.guild.roles, name=i))
-			userTotalRank %= 81000
-			#환생횟수 적용
-			await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_10[(userTotalRank//2700) // 10]))
-			await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_01[(userTotalRank//2700) %  10]))
-			userTotalRank %= 2700
-			#티어 적용 (0이어도 0번째(아톰))
-			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
-			userTotalRank %= 50
-			#랭크 적용 (0이어도 0번째(L))
-			await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userTotalRank // 10]))
-			await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userTotalRank %  10]))
-			
-			await message.channel.send("랭크업에 성공하였습니다!")
-			await message.add_reaction(체크)
-			
-		elif message.channel.id == 784228694940057640 or message.channel.id == 794146499034480661 or message.channel.id == 787976375301701692: # 도박채널 또는 도박2 채널 또는 ㅇㅇ(테스트채널)일경우
+			users = [message.author, ]
+		elif case == 3:
 			#도박 아니면 제거
 			if 시작("ㄷ"):
 				dp = random.choice([2, 2, 1.5, 1.5, 1.5, 1.5, 1, 1, 0.5, 0.5])
@@ -1014,211 +838,11 @@ async def on_message(message):
 				dp = random.choice([2, 2, 2, 1.5, 1.5, 1.5, 1.5, 1, 1, 0.5])
 			else:
 				return
-
-			#현재 얼마있는지
-			user = message.author
-
-			userRank = 0
-
-			userGod = ''
-			for i in God1:
-				if i in [i.name for i in user.roles]:
-					userGod += i
-			try:
-				userGod = God2.index(userGod)
-			except:
-				userGod = 0
-
-			for i in range(len(Ranks_10)):
-				if Ranks_10[i] in [i.id for i in user.roles]:
-					userRank += i*10 ; break
-			else:
-				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
-			for i in range(len(Ranks_01)):
-				if Ranks_01[i] in [i.id for i in user.roles]:
-					userRank += i ; break
-			else:
-				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
-			
-			for i in range(len(Tears)):
-				if Tears[i] in [i.name for i in user.roles]:
-					userTear = i ; break
-			else:
-				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
-			
-			userAgain = 0
-			for i in range(len(Agains_10)):
-				if Agains_10[i] in [i.name for i in user.roles]:
-					userAgain += i*10 ; break
-			else:
-				userAgain += 0*10
-				
-			for i in range(len(Agains_01)):
-				if Agains_01[i] in [i.name for i in user.roles]:
-					userAgain += i ; break
-			else:
-				userAgain += 0
-				
-			userGodAgain = 0
-			for i in range(len(God_Agains_10)):
-				if God_Agains_10[i] in [i.id for i in user.roles]:
-					userGodAgain += i*10 ; break
-			for i in range(len(God_Agains_01)):
-				if God_Agains_01[i] in [i.id for i in user.roles]:
-					userGodAgain += i ; break
-			
-			#유저랭크 계산
-			userTotalRank = 0
-			userTotalRank += userRank
-			userTotalRank += userTear*50
-			userTotalRank += userAgain*2700
-			userTotalRank += userGod*81000
-			userTotalRank += userGodAgain*4050000
-			
-			#얼마나 걸었는지
-			if message.content.split()[1] == "최대" or message.content.split()[1] == "chleo":
-				if 시작("ㄷ"):
-					dmoney = 100+userAgain*50
-				else:
-					dmoney = 100+userAgain*100
-				await message.channel.send(f"{dmoney}을 겁니다...")
-			else:
-				dmoney = int(message.content.split()[1])
-			
-			#건 돈이 10~(환생횟수+1)*100 아닐경우 제거
-			if 시작("ㄷ"):
-				if not 10 <= dmoney <= 100+userAgain*50:
-					await message.channel.send(f"`10~100+(환생횟수)*50 (10~{100+userAgain*50})` 만 걸수 있습니다.")
-					return
-			elif 시작("ㅅ"):
-				if not 10 <= dmoney <= 100+userAgain*100:
-					await message.channel.send(f"`10~100+(환생횟수)*100 (10~{100+userAgain*100})` 만 걸수 있습니다.")
-					return
-
-			#가진돈보다 건돈이 많다면 알림
-			if dmoney > userTotalRank:
-				await message.channel.send("랭크가 부족합니다.")
-				return
-			if 시작("ㅅ"):
-				if userTotalRank < 81000:
-					await message.channel.send("초하-급신부터 사용할수 있습니다.")
-					return
-
-			#도박을 해봄
-			await message.channel.send(f"{dp}배")
-			if dp == 0.5 and userTotalRank >= 20:
-				mymsg2 = await message.channel.send(f"실드를 구매 및 사용하시겠습니까?\n실드 1개당 20랭크, 20%입니다.\n0️⃣ `100% {round(-dmoney+dmoney*dp)}`\n1️⃣ `20% {round(-20)}, 80% {round(-20-dmoney+dmoney*dp)}`\n2️⃣ `40% {round(-40)}, 60% {round(-40-dmoney+dmoney*dp)}`\n3️⃣ `60% {round(-60)}, 40% {round(-60-dmoney+dmoney*dp)}`\n4️⃣ `80% {round(-80)}, 20% {round(-80-dmoney+dmoney*dp)}`\n5️⃣ `100% {round(-100)}`")
-				await mymsg2.add_reaction("0️⃣");time.sleep(0.5)
-				await mymsg2.add_reaction("1️⃣");time.sleep(0.5)
-				await mymsg2.add_reaction("2️⃣");time.sleep(0.5)
-				await mymsg2.add_reaction("3️⃣");time.sleep(0.5)
-				await mymsg2.add_reaction("4️⃣");time.sleep(0.5)
-				await mymsg2.add_reaction("5️⃣")
-				try:
-					reaction, temp = await client.wait_for('reaction_add', timeout=60.0, check=체크2)
-					reaction = str(reaction.emoji)
-				except:
-					reaction = "0️⃣"
-				if reaction == "0️⃣":
-					money = round(-dmoney+dmoney*dp)
-				elif reaction == "1️⃣":
-					if random.choice([1,0,0,0,0]):
-						money = round(-20)
-						await message.channel.send(f"실드 사용에 성공함 ({money})")
-					else:
-						money = round(-20-dmoney+dmoney*dp)
-						await message.channel.send(f"실드 사용에 실패함 ({money})")
-
-				elif reaction == "2️⃣":
-					if random.choice([1,1,0,0,0]):
-						money = round(-40)
-						await message.channel.send(f"실드 사용에 성공함 ({money})")
-					else:
-						money = round(-40-dmoney+dmoney*dp)
-						await message.channel.send(f"실드 사용에 실패함 ({money})")
-
-				elif reaction == "3️⃣":
-					if random.choice([1,1,1,0,0]):
-						money = round(-60)
-						await message.channel.send(f"실드 사용에 성공함 ({money})")
-					else:
-						money = round(-60-dmoney+dmoney*dp)
-						await message.channel.send(f"실드 사용에 실패함 ({money})")
-
-				elif reaction == "4️⃣":
-					if random.choice([1,1,1,1,0]):
-						money = round(-80)
-						await message.channel.send(f"실드 사용에 성공함 ({money})")
-					else:
-						money = round(-80-dmoney+dmoney*dp)
-						await message.channel.send(f"실드 사용에 실패함 ({money})")
-
-				elif reaction == "5️⃣":
-					money = round(-100)
-					await message.channel.send(f"실드 사용에 성공함 ({money})")
-
-			else:
-				money = round(-dmoney+dmoney*dp)
-			d = [] # 디버그용 리스트
-			for i in user.roles:
-				if i.id in Ranks_10 or \
-				   i.id in Ranks_01 or \
-				   i.name in Tears or \
-				   i.name in Agains_10 or \
-				   i.name in Agains_01 or \
-				   i.name in God2 or \
-				   i.name in God_Agains_10 or \
-				   i.name in God_Agains_01: # 랭크와 관련된 역할이라면
-					d.append(f"{i.name}({i.id})") # d에 문자열로 추가
-			d = "\n".join(d) # 줄바꿈된 문자열로 만듬
-			await client.get_channel(762916201654386701).send(d)
-			await client.get_channel(762916201654386701).send(f"{userRank}, {userTear}, {userAgain}, {userGod}; {userTotalRank}+{money} {message.jump_url}")
-			#랭크적용...
-			userTotalRank += money
-			if userTotalRank < 0:
-				await message.channel.send("이런! 랭크가 부족합니다.")
-				return
-			
-			#역할제거
-			for i in user.roles:
-				if i.id in Ranks_10 or \
-				   i.id in Ranks_01 or \
-				   i.name in Tears or \
-				   i.name in Agains_10 or \
-				   i.name in Agains_01 or \
-				   i.name in God2 or \
-				   i.name in God_Agains_10 or \
-				   i.name in God_Agains_01:
-					await user.remove_roles(i)
-			await client.get_channel(762916201654386701).send("역할을 제거함")
-			
-			#신급환생적용
-			await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_10[(userTotalRank//4050000) // 10]))
-			await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_01[(userTotalRank//4050000) %  10]))
-			await client.get_channel(762916201654386701).send(f"{userTotalRank}에서 /4050000, 신급을 {userTotalRank//4050000} 로 적용함, -> {userTotalRank%4050000}")
-			userTotalRank %= 4050000
-			#신급적용
-			for i in God2[userTotalRank // 81000]:
-				await user.add_roles(discord.utils.get(message.guild.roles, name=i))
-			await client.get_channel(762916201654386701).send(f"{userTotalRank}에서 /81000, 신급을 {userTotalRank//81000} 로 적용함, -> {userTotalRank%81000}")
-			userTotalRank %= 81000
-			#환생횟수 적용
-			await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_10[(userTotalRank//2700) // 10]))
-			await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_01[(userTotalRank//2700) %  10]))
-			await client.get_channel(762916201654386701).send(f"{userTotalRank}에서 /2700, 환생 횟수를 {userTotalRank//2700} 로 적용함, -> {userTotalRank%2700}")
-			userTotalRank %= 2700
-			#티어 적용 (0이어도 0번째(아톰))
-			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
-			await client.get_channel(762916201654386701).send(f"{userTotalRank}에서 /50, 티어를 {userTotalRank//50} 로 적용함, -> {userTotalRank%50}")
-			userTotalRank %= 50
-			#랭크 적용 (0이어도 0번째(L))
-			await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userTotalRank // 10]))
-			await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userTotalRank %  10]))
-			await client.get_channel(762916201654386701).send(f"{userTotalRank}에서 /1, 랭크를 {userTotalRank//1} 로 적용함, -> {userTotalRank%1}")
-			
-			await message.add_reaction(체크)
-
-		elif 시작(",일급") and message.author.id == 647001590766632966: # 생강
+			if dp == 1:
+				await message.channel.send("1배") ; return # 1배는 계산할 필요가 없음
+			money = None # 도박은 지금 money를 계산할수가 없음
+			users = [message.author, ]
+		elif case == 4:
 			m = ' '.join(m.split(' ')[1:])
 			try:
 				a = int(m)
@@ -1241,106 +865,205 @@ async def on_message(message):
 				'사장' : 50,
 				'부회장' : 100,
 				}
-
-			for l in users:
-				user = await message.guild.fetch_member(l)
-
-				##
+			users = list(map(lambda x: await message.guild.fetch_member(x), users))
+			
+			
+		for user in users:
+			
+			if case == 4: # 일급일때
 				for i in ilGup:
 					if i in [i.name for i in user.roles]:
-						money = ilGup[i] ; break
-				##
-				userRank = 0
-				
-				userGod = ''
-				for i in God1:
-					if i in [i.name for i in user.roles]:
-						userGod += i
-				try:
-					userGod = God2.index(userGod)
-				except:
-					userGod = 0
-				
-				for i in range(len(Ranks_10)):
-					if Ranks_10[i] in [i.id for i in user.roles]:
-						userRank += i*10 ; break
-				else:
-					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
-				for i in range(len(Ranks_01)):
-					if Ranks_01[i] in [i.id for i in user.roles]:
-						userRank += i ; break
-				else:
-					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+						money = ilGup[i]*a ; break
+			# 역할 찾아서 랭크 계산
+			userRank = 0
 
-				for i in range(len(Tears)):
-					if Tears[i] in [i.name for i in user.roles]:
-						userTear = i ; break
-				else:
-					await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
-
-				userAgain = 0
-				for i in range(len(Agains_10)):
-					if Agains_10[i] in [i.name for i in user.roles]:
-						userAgain += i*10 ; break
-				else:
-					userAgain += 0*10
-
-				for i in range(len(Agains_01)):
-					if Agains_01[i] in [i.name for i in user.roles]:
-						userAgain += i ; break
-				else:
-					userAgain += 0
+			userGod = ''
+			for i in God1:
+				if i in [i.name for i in user.roles]:
+					userGod += i
 					
-				userGodAgain = 0
-				for i in range(len(God_Agains_10)):
-					if God_Agains_10[i] in [i.id for i in user.roles]:
-						userGodAgain += i*10 ; break
-				for i in range(len(God_Agains_01)):
-					if God_Agains_01[i] in [i.id for i in user.roles]:
-						userGodAgain += i ; break
+			userGod = God2.index(userGod) if userGod in God2 else 0
 
-				#역할제거
-				for i in user.roles:
-					if i.id in Ranks_10 or \
-					   i.id in Ranks_01 or \
-					   i.name in Tears or \
-					   i.name in Agains_10 or \
-					   i.name in Agains_01 or \
-					   i.name in God2 or \
-					   i.name in God_Agains_10 or \
-					   i.name in God_Agains_01:
-						await user.remove_roles(i)
+			for i in range(len(Ranks_10)):
+				if Ranks_10[i] in [i.id for i in user.roles]:
+					userRank += i*10 ; break
+			else:
+				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+			for i in range(len(Ranks_01)):
+				if Ranks_01[i] in [i.id for i in user.roles]:
+					userRank += i ; break
+			else:
+				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
 
-				#유저랭크 계산
-				userTotalRank = 0
-				userTotalRank += userRank
-				userTotalRank += userTear*50
-				userTotalRank += userAgain*2700
-				userTotalRank += userGod*81000
-				userTotalRank += userGodAgain*4050000
-				userTotalRank += money*a
-				
-				#신급환생적용
-				await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_10[(userTotalRank//4050000) // 10]))
-				await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_01[(userTotalRank//4050000) %  10]))
-				userTotalRank %= 4050000
-				#신급적용
-				for i in God2[userTotalRank // 81000]:
-					await user.add_roles(discord.utils.get(message.guild.roles, name=i))
-				userTotalRank %= 81000
-				#환생횟수 적용
-				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_10[(userTotalRank//2700) // 10]))
-				await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_01[(userTotalRank//2700) %  10]))
-				userTotalRank %= 2700
-				#티어 적용 (0이어도 0번째(아톰))
-				await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//50]))
-				userTotalRank %= 50
-				#랭크 적용 (0이어도 0번째(L))
-				await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userTotalRank // 10]))
-				await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userTotalRank %  10]))
-				
-			await message.add_reaction(동글)
+			for i in range(len(Tears)):
+				if Tears[i] in [i.name for i in user.roles]:
+					userTear = i ; break
+			else:
+				await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+
+			userAgain = 0
+			for i in range(len(Agains_10)):
+				if Agains_10[i] in [i.name for i in user.roles]:
+					userAgain += i*10 ; break
+			else:
+				userAgain += 0*10
+
+			for i in range(len(Agains_01)):
+				if Agains_01[i] in [i.name for i in user.roles]:
+					userAgain += i ; break
+			else:
+				userAgain += 0
+
+			userGodAgain = 0
+			for i in range(len(God_Agains_10)):
+				if God_Agains_10[i] in [i.id for i in user.roles]:
+					userGodAgain += i*10 ; break
+			for i in range(len(God_Agains_01)):
+				if God_Agains_01[i] in [i.id for i in user.roles]:
+					userGodAgain += i ; break
+					
+			userTotalRank = 0
+			userTotalRank += userRank
+			userTotalRank += userTear *number_1
+			userTotalRank += userAgain *number_2
+			userTotalRank += userGod *number_3
+			userTotalRank += userGodAgain *number_4
 			
+			if case in (1, 2, 4): # (money가 정해져있음)
+				userTotalRank += money
+			
+			if case == 3: #도박일때
+				#얼마나 걸었는지
+				if message.content.split()[1] == "최대" or message.content.split()[1] == "chleo":
+					if 시작("ㄷ"):
+						dmoney = 100+userAgain*50
+					elif 시작("ㅅ"):
+						dmoney = 100+userAgain*100
+					await message.channel.send(f"{dmoney}을 겁니다...")
+				else:
+					dmoney = int(message.content.split()[1])
+
+				#건 돈이 10~(환생횟수+1)*100 아닐경우 제거
+				if 시작("ㄷ"):
+					if not 10 <= dmoney <= 100+userAgain*50:
+						await message.channel.send(f"`10~100+(환생횟수)*50 (10~{100+userAgain*50})` 만 걸수 있습니다.")
+						return
+				elif 시작("ㅅ"):
+					if not 10 <= dmoney <= 100+userAgain*100:
+						await message.channel.send(f"`10~100+(환생횟수)*100 (10~{100+userAgain*100})` 만 걸수 있습니다.")
+						return
+
+				#가진돈보다 건돈이 많다면 알림
+				if dmoney > userTotalRank:
+					await message.channel.send("랭크가 부족합니다.")
+					return
+				if 시작("ㅅ"):
+					if userTotalRank < 81000:
+						await message.channel.send("초하-급신부터 사용할수 있습니다.")
+						return
+
+				#도박을 해봄
+				await message.channel.send(f"{dp}배")
+				if dp == 0.5 and userTotalRank >= 20:
+					mymsg2 = await message.channel.send(f"실드를 구매 및 사용하시겠습니까?\n실드 1개당 20랭크, 20%입니다.\n0️⃣ `100% {round(-dmoney+dmoney*dp)}`\n1️⃣ `20% {round(-20)}, 80% {round(-20-dmoney+dmoney*dp)}`\n2️⃣ `40% {round(-40)}, 60% {round(-40-dmoney+dmoney*dp)}`\n3️⃣ `60% {round(-60)}, 40% {round(-60-dmoney+dmoney*dp)}`\n4️⃣ `80% {round(-80)}, 20% {round(-80-dmoney+dmoney*dp)}`\n5️⃣ `100% {round(-100)}`")
+					await mymsg2.add_reaction("0️⃣");time.sleep(0.5)
+					await mymsg2.add_reaction("1️⃣");time.sleep(0.5)
+					await mymsg2.add_reaction("2️⃣");time.sleep(0.5)
+					await mymsg2.add_reaction("3️⃣");time.sleep(0.5)
+					await mymsg2.add_reaction("4️⃣");time.sleep(0.5)
+					await mymsg2.add_reaction("5️⃣")
+					try:
+						reaction, temp = await client.wait_for('reaction_add', timeout=60.0, check=체크2)
+						reaction = str(reaction.emoji)
+					except:
+						reaction = "0️⃣"
+					if reaction == "0️⃣":
+						money = round(-dmoney+dmoney*dp)
+					elif reaction == "1️⃣":
+						if random.choice([1,0,0,0,0]):
+							money = round(-20)
+							await message.channel.send(f"실드 사용에 성공함 ({money})")
+						else:
+							money = round(-20-dmoney+dmoney*dp)
+							await message.channel.send(f"실드 사용에 실패함 ({money})")
+
+					elif reaction == "2️⃣":
+						if random.choice([1,1,0,0,0]):
+							money = round(-40)
+							await message.channel.send(f"실드 사용에 성공함 ({money})")
+						else:
+							money = round(-40-dmoney+dmoney*dp)
+							await message.channel.send(f"실드 사용에 실패함 ({money})")
+
+					elif reaction == "3️⃣":
+						if random.choice([1,1,1,0,0]):
+							money = round(-60)
+							await message.channel.send(f"실드 사용에 성공함 ({money})")
+						else:
+							money = round(-60-dmoney+dmoney*dp)
+							await message.channel.send(f"실드 사용에 실패함 ({money})")
+
+					elif reaction == "4️⃣":
+						if random.choice([1,1,1,1,0]):
+							money = round(-80)
+							await message.channel.send(f"실드 사용에 성공함 ({money})")
+						else:
+							money = round(-80-dmoney+dmoney*dp)
+							await message.channel.send(f"실드 사용에 실패함 ({money})")
+
+					elif reaction == "5️⃣":
+						money = round(-100)
+						await message.channel.send(f"실드 사용에 성공함 ({money})")
+
+				else:
+					money = round(-dmoney+dmoney*dp)
+				#랭크적용...
+				userTotalRank += money
+				if userTotalRank < 0:
+					await message.channel.send("이런! 랭크가 부족합니다.")
+					return
+			
+			# 역할 제거
+			for i in user.roles:
+				if i.id in Ranks_10 or \
+				   i.id in Ranks_01 or \
+				   i.name in Tears or \
+				   i.name in Agains_10 or \
+				   i.name in Agains_01 or \
+				   i.name in God2 or \
+				   i.name in God_Agains_10 or \
+				   i.name in God_Agains_01:
+					await user.remove_roles(i)
+			
+			#신급환생적용
+			await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_10[(userTotalRank//number_4) // 10]))
+			await user.add_roles(discord.utils.get(message.guild.roles, name=God_Agains_01[(userTotalRank//number_4) %  10]))
+			userTotalRank %= number_4
+			#신급적용
+			for i in God2[userTotalRank // number_3]:
+				await user.add_roles(discord.utils.get(message.guild.roles, name=i))
+			userTotalRank %= number_3
+			#환생횟수 적용
+			await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_10[(userTotalRank//number_2) // 10]))
+			await user.add_roles(discord.utils.get(message.guild.roles, name=Agains_01[(userTotalRank//number_2) %  10]))
+			userTotalRank %= number_2
+			#티어 적용 (0이어도 0번째(아톰))
+			await user.add_roles(discord.utils.get(message.guild.roles, name=Tears[userTotalRank//number_1]))
+			userTotalRank %= number_1
+			#랭크 적용 (0이어도 0번째(L))
+			await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_10[userTotalRank // 10]))
+			await user.add_roles(discord.utils.get(message.guild.roles, id=Ranks_01[userTotalRank %  10]))
+			
+			if case == 2:
+				await message.channel.send("랭크업에 성공하였습니다!")
+			await message.add_reaction(체크)
+##########
+
+
+
+
+
+
 	except Exception as e:
 		# def 조인(s):
 		# 	return "".join(s)
