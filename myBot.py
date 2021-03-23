@@ -838,8 +838,10 @@ async def on_message(message):
 				dp = random.choice([2, 2, 2, 1.5, 1.5, 1.5, 1.5, 1, 1, 0.5])
 			else:
 				return
-			if dp == 1:
-				await message.channel.send("1배") ; return # 1배는 계산할 필요가 없음
+			if dp == 1: # 1배는 계산할 필요가 없음
+				await message.channel.send("1배")
+				await message.add_reaction(체크)
+				return
 			money = None # 도박은 지금 money를 계산할수가 없음
 			users = [message.author, ]
 		elif case == 4:
