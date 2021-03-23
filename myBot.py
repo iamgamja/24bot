@@ -1,5 +1,7 @@
 import discord, time, datetime, random, os, math, asyncio, string, sys, traceback
-client = discord.Client()
+
+intents = discord.Intents.all()
+client = discord.Client(intents=intents)
 
 # await asyncio.sleep(1.0)
 # await message.channel.send()
