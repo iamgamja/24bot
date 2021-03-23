@@ -1,5 +1,4 @@
 import discord, time, datetime, random, os, math, asyncio, string, sys, traceback
-
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
