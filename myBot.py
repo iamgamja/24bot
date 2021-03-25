@@ -745,6 +745,7 @@ async def on_message(message):
 			money = int(m.split()[0][1:])
 			users = [ (await message.guild.fetch_member(int(i[-18:] if i[-1] in "1234567890" else i[-19:-1]))) for i in m.split()[1:] ]
 		elif case == 2:
+			tryRank = None
 			if 시작("ㅇ"):
 				tryRank = [1,1,0,0,0,0,0,0,0,0]
 			if 시작("ㄱ"):
