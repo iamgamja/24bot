@@ -385,6 +385,10 @@ async def on_message(message):
 			else:
 				await message.channel.send("ㅏ 띄어쓰기 안됨")
 
+		elif 시작(",올려") and message.guild.id == 743101101401964647:
+			m = ' '.join(m.split(' ')[1:])
+			for i in range(int(m)):
+				await message.channel.send("ㅋ올려")
 		elif 시작(",지뢰찾기"):
 			m = ' '.join(m.split(' ')[1:])
 			#제대로 input 했는지 확인
