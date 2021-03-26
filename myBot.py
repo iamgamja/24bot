@@ -346,10 +346,12 @@ async def on_message(message):
 			await message.channel.send(embed=discord.Embed(title=제목("프사"), color=0xffccff).set_image(url=message.author.avatar_url))
 
 		elif 시작(",말"):
+			global 도배
 			m = ' '.join(m.split(' ')[1:])
 			if not 도배: return
 			await message.channel.send(m)
 		elif 시작(",도배 멈춰!"):
+			global 도배
 			도배 = False
 			await asyncio.sleep(2.0)
 			도배 = True
