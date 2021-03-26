@@ -352,7 +352,7 @@ async def on_message(message):
 			await message.channel.send(m)
 		elif 시작(",도배 멈춰!"):
 			도배 = False
-			await asyncio.sleep(2.0)
+			await asyncio.sleep(7.0)
 			도배 = True
 			await message.add_reaction(체크)
 
