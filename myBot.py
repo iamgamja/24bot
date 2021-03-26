@@ -385,10 +385,6 @@ async def on_message(message):
 			else:
 				await message.channel.send("ㅏ 띄어쓰기 안됨")
 
-		elif 시작(",올려") and message.guild.id == 743101101401964647:
-			m = ' '.join(m.split(' ')[1:])
-			for i in range(int(m)):
-				await message.channel.send("ㅋ올려")
 		elif 시작(",지뢰찾기"):
 			m = ' '.join(m.split(' ')[1:])
 			#제대로 input 했는지 확인
@@ -676,6 +672,35 @@ async def on_message(message):
 			f = f.replace("^", "**")
 			
 			await message.channel.send(eval(f))
+			
+			
+		
+		elif 시작(",올려") and message.guild.id == 743101101401964647:
+			m = ' '.join(m.split(' ')[1:])
+			for i in range(int(m)):
+				await message.channel.send("ㅋ올려")
+				
+		elif 시작("섬바삭보") and message.guild.id == 743101101401964647:
+			await message.channel.send("ㄹㅇㅋㅋ 섬ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ밬ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ삭ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ봌ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
+			
+		elif 시작(",뀨") and message.guild.id == 743101101401964647:
+			await message.channel.send("뀨?!")
+			
+		elif 시작(",우탐") and message.guild.id == 743101101401964647:
+			embed = discord.Embed(title=message.author.display_name, color=0x4849c3)
+			channelname = message.channel.name.split('-')[0]
+			embed.add_field(name=f"{channelname} 탐험 결과", value="탐험 레벨: 6974 로 증가!", inline=False)
+			random_result = random.choice(["돈", "경험치", "레벨"])
+			embed.add_field(name="획득한 보상", value=f"{random_result} +0", inline=False)
+			await message.channel.send(embed=embed)
+			
+		elif 시작(",잡키") and message.guild.id == 743101101401964647:
+			embed = discord.Embed(title="잡초에게 물을 주었다.", color=0x00ff7f)
+			embed.add_field(name="잡초 레벨", value="69 -> 74", inline=False)
+			embed.add_field(name="잡초 성장 진행도", value="ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ", inline=False)
+			random_result = random.choice(["돈", "경험치", "레벨"])
+			embed.add_field(name="받은 보상", value=f"{random_result} +0", inline=False)
+			
 
 
 
