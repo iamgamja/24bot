@@ -689,17 +689,18 @@ async def on_message(message):
 		elif 시작(",우탐") and message.guild.id == 743101101401964647:
 			embed = discord.Embed(title=message.author.display_name, color=0x4849c3)
 			channelname = message.channel.name.split('-')[0]
-			embed.add_field(name=f"{channelname} 탐험 결과", value="탐험 레벨: 6974 로 증가!", inline=False)
+			embed.add_field(name=f"{channelname} 탐험 결과", value=f"탐험 레벨: {str(message.author)[-4:]} 로 증가!", inline=False)
 			random_result = random.choice(["돈", "경험치", "레벨"])
-			embed.add_field(name="획득한 보상", value=f"{random_result} +0", inline=False)
+			embed.add_field(name="획득한 보상", value=f"{random_result} +0.0000000000000000...", inline=False)
 			await message.channel.send(embed=embed)
 			
 		elif 시작(",잡키") and message.guild.id == 743101101401964647:
 			embed = discord.Embed(title="잡초에게 물을 주었다.", color=0x00ff7f)
-			embed.add_field(name="잡초 레벨", value="69 -> 74", inline=False)
+			embed.set_thumbnail(url="https://images-ext-2.discordapp.net/external/3gXDoQqnWaQQKtbS99CR7ViBZY4o7o-epmmsWGgzG4s/https/media.discordapp.net/attachments/783226362856734730/818719628602638387/224_20210125224126.png?width=427&height=427")
+			embed.add_field(name="잡초 레벨", value=f"{int(str(message.author)[-4:])-1} -> {str(message.author)[-4:]}", inline=False)
 			embed.add_field(name="잡초 성장 진행도", value="ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ", inline=False)
 			random_result = random.choice(["돈", "경험치", "레벨"])
-			embed.add_field(name="받은 보상", value=f"{random_result} +0", inline=False)
+			embed.add_field(name="받은 보상", value=f"{random_result} +0.0000000000000000...", inline=False)
 			await message.channel.send(embed=embed)
 			
 
