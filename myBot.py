@@ -545,7 +545,7 @@ async def on_message(message):
 				await message.channel.send(i+빈공)
 			await message.channel.send(f"{Sx} * {Sy}")
 				
-		elif 시작(",ㅅ") or 시작(",ㄹ"):
+		elif 시작(",슬롯"):
 			ghkrfbf = []
 			ghkrfbf += [1]*4930
 			ghkrfbf += [2]*8451
@@ -710,7 +710,17 @@ async def on_message(message):
 			random_result = random.choice(["돈", "경험치", "레벨"])
 			embed.add_field(name="받은 보상", value=f"{random_result} +0.0000000000000000...", inline=False)
 			await message.channel.send(embed=embed)
-			
+
+		elif 시작(",커뉴봇") and message.guild.id == 743101101401964647:
+			await message.channel.send("ㅋ강화")
+			await message.channel.send("ㅋ섭강")
+			await message.channel.send("ㅋ잡키") ; await asyncio.sleep(1.0)
+			await message.channel.send("ㅋ우탐")
+			try:
+				mac_msg = await client.wait_for('message', timeout=10.0, check=lambda msg: msg.author.id == 772274871563583499 and msg.channel == message.channel and "매크로" in msg.content)
+				await message.channel.send(mac_msg.content[49:54])
+			except:
+				pass
 
 
 
