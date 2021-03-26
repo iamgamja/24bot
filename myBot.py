@@ -700,6 +700,7 @@ async def on_message(message):
 			embed.add_field(name="잡초 성장 진행도", value="ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ", inline=False)
 			random_result = random.choice(["돈", "경험치", "레벨"])
 			embed.add_field(name="받은 보상", value=f"{random_result} +0", inline=False)
+			await message.channel.send(embed=embed)
 			
 
 
