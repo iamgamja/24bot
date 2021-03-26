@@ -45,6 +45,7 @@ client = discord.Client(intents=intents)
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
 # 기능
+도배 = True
 출력 = ""      # ,계산 명령어에 사용
 기억 = {}      # ,기억 명령어에 사용
 피버 = False   # ,피버 명령어에 사용
@@ -346,7 +347,13 @@ async def on_message(message):
 
 		elif 시작(",말"):
 			m = ' '.join(m.split(' ')[1:])
+			if not 도배: return
 			await message.channel.send(m)
+		elif 시작(",도배 멈춰!"):
+			도배 = False
+			await asyncio.sleep(2.0)
+			도배 = True
+			await message.add_reaction(체크)
 
 		elif 시작(",임베드"):
 			inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
