@@ -50,6 +50,7 @@ client = discord.Client(intents=intents)
 기억 = {}      # ,기억 명령어에 사용
 피버 = False   # ,피버 명령어에 사용
 note = None
+note2= None
 지뢰 = (
 	"<:0z:762919979388502027>", #0
 	"<:z1:750200417836859472>", #1
@@ -86,7 +87,6 @@ async def on_ready():
 async def on_message(message):
 	if message.guild.id == 798353590040920094:
 		global note
-		global 도배
 		if True:
 			if note is None:
 				note = await client.get_channel(798358860456001566).fetch_message(798724124188475392)
@@ -138,10 +138,66 @@ async def on_message(message):
 					await note.edit(content=f"{note.content}\n{m} : 0")
 					await message.channel.send("완료")
 
-	if message.guild.id == 798353590040920094: 
+	if message.guild.id == 798353590040920094:
+		return
+	
+	if message.guild.id == 826264040740618301:
+		global note2
+		if True:
+			if note2 is None:
+				note2 = await client.get_channel(833557179821981707).fetch_message(833558323277463582)
+
+		if message.content == ",등록":
+			if "<@"+str(message.author.id)+">" in note2.content:
+				await message.channel.send("이미 등록되었습니다")
+				return
+			else:
+				await note2.edit(content=f"{note2.content}\n<@{message.author.id}> : 0")
+				await message.channel.send("완료")
+  
+		if message.author.id == 647001590766632966:
+			if message.content.startswith(",+") or message.content.startswith(",-"):
+				m = message.content
+				usermoney = m.split()[0][1:]
+				
+				user = message.content.split()[1][1:-1]
+				user = user[1:] if user.startswith('!') else user
+				user = f"<@{user}>"
+				
+				if not (user in note2.content):
+					await message.channel.send("등록되어있지 않은 유저입니다.")
+					return
+				else:
+					notec = note2.content
+					notec = notec.split("\n")[1:]
+					for i in range(len(notec)):
+						if notec[i].startswith(user):
+							noten = i
+					notec[noten] = notec[noten][:24] + str(int(notec[noten][24:])+usermoney)
+					notem = "이름 : 돈\n" + "\n".join(notec)
+					await note2.edit(content = notem)
+					await message.channel.send("완료")
+			if message.content.startswith(",등록"):
+				mm = message.content[4:]
+				m = ""
+				for i in mm:
+					if i in "1234567890":
+						m += i
+				if len(m) != 16:
+					await message.channel.send("잘못된 유저입니다.")
+					return
+				if m in note2.content:
+					await message.channel.send("이미 등록되었습니다.")
+					return
+				else:
+					await note2.edit(content=f"{note2.content}\n{m} : 0")
+					await message.channel.send("완료")
+
+	if message.guild.id == 826264040740618301:
 		return
 
 	try:
+		global 도배
 		m = message.content
 		# print(m)
 
