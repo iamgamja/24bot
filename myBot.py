@@ -145,7 +145,7 @@ async def on_message(message):
 		global note2
 		if True:
 			if note2 is None:
-				note2 = await client.get_channel(833557179821981707).fetch_message(833575682772434974)
+				note2 = await client.get_channel(833557179821981707).fetch_message(833576590448787466)
 
 		if message.content == ",등록" and message.author.id != 647001590766632966:
 			if "<@"+str(message.author.id)+">" in note2.content:
@@ -164,7 +164,7 @@ async def on_message(message):
 				f_noteC = ""
 				for i in noteC:
 					if not i.startswith(f"\n<@{message.author.id}> : "):
-						f_noteC += i
+						f_noteC += '\n' + i
 						
 				await note2.edit(content=f_noteC)
 				await message.channel.send("완료")
@@ -223,7 +223,7 @@ async def on_message(message):
 					f_noteC = ""
 					for i in noteC:
 						if not i.startswith(f"\n<@{m}> : "):
-							f_noteC += i
+							f_noteC += '\n' + i
 
 					await note2.edit(content=f_noteC)
 					await message.channel.send("완료")
