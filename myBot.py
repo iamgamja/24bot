@@ -129,7 +129,7 @@ async def on_message(message):
 				for i in mm:
 					if i in "1234567890":
 						m += i
-				if len(m) != 16:
+				if len(m) != 18:
 					await message.channel.send("잘못된 유저입니다.")
 					return
 				if m in note.content:
@@ -198,7 +198,7 @@ async def on_message(message):
 				for i in mm:
 					if i in "1234567890":
 						m += i
-				if len(m) != 16:
+				if len(m) != 18:
 					await message.channel.send("잘못된 유저입니다.")
 					return
 				if m in note2.content:
@@ -213,7 +213,7 @@ async def on_message(message):
 				for i in mm:
 					if i in "1234567890":
 						m += i
-				if len(m) != 16:
+				if len(m) != 18:
 					await message.channel.send("잘못된 유저입니다.")
 					return
 				elif not f"<@{m}>" in note2.content:
