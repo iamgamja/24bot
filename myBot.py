@@ -175,9 +175,12 @@ async def on_message(message):
 				m = message.content
 				usermoney = m.split()[0][1:]
 				
-				user = message.content.split()[1][1:-1]
-				user = user[1:] if user.startswith('!') else user
-				user = f"<@{user}>"
+				userid1 = message.content.split()[1]
+				userid2 = ""
+				for i in userid1:
+					if i in "123467890":
+						userid2 += i
+				user = f"<@{userid2}>"
 				
 				if not (user in note2.content):
 					await message.channel.send("등록되어있지 않은 유저입니다.")
