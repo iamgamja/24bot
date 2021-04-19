@@ -40,6 +40,7 @@ client = discord.Client(intents=intents)
 # 기타
 빈공 = '​'
 땀표 = '```'
+공백 = ' '
 # 사진
 폭팔 = "https://cdn.discordapp.com/attachments/740144542753357845/740145588594540604/100.gif"
 구분 = "https://cdn.discordapp.com/attachments/740144542753357845/740161182136139806/131.gif"
@@ -145,7 +146,7 @@ async def on_message(message):
 		global note2
 		if True:
 			if note2 is None:
-				note2 = await client.get_channel(833557179821981707).fetch_message(833576590448787466)
+				note2 = await client.get_channel(833557179821981707).fetch_message(833577508397252618)
 
 		if message.content == ",등록" and message.author.id != 647001590766632966:
 			if "<@"+str(message.author.id)+">" in note2.content:
@@ -163,7 +164,7 @@ async def on_message(message):
 				noteC = note2.content.split('\n')
 				f_noteC = ""
 				for i in noteC:
-					if not i.startswith(f"\n<@{message.author.id}> : "):
+					if not i.startswith(f"<@{message.author.id}> : "):
 						f_noteC += '\n' + i
 						
 				await note2.edit(content=f_noteC)
@@ -222,7 +223,7 @@ async def on_message(message):
 					noteC = note2.content.split('\n')
 					f_noteC = ""
 					for i in noteC:
-						if not i.startswith(f"\n<@{m}> : "):
+						if not i.startswith(f"<@{m}> : "):
 							f_noteC += '\n' + i
 
 					await note2.edit(content=f_noteC)
