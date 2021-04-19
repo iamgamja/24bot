@@ -154,7 +154,21 @@ async def on_message(message):
 			else:
 				await note2.edit(content=f"{note2.content}\n<@{message.author.id}> : 0")
 				await message.channel.send("완료")
-  
+				
+		if message.content == ",탈퇴" and message.author.id != 647001590766632966:
+			if not "<@"+str(message.author.id)+">" in note2.content:
+				await message.channel.send("이미 탈퇴되었습니다")
+				return
+			else:
+				noteC = note2.content.split('\n')
+				f_noteC = ""
+				for i in noteC:
+					if not i.startswith(f"\n<@{message.author.id}> : "):
+						f_noteC += i
+						
+				await note2.edit(content=f_noteC)
+				await message.channel.send("완료")
+				
 		if message.author.id == 647001590766632966:
 			if message.content.startswith(",+") or message.content.startswith(",-"):
 				m = message.content
@@ -192,6 +206,28 @@ async def on_message(message):
 				else:
 					await note2.edit(content=f"{note2.content}\n{m} : 0")
 					await message.channel.send("완료")
+			if message.content.startswith(",탈퇴"):
+				mm = message.content[4:]
+				m = ""
+				for i in mm:
+					if i in "1234567890":
+						m += i
+				if len(m) != 16:
+					await message.channel.send("잘못된 유저입니다.")
+					return
+				elif not f"<@{m}>" in note2.content:
+					await message.channel.send("이미 탈퇴되었습니다")
+					return
+				else:
+					noteC = note2.content.split('\n')
+					f_noteC = ""
+					for i in noteC:
+						if not i.startswith(f"\n<@{m}> : "):
+							f_noteC += i
+
+					await note2.edit(content=f_noteC)
+					await message.channel.send("완료")
+				
 
 	if message.guild.id == 826264040740618301:
 		return
