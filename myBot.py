@@ -136,7 +136,7 @@ async def on_message(message):
 					await message.channel.send("이미 등록되었습니다.")
 					return
 				else:
-					await note.edit(content=f"{note.content}\n{m} : 0")
+					await note.edit(content=f"{note.content}\n<@{m}> : 0")
 					await message.channel.send("완료")
 
 	if message.guild.id == 798353590040920094:
@@ -146,7 +146,7 @@ async def on_message(message):
 		global note2
 		if True:
 			if note2 is None:
-				note2 = await client.get_channel(833557179821981707).fetch_message(833577508397252618)
+				note2 = await client.get_channel(833557179821981707).fetch_message(833579939701325854)
 
 		if message.content == ",등록" and message.author.id != 647001590766632966:
 			if "<@"+str(message.author.id)+">" in note2.content:
@@ -205,7 +205,7 @@ async def on_message(message):
 					await message.channel.send("이미 등록되었습니다.")
 					return
 				else:
-					await note2.edit(content=f"{note2.content}\n{m} : 0")
+					await note2.edit(content=f"{note2.content}\n<@{m}> : 0")
 					await message.channel.send("완료")
 			if message.content.startswith(",탈퇴"):
 				mm = message.content[4:]
