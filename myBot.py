@@ -148,7 +148,7 @@ async def on_message(message):
 			if note2 is None:
 				note2 = await client.get_channel(833557179821981707).fetch_message(833579939701325854)
 
-		if message.content == ",등록" and message.author.id != 647001590766632966:
+		if message.content == ",등록" and not (message.author.id in (647001590766632966, 646998005643476993, 826322347862261760)):
 			if "<@"+str(message.author.id)+">" in note2.content:
 				await message.channel.send("이미 등록되었습니다")
 				return
@@ -170,15 +170,15 @@ async def on_message(message):
 				await note2.edit(content=f_noteC)
 				await message.channel.send("완료")
 				
-		if message.author.id == 647001590766632966:
+		if message.author.id in (647001590766632966, 646998005643476993, 826322347862261760):
 			if message.content.startswith(",+") or message.content.startswith(",-"):
 				m = message.content
-				usermoney = m.split()[0][1:]
+				usermoney = int(m.split()[0][1:])
 				
-				userid1 = message.content.split()[1]
+				userid1 = m.split()[1]
 				userid2 = ""
 				for i in userid1:
-					if i in "123467890":
+					if i in "1234567890":
 						userid2 += i
 				user = f"<@{userid2}>"
 				
