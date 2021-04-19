@@ -91,7 +91,7 @@ async def on_message(message):
 			if note is None:
 				note = await client.get_channel(798358860456001566).fetch_message(798724124188475392)
 
-		if message.content == "!등록":
+		if message.content == "!등록" and message.author.id != 646998005643476993:
 			if "<@"+str(message.author.id)+">" in note.content:
 				await message.channel.send("이미 등록되었습니다")
 				return
@@ -147,7 +147,7 @@ async def on_message(message):
 			if note2 is None:
 				note2 = await client.get_channel(833557179821981707).fetch_message(833558323277463582)
 
-		if message.content == ",등록":
+		if message.content == ",등록" and message.author.id != 647001590766632966:
 			if "<@"+str(message.author.id)+">" in note2.content:
 				await message.channel.send("이미 등록되었습니다")
 				return
