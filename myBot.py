@@ -848,7 +848,7 @@ async def on_message(message):
 		number_1 = len(Ranks_10) * len(Ranks_01) # 50
 		number_2 = number_1 * len(Tears) # *54
 		number_3 = number_2 * len(Agains_10) * len(Agains_01) # *30
-		number_4 = number_3 * len(God_Agains_10) * len(God_Agains_01) # *50
+		number_4 =  number_3 * len(God_Agains_10) * len(God_Agains_01) # *50
 		
 		
 		mentions = {
@@ -997,15 +997,8 @@ async def on_message(message):
 				a = int(m)
 			except:
 				a = 1
-			users = [
-				526889025894875158, #감자
-				693386027036835912, #민트망고
-				544076137593176120, #둔난늑대
-				506786900195934218, #자감
-				# 681403207620100135, #푺으
-				646998005643476993, #야크티투
-				776348590330347530, #쥬스
-				]
+
+			users = {}
 
 			ilGup = {
 				'인턴' : 10,
@@ -1014,18 +1007,14 @@ async def on_message(message):
 				'사장' : 50,
 				'부회장' : 100,
 				}
-			temp_users = []
-			for i in users:
-				temp_users.append(await message.guild.fetch_member(i))
-			users = temp_users
-			
-			
+
+			for i in ilGup:
+				for o in discord.utils.get(client.get_guild(766932314973929522).roles, name=i).members:
+					users[o] = ilGup[i]
+
 		for user in users:
-			
 			if case == 4: # 일급일때
-				for i in ilGup:
-					if i in [i.name for i in user.roles]:
-						money = ilGup[i]*a ; break
+				money = users[user] * a
 			# 역할 찾아서 랭크 계산
 			userRank = 0
 
