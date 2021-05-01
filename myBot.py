@@ -1287,9 +1287,6 @@ traceback.format_exc(): {traceback.format_exc()}
 try:
     access_token = os.environ["BOR_TOKEN"]
 except:
-    try:
-        with open("token.txt", "r") as f:
-            access_token = f.read()
-    except:
-        print("악 오류")
+    with open("token.txt", "r") as f:
+        access_token = f.read()
 client.run(access_token)
