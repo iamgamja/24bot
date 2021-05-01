@@ -466,7 +466,7 @@ async def on_message(message):
                 embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="`,도움 <명령어>`로 세부 도움말을 확인할수 있습니다", inline=False)
                 embed.add_field(name="**`도움`**", value="`도움`", inline=False)
                 embed.add_field(name="**`재미`**", value="`핑` ~~`에블핑`~~ ~~`히어핑`~~ `폭8` `지뢰찾기` `사다리타기` `슬롯` `롯슬`", inline=False)
-                embed.add_field(name="**`기능`**", value="`프사` `말` `계산` ~~`청소`~~ `임베드` ~~`역할생성`~~ ~~`역할제거`~~ ~~`채널생성`~~ ~~`채널제거`~~ `시간` `한영` `영한` `기억`", inline=False)
+                embed.add_field(name="**`기능`**", value="`프사` `말` `계산` ~~`청소`~~ `임베드` ~~`역할생성`~~ ~~`역할제거`~~ ~~`채널생성`~~ ~~`채널제거`~~ `시간` `한영` `영한` `번역` `기억`", inline=False)
                 embed.add_field(name="**`기타`**", value="`초대` `정보`", inline=False)
                 
             embed.set_footer(text= f'{message.author.name} | {시간()}')
