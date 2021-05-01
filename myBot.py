@@ -1,4 +1,4 @@
-import discord, time, datetime, random, os, math, asyncio, string, sys, traceback
+import discord, time, datetime, random, os, math, asyncio, string, sys, traceback, requests
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
@@ -6,6 +6,8 @@ client = discord.Client(intents=intents)
 # await message.channel.send()
 # eval() 식
 # exec() 코드
+
+# os.environ[""]
 
 # 반응
 띵킹 = "🤔"
@@ -345,7 +347,55 @@ async def on_message(message):
 			for i in 임시:
 				f+=i
 			return f[:-1]
-		
+        
+        
+        def translate(text):
+            """
+            입력된 글자가 한글이라면 영어로,
+            아니라면 한글로 번역하는 코드입니다.
+            네이버 파파고 api를 사용했습니다.
+            """
+            client_id = os.environ["translation_client_id"]
+            client_secret = os.environ["translation_client_secret"]
+
+            # 언어감지=1, 번역=2
+            data1 = {'query' : text}
+            url1 = "https://openapi.naver.com/v1/papago/detectLangs"
+
+            header = {"X-Naver-Client-Id":client_id,
+                      "X-Naver-Client-Secret":client_secret}
+
+            # 먼저, 언어를 감지합니다. 
+            response1 = requests.post(url1, headers=header, data=data1)
+            rescode1 = response1.status_code 
+            if rescode1==200:
+                send_data1 = response1.json()
+                lang_data = (send_data1['langCode'])
+            else:
+                print("Error Code:" , rescode)
+
+
+            #언어를 감지했으므로, 번역을 합니다.
+            #입력된 글자가 한글이라면 영어로,
+            #아니라면 한글로 번역합니다.
+            target_lang_data = 'ko' if lang_data != 'ko' else 'en'
+            data2 = {'text' : text,
+                    'source' : lang_data,
+                    'target': target_lang_data}
+            url2 = "https://openapi.naver.com/v1/papago/n2mt"
+
+
+            response2 = requests.post(url2, headers=header, data=data2)
+            rescode2 = response2.status_code
+
+            if rescode1 == 200 and rescode2 == 200:
+                send_data2 = response2.json()
+                t_data = (send_data2['message']['result']['translatedText'])
+                return t_data
+            else:
+                raise Exception(f'ERROR CODE1: {rescode1}, ERROR CODE2: {rescode2}')
+        
+        
 		if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640, 794146499034480661):
 			#랭크업, 시간, 도박장, 도박2 에서의 슷칼봇 메시지 삭제
 			await message.delete()
@@ -369,7 +419,7 @@ async def on_message(message):
 					await message.add_reaction("🥒") # 52
 				if number.endswith("69"):
 					await message.add_reaction("♋") # 69
-				if number[0] == number[4] and number[1] == number[3]: # 거울수라면
+				if number == number[::-1]: # 거울수라면
 					await message.add_reaction("🪞") # 거울
 		
 		if '@everyone' in m or '@here' in m:
@@ -402,6 +452,7 @@ async def on_message(message):
 				"시간" : {"`,시간`" : "현재시간을 출력합니다."},
 				"한영" : {"`,한영 <한글>`" : "<한글>을 영타로 바꿉니다."},
 				"영한" : {"`,영한 <영어>`" : "<영어>를 한타로 바꿉니다."},
+				"번역" : {"`,번역 <한글>`" : "<한글>을 영어로 번역합니다.", "`,번역 <영어>`" : "<영어>를 한글로 번역합니다."},
 				"기억" : {"`,기억`" : "기억된 목록을 출력합니다.", "`,기억 <키워드>`" : "<키워드>에 기억된 <대답>을 출력합니다.", "`,기억 <키워드> <대답>`" : "<키워드>에 <대답>을 기억합니다."},
 				"초대" : {"`,초대`" : "이 봇의 초대링크를 출력합니다."},
 				"정보" : {"`,정보`" : "이 봇을 만든 사람을 핑합니다."},
@@ -568,6 +619,10 @@ async def on_message(message):
 		elif 시작(",영한"):
 			m = ' '.join(m.split(' ')[1:])
 			await message.channel.send(영한변환(m))
+            
+        elif 시작(",번역"):
+			m = ' '.join(m.split(' ')[1:])
+            await message.channel.send(translate(m))
 
 		elif 시작(",역할생성") and 관리():
 			m = ' '.join(m.split(' ')[1:])
@@ -1206,14 +1261,12 @@ async def on_message(message):
 
 
 	except Exception as e:
-		# def 조인(s):
-		# 	return "".join(s)
-
 		await message.add_reaction(엑스)
 		await client.get_channel(762916201654386701).send(f"""
 -----
+<@526889025894875158> 에러!!!
+```
 {시간()}
-<@526889025894875158>
 
 에러::
 e: {e}
@@ -1227,13 +1280,16 @@ traceback.format_exc(): {traceback.format_exc()}
 보낸이: {message.author} ({message.author.id})
 
 {message}
+```
 -----
 """)
 
 try:
 	access_token = os.environ["BOR_TOKEN"]
 except:
-	f = open("token.txt", "r")
-	access_token = f.read()
-	f.close()
+	try:
+		with open("token.txt", "r") as f:
+			access_token = f.read()
+	except:
+		print("악 오류")
 client.run(access_token)
