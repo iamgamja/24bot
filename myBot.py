@@ -368,11 +368,11 @@ async def on_message(message):
             # 먼저, 언어를 감지합니다. 
             response1 = requests.post(url1, headers=header, data=data1)
             rescode1 = response1.status_code 
-            if rescode1==200:
-            send_data1 = response1.json()
-            lang_data = (send_data1['langCode'])
+            if rescode1 == 200:
+                send_data1 = response1.json()
+                lang_data = (send_data1['langCode'])
             else:
-            print("Error Code:" , rescode)
+                raise Exception(f'ERROR CODE1: {rescode1}')
 
 
             #언어를 감지했으므로, 번역을 합니다.
@@ -389,11 +389,11 @@ async def on_message(message):
             rescode2 = response2.status_code
 
             if rescode1 == 200 and rescode2 == 200:
-            send_data2 = response2.json()
-            t_data = (send_data2['message']['result']['translatedText'])
-            return t_data
+                send_data2 = response2.json()
+                t_data = (send_data2['message']['result']['translatedText'])
+                return t_data
             else:
-            raise Exception(f'ERROR CODE1: {rescode1}, ERROR CODE2: {rescode2}')
+                raise Exception(f'ERROR CODE1: {rescode1}, ERROR CODE2: {rescode2}')
         
         
         if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640, 794146499034480661):
@@ -587,7 +587,7 @@ async def on_message(message):
                         i += 1 if i1>0        and                 mine_map[i1-1][i2  ] == 지뢰[10] else 0
                         i += 1 if i1>0        and i2<mine_x-1 and mine_map[i1-1][i2+1] == 지뢰[10] else 0
                         i += 1 if                 i2>0        and mine_map[i1  ][i2-1] == 지뢰[10] else 0
-#                         i += 1 if                                 mine_map[i1  ][i2  ] == 지뢰[10] else 0
+#                       i += 1 if                                 mine_map[i1  ][i2  ] == 지뢰[10] else 0
                         i += 1 if                 i2<mine_x-1 and mine_map[i1  ][i2+1] == 지뢰[10] else 0
                         i += 1 if i1<mine_y-1 and i2>0        and mine_map[i1+1][i2-1] == 지뢰[10] else 0
                         i += 1 if i1<mine_y-1 and                 mine_map[i1+1][i2  ] == 지뢰[10] else 0
