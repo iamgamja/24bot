@@ -1,5 +1,5 @@
 discord.py==1.6.0
 requests
-googleapiclient
+google-api-python-client
 google
 google_auth_oauthlib
