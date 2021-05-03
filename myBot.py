@@ -1,4 +1,4 @@
-import discord
+import discord#
 import time, datetime, random, os, math, string, sys
 
 import asyncio
