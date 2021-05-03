@@ -280,7 +280,7 @@ async def on_message(message):
             return str(r.emoji) in "0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣" and u == message.author
 
         def 제목(s):
-            return 킹똥 + s + 똥킹
+            return s
         
         def 코드(s):
             return 땀표 + s + 땀표
@@ -390,7 +390,7 @@ async def on_message(message):
                 send_data1 = response1.json()
                 lang_data = (send_data1['langCode'])
             else:
-                raise Exception(f'ERROR CODE1: {rescode1}')
+                lang_data = 'en'
 
 
             #언어를 감지했으므로, 번역을 합니다.
@@ -398,22 +398,34 @@ async def on_message(message):
             #아니라면 한글로 번역합니다.
             target_lang_data = 'ko' if lang_data != 'ko' else 'en'
             data2 = {'text' : text,
-                'source' : lang_data,
-                'target': target_lang_data}
+                     'source' : lang_data,
+                     'target': target_lang_data}
             url2 = "https://openapi.naver.com/v1/papago/n2mt"
 
 
             response2 = requests.post(url2, headers=header, data=data2)
             rescode2 = response2.status_code
 
-            if rescode1 == 200 and rescode2 == 200:
+            if rescode2 == 200:
                 send_data2 = response2.json()
                 t_data = (send_data2['message']['result']['translatedText'])
                 return t_data
             else:
-                raise Exception(f'ERROR CODE1: {rescode1}, ERROR CODE2: {rescode2}')
+                # raise Exception(f'ERROR CODE1: {rescode1}, ERROR CODE2: {rescode2}')
+                return None
         
-        
+        def get_thumbnail_by_url(url):
+            try_re1 = re.match(r'https://youtu[.]be/(.+)(\?.+)?', url) # 단축 url
+            try_re2 = re.match(r'https://youtube[.]com/watch[?]v=(.+)(&.+)?', url) # 일반 url
+            try_re = try_re1 or try_re2 # 둘중 match 된것
+
+            if not try_re:
+                return '올바르지 않은 url 형식입니다.'
+
+            matched_video_id = try_re.group(1)
+    
+            return f'https://i.ytimg.com/vi/{matched_video_id}/maxresdefault.jpg'
+
         if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640, 794146499034480661):
             #랭크업, 시간, 도박장, 도박2 에서의 슷칼봇 메시지 삭제
             await message.delete()
@@ -471,6 +483,7 @@ async def on_message(message):
                 "한영" : {"`,한영 <한글>`" : "<한글>을 영타로 바꿉니다."},
                 "영한" : {"`,영한 <영어>`" : "<영어>를 한타로 바꿉니다."},
                 "번역" : {"`,번역 <한글>`" : "<한글>을 영어로 번역합니다.", "`,번역 <영어>`" : "<영어>를 한글로 번역합니다."},
+                "썸네일" : {"`,썸네일 <유튜브 영상 url>`" : "<유튜브 영상 url>의 썸네일을 출력합니다."},
                 "기억" : {"`,기억`" : "기억된 목록을 출력합니다.", "`,기억 <키워드>`" : "<키워드>에 기억된 <대답>을 출력합니다.", "`,기억 <키워드> <대답>`" : "<키워드>에 <대답>을 기억합니다."},
                 "초대" : {"`,초대`" : "이 봇의 초대링크를 출력합니다."},
                 "정보" : {"`,정보`" : "이 봇을 만든 사람을 핑합니다."},
@@ -484,7 +497,7 @@ async def on_message(message):
                 embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="`,도움 <명령어>`로 세부 도움말을 확인할수 있습니다", inline=False)
                 embed.add_field(name="**`도움`**", value="`도움`", inline=False)
                 embed.add_field(name="**`재미`**", value="`핑` ~~`에블핑`~~ ~~`히어핑`~~ `폭8` `지뢰찾기` `사다리타기` `슬롯` `롯슬`", inline=False)
-                embed.add_field(name="**`기능`**", value="`프사` `말` `계산` ~~`청소`~~ `임베드` ~~`역할생성`~~ ~~`역할제거`~~ ~~`채널생성`~~ ~~`채널제거`~~ `시간` `한영` `영한` `번역` `기억`", inline=False)
+                embed.add_field(name="**`기능`**", value="`프사` `말` `계산` ~~`청소`~~ `임베드` ~~`역할생성`~~ ~~`역할제거`~~ ~~`채널생성`~~ ~~`채널제거`~~ `시간` `한영` `영한` `번역` `썸네일` `기억`", inline=False)
                 embed.add_field(name="**`기타`**", value="`초대` `정보`", inline=False)
                 
             embed.set_footer(text= f'{message.author.name} | {시간()}')
@@ -641,6 +654,10 @@ async def on_message(message):
         elif 시작(",번역"):
             m = ' '.join(m.split(' ')[1:])
             await message.channel.send(translate(m))
+
+        elif 시작(",썸네일"):
+            m = ' '.join(m.split(' ')[1:])
+            await message.channel.send(get_thumbnail_by_url(m))
 
         elif 시작(",역할생성") and 관리():
             m = ' '.join(m.split(' ')[1:])
@@ -1290,7 +1307,7 @@ async def on_message(message):
 e: {e}
 sys.exc_info(): {sys.exc_info()}
 traceback.format_exc(): {traceback.format_exc()}
-
+```
 메시지::
 링크: {message.jump_url}
 서버: {message.guild} ({message.guild.id})
@@ -1298,7 +1315,6 @@ traceback.format_exc(): {traceback.format_exc()}
 보낸이: {message.author} ({message.author.id})
 
 {message}
-```
 -----
 """)
 
