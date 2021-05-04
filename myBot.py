@@ -1301,14 +1301,13 @@ async def on_message(message):
         await client.get_channel(762916201654386701).send(f"""
 -----
 <@526889025894875158> 에러!!!
-```
 {시간()}
 
 에러::
-e: {e}
-sys.exc_info(): {sys.exc_info()}
-traceback.format_exc(): {traceback.format_exc()}
-```
+e: ```{e}```
+sys.exc_info(): ```{sys.exc_info()}```
+traceback.format_exc(): ```{traceback.format_exc()}```
+
 메시지::
 링크: {message.jump_url}
 서버: {message.guild} ({message.guild.id})
@@ -1319,9 +1318,5 @@ traceback.format_exc(): {traceback.format_exc()}
 -----
 """)
 
-try:
-    access_token = os.environ["BOR_TOKEN"]
-except:
-    with open("token.txt", "r") as f:
-        access_token = f.read()
+access_token = os.environ["BOR_TOKEN"]
 client.run(access_token)
