@@ -1,4 +1,4 @@
-import discord#
+import discord
 import time, datetime, random, os, math, string, sys
 
 import asyncio
@@ -270,8 +270,8 @@ async def on_message(message):
         def 관리(): # 관리자(감자#9400)인지 확인
             return message.author.id == 526889025894875158
         
-        def 유저(): # 유저가 보낸 메시지인지 확인
-            return not message.author.bot
+        # def 유저(): # 유저가 보낸 메시지인지 확인
+        #     return not message.author.bot
 
         def 체크1(m): # 같은 사람이 같은 채널에서 보낸 메시지인지 확인 (임베드)
             return m.channel.id == message.channel.id and m.author == message.author
@@ -282,8 +282,8 @@ async def on_message(message):
         def 제목(s):
             return s
         
-        def 코드(s):
-            return 땀표 + s + 땀표
+        # def 코드(s):
+        #     return 땀표 + s + 땀표
 
         def 한영변환(m):
             m+='.'
@@ -413,19 +413,19 @@ async def on_message(message):
             else:
                 # raise Exception(f'ERROR CODE1: {rescode1}, ERROR CODE2: {rescode2}')
                 return None
-        
+                
         def get_thumbnail_by_url(url):
-            try_re1 = re.match(r'https://youtu[.]be/(.+)(\?.+)?', url) # 단축 url
-            try_re2 = re.match(r'https://youtube[.]com/watch[?]v=(.+)(&.+)?', url) # 일반 url
-            try_re = try_re1 or try_re2 # 둘중 match 된것
+            try_re1 = re.match(r'https://youtu[.]be/(.+)(\?.+)?', url) # 단축 url
+            try_re2 = re.match(r'https://youtube[.]com/watch[?]v=(.+)(&.+)?', url) # 일반 url
+            try_re = try_re1 or try_re2 # 둘중 match 된것
 
-            if not try_re:
-                return '올바르지 않은 url 형식입니다.'
+            if not try_re:
+                return '올바르지 않은 url 형식입니다.'
 
-            matched_video_id = try_re.group(1)
-    
-            return f'https://i.ytimg.com/vi/{matched_video_id}/maxresdefault.jpg'
-
+            matched_video_id = try_re.group(1)
+            
+            return f'https://i.ytimg.com/vi/{matched_video_id}/maxresdefault.jpg'
+            
         if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640, 794146499034480661):
             #랭크업, 시간, 도박장, 도박2 에서의 슷칼봇 메시지 삭제
             await message.delete()
@@ -927,7 +927,8 @@ async def on_message(message):
         
         Ranks_10 = (766937626862682116, 766937654481780736, 766937674124623882, 766937691643183105, 766937708387631104)
         Ranks_01 = (766937776733159424, 766937795330703390, 766937812620017665, 766937834522411028, 766938115112697866, 766938128673144833, 766938145773060096, 766938159208071188, 766938180409753601, 766938192661184522)
-        Tears = ('아톰', '몰레큘', '셀', '슈퍼 셀', '하이퍼 셀', '워터', '클린 워터', '아이스', '클린 아이스', '하드 아이스', '소일', '샌드', '우드', '페이퍼', '글래스', '클리어 글래스', '미러', '클리어 미러', '스톤', '하드 스톤', '아이언', '하드 아이언', '브론즈', '클리어 브론즈', '브론즈 메달', '실버', '클리어 실버', '실버 메달', '골드', '클리어 골드', '골드 메달', '크리스탈', '클리어 크리스탈', '가넷', '아메티스트(자수정)', '아쿠아마린', '다이아몬드', '블랙 다이아몬드', '에메랄드', '문스톤', '루비', '페리도트', '사파이어', '오팔', '토파즈', '타코이즈(터키석)', '아다만티움', '우루', '비브라늄', '프리미엄', '딜럭스', '익스트림', '플래티넘', '미스틱', '챌린저(티어)', '마스터(티어)', '그랜드', '챔피언(티어)', '레전드')
+        Tears = ('아톰', '몰레큘', '셀', '슈퍼 셀', '하이퍼 셀', '워터', '클린 워터', '아이스', '클린 아이스', '하드 아이스', '소일', '샌드', '우드', '페이퍼', '글래스', '클리어 글래스', '미러', '클리어 미러', '스톤', '하드 스톤', '아이언', '하드 아이언', '브론즈', '클리어 브론즈', '브론즈 메달', '실버', '클리어 실버', '실버 메달', '골드', '클리어 골드', '골드 메달', '클리어 크리스탈', '가넷', '아메티스트(자수정)', '아쿠아마린', '다이아몬드', '블랙 다이아몬드', '에메랄드', '문스톤', '루비', '페리도트', '사파이어')
+        Tears += ('오팔', '토파즈', '타코이즈(터키석)', '아다만티움', '우루', '비브라늄', '프리미엄', '딜럭스', '익스트림', '플래티넘', '미스틱', '챌린저(티어)', '마스터(티어)', '그랜드', '챔피언(티어)', '레전드')
         Agains_10 = ('환생 횟수 : 0', '환생 횟수 : 1', '환생 횟수 : 2')
         Agains_01 = ('0회', '1회', '2회', '3회', '4회', '5회', '6회', '7회', '8회', '9회')
         God1 = ('초', '중', '고', '하', '상', '-', '+')
@@ -1204,7 +1205,7 @@ async def on_message(message):
                     await mymsg2.add_reaction("4️⃣");time.sleep(0.5)
                     await mymsg2.add_reaction("5️⃣")
                     try:
-                        reaction, temp = await client.wait_for('reaction_add', timeout=60.0, check=체크2)
+                        reaction, _ = await client.wait_for('reaction_add', timeout=60.0, check=체크2)
                         reaction = str(reaction.emoji)
                     except:
                         reaction = "0️⃣"
