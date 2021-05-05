@@ -17,6 +17,12 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
 
+DEVELOPER_KEY = "AIzaSyCi4egnEJMuuppfrXjfcM76QYhn8KvOLfk"
+YOUTUBE_API_SERVICE_NAME="youtube"
+YOUTUBE_API_VERSION="v3"
+service = build(YOUTUBE_API_SERVICE_NAME,YOUTUBE_API_VERSION,developerKey=DEVELOPER_KEY)
+
+
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
@@ -426,6 +432,25 @@ async def on_message(message):
             
             return f'https://i.ytimg.com/vi/{matched_video_id}/maxresdefault.jpg'
             
+        def get_last_video_by_search(search):
+            channelId = service.search().list(
+                q = search,
+                order = "date",
+                part = "snippet",
+                maxResults = 1,
+                type = 'channel'
+            ).execute()['items'][0]['snippet']['channelId']
+
+            video = service.search().list(
+                part = "snippet",
+                channelId = channelId,
+                maxResults = 1,
+                type = "video",
+                order = "date"
+            ).execute()['items'][0]
+
+            return video['snippet']['title'] + '\n' + get_sumbnail_by_url(video['id']['videoId'])
+
         if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640, 794146499034480661):
             #랭크업, 시간, 도박장, 도박2 에서의 슷칼봇 메시지 삭제
             await message.delete()
@@ -750,6 +775,10 @@ async def on_message(message):
                 await msg.edit(content=msg.content+"\n**잭팟!**")
             if a in [(1,1,2) , (1,1,3) , (1,2,2) , (2,2,3) , (1,3,3) , (2,3,3)]:
                 await msg.edit(content=msg.content+"\n**빅윈!**")
+
+        elif 시작(",최신영상") and 관리():
+            m = m.split(' ')[1:]
+            await message.channel.send(get_last_video_by_search(m))
 
         elif 시작(",테스트") and 관리():
             m = m.split(' ')[1:]
