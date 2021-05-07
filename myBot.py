@@ -424,7 +424,7 @@ async def on_message(message):
             thumbnails = service.videos().list(
                 part = "snippet",
                 id = id
-            ).execute()['item'][0]['snippet']['thumbnail'].values()
+            ).execute()['items'][0]['snippet']['thumbnail'].values()
 
             thumbnails.sort(key=lambda x: x['width'])
             return thumbnails[-1]
