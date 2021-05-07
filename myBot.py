@@ -427,7 +427,7 @@ async def on_message(message):
             ).execute()['items'][0]['snippet']['thumbnails'].values()
             thumbnails = list(thumbnails)
             thumbnails.sort(key=lambda x: x['width'])
-            return thumbnails[-1]
+            return thumbnails[-1]['url']
                 
         def get_thumbnail_by_url(url):
             try_re1 = re.match(r'https://youtu[.]be/(.+)(\?.+)?', url) # 단축 url
