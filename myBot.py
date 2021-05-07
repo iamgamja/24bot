@@ -425,7 +425,7 @@ async def on_message(message):
                 part = "snippet",
                 id = id
             ).execute()['items'][0]['snippet']['thumbnails'].values()
-
+            thumbnails = list(thumbnails)
             thumbnails.sort(key=lambda x: x['width'])
             return thumbnails[-1]
                 
