@@ -104,6 +104,17 @@ def 시간():
     n        = kor_time.strftime('%Y-%m-%d %p %I:%M:%S')
     return n
 
+async def log(s):
+    s = str(s)
+    
+    print(s)
+    if len(s) > 2000:
+        await client.get_channel(762916201654386701).send(s[:2001])
+        log(s[2001:])
+    else:
+        await client.get_channel(762916201654386701).send(s)
+      
+
 @client.event
 async def on_ready():
     print('시작')
@@ -785,8 +796,12 @@ async def on_message(message):
                 await msg.edit(content=msg.content+"\n**빅윈!**")
 
         elif 시작(",최신영상") and 관리():
-            m = m.split(' ')[1:]
+            m = ' '.join(m.split(' ')[1:])
             await message.channel.send(get_last_video_by_search(m))
+            
+        elif 시작(",로그테스트") and 관리():
+            m = ' '.join(m.split(' ')[1:])
+            log(m)
 
         elif 시작(",테스트") and 관리():
             m = m.split(' ')[1:]
