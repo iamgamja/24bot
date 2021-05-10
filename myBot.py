@@ -104,7 +104,7 @@ def 시간():
     n        = kor_time.strftime('%Y-%m-%d %p %I:%M:%S')
     return n
 
-async def real_log(s):
+async def log(s):
     s = str(s)
     
     print(s)
@@ -113,9 +113,6 @@ async def real_log(s):
         log(s[2001:])
     else:
         await client.get_channel(762916201654386701).send(s)
-        
-def log(s):
-    asyncio.run(real_log(s))
     
 @client.event
 async def on_ready():
@@ -803,7 +800,7 @@ async def on_message(message):
             
         elif 시작(",로그테스트") and 관리():
             m = ' '.join(m.split(' ')[1:])
-            log(m)
+            await log(m)
 
         elif 시작(",테스트") and 관리():
             m = m.split(' ')[1:]
