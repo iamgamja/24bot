@@ -76,7 +76,7 @@ client = discord.Client(intents=intents)
 출력 = ""      # ,계산 명령어에 사용
 기억 = {}      # ,기억 명령어에 사용
 피버 = False   # ,피버 명령어에 사용
-note = None
+# note = None
 note2= None
 지뢰 = (
     "<:0z:762919979388502027>", #0
@@ -110,7 +110,7 @@ async def log(s):
     print(s)
     if len(s) > 2000:
         await client.get_channel(762916201654386701).send(s[:2001])
-        log(s[2001:])
+        await log(s[2001:])
     else:
         await client.get_channel(762916201654386701).send(s)
     
@@ -118,65 +118,65 @@ async def log(s):
 async def on_ready():
     print('시작')
     await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
-    await client.get_channel(762916201654386701).send(f"{시간()}, <@526889025894875158>, 시작")
+    await log(f"{시간()}, <@526889025894875158>, 시작")
 
 @client.event
 async def on_message(message):
-    if message.guild.id == 798353590040920094:
-        global note
-        if True:
-            if note is None:
-                note = await client.get_channel(798358860456001566).fetch_message(798724124188475392)
+#     if message.guild.id == 798353590040920094:
+#         global note
+#         if True:
+#             if note is None:
+#                 note = await client.get_channel(798358860456001566).fetch_message(798724124188475392)
 
-        if message.content == "!등록" and message.author.id != 646998005643476993:
-            if "<@"+str(message.author.id)+">" in note.content:
-                await message.channel.send("이미 등록되었습니다")
-                return
-            else:
-                await note.edit(content=f"{note.content}\n<@{message.author.id}> : 0")
-                await message.channel.send("완료")
+#         if message.content == "!등록" and message.author.id != 646998005643476993:
+#             if "<@"+str(message.author.id)+">" in note.content:
+#                 await message.channel.send("이미 등록되었습니다")
+#                 return
+#             else:
+#                 await note.edit(content=f"{note.content}\n<@{message.author.id}> : 0")
+#                 await message.channel.send("완료")
   
-        if message.author.id == 646998005643476993:
-            if message.content.startswith("!돈"):
-                m = message.content
-                m = m[5:]
-                if m.startswith("!"):
-                    m = m[1:]
-                user = "<@"+m[:18]+">"
-                m = m[18:]
-                m = m[2:]
-                usermoney = int(m)
-                if not (user in note.content):
-                    await message.channel.send("등록되어있지 않은 유저입니다.")
-                    return
-                else:
-                    notec = note.content
-                    notec = notec.split("\n")[1:]
-                    for i in range(len(notec)):
-                        if notec[i].startswith(user):
-                            noten = i
-                    notec[noten] = notec[noten][:24] + str(int(notec[noten][24:])+usermoney)
-                    notem = "이름 : 돈\n" + "\n".join(notec)
-                    await note.edit(content = notem)
-                    await message.channel.send("완료")
-            if message.content.startswith("!등록"):
-                mm = message.content[4:]
-                m = ""
-                for i in mm:
-                    if i in "1234567890":
-                        m += i
-                if len(m) != 18:
-                    await message.channel.send("잘못된 유저입니다.")
-                    return
-                if m in note.content:
-                    await message.channel.send("이미 등록되었습니다.")
-                    return
-                else:
-                    await note.edit(content=f"{note.content}\n<@{m}> : 0")
-                    await message.channel.send("완료")
+#         if message.author.id == 646998005643476993:
+#             if message.content.startswith("!돈"):
+#                 m = message.content
+#                 m = m[5:]
+#                 if m.startswith("!"):
+#                     m = m[1:]
+#                 user = "<@"+m[:18]+">"
+#                 m = m[18:]
+#                 m = m[2:]
+#                 usermoney = int(m)
+#                 if not (user in note.content):
+#                     await message.channel.send("등록되어있지 않은 유저입니다.")
+#                     return
+#                 else:
+#                     notec = note.content
+#                     notec = notec.split("\n")[1:]
+#                     for i in range(len(notec)):
+#                         if notec[i].startswith(user):
+#                             noten = i
+#                     notec[noten] = notec[noten][:24] + str(int(notec[noten][24:])+usermoney)
+#                     notem = "이름 : 돈\n" + "\n".join(notec)
+#                     await note.edit(content = notem)
+#                     await message.channel.send("완료")
+#             if message.content.startswith("!등록"):
+#                 mm = message.content[4:]
+#                 m = ""
+#                 for i in mm:
+#                     if i in "1234567890":
+#                         m += i
+#                 if len(m) != 18:
+#                     await message.channel.send("잘못된 유저입니다.")
+#                     return
+#                 if m in note.content:
+#                     await message.channel.send("이미 등록되었습니다.")
+#                     return
+#                 else:
+#                     await note.edit(content=f"{note.content}\n<@{m}> : 0")
+#                     await message.channel.send("완료")
 
-    if message.guild.id == 798353590040920094:
-        return
+#     if message.guild.id == 798353590040920094:
+#         return
     
     if message.guild.id == 826264040740618301:
         global note2
@@ -799,8 +799,7 @@ async def on_message(message):
             await message.channel.send(get_last_video_by_search(m))
             
         elif 시작(",로그테스트") and 관리():
-            m = ' '.join(m.split(' ')[1:])
-            await log(m)
+            await log('a'*2003)
 
         elif 시작(",테스트") and 관리():
             m = m.split(' ')[1:]
@@ -1349,7 +1348,7 @@ async def on_message(message):
 
     except Exception as e:
         await message.add_reaction(엑스)
-        await client.get_channel(762916201654386701).send(f"""
+        await log(f"""
 -----
 <@526889025894875158> 에러!!!
 {시간()}
