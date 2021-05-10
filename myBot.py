@@ -114,7 +114,7 @@ async def real_log(s):
     else:
         await client.get_channel(762916201654386701).send(s)
         
-def log(s)
+def log(s):
     asyncio.run(real_log(s))
     
 @client.event
