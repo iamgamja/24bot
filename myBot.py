@@ -812,7 +812,9 @@ async def on_message(message):
                 o2[i1] = eval(i2)
             m = ' '.join(m[number:])
             await eval(m)(**o2)
-            
+
+        elif 시작("ㅇ") and message.guild.id == 768697423446540318:
+            await message.channel.send(f"{random.choice([체크,크체])}")
 
         elif 시작(",초대코드") and 관리():
             m = ' '.join(m.split(' ')[1:])
