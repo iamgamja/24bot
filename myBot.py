@@ -17,7 +17,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
 
-DEVELOPER_KEY = "AIzaSyCi4egnEJMuuppfrXjfcM76QYhn8KvOLfk"
+DEVELOPER_KEY = os.environ["DEVELOPER_KEY"]
 YOUTUBE_API_SERVICE_NAME="youtube"
 YOUTUBE_API_VERSION="v3"
 service = build(YOUTUBE_API_SERVICE_NAME,YOUTUBE_API_VERSION,developerKey=DEVELOPER_KEY)
