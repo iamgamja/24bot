@@ -1290,7 +1290,7 @@ async def on_message(message):
                     #랭크적용...
                     userTotalRank += money
                     if userTotalRank < 0:
-                        await message.channel.send("이런! 랭크가 부족합니다.")
+                        await message.channel.send("랭크가 부족합니다.")
                         return
 
                 # 역할 제거
@@ -1300,7 +1300,7 @@ async def on_message(message):
                        i.name in Tears or \
                        i.name in Agains_10 or \
                        i.name in Agains_01 or \
-                       i.name in God2 or \
+                       i.name in God1 or \
                        i.name in God_Agains_10 or \
                        i.name in God_Agains_01:
                         await user.remove_roles(i)
