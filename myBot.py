@@ -413,7 +413,7 @@ async def on_message(message):
                 order = "date"
             ).execute()['items'][0]
 
-            return video['snippet']['title'] + '\n' + get_thumbnail_by_id(video['id']['videoId'])
+            return video['snippet']['title'] + '\n' + get_thumbnail_by_id(video['id']['videoId']) + '\n' + 'https://i.ytimg.com/vi/' + video['id']['videoId'] + '/original.jpg'
 
         if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640, 794146499034480661):
             #랭크업, 시간, 도박장, 도박2 에서의 슷칼봇 메시지 삭제
