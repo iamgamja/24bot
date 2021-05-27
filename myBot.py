@@ -73,7 +73,6 @@ client = discord.Client(intents=intents)
 똥달 = "https://cdn.discordapp.com/attachments/740144542753357845/740161338218905600/117_20200804190557.png"
 # 기능
 도배 = True
-출력 = ""      # ,계산 명령어에 사용
 기억 = {}      # ,기억 명령어에 사용
 피버 = False   # ,피버 명령어에 사용
 # note = None
@@ -383,18 +382,16 @@ async def on_message(message):
             ).execute()['items'][0]['snippet']['thumbnails'].values()
             thumbnails = list(thumbnails)
             thumbnails.sort(key=lambda x: x['width'])
-            return thumbnails[-1]['url']
+            return f"{thumbnails[-1]['url']}\nhttps://i.ytimg.com/vi/{id}/original.jpg"
                 
         def get_thumbnail_by_url(url):
             try_re1 = re.match(r'https://youtu[.]be/(.+)(\?.+)?', url) # 단축 url
-            try_re2 = re.match(r'https://youtube[.]com/watch[?]v=(.+)(&.+)?', url) # 일반 url
+            try_re2 = re.match(r'https://www.youtube[.]com/watch[?]v=(.+)(&.+)?', url) # 일반 url
             try_re = try_re1 or try_re2 # 둘중 match 된것
-
+            
             if not try_re:
                 return '올바르지 않은 url 형식입니다.'
-
             matched_video_id = try_re.group(1)
-            
             return get_thumbnail_by_id(matched_video_id)
             
         def get_last_video_by_search(search):
@@ -412,8 +409,7 @@ async def on_message(message):
                 type = "video",
                 order = "date"
             ).execute()['items'][0]
-
-            return video['snippet']['title'] + '\n' + get_thumbnail_by_id(video['id']['videoId']) + '\n' + 'https://i.ytimg.com/vi/' + video['id']['videoId'] + '/original.jpg'
+            return f"{video['snippet']['title']}\n{get_thumbnail_by_id(video['id']['videoId'])}"
 
         if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640, 794146499034480661):
             #랭크업, 시간, 도박장, 도박2 에서의 슷칼봇 메시지 삭제
@@ -650,6 +646,10 @@ async def on_message(message):
         elif 시작(",썸네일"):
             m = ' '.join(m.split(' ')[1:])
             await message.channel.send(get_thumbnail_by_url(m))
+            
+        elif 시작(",최신영상") and 관리():
+            m = ' '.join(m.split(' ')[1:])
+            await message.channel.send(get_last_video_by_search(m))
 
         elif 시작(",역할생성") and 관리():
             m = ' '.join(m.split(' ')[1:])
@@ -742,14 +742,7 @@ async def on_message(message):
                 await msg.edit(content=msg.content+"\n**잭팟!**")
             if a in [(1,1,2) , (1,1,3) , (1,2,2) , (2,2,3) , (1,3,3) , (2,3,3)]:
                 await msg.edit(content=msg.content+"\n**빅윈!**")
-
-        elif 시작(",최신영상") and 관리():
-            m = ' '.join(m.split(' ')[1:])
-            await message.channel.send(get_last_video_by_search(m))
             
-        elif 시작(",로그테스트") and 관리():
-            await log('a'*2003)
-
         elif 시작(",테스트") and 관리():
             m = m.split(' ')[1:]
             number = int(m[0])
@@ -846,7 +839,15 @@ async def on_message(message):
                 outputmsg = str(eval(m))
 
             await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
-        
+            
+        elif 시작(",await코드") and 관리():
+            m = ' '.join(m.split(' ')[1:])
+            
+            exec('global awaitFunction\ndef awaitFunction():\n' + '\n'.join(list(map(m.split('\n')[:-1], lambda x: '    '+x))) + '\n    return' + m.split('\n')[-1])
+            outputmsg = await awaitFunction()
+
+            await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
+            
         elif 시작(",계산"):
             m = ' '.join(m.split(' ')[1:])            
             f = ''
@@ -909,6 +910,21 @@ async def on_message(message):
 
             
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
         if message.guild is None: # dm
             return
         if message.author.bot:
@@ -916,6 +932,8 @@ async def on_message(message):
         
         
 
+        
+        
         
         ##### 여기서부터는 ihs 관련 코드임. #####
 
