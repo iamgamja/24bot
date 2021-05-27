@@ -842,6 +842,11 @@ async def on_message(message):
             
         elif 시작(",await코드") and 관리():
             m = ' '.join(m.split(' ')[1:])
+            await log('global awaitFunction\nasync def awaitFunction():\n')
+            await log(list(map(m.split('\n')[:-1], lambda x: '    '+x)))
+            await log('\n'.join(list(map(m.split('\n')[:-1], lambda x: '    '+x))))
+            await log('\n    return')
+            await log(m.split('\n')[-1]))
             
             exec('global awaitFunction\nasync def awaitFunction():\n' + '\n'.join(list(map(m.split('\n')[:-1], lambda x: '    '+x))) + '\n    return' + m.split('\n')[-1])
             outputmsg = await awaitFunction()
