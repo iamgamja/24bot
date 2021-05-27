@@ -516,7 +516,10 @@ async def on_message(message):
         elif 시작(",말"):
             m = ' '.join(m.split(' ')[1:])
             if not 도배: return
-            await message.channel.send(m)
+            try:
+                await message.channel.send(m)
+            except:
+                await message.channel.send('말을 할수 없는')
         elif 시작(",도배 멈춰!"):
             도배 = False
             await asyncio.sleep(7.0)
