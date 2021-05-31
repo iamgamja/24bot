@@ -110,8 +110,8 @@ async def log(s):
     
     print(s)
     if len(s) > 2000:
-        await client.get_channel(762916201654386701).send(s[:2001])
-        await log(s[2001:])
+        await client.get_channel(762916201654386701).send(s[:2000])
+        await log(s[2000:])
     else:
         await client.get_channel(762916201654386701).send(s)
     
