@@ -3,3 +3,4 @@ requests
 google-api-python-client
 google
 google_auth_oauthlib
+beautifulsoup4
