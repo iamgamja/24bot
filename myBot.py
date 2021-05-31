@@ -5,6 +5,8 @@ import asyncio
 import traceback
 import requests
 
+from bs4 import BeautifulSoup
+
 import json
 import html
 
