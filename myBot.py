@@ -24,7 +24,6 @@ YOUTUBE_API_SERVICE_NAME="youtube"
 YOUTUBE_API_VERSION="v3"
 service = build(YOUTUBE_API_SERVICE_NAME,YOUTUBE_API_VERSION,developerKey=DEVELOPER_KEY)
 
-
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
