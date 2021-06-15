@@ -115,8 +115,7 @@ async def on_message(message):
         def 시작(s):
             return k2e(m).startswith(k2e(s))
 
-        def 관리(): # 관리자(감자#9400)인지 확인
-            return message.author.id == 526889025894875158
+        관리 = (message.author.id == 526889025894875158)
         
         if message.author.id == 405664776954576896 and message.channel.id in (766932314973929527, 783516524685688842, 784228694940057640, 794146499034480661):
             #랭크업, 시간, 도박장, 도박2 에서의 슷칼봇 메시지 삭제
@@ -202,10 +201,10 @@ async def on_message(message):
         elif 시작(",정보"):
             await message.channel.send(f"만든사람: <@526889025894875158>")
 
-        elif 시작(",에블핑") and 관리():
+        elif 시작(",에블핑") and 관리:
             await message.channel.send("@everyone")
 
-        elif 시작(",히어핑") and 관리():
+        elif 시작(",히어핑") and 관리:
             await message.channel.send("@here")
 
         elif 시작(",프사"):
@@ -326,7 +325,7 @@ async def on_message(message):
                 await message.channel.send(j)
             await message.channel.send(f"{mine_x} * {mine_y}, 지뢰 수: {mine_z}")
 
-        elif 시작(",청소") and 관리():
+        elif 시작(",청소") and 관리:
             m = ' '.join(m.split(' ')[1:])
             await message.channel.purge(limit=int(m)+1)
             msg = await message.channel.send(f"{m}개의 메시지를 지움")
@@ -349,11 +348,11 @@ async def on_message(message):
             m = ' '.join(m.split(' ')[1:])
             await message.channel.send(get_thumbnail_by_url(m))
             
-        elif 시작(",최신영상") and 관리():
+        elif 시작(",최신영상") and 관리:
             m = ' '.join(m.split(' ')[1:])
             await message.channel.send(get_last_video_by_search(m))
 
-        elif 시작(",역할생성") and 관리():
+        elif 시작(",역할생성") and 관리:
             m = ' '.join(m.split(' ')[1:])
             try:
                 await message.guild.create_role(name=m)
@@ -361,7 +360,7 @@ async def on_message(message):
             except:
                 await message.add_reaction(엑스)
 
-        elif 시작(",역할제거") and 관리():
+        elif 시작(",역할제거") and 관리:
             m = ' '.join(m.split(' ')[1:])
             try:
                 role = discord.utils.get(message.guild.roles, name=m)
@@ -370,7 +369,7 @@ async def on_message(message):
             except:
                 await message.add_reaction(엑스)
 
-        elif 시작(",채널생성") and 관리():
+        elif 시작(",채널생성") and 관리:
             m = ' '.join(m.split(' ')[1:])
             try:
                 category = discord.utils.get(message.guild.categories, name=' '.join(m.split(' ')[:-1]))
@@ -379,7 +378,7 @@ async def on_message(message):
             except:
                 await message.add_reaction(엑스)
 
-        elif 시작(",채널제거") and 관리():
+        elif 시작(",채널제거") and 관리:
             m = ' '.join(m.split(' ')[1:])
             try:
                 channel = discord.utils.get(message.guild.channels, name=m)
@@ -408,7 +407,7 @@ async def on_message(message):
             if a in [(1,1,2) , (1,1,3) , (1,2,2) , (2,2,3) , (1,3,3) , (2,3,3)]:
                 await msg.edit(content=msg.content+"\n**빅윈!**")
             
-        elif 시작(",테스트") and 관리():
+        elif 시작(",테스트") and 관리:
             m = m.split(' ')[1:]
             number = int(m[0])
             m = m[1:]
@@ -420,7 +419,7 @@ async def on_message(message):
             m = ' '.join(m[number:])
             await eval(m)(**o2)
 
-        elif 시작(",초대코드") and 관리():
+        elif 시작(",초대코드") and 관리:
             m = ' '.join(m.split(' ')[1:])
             try_list = ['', '', '', '', ''] # 10진 아스키, 16진 아스키, 10진 아스키(대문자.), 16진 아스키(대문자.), 알파벳 순서(대문자.숫자,)
             for i in m.split():
@@ -495,7 +494,7 @@ async def on_message(message):
         elif 시작(",초대"):
             await message.channel.send("https://discord.com/oauth2/authorize?&client_id=688978156535021599&scope=bot&permissions=8")
                 
-        elif 시작(",코드") and 관리():
+        elif 시작(",코드") and 관리:
             m = ' '.join(m.split(' ')[1:])
             if '\n' in m:
                 exec('global 출력\n' + '\n'.join(m.split('\n')[:-1]) + '\n출력=' + m.split('\n')[-1])
@@ -505,7 +504,7 @@ async def on_message(message):
 
             await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
             
-        elif 시작(",await코드") and 관리():
+        elif 시작(",await코드") and 관리:
             m = ' '.join(m.split(' ')[1:])
             
             exec('global awaitFunction\nasync def awaitFunction():\n' + '\n'.join(list(map(lambda x: '    '+x, m.split('\n')[:-1]))) + '\n    return ' + m.split('\n')[-1])
