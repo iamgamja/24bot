@@ -78,16 +78,6 @@ def 시간():
     n        = kor_time.strftime('%Y-%m-%d %p %I:%M:%S')
     return n
 
-async def log(s):
-    s = str(s)
-    
-    print(s)
-    if len(s) > 2000:
-        await client.get_channel(762916201654386701).send(s[:2000])
-        await log(s[2000:])
-    else:
-        await client.get_channel(762916201654386701).send(s)
-
 def k2e(m):
     
     배코 = 44032
