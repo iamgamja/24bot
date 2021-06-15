@@ -1026,11 +1026,11 @@ async def on_message(message):
                     await message.channel.send("피버타임이 *꺼*졌습니다")
 
 
-            if (시작(",+") or 시작(",-")) and message.author.id == 647001590766632966:
+            if (시작(",+") or 시작(",-")) and message.author.id in (647001590766632966, 725528129648721920):
                 case = 1 # +-
             elif message.channel.id in (766932314973929527, 783516524685688842):
                 case = 2 # 랭크업
-            elif message.channel.id == 784228694940057640 or message.channel.id == 794146499034480661:
+            elif message.channel.id in (784228694940057640, 794146499034480661):
                 case = 3 # 도박
             elif 시작(",일급") and message.author.id == 647001590766632966:
                 case = 4 # 일급
@@ -1167,6 +1167,8 @@ async def on_message(message):
                 if case == 4: # 일급일때
                     money = users[user] * a
                 # 역할 찾아서 랭크 계산
+                if user.id == 725528129648721920:
+                    await message.channel.send('put ut down님은 지금 랭크업을 할 수 없습니다.') ; continue
                 userRank = 0
 
                 userGod = ''
@@ -1180,18 +1182,18 @@ async def on_message(message):
                     if Ranks_10[i] in [i.id for i in user.roles]:
                         userRank += i*10 ; break
                 else:
-                    await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+                    await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; continue
                 for i in range(len(Ranks_01)):
                     if Ranks_01[i] in [i.id for i in user.roles]:
                         userRank += i ; break
                 else:
-                    await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+                    await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; continue
 
                 for i in range(len(Tears)):
                     if Tears[i] in [i.name for i in user.roles]:
                         userTear = i ; break
                 else:
-                    await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; return
+                    await message.channel.send(f"{user}의 역할을 찾을수 없습니다.. 잠시 뒤에 시도해보세요") ; continue
 
                 userAgain = 0
                 for i in range(len(Agains_10)):
