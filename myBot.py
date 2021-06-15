@@ -3,6 +3,15 @@ from imports import *
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
+async def log(s):
+    s = str(s)
+    
+    print(s)
+    if len(s) > 2000:
+        await client.get_channel(762916201654386701).send(s[:2000])
+        await log(s[2000:])
+    else:
+        await client.get_channel(762916201654386701).send(s)
     
 @client.event
 async def on_ready():
