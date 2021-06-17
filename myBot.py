@@ -808,8 +808,6 @@ async def on_message(message):
                 if case == 4: # 일급일때
                     money = users[user] * a
                 # 역할 찾아서 랭크 계산
-                if user.id == 725528129648721920:
-                    await message.channel.send('put ut down님은 지금 랭크업을 할 수 없습니다.') ; continue
                 userRank = 0
 
                 userGod = ''
