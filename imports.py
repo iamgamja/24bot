@@ -19,11 +19,16 @@ import google.oauth2.credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
+import wolframalpha
+
 #var
 DEVELOPER_KEY = os.environ["DEVELOPER_KEY"]
 YOUTUBE_API_SERVICE_NAME="youtube"
 YOUTUBE_API_VERSION="v3"
 service = build(YOUTUBE_API_SERVICE_NAME,YOUTUBE_API_VERSION,developerKey=DEVELOPER_KEY)
+
+W_app_id = os.environ["wolframalpha_key"]
+W_client = wolframalpha.Client(W_app_id)
 
 체크 = "✅"
 엑스 = "❌"
