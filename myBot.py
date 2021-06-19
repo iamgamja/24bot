@@ -521,7 +521,7 @@ async def on_message(message):
         elif 시작(",계산"):
             m = ' '.join(m.split(' ')[1:])
             
-            response = client.query(m)
+            response = W_client.query(m)
             result = list(response.results)[-1]
             f = result.text
             
