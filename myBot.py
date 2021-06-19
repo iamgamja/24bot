@@ -149,16 +149,6 @@ async def on_message(message):
         #                    f"guild_id: `{message.guild.id}`\n"    )
         #    return
         
-        if message.channel.id == 743339107731767366: # 숫자세기채널일경우
-            number = m[:5] # ???: 어차피 5자리니까 처음부터 5글자로하샌즈
-            if len(number) == 5 and number.isdecimal(): #5글자 숫자로 시작할경우에만 반응달기
-                if number.endswith("52"):
-                    await message.add_reaction("🥒") # 52
-                if number.endswith("69"):
-                    await message.add_reaction("♋") # 69
-                if number == number[::-1]: # 거울수라면
-                    await message.add_reaction("🪞") # 거울
-        
         if '@everyone' in m or '@here' in m:
             return
 
@@ -524,30 +514,20 @@ async def on_message(message):
             m = ' '.join(m.split(' ')[1:])
             
             exec('global awaitFunction\nasync def awaitFunction():\n' + '\n'.join(list(map(lambda x: '    '+x, m.split('\n')[:-1]))) + '\n    return ' + m.split('\n')[-1])
-            outputmsg = await awaitFunction()
+            outputmsg = str(await awaitFunction())
 
             await message.channel.send(outputmsg[:2000-3]+'...' if len(outputmsg) > 2000 else outputmsg)
             
         elif 시작(",계산"):
-            m = ' '.join(m.split(' ')[1:])            
-            f = ''
-            for i in m:
-                if i in "π파이원주율√루트^1234567890+-*/×÷()":
-                    f += i
-
-            f = f.replace("×", "*")
-            f = f.replace("÷", "/")
-            f = f.replace("π", "math.pi")
-            f = f.replace("파이", "math.pi")
-            f = f.replace("원주율", "math.pi")
-            f = f.replace("√", "math.sqrt")
-            f = f.replace("루트", "math.sqrt")
-            f = f.replace("^", "**")
+            m = ' '.join(m.split(' ')[1:])
             
-            await message.channel.send(eval(f))
+            response = client.query(m)
+            result = list(response.results)[-1]
+            f = result.text
+            
+            await message.channel.send(f)
             
             
-        
         elif 시작(",올려") and message.guild.id == 743101101401964647:
             m = ' '.join(m.split(' ')[1:])
             for i in range(int(m)):
@@ -555,9 +535,6 @@ async def on_message(message):
                 
         elif 시작("섬바삭보") and message.guild.id == 743101101401964647:
             await message.channel.send("ㄹㅇㅋㅋ 섬ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ밬ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ삭ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ봌ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
-            
-        elif 시작(",뀨") and message.guild.id == 743101101401964647:
-            await message.channel.send("뀨?!")
             
         elif 시작(",우탐") and message.guild.id == 743101101401964647:
             embed = discord.Embed(title=message.author.display_name, color=0x4849c3)
