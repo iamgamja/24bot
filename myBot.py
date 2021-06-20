@@ -1,5 +1,9 @@
 from imports import *
 
+import discord_ui
+
+discord.ui = discord_ui
+
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 
