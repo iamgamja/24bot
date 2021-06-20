@@ -27,7 +27,7 @@ async def on_ready():
             await client.get_guild(766932314973929522).get_role(855022848224919572).edit(color=colorList[nowColor])
             nowColor = (nowColor+1) % len(colorList)
         except:
-            pass
+            await log(f">>> {e}\n{traceback.format_exc()}")
 
 @client.event
 async def on_message(message):
