@@ -27,7 +27,9 @@ async def on_ready():
             await client.get_guild(766932314973929522).get_role(855022848224919572).edit(color=colorList[nowColor])
             nowColor = (nowColor+1) % len(colorList)
         except:
-            await log(f">>> {e}\n{traceback.format_exc()}")
+            await log(f"-----error\n```\n{traceback.format_exc()}\n```")
+        else:
+            await log(f"-----not error")
 
 @client.event
 async def on_message(message):
