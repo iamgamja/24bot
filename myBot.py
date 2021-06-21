@@ -19,7 +19,7 @@ async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
     await log(f"{시간()}, <@526889025894875158>, 시작")
     
-    def RGB2hex(rgb):
+    async def RGB2hex(rgb):
         r, g, b = rgb['R'], rgb['G'], rgb['B']
         
         r = hex(r)[2:]
@@ -29,7 +29,10 @@ async def on_ready():
         r = r if len(r)!=1 else '0'+r
         g = g if len(g)!=1 else '0'+g
         b = b if len(b)!=1 else '0'+b
-        return int(f'{r}{g}{b}', 16)
+        
+        f = int(f'{r}{g}{b}', 16)
+        await log(f)
+        return f
 
     RGB = {
         'R': 255,
@@ -46,7 +49,7 @@ async def on_ready():
     while not client.is_closed():
         await asyncio.sleep(5)
         try:
-            await client.get_guild(766932314973929522).get_role(855022848224919572).edit(color=RGB2hex(RGB))
+            await client.get_guild(766932314973929522).get_role(855022848224919572).edit(color = await RGB2hex(RGB))
             
             RGB[nowChange[0]] += nowChange[1]
             if RGB[nowChange[0]] == (255 if nowChange[1]>0 else 0):
