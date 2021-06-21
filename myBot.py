@@ -31,7 +31,7 @@ async def on_ready():
         b = b if len(b)!=1 else '0'+b
         
         f = int(f'{r}{g}{b}', 16)
-        await log(f)
+        await log(hex(f))
         return f
 
     RGB = {
