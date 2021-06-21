@@ -49,7 +49,12 @@ async def on_ready():
     while not client.is_closed():
         await asyncio.sleep(5)
         try:
-            await client.get_guild(766932314973929522).get_role(855022848224919572).edit(color=RGB2hex(RGB))
+            N_role = client.get_guild(766932314973929522).get_role(855022848224919572)
+            before_color = str(N_role.color)
+            await N_role.edit(color=RGB2hex(RGB))
+            after_color = str(N_role.color)
+            if before_color == after_color:
+                await log('<@526889025894875158> 야 안바꼈는데??')
             
             RGB[nowChange[0]] += nowChange[1]
             if RGB[nowChange[0]] == (255 if nowChange[1]>0 else 0):
