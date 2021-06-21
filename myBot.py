@@ -47,7 +47,7 @@ async def on_ready():
     
     nowChange = ['G', +85]
     while not client.is_closed():
-        await asyncio.sleep(180)
+        await asyncio.sleep(30)
         try:
             N_role = client.get_guild(766932314973929522).get_role(855022848224919572)
             before_color = str(N_role.color)
@@ -55,19 +55,20 @@ async def on_ready():
             after_color = str(N_role.color)
             
             if before_color == after_color:
-                await log(f'<@526889025894875158> 야 안바꼈는데?? {before_color}에서 {after_color}임;;')
+                await log(f'<@526889025894875158> 안바뀜; {before_color}에서 {after_color}임')
             else:
-                await log(f'바뀐것같음. {before_color}에서 {after_color}임')
+                await log(f'바뀜. {before_color}에서 {after_color}임')
                 
             RGB[nowChange[0]] += nowChange[1]
             if RGB[nowChange[0]] == (255 if nowChange[1]>0 else 0):
                 nowChange[0] = rgb_spin[nowChange[0]]
                 nowChange[1] = -nowChange[1]
             
-        except:
+        except Exception as e:
+            await log(f"error! {e}")
             await log(f"-----error: <@526889025894875158>\n```\n{traceback.format_exc()}\n```")
         else:
-            # await log(f"-----not error")
+            await log(f"-----not error")
             pass
 
 @client.event
