@@ -18,18 +18,46 @@ async def on_ready():
     print('시작')
     await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
     await log(f"{시간()}, <@526889025894875158>, 시작")
+    
+    def RGB2hex(rgb):
+        r, g, b = rgb['R'], rgb['G'], rgb['B']
+        
+        r = hex(r)[2:]
+        g = hex(g)[2:]
+        b = hex(b)[2:]
+        
+        r = r if len(r)!=1 else '0'+r
+        g = g if len(g)!=1 else '0'+g
+        b = b if len(b)!=1 else '0'+b
+        return int(f'{r}{g}{b}', 16)
 
-    colorList = [0xff0000, 0xff7f00, 0xffd400, 0x81c147, 0x008000, 0x0067a3, 0x8b00ff, 0xffc0cb]
-    nowColor = 0
+    RGB = {
+        'R': 255,
+        'G': 0,
+        'B': 0
+    }
+    rgb_spin = {
+        'R': 'B',
+        'G': 'R',
+        'B': 'G'
+    }
+    
+    nowChange = ['G', +85]
     while not client.is_closed():
         await asyncio.sleep(5)
         try:
-            await client.get_guild(766932314973929522).get_role(855022848224919572).edit(color=colorList[nowColor])
-            nowColor = (nowColor+1) % len(colorList)
+            await client.get_guild(766932314973929522).get_role(855022848224919572).edit(color=RGB2hex(RGB))
+            
+            RGB[nowChange[0]] += nowChange[1]
+            if RGB[nowChange[0]] == (255 if nowChange[1]>0 else 0):
+                nowChange[0] = rgb_spin[nowChange[0]]
+                nowChange[1] = -nowChange[1]
+            
         except:
-            await log(f"-----error\n```\n{traceback.format_exc()}\n```")
+            await log(f"-----error: <@526889025894875158>\n```\n{traceback.format_exc()}\n```")
         else:
-            await log(f"-----not error")
+            # await log(f"-----not error")
+            pass
 
 @client.event
 async def on_message(message):
