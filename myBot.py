@@ -47,7 +47,7 @@ async def on_ready():
     
     nowChange = ['G', +85]
     while not client.is_closed():
-        await asyncio.sleep(30)
+        await asyncio.sleep(180)
         try:
             N_role = client.get_guild(766932314973929522).get_role(855022848224919572)
             before_color = str(N_role.color)
