@@ -46,18 +46,21 @@ async def on_ready():
     }
     
     nowChange = ['G', +85]
+
+    N_role = client.get_guild(766932314973929522).get_role(855022848224919572)
+    N_msg = client.get_channel(762916201654386701).fetch_message(856802676468875264)
+
     while not client.is_closed():
         await asyncio.sleep(30)
         try:
-            N_role = client.get_guild(766932314973929522).get_role(855022848224919572)
             before_color = str(N_role.color)
-            await N_role.edit(color=RGB2hex(RGB))
+            await N_role.edit(color=RGB2hex(RGB)) # 나중에 혹시 안되면 여기를 time over 하다
             after_color = str(N_role.color)
             
             if before_color == after_color:
-                await log(f'<@526889025894875158> 안바뀜; {before_color}에서 {after_color}임')
+                await log(f'<@526889025894875158>{before_color} → {after_color}')
             else:
-                await log(f'바뀜. {before_color}에서 {after_color}임')
+                await N_msg.edit(content = f'-----성공!\n{시간()}\n{before_color} → {after_color}\n-----')
                 
             RGB[nowChange[0]] += nowChange[1]
             if RGB[nowChange[0]] == (255 if nowChange[1]>0 else 0):
@@ -65,10 +68,9 @@ async def on_ready():
                 nowChange[1] = -nowChange[1]
             
         except Exception as e:
-            await log(f"error! {e}")
             await log(f"-----error: <@526889025894875158>\n```\n{traceback.format_exc()}\n```")
         else:
-            await log(f"-----not error")
+            #await log(f"-----not error")
             pass
 
 @client.event
