@@ -48,7 +48,7 @@ async def on_ready():
     nowChange = ['G', +85]
 
     N_role = client.get_guild(766932314973929522).get_role(855022848224919572)
-    N_msg = client.get_channel(762916201654386701).fetch_message(856802676468875264)
+    N_msg = await client.get_channel(762916201654386701).fetch_message(856802676468875264)
 
     while not client.is_closed():
         await asyncio.sleep(30)
@@ -58,7 +58,7 @@ async def on_ready():
             after_color = str(N_role.color)
             
             if before_color == after_color:
-                await log(f'<@526889025894875158>{before_color} → {after_color}')
+                await log(f'-----<@526889025894875158> 실패!\n{시간()}\n{before_color} → {after_color}\n-----')
             else:
                 await N_msg.edit(content = f'-----성공!\n{시간()}\n{before_color} → {after_color}\n-----')
                 
@@ -1036,15 +1036,15 @@ async def on_message(message):
 {시간()}
 
 에러::
-e: ```{e}```
-sys.exc_info(): ```{sys.exc_info()}```
-traceback.format_exc(): ```{traceback.format_exc()}```
+e: ```\n{e}\n```
+sys.exc_info(): ```\n{sys.exc_info()}\n```
+traceback.format_exc(): ```\n{traceback.format_exc()}\n```
 
 메시지::
 링크: {message.jump_url}
-서버: {message.guild} ({message.guild.id})
-채널: {message.channel} ({message.channel.id})
-보낸이: {message.author} ({message.author.id})
+서버: {message.guild}
+채널: {message.channel}
+보낸이: {message.author}
 
 {message}
 -----
