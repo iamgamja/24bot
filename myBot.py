@@ -1,7 +1,7 @@
 from imports import *
 
 intents = discord.Intents.all()
-client = discord.Client(intents=intents)
+client = discord.ext.commands.Bot(',', intents=intents)
 
 async def log(s):
     s = str(s)
@@ -72,6 +72,12 @@ async def on_ready():
         else:
             #await log(f"-----not error")
             pass
+        
+@bot.event
+async def on_button_click(res):
+    await res.respond(
+        type=InteractionType.ChannelMessageWithSource, content=f"{res.component.label} pressed"
+    )
 
 @client.event
 async def on_message(message):
@@ -238,7 +244,7 @@ async def on_message(message):
             else:
                 embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="`,도움 <명령어>`로 세부 도움말을 확인할수 있습니다", inline=False)
                 embed.add_field(name="**`도움`**", value="`도움`", inline=False)
-                embed.add_field(name="**`재미`**", value="`핑` ~~`에블핑`~~ ~~`히어핑`~~ `지뢰찾기` `슬롯` `롯슬`", inline=False)
+                embed.add_field(name="**`재미`**", value="`핑` ~~`에블핑`~~ ~~`히어핑`~~ `지뢰찾기` `슬롯`", inline=False)
                 embed.add_field(name="**`기능`**", value="`프사` `말` `계산` ~~`청소`~~ `임베드` ~~`역할생성`~~ ~~`역할제거`~~ ~~`채널생성`~~ ~~`채널제거`~~ `시간` `한영` `영한` `번역` `썸네일` `기억`", inline=False)
                 embed.add_field(name="**`기타`**", value="`초대` `정보`", inline=False)
                 
@@ -471,6 +477,14 @@ async def on_message(message):
                 o2[i1] = eval(i2)
             m = ' '.join(m[number:])
             await eval(m)(**o2)
+            
+        elif 시작(",버튼") and 관리:
+            await message.channel.send(
+                "와!",
+                components=[
+                    Button(style=ButtonStyle.random_color(), label="wa!")
+                ]
+            )
 
         elif 시작(",초대코드") and 관리:
             m = ' '.join(m.split(' ')[1:])
