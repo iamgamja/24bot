@@ -73,7 +73,7 @@ async def on_ready():
             #await log(f"-----not error")
             pass
         
-@bot.event
+@client.event
 async def on_button_click(res):
     await res.respond(
         type=InteractionType.ChannelMessageWithSource, content=f"{res.component.label} pressed"
