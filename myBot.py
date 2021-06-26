@@ -18,7 +18,8 @@ async def on_ready():
     print('시작')
     await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
     await log(f"{시간()}, <@526889025894875158>, 시작")
-    
+    DiscordComponents(client)
+    # [무지개] 색
     def RGB2hex(rgb):
         r, g, b = rgb['R'], rgb['G'], rgb['B']
         
