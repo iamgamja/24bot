@@ -188,49 +188,52 @@ async def on_message(message):
     if message.guild.id == 857545260816138251:
         if message.author.id == 647001590766632966:
             if message.content.startswith(",+") or message.content.startswith(",-"):
-                money = int(message.cotent.split()[0][1:])
+                try:
+                    money = int(message.cotent.split()[0][1:])
                 
-                user = message.content.split()[1]
-                userid = ''
-                for i in user:
-                    if i in '1234567890':
-                        userid += i
+                    user = message.content.split()[1]
+                    userid = ''
+                    for i in user:
+                        if i in '1234567890':
+                            userid += i
                 
-                user = await message.guild.fetch_member(int(userid))
+                    user = await message.guild.fetch_member(int(userid))
                 
-                level_10 = [857554305065156608, 857554349126844417, 857554366842929164, 857554378516594730, 857554399891030097, 857554413656342538, 857554426847297556, 857554437030412308, 857554446342160384, 857554456745082890]
-                level_01 = [857554543206596608, 857554613062205490, 857554647773085696, 857554657751859240, 857554667861311488, 857554676484145152, 857554685689987102, 857554702329839616, 857554715008565260, 857554731320868884]
-                exp_100 = [857555085957922816, 857555101199237121, 857555119193456640, 857555133474406402, 857555150525038643, 857555300885200906, 857555315046350858, 857555325162225665, 857555337242869760, 857555346242928660]
-                exp_010 = [857555356509929513, 857555372083642439, 857555382003302410, 857555390966530048, 857555402122854400, 857555421791125504, 857555431945273354, 857555444846690324, 857555456221380638, 857555466930094100]
-                exp_001 = [857555477574189067, 857555489830862848, 857555519845564416, 857555520822575104, 857555572868775946, 857555585699938324, 857555593437904926, 857555606268280833, 857555616376684554, 857555622954663947]
+                    level_10 = [857554305065156608, 857554349126844417, 857554366842929164, 857554378516594730, 857554399891030097, 857554413656342538, 857554426847297556, 857554437030412308, 857554446342160384, 857554456745082890]
+                    level_01 = [857554543206596608, 857554613062205490, 857554647773085696, 857554657751859240, 857554667861311488, 857554676484145152, 857554685689987102, 857554702329839616, 857554715008565260, 857554731320868884]
+                    exp_100 = [857555085957922816, 857555101199237121, 857555119193456640, 857555133474406402, 857555150525038643, 857555300885200906, 857555315046350858, 857555325162225665, 857555337242869760, 857555346242928660]
+                    exp_010 = [857555356509929513, 857555372083642439, 857555382003302410, 857555390966530048, 857555402122854400, 857555421791125504, 857555431945273354, 857555444846690324, 857555456221380638, 857555466930094100]
+                    exp_001 = [857555477574189067, 857555489830862848, 857555519845564416, 857555520822575104, 857555572868775946, 857555585699938324, 857555593437904926, 857555606268280833, 857555616376684554, 857555622954663947]
                 
-                user_money = ['0', '1', '0', '0', '0']
-                for i in user.roles:
-                    if i.id in level_10:
-                        user_money[0] = i.name ; await user.remove_roles(i)
-                    elif i.id in level_01:
-                        user_money[1] = i.name ; await user.remove_roles(i)
-                    elif i.id in exp_100:
-                        user_money[2] = i.name ; await user.remove_roles(i)
-                    elif i.id in exp_010:
-                        user_money[3] = i.name ; await user.remove_roles(i)
-                    elif i.id in exp_001:
-                        user_money[4] = i.name ; await user.remove_roles(i)
+                    user_money = ['0', '1', '0', '0', '0']
+                    for i in user.roles:
+                        if i.id in level_10:
+                            user_money[0] = i.name ; await user.remove_roles(i)
+                        elif i.id in level_01:
+                            user_money[1] = i.name ; await user.remove_roles(i)
+                        elif i.id in exp_100:
+                            user_money[2] = i.name ; await user.remove_roles(i)
+                        elif i.id in exp_010:
+                            user_money[3] = i.name ; await user.remove_roles(i)
+                        elif i.id in exp_001:
+                            user_money[4] = i.name ; await user.remove_roles(i)
                         
-                usermoney = int(''.join(user_money))
-                usermoney += money
+                    usermoney = int(''.join(user_money))
+                    usermoney += money
                 
-                if usermoney >= 100000:
-                    await message.channel.send(f"{user}이 100레벨이 되었습니다.") ; return
+                    if usermoney >= 100000:
+                        await message.channel.send(f"{user}이 100레벨이 되었습니다.") ; return
                 
-                await user.add_roles(message.guild.get_role( level_10[int( str(usermoney)[0] )] ))
-                await user.add_roles(message.guild.get_role( level_01[int( str(usermoney)[1] )] ))
-                await user.add_roles(message.guild.get_role(  exp_100[int( str(usermoney)[2] )] ))
-                await user.add_roles(message.guild.get_role(  exp_010[int( str(usermoney)[3] )] ))
-                await user.add_roles(message.guild.get_role(  exp_001[int( str(usermoney)[4] )] ))
+                    await user.add_roles(message.guild.get_role( level_10[int( str(usermoney)[0] )] ))
+                    await user.add_roles(message.guild.get_role( level_01[int( str(usermoney)[1] )] ))
+                    await user.add_roles(message.guild.get_role(  exp_100[int( str(usermoney)[2] )] ))
+                    await user.add_roles(message.guild.get_role(  exp_010[int( str(usermoney)[3] )] ))
+                    await user.add_roles(message.guild.get_role(  exp_001[int( str(usermoney)[4] )] ))
                 
-                await message.add_reaction(체크)
-                
+                    await message.add_reaction(체크)
+                except:
+                    await message.add_reaction(체크)
+                    await log(f"=-=-=☆☆```\n{traceback.format_exc()}\n```")
     if message.guild.id == 857545260816138251:
         return
     
