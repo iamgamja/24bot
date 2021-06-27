@@ -224,11 +224,11 @@ async def on_message(message):
                     if usermoney >= 100000:
                         await message.channel.send(f"{user}이 100레벨이 되었습니다.") ; return
                     await log("*"+str(usermoney)+"*")
-                    await user.add_roles(message.guild.get_role( level_10[int( usermoney%1 // 10000 )] ))
-                    await user.add_roles(message.guild.get_role( level_01[int( usermoney%10 // 1000 )] ))
-                    await user.add_roles(message.guild.get_role(  exp_100[int( usermoney%100 // 100 )] ))
-                    await user.add_roles(message.guild.get_role(  exp_010[int( usermoney%1000 // 10 )] ))
-                    await user.add_roles(message.guild.get_role(  exp_001[int( usermoney%10000 // 1 )] ))
+                    await user.add_roles(message.guild.get_role( level_10[ usermoney // 10000 ] ))
+                    await user.add_roles(message.guild.get_role( level_01[ usermoney // 1000 % 10 ] ))
+                    await user.add_roles(message.guild.get_role(  exp_100[ usermoney // 100 % 100 ] ))
+                    await user.add_roles(message.guild.get_role(  exp_010[ usermoney // 10 % 1000 ] ))
+                    await user.add_roles(message.guild.get_role(  exp_001[ usermoney % 10000 ] ))
                 
                     await message.add_reaction(체크)
                 except:
