@@ -189,7 +189,7 @@ async def on_message(message):
         if message.author.id == 647001590766632966:
             if message.content.startswith(",+") or message.content.startswith(",-"):
                 try:
-                    money = int(message.cotent.split()[0][1:])
+                    money = int(message.content.split()[0][1:])
                 
                     user = message.content.split()[1]
                     userid = ''
