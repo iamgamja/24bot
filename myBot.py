@@ -15,9 +15,10 @@ async def log(s):
     
 @client.event
 async def on_error(event, *args, **kwargs):
+    await log('<@526889025894875158>, error!=====')
     await log(event)
     await log(args)
-    await log(kwargs)
+    await log(kwargs + '=====')
 
 @client.event
 async def on_ready():
@@ -82,6 +83,7 @@ async def on_ready():
         
 @client.event
 async def on_button_click(res):
+    await log('-----dir(res) on_button_click\n' + str(dir(res)))
     await res.respond(
         type=InteractionType.ChannelMessageWithSource, content=f"{res.component.label} pressed"
     )
