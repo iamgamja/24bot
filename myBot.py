@@ -208,12 +208,11 @@ async def on_message(message):
 
 
         filelist = os.listdir("commands")
-        filelist = [f for f in filelist if f.endswith(".py")][1:]
-        filelist = [f[:-3] for f in filelist]
+        filelist = [f[:-3] for f in filelist if f.endswith(".py")][1:]
         filelist.sort(key=lambda x: len(x), reverse=True)
         for file in filelist:
             if 시작("," + file):
-                await eval(f"{file}.{file}")(discord, client, message)
+                await eval(f"commands.{file}.{file}")(discord, client, message)
                 return
 
         if 시작(",도움"):
