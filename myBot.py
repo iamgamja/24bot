@@ -232,7 +232,7 @@ async def on_message(message):
                 
                     await message.add_reaction(체크)
                 except:
-                    await message.add_reaction(체크)
+                    await message.add_reaction(엑스)
                     await log(f"=-=-=☆☆```\n{traceback.format_exc()}\n```")
     if message.guild.id == 857545260816138251:
         return
