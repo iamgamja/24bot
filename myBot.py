@@ -186,7 +186,7 @@ async def on_message(message):
         return
     
     if message.guild.id == 857545260816138251:
-        if message.author.id == 647001590766632966 or message.author.id == 526889025894875158:
+        if message.author.id == 647001590766632966: #or message.author.id == 526889025894875158:
             if message.content.startswith(",+") or message.content.startswith(",-"):
                 try:
                     money = int(message.content.split()[0][1:])
@@ -224,7 +224,7 @@ async def on_message(message):
                 
                     if int(usermoney) >= 100000:
                         await message.channel.send(f"{user}이 100레벨이 되었습니다.") ; return
-                    await log("*"+str(usermoney)+"*")
+                    #await log("*"+str(usermoney)+"*")
                     await user.add_roles(message.guild.get_role( level_10[ int( usermoney[0] ) ] ))
                     await user.add_roles(message.guild.get_role( level_01[ int( usermoney[1] ) ] ))
                     await user.add_roles(message.guild.get_role(  exp_100[ int( usermoney[2] ) ] ))
