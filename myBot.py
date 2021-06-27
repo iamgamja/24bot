@@ -222,7 +222,7 @@ async def on_message(message):
                     usermoney += money
                     usermoney = str(usermoney).zfill(5)
                 
-                    if usermoney >= 100000:
+                    if int(usermoney) >= 100000:
                         await message.channel.send(f"{user}이 100레벨이 되었습니다.") ; return
                     await log("*"+str(usermoney)+"*")
                     await user.add_roles(message.guild.get_role( level_10[ int( usermoney[0] ) ] ))
