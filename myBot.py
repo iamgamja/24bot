@@ -14,6 +14,12 @@ async def log(s):
         await client.get_channel(762916201654386701).send(s)
     
 @client.event
+async def on_error(event, *args, **kwargs):
+    await log(event)
+    await log(args)
+    await log(kwargs)
+
+@client.event
 async def on_ready():
     print('시작')
     await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
@@ -180,9 +186,9 @@ async def on_message(message):
     if message.guild.id == 857545260816138251:
         if message.author.id == 647001590766632966:
             if message.content.startswith(",+") or message.content.startswith(",-"):
-                money = int(message.split()[0][1:])
+                money = int(message.cotent.split()[0][1:])
                 
-                user = message.split()[1]
+                user = message.content.split()[1]
                 userid = ''
                 for i in user:
                     if i in '1234567890':
