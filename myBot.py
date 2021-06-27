@@ -199,15 +199,15 @@ async def on_message(message):
                 user_money = ['0']*5
                 for i in user.roles:
                     if i.id in level_10:
-                        user_money[0] = i.name ; await user.remove_role(i)
+                        user_money[0] = i.name ; await user.remove_roles(i)
                     elif i.id in level_01:
-                        user_money[1] = i.name ; await user.remove_role(i)
+                        user_money[1] = i.name ; await user.remove_roles(i)
                     elif i.id in exp_100:
-                        user_money[2] = i.name ; await user.remove_role(i)
+                        user_money[2] = i.name ; await user.remove_roles(i)
                     elif i.id in exp_010:
-                        user_money[3] = i.name ; await user.remove_role(i)
+                        user_money[3] = i.name ; await user.remove_roles(i)
                     elif i.id in exp_001:
-                        user_money[4] = i.name ; await user.remove_role(i)
+                        user_money[4] = i.name ; await user.remove_roles(i)
                         
                 usermoney = int(''.join(user_money))
                 usermoney += money
