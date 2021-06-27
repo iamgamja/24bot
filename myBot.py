@@ -216,7 +216,7 @@ async def on_message(message):
                 await eval(f"{file}.{file}")(discord, client, message)
                 return
 
-        elif 시작(",도움"):
+        if 시작(",도움"):
             m = ' '.join(m.split(' ')[1:])
             
             help_list = {
