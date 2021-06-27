@@ -207,7 +207,16 @@ async def on_message(message):
             return
 
 
-        if 시작(",도움"):
+        filelist = os.listdir("commands")
+        filelist = [f for f in filelist if f.endswith(".py")][1:]
+        filelist = [f[:-3] for f in filelist]
+        filelist.sort(key=lambda x: len(x), reverse=True)
+        for file in filelist:
+            if 시작("," + file):
+                await eval(f"{file}.{file}")(discord, client, message)
+                return
+
+        elif 시작(",도움"):
             m = ' '.join(m.split(' ')[1:])
             
             help_list = {
@@ -267,8 +276,8 @@ async def on_message(message):
         elif 시작(",히어핑") and 관리:
             await message.channel.send("@here")
 
-        elif 시작(",프사"):
-            await message.channel.send(embed=discord.Embed(title="프사", color=0xffccff).set_image(url=message.author.avatar_url))
+        #elif 시작(",프사"):
+        #    await message.channel.send(embed=discord.Embed(title="프사", color=0xffccff).set_image(url=message.author.avatar_url))
 
         elif 시작(",말"):
             m = ' '.join(m.split(' ')[1:])
