@@ -3,6 +3,8 @@ import discord
 from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
 import time, datetime, random, os, math, string, sys
 
+from commands import *
+
 import asyncio
 import traceback
 import requests
