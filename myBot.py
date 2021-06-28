@@ -93,9 +93,7 @@ async def on_message(message):
     
     if message.guild.id == 826264040740618301:
         global note2
-        if True:
-            if note2 is None:
-                note2 = await client.get_channel(833557179821981707).fetch_message(833579939701325854)
+        note2 = await client.get_channel(833557179821981707).fetch_message(833579939701325854)
 
         if message.content == ",등록" and not (message.author.id in (647001590766632966, 646998005643476993, 826322347862261760, 725528129648721920)):
             if "<@"+str(message.author.id)+">" in note2.content:
