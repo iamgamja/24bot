@@ -1104,7 +1104,7 @@ async def on_message(message):
                 if case == 2:
                     await message.channel.send("랭크업에 성공하였습니다!")
             await message.add_reaction(체크)
-##########
+#########
 
 
 
