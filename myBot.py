@@ -184,7 +184,7 @@ async def on_message(message):
         return
     
     if message.guild.id == 857545260816138251:
-        if message.author.id == 647001590766632966: #or message.author.id == 526889025894875158:
+        if message.author.id == 647001590766632966 or message.author.id == 646998005643476993:
             if message.content.startswith(",+") or message.content.startswith(",-"):
                 try:
                     money = int(message.content.split()[0][1:])
