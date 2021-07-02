@@ -269,7 +269,7 @@ async def on_message(message):
 
 
         filelist = os.listdir("commands")
-        filelist = [f[:-3] for f in filelist if f.endswith(".py")][1:]
+        filelist = [f[:-3] for f in filelist if f.endswith(".py")]
         filelist.sort(key=lambda x: len(x), reverse=True)
         for file in filelist:
             if 시작("," + file):
