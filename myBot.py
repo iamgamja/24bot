@@ -1,5 +1,11 @@
 from imports import *
-from .commands import vmtk
+try:
+    from .commands import vmtk
+except:
+    A = traceback.format_exc()
+else:
+    A = "None!"
+
 
 intents = discord.Intents.all()
 client = discord.ext.commands.Bot(',', intents=intents)
@@ -26,6 +32,7 @@ async def on_ready():
     print('시작')
     await client.change_presence(status=discord.Status.online, activity=discord.Activity(name=",도움", type=discord.ActivityType.listening))
     await log(f"{시간()}, <@526889025894875158>, 시작")
+    await log(A)
     DiscordComponents(client)
     # [무지개] 색
     def RGB2hex(rgb):
@@ -273,7 +280,7 @@ async def on_message(message):
         filelist.sort(key=lambda x: len(x), reverse=True)
         for file in filelist:
             if 시작("," + file):
-                await eval(f"commands.{file}.{file}")(discord, client, message)
+                await eval(f"{file}.{file}")(discord, client, message)
                 return
 
         if 시작(",도움"):
