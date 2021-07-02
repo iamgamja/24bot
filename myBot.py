@@ -1,5 +1,5 @@
 from imports import *
-import commands
+from .commands import vmtk
 
 intents = discord.Intents.all()
 client = discord.ext.commands.Bot(',', intents=intents)
