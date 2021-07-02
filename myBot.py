@@ -1,6 +1,6 @@
 from imports import *
 try:
-    from .commands import vmtk
+    import app.commands.vmtk
 except:
     A = traceback.format_exc()
 else:
