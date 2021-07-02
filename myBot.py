@@ -1,11 +1,4 @@
 from imports import *
-try:
-    import app.commands.vmtk
-except:
-    A = traceback.format_exc()
-else:
-    A = "None!"
-
 
 intents = discord.Intents.all()
 client = discord.ext.commands.Bot(',', intents=intents)
@@ -280,7 +273,8 @@ async def on_message(message):
         filelist.sort(key=lambda x: len(x), reverse=True)
         for file in filelist:
             if 시작("," + file):
-                await eval(f"{file}.{file}")(discord, client, message)
+                exec(f"import commands.{file}\nglobal C\nC = commands.{file}.{file}")
+                await C(discord, client, message)
                 return
 
         if 시작(",도움"):
