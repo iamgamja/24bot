@@ -271,7 +271,7 @@ async def on_message(message):
         filelist.sort(key=lambda x: len(x), reverse=True)
         for file in filelist:
             if 시작("," + file):
-                exec(f"global C\nimport commands.{file}.{file} as C")
+                exec(f"import commands.{file} as c\nglobal C\nC = c.{file}")
                 await C(discord=discord,
                         client=client,
                         message=message,
