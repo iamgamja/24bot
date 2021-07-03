@@ -4,7 +4,7 @@ async def 임베드(discord, client, message, **_):
     mymsg = await message.channel.send("준비중...")
     for i in range(len(list(inputdict.keys()))):
         await mymsg.delete()
-        mymsg = await message.channel.send(str(i) + ". " + list(inputdict.keys())[i] + "을(를) 입력해주세요.\n```yaml\n" + '\n'.join(look_dict) + '\n```')
+        mymsg = await message.channel.send(str(i) + ". " + list(inputdict.keys())[i] + "을(를) 입력해주세요.\n```yaml\n" + '\n'.join([ key + ' : ' + look_dict[key] for key in look_dict ]) + '\n```')
         inputmsg = await client.wait_for('message', timeout=30.0, check=lambda m: m.channel.id == message.channel.id and m.author == message.author)
         inputmsg = inputmsg.content
         inputdict[list(inputdict.keys())[i]] = inputmsg
