@@ -1,7 +1,5 @@
 from imports import *
 
-from commands import commands
-
 intents = discord.Intents.all()
 client = discord.ext.commands.Bot(',', intents=intents)
 
