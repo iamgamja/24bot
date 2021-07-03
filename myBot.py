@@ -277,6 +277,21 @@ async def on_message(message):
                         message=message,
                         시간=시간)
                 return
+            
+        if 관리:
+            filelist = os.listdir("commands/NP")
+            filelist = [f[:-3] for f in filelist if f.endswith(".py")]
+            filelist.sort(key=lambda x: len(x), reverse=True)
+            for file in filelist:
+                if 시작("," + file):
+                    exec(f"import commands.NP.{file} as c\nglobal C\nC = c.{file}")
+                    await C(discord=discord,
+                            client=client,
+                            message=message,
+                            시간=시간)
+                    return
+            
+            
 
         if 시작(",도움"):
             m = ' '.join(m.split(' ')[1:])
