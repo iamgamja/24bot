@@ -271,10 +271,11 @@ async def on_message(message):
         filelist.sort(key=lambda x: len(x), reverse=True)
         for file in filelist:
             if 시작("," + file):
-                exec(f"import commands.{file}\nglobal C\nC = commands.{file}.{file}")
+                exec(f"global C\nimport commands.{file}.{file} as C")
                 await C(discord=discord,
                         client=client,
-                        message=message,)
+                        message=message,
+                        시간=시간)
                 return
 
         if 시작(",도움"):
@@ -325,11 +326,11 @@ async def on_message(message):
         #elif 시작(",핑"):
         #    await message.channel.send(f"<@{message.author.id}>")
 
-        elif 시작(",시간"):
-            await message.channel.send(시간())
+        #elif 시작(",시간"):
+        #    await message.channel.send(시간())
 
-        elif 시작(",정보"):
-            await message.channel.send(f"만든사람: <@526889025894875158>")
+        #elif 시작(",정보"):
+        #    await message.channel.send(f"만든사람: <@526889025894875158>")
 
         elif 시작(",에블핑") and 관리:
             await message.channel.send("@everyone")
