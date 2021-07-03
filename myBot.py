@@ -338,24 +338,6 @@ async def on_message(message):
             embed.set_footer(text= f'{message.author.name} | {시간()}')
             await message.channel.send(embed=embed)
 
-        #elif 시작(",핑"):
-        #    await message.channel.send(f"<@{message.author.id}>")
-
-        #elif 시작(",시간"):
-        #    await message.channel.send(시간())
-
-        #elif 시작(",정보"):
-        #    await message.channel.send(f"만든사람: <@526889025894875158>")
-
-        elif 시작(",에블핑") and 관리:
-            await message.channel.send("@everyone")
-
-        elif 시작(",히어핑") and 관리:
-            await message.channel.send("@here")
-
-        #elif 시작(",프사"):
-        #    await message.channel.send(embed=discord.Embed(title="프사", color=0xffccff).set_image(url=message.author.avatar_url))
-
         elif 시작(",말"):
             m = ' '.join(m.split(' ')[1:])
             if not 도배: return
