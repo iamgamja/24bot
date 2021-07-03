@@ -3,22 +3,19 @@ from imports import *
 intents = discord.Intents.all()
 client = discord.ext.commands.Bot(',', intents=intents)
 
-async def log(s):
-    s = str(s)
+async def log(*s, channel_id=762916201654386701):
+    s = '\n'.join(s)
     
     print(s)
     if len(s) > 2000:
-        await client.get_channel(762916201654386701).send(s[:2000])
+        await client.get_channel(channel_id).send(s[:2000])
         await log(s[2000:])
     else:
-        await client.get_channel(762916201654386701).send(s)
+        await client.get_channel(channel_id).send(s)
     
 @client.event
 async def on_error(event, *args, **kwargs):
-    await log('<@526889025894875158>, error!=====')
-    await log(event)
-    await log(args)
-    await log(kwargs + '=====')
+    await log('=====', '<@526889025894875158>, error!', event, args, kwargs, '=====')
 
 @client.event
 async def on_ready():
@@ -77,14 +74,15 @@ async def on_ready():
                 nowChange[1] = -nowChange[1]
             
         except Exception as e:
-            await log(f"-----error: <@526889025894875158>\n```\n{traceback.format_exc()}\n```")
+            #await log(f"-----error: <@526889025894875158>\n```\n{traceback.format_exc()}\n```")
+            pass
         else:
             #await log(f"-----not error")
             pass
         
 @client.event
 async def on_button_click(res):
-    await log('-----dir(res) on_button_click\n' + str(dir(res)))
+    #await log('-----dir(res) on_button_click\n' + str(dir(res)))
     await res.respond(
         type=InteractionType.ChannelMessageWithSource, content=f"{res.component.label} pressed"
     )
@@ -322,8 +320,8 @@ async def on_message(message):
             embed.set_footer(text= f'{message.author.name} | {시간()}')
             await message.channel.send(embed=embed)
 
-        elif 시작(",핑"):
-            await message.channel.send(f"<@{message.author.id}>")
+        #elif 시작(",핑"):
+        #    await message.channel.send(f"<@{message.author.id}>")
 
         elif 시작(",시간"):
             await message.channel.send(시간())
