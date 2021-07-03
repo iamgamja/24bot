@@ -272,7 +272,9 @@ async def on_message(message):
         for file in filelist:
             if 시작("," + file):
                 exec(f"import commands.{file}\nglobal C\nC = commands.{file}.{file}")
-                await C(discord, client, message)
+                await C(discord=discord,
+                        client=client,
+                        message=message,)
                 return
 
         if 시작(",도움"):
