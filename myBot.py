@@ -235,7 +235,7 @@ async def on_message(message):
                 try:
                     note = await client.get_channel(797348049395253258).fetch_message(861081595988541481)
 
-                    isAttack = int(message.content.startswith(",공격력"))+1 # 공격력: 1, 방어력: 2
+                    isAttack = 1 if message.content.startswith(",공격력") else 2 # 공격력: 1, 방어력: 2
 
                     money = int(message.content.split()[2])
 
@@ -263,7 +263,7 @@ async def on_message(message):
                             note_contents[i] = P
                             break
                     await note.edit(content = '유저 : 공격력 : 방어력\n' + '\n'.join(note_contents))
-                    if isAttack:
+                    if isAttack == 1:
                         await message.channel.send(f"공격력이 {money}로 설정되었습니다.")
                     else:
                         await message.channel.send(f"방어력이 {money}로 설정되었습니다.")
