@@ -263,6 +263,10 @@ async def on_message(message):
                             note_contents[i] = P
                             break
                     await note.edit(content = '유저 : 공격력 : 방어력\n' + '\n'.join(note_contents))
+                    if isAttack:
+                        await message.chanel.send(f"공격력이 {money}로 설정되었습니다.")
+                    else:
+                        await message.chanel.send(f"방어력이 {money}로 설정되었습니다.")
                     await note.add_reaction(체크)
                 except:
                     await message.add_reaction(엑스)
@@ -275,21 +279,21 @@ async def on_message(message):
 
                 DICT = {
                     857962402438709248: { # channel id
-                        '스슬': [ # message content
+                        '스타터 슬라임': [ # message content
                             (1, 1), # need exp
                             5, # exp
                             [
                                 ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '슬라임 발사기')
                             ]
                         ],
-                        '스고': [
+                        '스타터 고블린': [
                             (3, 5), 
                             10,
                             [
                                 ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '고블린 검')
                             ]
                         ],
-                        '스스': [
+                        '스타터 스켈레톤': [
                             (5, 10),
                             20,
                             [
@@ -298,14 +302,14 @@ async def on_message(message):
                         ]
                     },
                     858205689796624395: {
-                        '플슬': [
+                        '플라워 슬라임': [
                             (5, 5),
                             15,
                             [
                                 ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '꽃 발사기')
                             ]
                         ],
-                        '소고': [
+                        '소일 고블린': [
                             (10, 10), 
                             40,
                             [
@@ -313,7 +317,7 @@ async def on_message(message):
                                 ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], '고블린 가죽 신발')
                             ]
                         ],
-                        '그스': [
+                        '그래스 스켈레톤': [
                             (10, 15),
                             25,
                             [
@@ -322,21 +326,21 @@ async def on_message(message):
                         ]
                     },
                     858207335314620426: {
-                        '워슬': [
+                        '워터 슬라임': [
                             (10, 10),
                             20,
                             [
                                 ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '슬라임 물총')
                             ]
                         ],
-                        '괴어': [
+                        '괴물 물고기': [
                             (15, 20), 
                             50,
                             [
                                 ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '괴어의 이빨')
                             ]
                         ],
-                        '늑거': [
+                        '늑대거북': [
                             (20, 20),
                             75,
                             [
@@ -346,21 +350,21 @@ async def on_message(message):
                         ]
                     },
                     858234982890602506: {
-                        '리슬': [
+                        '리프 슬라임': [
                             (15, 15),
                             30,
                             [
                                 ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '나뭇잎 검')
                             ]
                         ],
-                        '트고': [
+                        '트리 고블린': [
                             (25, 20), 
                             100,
                             [
                                 ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '나무 검')
                             ]
                         ],
-                        '우스': [
+                        '우드 스켈레톤': [
                             (20, 25),
                             125,
                             [
@@ -369,21 +373,21 @@ async def on_message(message):
                         ]
                     },
                     858237928629993492: {
-                        '투슬': [
+                        '투구 슬라임': [
                             (30, 20),
                             125,
                             [
                                 ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '슬라임 투구')
                             ]
                         ],
-                        '아고': [
+                        '아머 고블린': [
                             (40, 25), 
                             150,
                             [
                                 ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '고블린 흉갑')
                             ]
                         ],
-                        '재해': [
+                        '재생 해골': [
                             (40, 30),
                             200,
                             [
@@ -396,7 +400,8 @@ async def on_message(message):
                 for channelid in DICT:
                     if message.channel.id == channelid:
                         for monster_name in DICT[channelid]:
-                            if message.content.startswith(monster_name):
+                            short = {'스타터 슬라임': '스슬', '스타터 고블린': '스고', '스타터 스켈레톤': '스스', '플라워 슬라임': '플슬', '소일 고블린': '소고', '그래스 스켈레톤': '그스', '워터 슬라임': '워슬', '괴물 물고기': '괴어', '늑대거북': '늑거', '리프 슬라임': '리슬', '트리 고블린': '트고', '우드 스켈레톤': '우스', '투구 슬라임': '투슬', '아머 고블린': '아고', '재생 해골': '재해'}
+                            if message.content.startswith(monster_name) or message.content.startswith(short[monster_name]):
                                 List = DICT[channelid][monster_name]
                                 
                                 for i in note.content.split('\n')[1:]:
