@@ -4,7 +4,7 @@ intents = discord.Intents.all()
 client = discord.ext.commands.Bot(',', intents=intents)
 
 async def log(*s, channel_id=762916201654386701):
-    s = '\n'.join(s)
+    s = '\n'.join(map(str, s))
     
     print(s)
     if len(s) > 2000:
