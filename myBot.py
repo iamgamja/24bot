@@ -402,7 +402,7 @@ async def on_message(message):
                                 for i in note.content.split('\n')[1:]:
                                     if i.startswith(user):
                                         Attack, Defense = int(i.split(' : ')[1]), int(i.split(' : ')[2])
-                                        await log('*', Attack, Defense, '*')
+                                        #await log('*', Attack, Defense, '*')
                                         break
                                 else:
                                     await message.channel.send(f"{message.author}의 공격력과 방어력을 찾을수 없습니다.")
