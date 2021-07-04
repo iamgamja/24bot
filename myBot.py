@@ -275,26 +275,52 @@ async def on_message(message):
 
                 DICT = {
                     857962402438709248: { # channel id
-                    #787976375301701692: { # 디버그용으로 임시채널에서 테스트
                         '스타터 슬라임': [ # message content
                             (1, 1), # need exp
                             5, # exp
-                            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], # %
-                            '슬라임 발사기' # item name
+                            [
+                                ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '슬라임 발사기')
+                            ]
                         ],
                         '스타터 고블린': [
                             (3, 5), 
                             10,
-                            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                            '고블린 검'
+                            [
+                                ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '고블린 검')
+                            ]
                         ],
                         '스타터 스켈레톤': [
                             (5, 10),
                             20,
-                            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                            '단단한 뼈'
+                            [
+                                ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '단단한 뼈')
+                            ]
                         ]
                     },
+                    858205689796624395: {
+                        '플라워 슬라임': [
+                            (5, 5),
+                            15,
+                            [
+                                ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0], '꽃 발사기')
+                            ]
+                        ],
+                        '소일 고블린': [
+                            (10, 10), 
+                            40,
+                            [
+                                ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], '소일 소드'),
+                                ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], '고블린 가죽 신발')
+                            ]
+                        ],
+                        '그래스 스켈레톤': [
+                            (10, 15),
+                            25,
+                            [
+                                ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], '그래스 본')
+                            ]
+                        ]
+                    }
                 }
                 for channelid in DICT:
                     if message.channel.id == channelid:
@@ -348,8 +374,9 @@ async def on_message(message):
                                     await user.add_roles(message.guild.get_role(  exp_001[ int( usermoney[4] ) ] ))
 
                                     await message.add_reaction(체크)
-                                    if random.choice(List[2]):
-                                        await message.channel.send(f"{List[3]} 을(를) 획득했습니다!")
+                                    for p, q in List[2]:
+                                        if random.choice(p):
+                                            await message.channel.send(f"{q} 을(를) 획득했습니다!")
 
                                 else:
                                     await message.channel.send(f"해당 몬스터를 잡을 수 없습니다.\n해당 몬스터는 hp가 {List[0][0]}이고, 공격력이 {List[0][1]}입니다.\n{message.author}은 공격력이 {A}이고 방어력이 {D}입니다.")
