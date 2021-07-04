@@ -282,8 +282,8 @@ async def on_message(message):
                     await message.channel.send(f"{message.author}의 공격력과 방어력을 찾을수 없습니다.")
 
                 DICT = {
-                    #857962402438709248: { # channel id
-                    787976375301701692: { # 디버그용으로 임시채널에서 테스트
+                    857962402438709248: { # channel id
+                    #787976375301701692: { # 디버그용으로 임시채널에서 테스트
                         '스타터 슬라임': [ # message content
                             (1, 1), # need exp
                             5, # exp
