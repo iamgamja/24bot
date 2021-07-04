@@ -264,9 +264,9 @@ async def on_message(message):
                             break
                     await note.edit(content = '유저 : 공격력 : 방어력\n' + '\n'.join(note_contents))
                     if isAttack:
-                        await message.chanel.send(f"공격력이 {money}로 설정되었습니다.")
+                        await message.channel.send(f"공격력이 {money}로 설정되었습니다.")
                     else:
-                        await message.chanel.send(f"방어력이 {money}로 설정되었습니다.")
+                        await message.channel.send(f"방어력이 {money}로 설정되었습니다.")
                     await note.add_reaction(체크)
                 except:
                     await message.add_reaction(엑스)
