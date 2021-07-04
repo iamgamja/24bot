@@ -91,7 +91,6 @@ async def on_button_click(res):
 async def on_message(message):
     
     if message.guild.id == 826264040740618301:
-        global note2
         note2 = await client.get_channel(833557179821981707).fetch_message(833579939701325854)
 
         if message.content == ",등록" and not (message.author.id in (647001590766632966, 646998005643476993, 826322347862261760, 725528129648721920)):
@@ -843,10 +842,7 @@ async def on_message(message):
                         
             if 시작("ㅇ") and message.channel.id == 785059965794517002:
                 if random.choice([1, 0]):
-                    global note
-                        
-                    if note is None:
-                        note = await client.get_channel(842585693524197406).fetch_message(842585796695425054)
+                    note = await client.get_channel(842585693524197406).fetch_message(842585796695425054)
 
                     user = f"<@{message.author.id}>"
 
