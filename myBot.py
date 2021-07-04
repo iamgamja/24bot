@@ -450,7 +450,7 @@ async def on_message(message):
                                             await message.channel.send(f"{q} 을(를) 획득했습니다!")
 
                                 else:
-                                    await message.channel.send(f"해당 몬스터를 잡을 수 없습니다.\n해당 몬스터는 hp가 {List[0][0]}이고, 공격력이 {List[0][1]}입니다.\n{message.author}은 공격력이 {A}이고 방어력이 {D}입니다.")
+                                    await message.channel.send(f"해당 몬스터를 잡을 수 없습니다.\n해당 몬스터는 hp가 {List[0][0]}이고, 공격력이 {List[0][1]}입니다.\n{message.author}은 공격력이 {Attack}이고 방어력이 {Defense}입니다.")
             except:
                 await message.add_reaction(엑스)
                 await log(f"-1=9-```\n{traceback.format_exc()}\n```")
