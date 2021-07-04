@@ -268,92 +268,93 @@ async def on_message(message):
                     await message.add_reaction(엑스)
                     await log(f"-1-1-```\n{traceback.format_exc()}\n```")
                 
-#         else:
-#             try:
-#                 note = await client.get_channel(797348049395253258).fetch_message(861080648684011551)
-#                 user = f"<@{message.author.id}>"
+        else:
+            try:
+                note = await client.get_channel(797348049395253258).fetch_message(861080648684011551)
+                user = f"<@{message.author.id}>"
 
-#                 for i in note.content.split('\n')[1:]:
-#                     if i.startswith(user):
-#                         A, D = i.split(' : ')[1], i.split(' : ')[2]
-#                         break
-#                 else:
-#                     await message.channel.send(f"{message.author}의 공격력과 방어력을 찾을수 없습니다.")
+                DICT = {
+                    857962402438709248: { # channel id
+                    #787976375301701692: { # 디버그용으로 임시채널에서 테스트
+                        '스타터 슬라임': [ # message content
+                            (1, 1), # need exp
+                            5, # exp
+                            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], # %
+                            '슬라임 발사기' # item name
+                        ],
+                        '스타터 고블린': [
+                            (3, 5), 
+                            10,
+                            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                            '고블린 검'
+                        ],
+                        '스타터 스켈레톤': [
+                            (5, 10),
+                            20,
+                            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                            '단단한 뼈'
+                        ]
+                    },
+                }
+                for channelid in DICT:
+                    if message.channel.id == channelid:
+                        for monster_name in DICT[channelid]:
+                            if message.content.startswith(monster_name):
+                                List = DICT[channelid][monster_name]
+                                
+                                for i in note.content.split('\n')[1:]:
+                                    if i.startswith(user):
+                                        A, D = i.split(' : ')[1], i.split(' : ')[2]
+                                        break
+                                else:
+                                    await message.channel.send(f"{message.author}의 공격력과 방어력을 찾을수 없습니다.")
+                                
 
-#                 DICT = {
-#                     857962402438709248: { # channel id
-#                     #787976375301701692: { # 디버그용으로 임시채널에서 테스트
-#                         '스타터 슬라임': [ # message content
-#                             (1, 1), # need exp
-#                             5, # exp
-#                             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], # %
-#                             '슬라임 발사기' # item name
-#                         ],
-#                         '스타터 고블린': [
-#                             (3, 5), 
-#                             10,
-#                             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#                             '고블린 검'
-#                         ],
-#                         '스타터 스켈레톤': [
-#                             (5, 10),
-#                             20,
-#                             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#                             '단단한 뼈'
-#                         ]
-#                     },
-#                 }
-#                 for channelid in DICT:
-#                     if message.channel.id == channelid:
-#                         for monster_name in DICT[channelid]:
-#                             if message.content.startswith(monster_name):
-#                                 List = DICT[channelid][monster_name]
+                                if List[0][0] <= A and List[0][1] < D:
+                                    money = List[1]
+                                    user = message.author
 
-#                                 if List[0][0] <= A and List[0][1] < D:
-#                                     money = List[1]
-#                                     user = message.author
+                                    level_10 = [857554305065156608, 857554349126844417, 857554366842929164, 857554378516594730, 857554399891030097, 857554413656342538, 857554426847297556, 857554437030412308, 857554446342160384, 857554456745082890]
+                                    level_01 = [857554543206596608, 857554613062205490, 857554647773085696, 857554657751859240, 857554667861311488, 857554676484145152, 857554685689987102, 857554702329839616, 857554715008565260, 857554731320868884]
+                                    exp_100 =  [857555085957922816, 857555101199237121, 857555119193456640, 857555133474406402, 857555150525038643, 857555300885200906, 857555315046350858, 857555325162225665, 857555337242869760, 857555346242928660]
+                                    exp_010 =  [857555356509929513, 857555372083642439, 857555382003302410, 857555390966530048, 857555402122854400, 857555421791125504, 857555431945273354, 857555444846690324, 857555456221380638, 857555466930094100]
+                                    exp_001 =  [857555477574189067, 857555489830862848, 857555519845564416, 857555520822575104, 857555572868775946, 857555585699938324, 857555593437904926, 857555606268280833, 857555616376684554, 857555622954663947]
 
-#                                     level_10 = [857554305065156608, 857554349126844417, 857554366842929164, 857554378516594730, 857554399891030097, 857554413656342538, 857554426847297556, 857554437030412308, 857554446342160384, 857554456745082890]
-#                                     level_01 = [857554543206596608, 857554613062205490, 857554647773085696, 857554657751859240, 857554667861311488, 857554676484145152, 857554685689987102, 857554702329839616, 857554715008565260, 857554731320868884]
-#                                     exp_100 =  [857555085957922816, 857555101199237121, 857555119193456640, 857555133474406402, 857555150525038643, 857555300885200906, 857555315046350858, 857555325162225665, 857555337242869760, 857555346242928660]
-#                                     exp_010 =  [857555356509929513, 857555372083642439, 857555382003302410, 857555390966530048, 857555402122854400, 857555421791125504, 857555431945273354, 857555444846690324, 857555456221380638, 857555466930094100]
-#                                     exp_001 =  [857555477574189067, 857555489830862848, 857555519845564416, 857555520822575104, 857555572868775946, 857555585699938324, 857555593437904926, 857555606268280833, 857555616376684554, 857555622954663947]
+                                    user_money = ['0', '1', '0', '0', '0']
+                                    for i in user.roles:
+                                        if i.id in level_10:
+                                            user_money[0] = i.name ; await user.remove_roles(i)
+                                        elif i.id in level_01:
+                                            user_money[1] = i.name ; await user.remove_roles(i)
+                                        elif i.id in exp_100:
+                                            user_money[2] = i.name ; await user.remove_roles(i)
+                                        elif i.id in exp_010:
+                                            user_money[3] = i.name ; await user.remove_roles(i)
+                                        elif i.id in exp_001:
+                                            user_money[4] = i.name ; await user.remove_roles(i)
 
-#                                     user_money = ['0', '1', '0', '0', '0']
-#                                     for i in user.roles:
-#                                         if i.id in level_10:
-#                                             user_money[0] = i.name ; await user.remove_roles(i)
-#                                         elif i.id in level_01:
-#                                             user_money[1] = i.name ; await user.remove_roles(i)
-#                                         elif i.id in exp_100:
-#                                             user_money[2] = i.name ; await user.remove_roles(i)
-#                                         elif i.id in exp_010:
-#                                             user_money[3] = i.name ; await user.remove_roles(i)
-#                                         elif i.id in exp_001:
-#                                             user_money[4] = i.name ; await user.remove_roles(i)
+                                    usermoney = int(''.join(user_money))
+                                    usermoney += money
+                                    usermoney = str(usermoney).zfill(5)
 
-#                                     usermoney = int(''.join(user_money))
-#                                     usermoney += money
-#                                     usermoney = str(usermoney).zfill(5)
+                                    if int(usermoney) >= 100000:
+                                        await message.channel.send(f"{user}이 100레벨이 되었습니다.") ; return
+                                    #await log("*"+str(usermoney)+"*")
+                                    await user.add_roles(message.guild.get_role( level_10[ int( usermoney[0] ) ] ))
+                                    await user.add_roles(message.guild.get_role( level_01[ int( usermoney[1] ) ] ))
+                                    await user.add_roles(message.guild.get_role(  exp_100[ int( usermoney[2] ) ] ))
+                                    await user.add_roles(message.guild.get_role(  exp_010[ int( usermoney[3] ) ] ))
+                                    await user.add_roles(message.guild.get_role(  exp_001[ int( usermoney[4] ) ] ))
 
-#                                     if int(usermoney) >= 100000:
-#                                         await message.channel.send(f"{user}이 100레벨이 되었습니다.") ; return
-#                                     #await log("*"+str(usermoney)+"*")
-#                                     await user.add_roles(message.guild.get_role( level_10[ int( usermoney[0] ) ] ))
-#                                     await user.add_roles(message.guild.get_role( level_01[ int( usermoney[1] ) ] ))
-#                                     await user.add_roles(message.guild.get_role(  exp_100[ int( usermoney[2] ) ] ))
-#                                     await user.add_roles(message.guild.get_role(  exp_010[ int( usermoney[3] ) ] ))
-#                                     await user.add_roles(message.guild.get_role(  exp_001[ int( usermoney[4] ) ] ))
+                                    await message.add_reaction(체크)
+                                    if random.choice(List[2]):
+                                        await message.channel.send(f"{List[3]} 을(를) 획득했습니다!")
 
-#                                     await message.add_reaction(체크)
-#                                     if random.choice(List[2]):
-#                                         await message.channel.send(f"{List[3]} 을(를) 획득했습니다!")
-
-#                                 else:
-#                                     await message.channel.send(f"해당 몬스터를 잡을 수 없습니다.\n해당 몬스터는 hp가 {List[0][0]}이고, 공격력이 {List[0][1]}입니다.\n{message.author}은 공격력이 {A}이고 방어력이 {D}입니다.")
-#             except:
-#                 await message.add_reaction(엑스)
-#                 await log(f"-1=9-```\n{traceback.format_exc()}\n```")
+                                else:
+                                    await message.channel.send(f"해당 몬스터를 잡을 수 없습니다.\n해당 몬스터는 hp가 {List[0][0]}이고, 공격력이 {List[0][1]}입니다.\n{message.author}은 공격력이 {A}이고 방어력이 {D}입니다.")
+            except:
+                await message.add_reaction(엑스)
+                await log(f"-1=9-```\n{traceback.format_exc()}\n```")
                 
     if message.guild.id == 857545260816138251:
         return
