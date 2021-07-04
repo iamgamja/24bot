@@ -233,7 +233,7 @@ async def on_message(message):
                     await log(f"=-=-=☆☆```\n{traceback.format_exc()}\n```")
             if message.content.startswith(",공격력") or message.content.startswith(",방어력"):
                 try:
-                    note = await client.get_channel(797348049395253258).fetch_message(861080648684011551)
+                    note = await client.get_channel(797348049395253258).fetch_message(861081595988541481)
 
                     isAttack = int(message.content.startswith(",공격력"))+1 # 공격력: 1, 방어력: 2
 
@@ -251,7 +251,7 @@ async def on_message(message):
 
                     if not (user in note_content):
                         await note.edit(content = f"{note.content}\n{user} : 0 : 0")
-                        note = await client.get_channel(797348049395253258).fetch_message(861080648684011551)
+                        note = await client.get_channel(797348049395253258).fetch_message(861081595988541481)
                         note_contents = note.content.split('\n')[1:]
                         note_content = '\n'.join(note_contents)
 
@@ -270,7 +270,7 @@ async def on_message(message):
                 
         else:
             try:
-                note = await client.get_channel(797348049395253258).fetch_message(861080648684011551)
+                note = await client.get_channel(797348049395253258).fetch_message(861081595988541481)
                 user = f"<@{message.author.id}>"
 
                 DICT = {
