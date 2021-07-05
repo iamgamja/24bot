@@ -221,11 +221,14 @@ async def on_message(message):
                     if int(usermoney) >= 100000:
                         await message.channel.send(f"{user}이 100레벨이 되었습니다.") ; return
                     #await log("*"+str(usermoney)+"*")
-                    await user.add_roles(message.guild.get_role( level_10[ int( usermoney[0] ) ] ))
-                    await user.add_roles(message.guild.get_role( level_01[ int( usermoney[1] ) ] ))
-                    await user.add_roles(message.guild.get_role(  exp_100[ int( usermoney[2] ) ] ))
-                    await user.add_roles(message.guild.get_role(  exp_010[ int( usermoney[3] ) ] ))
-                    await user.add_roles(message.guild.get_role(  exp_001[ int( usermoney[4] ) ] ))
+                    logStr = f"{시간()} ; lv.`{(int(usermoney)-money)//1000}` exp.`{(int(usermoney)-money)%1000}` 에서 `{money}`exp를 얻어 lv.`{int(usermoney[:2])}` exp.`{int(usermoney[2:])}`이 되었습니다."
+                    await user.add_roles(message.guild.get_role( level_10[ int( usermoney[0] ) ] ),
+                                         message.guild.get_role( level_01[ int( usermoney[1] ) ] ),
+                                         message.guild.get_role(  exp_100[ int( usermoney[2] ) ] ),
+                                         message.guild.get_role(  exp_010[ int( usermoney[3] ) ] ),
+                                         message.guild.get_role(  exp_001[ int( usermoney[4] ) ] ),
+                                         reason=logStr)
+                    await client.get_channel(861552854933045308).send(logStr)
                 
                     await message.add_reaction(체크)
                 except:
@@ -443,12 +446,15 @@ async def on_message(message):
                                     if int(usermoney) >= 100000:
                                         await message.channel.send(f"{user}이 100레벨이 되었습니다.") ; return
                                     #await log("*"+str(usermoney)+"*")
-                                    await user.add_roles(message.guild.get_role( level_10[ int( usermoney[0] ) ] ))
-                                    await user.add_roles(message.guild.get_role( level_01[ int( usermoney[1] ) ] ))
-                                    await user.add_roles(message.guild.get_role(  exp_100[ int( usermoney[2] ) ] ))
-                                    await user.add_roles(message.guild.get_role(  exp_010[ int( usermoney[3] ) ] ))
-                                    await user.add_roles(message.guild.get_role(  exp_001[ int( usermoney[4] ) ] ))
-
+                                    logStr = f"{시간()} ; lv.`{(int(usermoney)-money)//1000}` exp.`{(int(usermoney)-money)%1000}` 에서 `{money}`exp를 얻어 lv.`{int(usermoney[:2])}` exp.`{int(usermoney[2:])}`이 되었습니다."
+                                    await user.add_roles(message.guild.get_role( level_10[ int( usermoney[0] ) ] ),
+                                                         message.guild.get_role( level_01[ int( usermoney[1] ) ] ),
+                                                         message.guild.get_role(  exp_100[ int( usermoney[2] ) ] ),
+                                                         message.guild.get_role(  exp_010[ int( usermoney[3] ) ] ),
+                                                         message.guild.get_role(  exp_001[ int( usermoney[4] ) ] ),
+                                                         reason=logStr)
+                                    await client.get_channel(861552854933045308).send(logStr)
+                                    await message.channel.send(logStr)
                                     await message.add_reaction(체크)
                                     for p, q in List[2]:
                                         if random.choice(p):
