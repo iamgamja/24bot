@@ -233,7 +233,7 @@ async def on_message(message):
                     await log(f"=-=-=☆☆```\n{traceback.format_exc()}\n```")
             if message.content.startswith(",공격력") or message.content.startswith(",방어력"):
                 try:
-                    note = await client.get_channel(797348049395253258).fetch_message(861081595988541481)
+                    note = await client.get_channel(861494824259944499).fetch_message(861495876379213864)
 
                     isAttack = 1 if message.content.startswith(",공격력") else 2 # 공격력: 1, 방어력: 2
 
@@ -251,7 +251,7 @@ async def on_message(message):
 
                     if not (user in note_content):
                         await note.edit(content = f"{note.content}\n{user} : 0 : 0")
-                        note = await client.get_channel(797348049395253258).fetch_message(861081595988541481)
+                        note = await client.get_channel(861494824259944499).fetch_message(861495876379213864)
                         note_contents = note.content.split('\n')[1:]
                         note_content = '\n'.join(note_contents)
 
@@ -274,7 +274,7 @@ async def on_message(message):
                 
         else:
             try:
-                note = await client.get_channel(797348049395253258).fetch_message(861081595988541481)
+                note = await client.get_channel(861494824259944499).fetch_message(861495876379213864)
                 user = f"<@{message.author.id}>"
 
                 DICT = {
@@ -410,7 +410,7 @@ async def on_message(message):
                                         #await log('*', Attack, Defense, '*')
                                         break
                                 else:
-                                    await message.channel.send(f"{message.author}의 공격력과 방어력을 찾을수 없습니다.")
+                                    await message.channel.send(f"{message.author}의 공격력과 방어력을 찾을수 없습니다.") ; return
                                 
 
                                 if List[0][0] <= Attack and List[0][1] < Defense:
