@@ -234,11 +234,11 @@ async def on_message(message):
                 except:
                     await message.add_reaction(엑스)
                     await log(f"=-=-=☆☆```\n{traceback.format_exc()}\n```")
-            if message.content.startswith(",공격력") or message.content.startswith(",방어력"):
+            if message.content.startswith(",공격력") or message.content.startswith(",방어력") or message.content.startswith(",공격력배율"):
                 try:
                     note = await client.get_channel(861494824259944499).fetch_message(861495876379213864)
 
-                    isAttack = 1 if message.content.startswith(",공격력") else 2 # 공격력: 1, 방어력: 2
+                    isAttack = 1 if message.content.startswith(",공격력") else 2 if message.content.startswith(",방어력") else 3 # 공격력: 1, 방어력: 2, 공격력배율: 3
 
                     money = int(message.content.split()[2])
 
@@ -265,11 +265,13 @@ async def on_message(message):
                             P = ' : '.join(P)
                             note_contents[i] = P
                             break
-                    await note.edit(content = '유저 : 공격력 : 방어력\n' + '\n'.join(note_contents))
+                    await note.edit(content = '유저 : 공격력 : 방어력 : 공격력배율\n' + '\n'.join(note_contents))
                     if isAttack == 1:
                         await message.channel.send(f"공격력이 {money}로 설정되었습니다.")
-                    else:
+                    elif isAttack == 2:
                         await message.channel.send(f"방어력이 {money}로 설정되었습니다.")
+                    else:
+                        await message.channel.send(f"공격력배율이 {money}로 설정되었습니다.")
                     await note.add_reaction(체크)
                 except:
                     await message.add_reaction(엑스)
@@ -409,14 +411,14 @@ async def on_message(message):
                                 
                                 for i in note.content.split('\n')[1:]:
                                     if i.startswith(user):
-                                        Attack, Defense = int(i.split(' : ')[1]), int(i.split(' : ')[2])
+                                        Attack, Defense, MultiAttack = int(i.split(' : ')[1]), int(i.split(' : ')[2]), int(i.split(' : ')[3])
                                         #await log('*', Attack, Defense, '*')
                                         break
                                 else:
-                                    await message.channel.send(f"{message.author}의 공격력과 방어력을 찾을수 없습니다.") ; return
+                                    await message.channel.send(f"{message.author}의 공격력, 방어력, 공격력배율을 찾을수 없습니다.") ; return
                                 
 
-                                if List[0][0] <= Attack and List[0][1] < Defense:
+                                if List[0][0] <= Attack*MultiAttack and List[0][1] < Defense:
                                     money = List[1]
                                     user = message.author
 
@@ -461,7 +463,7 @@ async def on_message(message):
                                             await message.channel.send(f"{q} 을(를) 획득했습니다!")
 
                                 else:
-                                    await message.channel.send(f"해당 몬스터를 잡을 수 없습니다.\n해당 몬스터는 hp가 {List[0][0]}이고, 공격력이 {List[0][1]}입니다.\n{message.author}은 공격력이 {Attack}이고 방어력이 {Defense}입니다.")
+                                    await message.channel.send(f"해당 몬스터를 잡을 수 없습니다.\n해당 몬스터는 hp가 {List[0][0]}이고, 공격력이 {List[0][1]}입니다.\n{message.author}은 공격력이 {Attack}*{MultiAttack}={Attack*MultiAttack}이고 방어력이 {Defense}입니다.")
             except:
                 await message.add_reaction(엑스)
                 await log(f"-1=9-```\n{traceback.format_exc()}\n```")
