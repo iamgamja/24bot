@@ -254,7 +254,7 @@ async def on_message(message):
                     user = f"<@{user}>"
 
                     if not (user in note_content):
-                        await note.edit(content = f"{note.content}\n{user} : 0 : 0")
+                        await note.edit(content = f"{note.content}\n{user} : 0 : 0 : 1")
                         note = await client.get_channel(861494824259944499).fetch_message(861495876379213864)
                         note_contents = note.content.split('\n')[1:]
                         note_content = '\n'.join(note_contents)
