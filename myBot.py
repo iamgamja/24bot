@@ -240,7 +240,8 @@ async def on_message(message):
 
                     isAttack = 1 if message.content.startswith(",공격력") else 2 if message.content.startswith(",방어력") else 3 # 공격력: 1, 방어력: 2, 공격력배율: 3
 
-                    money = int(message.content.split()[2])
+                    money = float(message.content.split()[2])
+                    if money%1==0: money = int(money)
 
                     note_contents = note.content.split('\n')[1:]
                     note_content = '\n'.join(note_contents)
@@ -451,7 +452,7 @@ async def on_message(message):
                                 
                                 for i in note.content.split('\n')[1:]:
                                     if i.startswith(user):
-                                        Attack, Defense, MultiAttack = int(i.split(' : ')[1]), int(i.split(' : ')[2]), int(i.split(' : ')[3])
+                                        Attack, Defense, MultiAttack = float(i.split(' : ')[1]), float(i.split(' : ')[2]), float(i.split(' : ')[3])
                                         #await log('*', Attack, Defense, '*')
                                         break
                                 else:
