@@ -277,7 +277,59 @@ async def on_message(message):
                 except:
                     await message.add_reaction(엑스)
                     await log(f"-1-1-```\n{traceback.format_exc()}\n```")
-                
+        
+
+        #####
+
+        elif message.author.id == 693386027036835912:
+            if message.content.startswith(",공격력") or message.content.startswith(",방어력"):
+                try:
+                    note = await client.get_channel(861494824259944499).fetch_message(861495876379213864)
+
+                    isAttack = 1 if message.content.startswith(",공격력") else 2 if message.content.startswith(",방어력") else 3 # 공격력: 1, 방어력: 2, 공배: 3
+
+                    money = float(message.content.split()[2])
+                    if money%1==0: money = int(money)
+
+                    note_contents = note.content.split('\n')[1:]
+                    note_content = '\n'.join(note_contents)
+
+                    user_ = message.content.split()[1]
+                    user = ''
+                    for i in user_:
+                        if i in '1234567890':
+                            user += i
+                    user = f"<@{user}>"
+
+                    if not (user in note_content):
+                        await note.edit(content = f"{note.content}\n{user} : 0 : 0 : 1")
+                        note = await client.get_channel(861494824259944499).fetch_message(861495876379213864)
+                        note_contents = note.content.split('\n')[1:]
+                        note_content = '\n'.join(note_contents)
+
+                    for i in range(len(note_contents)):
+                        if note_contents[i].startswith(user):
+                            P = note_contents[i].split(' : ')
+                            P[isAttack] = str(money)
+                            P = ' : '.join(P)
+                            note_contents[i] = P
+                            break
+                    await note.edit(content = '유저 : 공격력 : 방어력 : 공배\n' + '\n'.join(note_contents))
+                    if isAttack == 1:
+                        await message.channel.send(f"공격력이 {money}로 설정되었습니다.")
+                    elif isAttack == 2:
+                        await message.channel.send(f"방어력이 {money}로 설정되었습니다.")
+                    else:
+                        await message.channel.send(f"공배가 {money}로 설정되었습니다.")
+                    await note.add_reaction(체크)
+                except:
+                    await message.add_reaction(엑스)
+                    await log(f"-1>1-```\n{traceback.format_exc()}\n```")
+        
+
+        #####
+
+
         else:
             try:
                 note = await client.get_channel(861494824259944499).fetch_message(861495876379213864)
