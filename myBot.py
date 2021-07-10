@@ -3,6 +3,8 @@ from imports import *
 intents = discord.Intents.all()
 client = discord.ext.commands.Bot(',', intents=intents)
 
+대충랭던관리자리스트 = [647001590766632966, 646998005643476993]
+
 async def log(*s, channel_id=762916201654386701):
     s = '\n'.join(map(str, s))
     
@@ -89,7 +91,11 @@ async def on_button_click(res):
 
 @client.event
 async def on_message(message):
+    m = message.content
+    def 시작(s):
+        return k2e(m).startswith(k2e(s))
     
+
     if message.guild.id == 826264040740618301:
         note2 = await client.get_channel(833557179821981707).fetch_message(833579939701325854)
 
@@ -116,7 +122,7 @@ async def on_message(message):
                 await message.channel.send("완료")
                 
         if message.author.id in (647001590766632966, 646998005643476993, 826322347862261760, 725528129648721920):
-            if message.content.startswith(",+") or message.content.startswith(",-"):
+            if 시작(",+") or 시작(",-"):
                 m = message.content
                 usermoney = int(m.split()[0][1:])
                 
@@ -140,7 +146,7 @@ async def on_message(message):
                     notem = "이름 : 돈\n" + "\n".join(notec)
                     await note2.edit(content = notem)
                     await message.channel.send("완료")
-            if message.content.startswith(",등록"):
+            if 시작(",등록"):
                 mm = message.content[4:]
                 m = ""
                 for i in mm:
@@ -155,7 +161,7 @@ async def on_message(message):
                 else:
                     await note2.edit(content=f"{note2.content}\n<@{m}> : 0")
                     await message.channel.send("완료")
-            if message.content.startswith(",탈퇴"):
+            if 시작(",탈퇴"):
                 mm = message.content[4:]
                 m = ""
                 for i in mm:
@@ -182,8 +188,21 @@ async def on_message(message):
         return
     
     if message.guild.id == 857545260816138251:
-        if message.author.id in (647001590766632966, 646998005643476993):
-            if message.content.startswith(",+") or message.content.startswith(",-"):
+        global 대충랭던관리자리스트
+        if message.author.id in 대충랭던관리자리스트:
+            if 시작(",권한"):
+                user_ = message.content.split()[1]
+                user = ""
+                for i in user_:
+                    if i in "1234567890":
+                        user += i
+                user = int(user)
+                if user in 대충랭던관리자리스트:
+                    대충랭던관리자리스트.remove(user) ; await message.channel.send(f"{user} 님은 이제 권한이 없습니다. \n현재 관리자 목록은 {대충랭던관리자리스트}입니다.")
+                else:
+                    대충랭던관리자리스트.append(user) ; await message.channel.send(f"{user} 님은 이제 권한이 있습니다. \n현재 관리자 목록은 {대충랭던관리자리스트}입니다.")
+
+            elif 시작(",+") or 시작(",-"):
                 try:
                     money = int(message.content.split()[0][1:])
                 
@@ -234,11 +253,11 @@ async def on_message(message):
                 except:
                     await message.add_reaction(엑스)
                     await log(f"=-=-=☆☆```\n{traceback.format_exc()}\n```")
-            if message.content.startswith(",공격력") or message.content.startswith(",방어력") or message.content.startswith(",공배"):
+            if 시작(",공격력") or 시작(",방어력") or 시작(",공배"):
                 try:
                     note = await client.get_channel(861494824259944499).fetch_message(861495876379213864)
 
-                    isAttack = 1 if message.content.startswith(",공격력") else 2 if message.content.startswith(",방어력") else 3 # 공격력: 1, 방어력: 2, 공배: 3
+                    isAttack = 1 if 시작(",공격력") else 2 if 시작(",방어력") else 3 # 공격력: 1, 방어력: 2, 공배: 3
 
                     money = float(message.content.split()[2])
                     if money%1==0: money = int(money)
@@ -518,9 +537,6 @@ async def on_message(message):
         global 도배
         m = message.content
         # print(m)
-
-        def 시작(s):
-            return k2e(m).startswith(k2e(s))
 
         관리 = (message.author.id == 526889025894875158)
         
