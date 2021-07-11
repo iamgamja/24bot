@@ -574,6 +574,7 @@ async def on_message(message):
                         random=random,
                         시작=시작,
                         지뢰=지뢰,
+                        m=m,
                        )
                 return
             
@@ -592,6 +593,7 @@ async def on_message(message):
                             random=random,
                             시작=시작,
                             지뢰=지뢰,
+                            m=m,
                            )
                     return
             
