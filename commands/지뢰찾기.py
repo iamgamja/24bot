@@ -1,4 +1,5 @@
-async def 지뢰찾기(message, asyncio, random, 시작, 지뢰, **_):
+async def 지뢰찾기(m, message, asyncio, random, 시작, 지뢰, **_):
+    
     m = ' '.join(m.split(' ')[1:])
     #제대로 input 했는지 확인
     if m.startswith("랜덤"):
