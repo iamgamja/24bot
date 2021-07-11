@@ -1,4 +1,5 @@
-async def 도움():
+async def 도움(message, discord, **_):
+    m = message.content
     m = ' '.join(m.split(' ')[1:])
 
     help_list = {
