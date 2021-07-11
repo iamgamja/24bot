@@ -575,6 +575,8 @@ async def on_message(message):
                         시작=시작,
                         지뢰=지뢰,
                         m=m,
+                        k2e=k2e,
+                        e2k=e2k,
                        )
                 return
             
@@ -594,6 +596,8 @@ async def on_message(message):
                             시작=시작,
                             지뢰=지뢰,
                             m=m,
+                            k2e=k2e,
+                            e2k=e2k,
                            )
                     return
             
@@ -636,14 +640,6 @@ async def on_message(message):
             await asyncio.sleep(2.0)
             await msg.delete()
 
-        elif 시작(",한영"):
-            m = ' '.join(m.split(' ')[1:])
-            await message.channel.send(k2e(m))
-
-        elif 시작(",영한"):
-            m = ' '.join(m.split(' ')[1:])
-            await message.channel.send(e2k(m))
-            
         elif 시작(",번역"):
             m = ' '.join(m.split(' ')[1:])
             await message.channel.send(translate(m))
