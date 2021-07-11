@@ -569,7 +569,12 @@ async def on_message(message):
                 await C(discord=discord,
                         client=client,
                         message=message,
-                        시간=시간)
+                        시간=시간,
+                        asyncio=asyncio,
+                        random=random,
+                        시작=시작,
+                        지뢰=지뢰,
+                       )
                 return
             
         if 관리:
@@ -582,57 +587,17 @@ async def on_message(message):
                     await C(discord=discord,
                             client=client,
                             message=message,
-                            시간=시간)
+                            시간=시간,
+                            asyncio=asyncio,
+                            random=random,
+                            시작=시작,
+                            지뢰=지뢰,
+                           )
                     return
             
             
 
-        if 시작(",도움"):
-            m = ' '.join(m.split(' ')[1:])
-            
-            help_list = {
-                "도움" : {"`,도움`" : "전체 도움말을 출력합니다.", "`,도움 <명령어>`" : "<명령어> 에 대한 세부 도움말을 출력합니다."},
-                "핑" : {"`,핑`" : "명령어를 입력한 사람을 핑합니다."},
-                "에블핑" : {"`,에블핑`" : "@everyone을 출력합니다."},
-                "히어핑" : {"`,히어핑`" : "@here을 출력합니다."},
-                "폭8" : {"`,폭8`" : "폭☆8하는 gif를 출력합니다."},
-                "지뢰찾기" : {"`,지뢰찾기 <랜덤|최소|최대>`" : "<랜덤|최소|최대> 크기의 지뢰찾기 판을 출력합니다.", "`,지뢰찾기 <x> <y> <지뢰 수>`" : "지뢰찾기 판을 출력합니다."},
-                "ㅅ" : {"`,슬롯`" : "슬롯머신을 돌립니다.", "`,ㅅ`" : "슬롯머신을 돌립니다."},
-                "슬롯" : {"`,슬롯`" : "슬롯머신을 돌립니다.", "`,ㅅ`" : "슬롯머신을 돌립니다."},
-                "프사" : {"`,프사`" : "명령어를 입력한 사람의 프사를 출력합니다."},
-                "말" : {"`,말 <할 말>`" : "<할 말>을 출력합니다."},
-                "계산" : {"`,계산 <식>`" : "<식>을 계산합니다."},
-                "청소" : {"`,청소 <수>`" : "<수>만큼의 메시지를 지웁니다."},
-                "임베드" : {"`,임베드`" : "임베드를 만듭니다."},
-                "역할생성" : {"`,역할생성 <이름>`" : "<이름>의 역할을 생성합니다."},
-                "역할제거" : {"`,역할제거 <이름>`" : "<이름>의 역할을 제거합니다."},
-                "채널생성" : {"`,채널생성 (카테고리) <이름>`" : "(카테고리)에 <이름>의 채널을 생성합니다."},
-                "채널제거" : {"`,채널제거 <이름>`" : "<이름>의 채널을 제거합니다."},
-                "시간" : {"`,시간`" : "현재시간을 출력합니다."},
-                "한영" : {"`,한영 <한글>`" : "<한글>을 영타로 바꿉니다."},
-                "영한" : {"`,영한 <영어>`" : "<영어>를 한타로 바꿉니다."},
-                "번역" : {"`,번역 <한글>`" : "<한글>을 영어로 번역합니다.", "`,번역 <영어>`" : "<영어>를 한글로 번역합니다."},
-                "썸네일" : {"`,썸네일 <유튜브 영상 url>`" : "<유튜브 영상 url>의 썸네일을 출력합니다."},
-                "기억" : {"`,기억`" : "기억된 목록을 출력합니다.", "`,기억 <키워드>`" : "<키워드>에 기억된 <대답>을 출력합니다.", "`,기억 <키워드> <대답>`" : "<키워드>에 <대답>을 기억합니다."},
-                "초대" : {"`,초대`" : "이 봇의 초대링크를 출력합니다."},
-                "정보" : {"`,정보`" : "이 봇을 만든 사람을 핑합니다."},
-            }
-            embed = discord.Embed(title="도움말", color=0x825cff)
-            
-            if m in help_list:
-                for i in help_list[m]:
-                    embed.add_field(name=i, value=help_list[m][i], inline=False)
-            else:
-                embed.add_field(name="**취소선은 아마도 사용할수 없는 명령어입니다.**", value="`,도움 <명령어>`로 세부 도움말을 확인할수 있습니다", inline=False)
-                embed.add_field(name="**`도움`**", value="`도움`", inline=False)
-                embed.add_field(name="**`재미`**", value="`핑` ~~`에블핑`~~ ~~`히어핑`~~ `지뢰찾기` `슬롯`", inline=False)
-                embed.add_field(name="**`기능`**", value="`프사` `말` `계산` ~~`청소`~~ `임베드` ~~`역할생성`~~ ~~`역할제거`~~ ~~`채널생성`~~ ~~`채널제거`~~ `시간` `한영` `영한` `번역` `썸네일` `기억`", inline=False)
-                embed.add_field(name="**`기타`**", value="`초대` `정보`", inline=False)
-                
-            embed.set_footer(text= f'{message.author.name} | {시간()}')
-            await message.channel.send(embed=embed)
-
-        elif 시작(",말"):
+        if 시작(",말"):
             m = ' '.join(m.split(' ')[1:])
             if not 도배: return
             try:
@@ -644,26 +609,6 @@ async def on_message(message):
             await asyncio.sleep(7.0)
             도배 = True
             await message.add_reaction(체크)
-
-        elif 시작(",임베드"):
-            inputdict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
-            look_dict = {"제목":'', "색":'', "소제목":'', "내용":'', "푸터":''}
-            mymsg = await message.channel.send("준비중...")
-            for i in range(len(list(inputdict.keys()))):
-                await mymsg.delete()
-                mymsg = await message.channel.send(str(i) + ". " + str(list(inputdict.keys())[i]) + "을(를) 입력해주세요.\n```yaml\n" + str(str(look_dict)[1:-1].replace(', ', ',\n').replace(땀표[0], 땀표[1])) + 땀표[0])
-                inputmsg = await client.wait_for('message', timeout=30.0, check=lambda m: m.channel.id == message.channel.id and m.author == message.author)
-                inputmsg = inputmsg.content
-                inputdict[list(inputdict.keys())[i]] = inputmsg
-                look_dict[list(inputdict.keys())[i]] = str(inputmsg)[:7]+'...' if len(str(inputmsg)) > 10 else str(inputmsg)
-            await mymsg.delete()
-            try:
-                embed = discord.Embed(title=inputdict["제목"], color=int("0x"+inputdict["색"], 16))
-            except:
-                embed = discord.Embed(title=inputdict["제목"], color=0x000000)
-            embed.add_field(name=inputdict["소제목"], value=inputdict["내용"], inline=False)
-            embed.set_footer(text=inputdict["푸터"])
-            await message.channel.send(embed=embed)
 
         elif 시작(",기억"):
             m = ' '.join(m.split(' ')[1:])
@@ -681,71 +626,6 @@ async def on_message(message):
                     await message.channel.send(q[0] + " 을(를) 기억")
             else:
                 await message.channel.send("ㅏ 띄어쓰기 안됨")
-
-        elif 시작(",지뢰찾기"):
-            m = ' '.join(m.split(' ')[1:])
-            #제대로 input 했는지 확인
-            if 시작("랜덤"):
-                m = str(random.randint(1, 17)) + ' '
-                m += str(random.randint(1, 50)) + ' '
-                m += str(random.randint(1, int(m.split()[0]) * int(m.split()[1])))
-            
-            m = '17 50 850' if 시작("최대") else m
-            m = '1 1 1' if 시작('최소') else m
-            mine_input = m.split()
-            
-            if len(mine_input) != 3:
-                await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y\n또는 ,지뢰찾기 <랜덤|최대|최소>```") ; return
-            mine_x = int(mine_input[0])
-            mine_y = int(mine_input[1])
-            mine_z = int(mine_input[2])
-            if (mine_x < 1) or (mine_y < 1) or (mine_z < 1) or (mine_x > 17) or (mine_y > 50) or (mine_z > mine_x * mine_y):
-                await message.channel.send("```yaml\nx : 1~17\ny : 1~50\n지뢰 수 : 1~x*y\n또는 ,지뢰찾기 <랜덤|최대|최소>```") ; return
-            #확인 끝, 틀 만들기
-            mine_map = []
-            for i in range(mine_y):
-                mine_map.append([])
-                for j in range(mine_x):
-                    mine_map[i].append(지뢰[0])
-            #틀 만들기 끝, 지뢰 넣기
-            i=0
-            while i < mine_z:
-                i1 = random.randrange(mine_y)
-                i2 = random.randrange(mine_x)
-                if mine_map[i1][i2] == 지뢰[10]:
-                    continue
-                else:
-                    mine_map[i1][i2] = 지뢰[10]
-                    i+=1
-            #지뢰 넣기 끝, 숫자 넣기
-            for i1 in range(mine_y):
-                for i2 in range(mine_x):
-                    if mine_map[i1][i2] == 지뢰[10]:
-                        continue
-                    else:
-                        i=0
-
-                        i += 1 if i1>0        and i2>0        and mine_map[i1-1][i2-1] == 지뢰[10] else 0
-                        i += 1 if i1>0        and                 mine_map[i1-1][i2  ] == 지뢰[10] else 0
-                        i += 1 if i1>0        and i2<mine_x-1 and mine_map[i1-1][i2+1] == 지뢰[10] else 0
-                        i += 1 if                 i2>0        and mine_map[i1  ][i2-1] == 지뢰[10] else 0
-#                       i += 1 if                                 mine_map[i1  ][i2  ] == 지뢰[10] else 0
-                        i += 1 if                 i2<mine_x-1 and mine_map[i1  ][i2+1] == 지뢰[10] else 0
-                        i += 1 if i1<mine_y-1 and i2>0        and mine_map[i1+1][i2-1] == 지뢰[10] else 0
-                        i += 1 if i1<mine_y-1 and                 mine_map[i1+1][i2  ] == 지뢰[10] else 0
-                        i += 1 if i1<mine_y-1 and i2<mine_x-1 and mine_map[i1+1][i2+1] == 지뢰[10] else 0
-
-                        mine_map[i1][i2] = 지뢰[i]
-            mine_map_lookver = ''
-            for i in mine_map:
-                for j in i:
-                    mine_map_lookver += f"||{j}||"
-                mine_map_lookver += '\n'
-
-            for j in mine_map_lookver.split():
-                await asyncio.sleep(1.0)
-                await message.channel.send(j)
-            await message.channel.send(f"{mine_x} * {mine_y}, 지뢰 수: {mine_z}")
 
         elif 시작(",청소") and 관리:
             m = ' '.join(m.split(' ')[1:])
