@@ -243,7 +243,7 @@ async def on_message(message):
                     if int(usermoney) >= 1000000:
                         await message.channel.send(f"{user}이 1000레벨이 되었습니다.") ; return
                     #await log("*"+str(usermoney)+"*")
-                    logStr = f"{시간()} ; {user} ; lv.`{(int(usermoney)-money)//1000}` exp.`{(int(usermoney)-money)%1000}` 에서 `{money}`exp를 얻어 lv.`{int(usermoney[:2])}` exp.`{int(usermoney[2:])}`이 되었습니다."
+                    logStr = f"{시간()} ; {user} ; lv.`{(int(usermoney)-money)//1000}` exp.`{(int(usermoney)-money)%1000}` 에서 `{money}`exp를 얻어 lv.`{int(usermoney[:3])}` exp.`{int(usermoney[3:])}`이 되었습니다."
                     await user.add_roles(message.guild.get_role(level_100[ int( usermoney[0] ) ] ),
                                          message.guild.get_role( level_10[ int( usermoney[1] ) ] ),
                                          message.guild.get_role( level_01[ int( usermoney[2] ) ] ),
@@ -516,7 +516,7 @@ async def on_message(message):
                                     if int(usermoney) >= 1000000:
                                         await message.channel.send(f"{user}이 1000레벨이 되었습니다.") ; return
                                     #await log("*"+str(usermoney)+"*")
-                                    logStr = f"{시간()} ; {user} ; lv.`{(int(usermoney)-money)//1000}` exp.`{(int(usermoney)-money)%1000}` 에서 `{money}`exp를 얻어 lv.`{int(usermoney[:2])}` exp.`{int(usermoney[2:])}`이 되었습니다."
+                                    logStr = f"{시간()} ; {user} ; lv.`{(int(usermoney)-money)//1000}` exp.`{(int(usermoney)-money)%1000}` 에서 `{money}`exp를 얻어 lv.`{int(usermoney[:3])}` exp.`{int(usermoney[3:])}`이 되었습니다."
                                     await user.add_roles(message.guild.get_role(level_100[ int( usermoney[0] ) ] ),
                                                          message.guild.get_role( level_10[ int( usermoney[1] ) ] ),
                                                          message.guild.get_role( level_01[ int( usermoney[2] ) ] ),
